@@ -1339,11 +1339,11 @@ const NEEDS_WJP_ITEMS = [
 
 // ── QA TEST RESULTS ────────────────────────────────────
 const QA_RESULTS = [
+  { name: 'Embed external site test — X-Frame-Options', result: 'FIXED', pass: 1, fail: 0, time: '2026-03-01', runner: 'Yama' },
+  { name: 'Frontend QA — hero, nav, marketplace', result: 'PARTIAL', pass: 4, fail: 3, time: '2026-03-01', runner: 'Yama' },
+  { name: 'Embed checkout modal (/embed page)', result: 'PASS', pass: 5, fail: 0, time: '2026-03-01', runner: 'Yama' },
   { name: 'For Crypto E2E Suite — Phase A-C', result: 'PASS', pass: 52, fail: 0, time: '2026-02-28', runner: 'Kikai + Yama' },
-  { name: 'Bot API endpoint verification', result: 'PASS', pass: 8, fail: 0, time: '2026-02-26', runner: 'Kikai' },
-  { name: 'SIWE wallet auth flow', result: 'PASS', pass: 5, fail: 1, time: '2026-02-25', runner: 'Kikai' },
-  { name: 'Mobile listings (issue #9)', result: 'FAIL', pass: 3, fail: 2, time: '2026-02-24', runner: 'Yama' },
-  { name: 'CORS price ticker (issue #12)', result: 'FAIL', pass: 0, fail: 1, time: '2026-02-24', runner: 'Yama' }
+  { name: 'Bot API endpoint verification', result: 'PASS', pass: 8, fail: 0, time: '2026-02-26', runner: 'Kikai' }
 ];
 
 // ── TOGGLE SECTIONS ─────────────────────────────────────
@@ -1725,8 +1725,12 @@ async function checkBotApi() {
 // ── MAIN INIT ─────────────────────────────────────────────
 async function init() {
   try {
-    const resp = await fetch('data.json?_v=' + Date.now());
-    if (!resp.ok) throw new Error('data.json ' + resp.status);
+    // Try relative path first (GitHub Pages), then absolute
+    const dataUrl = window.location.origin.includes('github.io')
+      ? '/mission-control/data.json?_v=' + Date.now()
+      : 'data.json?_v=' + Date.now();
+    const resp = await fetch(dataUrl);
+    if (!resp.ok) throw new Error('data.json ' + resp.status + ' at ' + dataUrl);
     const data = await resp.json();
 
     renderLaunch();
