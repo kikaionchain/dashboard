@@ -3,1766 +3,894 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
-<script>
-if (!location.search.includes('_v=')) {
-  location.replace(location.pathname + '?_v=' + Date.now());
-}
-</script>
-<title>Mission Control — For Crypto</title>
+<title>Mission Control</title>
 <style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html, body { width: 100%; min-height: 100vh; overflow-x: hidden; }
-
-:root {
-  --bg: #000000;
-  --surface: #0d0d0d;
-  --surface2: #141414;
-  --border: #1a1a1a;
-  --border2: #242424;
-  --text: #f0f0f0;
-  --text2: #888;
-  --dim: #555;
-  --accent: #00D9FF;
-  --green: #39FF14;
-  --gold: #FFD700;
-  --red: #FF3B3B;
-  --orange: #FF8C00;
-  --purple: #a78bfa;
-  --pink: #f472b6;
-}
-
-body {
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  font-size: 16px;
-  line-height: 1.5;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
-}
-
-@keyframes pulseScale {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.25); opacity: 0.7; }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.fade-in { animation: fadeIn 0.4s ease forwards; }
-
-/* ─── HEADER ──────────────────────────────────────────── */
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  width: 100%;
-  background: rgba(0,0,0,0.95);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border2);
-  padding: 10px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.header-left {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.header-logo {
-  font-size: 20px;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-  color: var(--text);
-}
-
-.header-logo .fc-tag {
-  color: var(--accent);
-  font-weight: 400;
-  font-size: 15px;
-  margin-left: 8px;
-  padding: 2px 8px;
-  border: 1px solid rgba(0,217,255,0.3);
-  border-radius: 999px;
-}
-
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 13px;
-  color: var(--text2);
-}
-
-.refresh-badge {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 10px;
-  border: 1px solid var(--border2);
-  border-radius: 999px;
-  font-size: 13px;
-  color: var(--text2);
-  cursor: pointer;
-  transition: border-color 0.2s;
-}
-
-.refresh-badge:hover { border-color: var(--accent); color: var(--accent); }
-
-.refresh-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--green);
-  animation: pulse 2s infinite;
-}
-
-/* ─── MAIN ────────────────────────────────────────────── */
-.main {
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 20px 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-/* ─── SECTION TITLE ───────────────────────────────────── */
-.section-title {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--text2);
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  user-select: none;
-}
-
-.section-title::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--border);
-}
-
-.section-toggle {
-  font-size: 10px;
-  color: var(--dim);
-  transition: transform 0.2s;
-}
-
-.section-title.collapsed .section-toggle {
-  transform: rotate(-90deg);
-}
-
-.collapsible { transition: all 0.2s; }
-.collapsible.hidden { display: none; }
-
-/* ─── CARD ────────────────────────────────────────────── */
-.card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.card-body { padding: 14px 16px; }
-
-/* ─── LAUNCH STATUS BANNER ────────────────────────────── */
-.launch-banner {
-  background: linear-gradient(135deg, rgba(255,59,59,0.05) 0%, rgba(0,217,255,0.05) 100%);
-  border: 1px solid rgba(255,59,59,0.3);
-  border-radius: 12px;
-  padding: 16px 20px;
-  position: relative;
-  overflow: hidden;
-}
-
-.launch-banner::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--red), var(--gold), var(--accent));
-}
-
-.launch-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 14px;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.launch-title {
-  font-size: 18px;
-  font-weight: 800;
-  color: var(--text);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.launch-target {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 13px;
-  color: var(--gold);
-  font-weight: 700;
-  padding: 4px 12px;
-  border: 1px solid rgba(255,215,0,0.3);
-  border-radius: 999px;
-  background: rgba(255,215,0,0.05);
-}
-
-.launch-blockers {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.blocker-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 10px 14px;
-  border-radius: 8px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-left-width: 3px;
-  transition: background 0.15s;
-}
-
-.blocker-item:hover { background: var(--surface2); }
-.blocker-item.blocking { border-left-color: var(--red); }
-.blocker-item.warning { border-left-color: var(--gold); }
-.blocker-item.resolved { border-left-color: var(--green); opacity: 0.6; }
-
-.blocker-emoji { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
-.blocker-text { flex: 1; }
-.blocker-label {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: 2px;
-}
-.blocker-detail {
-  font-size: 12px;
-  color: var(--text2);
-  font-family: 'SF Mono', ui-monospace, monospace;
-}
-.blocker-badge {
-  font-size: 11px;
-  font-weight: 700;
-  padding: 2px 8px;
-  border-radius: 999px;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.badge-blocking { background: rgba(255,59,59,0.15); color: var(--red); }
-.badge-warning { background: rgba(255,215,0,0.12); color: var(--gold); }
-.badge-ok { background: rgba(57,255,20,0.12); color: var(--green); }
-
-/* ─── BOT PANEL ───────────────────────────────────────── */
-.bot-panel {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.bot-panel-header {
-  padding: 14px 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid var(--border);
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.bot-panel-title {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--text);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.live-indicator {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-}
-
-.live-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  animation: pulseScale 1.5s infinite;
-}
-
-.live-dot.green { background: var(--green); }
-.live-dot.red { background: var(--red); animation: none; }
-.live-dot.yellow { background: var(--gold); }
-
-.bot-tagline {
-  font-size: 12px;
-  color: var(--text2);
-  font-style: italic;
-  padding: 8px 16px;
-  border-bottom: 1px solid var(--border);
-}
-
-.bot-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-}
-
-.bot-stat {
-  padding: 14px 16px;
-  border-right: 1px solid var(--border);
-  text-align: center;
-}
-
-.bot-stat:last-child { border-right: none; }
-
-.bot-stat-val {
-  font-size: 24px;
-  font-weight: 800;
-  color: var(--accent);
-  line-height: 1;
-  margin-bottom: 4px;
-}
-
-.bot-stat-label {
-  font-size: 11px;
-  color: var(--text2);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.bot-cta {
-  padding: 10px 16px;
-  border-top: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.add-bot-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 14px;
-  background: rgba(0,217,255,0.1);
-  border: 1px solid rgba(0,217,255,0.3);
-  border-radius: 8px;
-  color: var(--accent);
-  font-size: 13px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: background 0.15s;
-}
-
-.add-bot-link:hover { background: rgba(0,217,255,0.2); }
-
-/* ─── TEAM ROW ────────────────────────────────────────── */
-.team-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-
-.team-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  transition: border-color 0.2s;
-}
-
-.team-card:hover { border-color: var(--border2); }
-
-.team-card-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.team-pfp {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--border2);
-  flex-shrink: 0;
-}
-
-.team-name {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--text);
-}
-
-.team-role {
-  font-size: 11px;
-  color: var(--text2);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.team-status-badge {
-  margin-left: auto;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 3px 8px;
-  border-radius: 999px;
-}
-
-.status-active { background: rgba(57,255,20,0.12); color: var(--green); }
-.status-idle { background: rgba(136,136,136,0.12); color: var(--text2); }
-.status-blocked { background: rgba(255,59,59,0.12); color: var(--red); }
-.status-ssh { background: rgba(255,215,0,0.12); color: var(--gold); }
-
-.team-task {
-  font-size: 13px;
-  color: var(--text2);
-  line-height: 1.4;
-  background: var(--surface2);
-  border-radius: 6px;
-  padding: 8px 10px;
-}
-
-.team-task strong {
-  display: block;
-  color: var(--text);
-  font-size: 13px;
-  margin-bottom: 2px;
-}
-
-/* ─── METRICS GRID ────────────────────────────────────── */
-.metrics-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
-}
-
-.metric-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 16px;
-  text-align: center;
-}
-
-.metric-val {
-  font-size: 28px;
-  font-weight: 800;
-  line-height: 1;
-  margin-bottom: 6px;
-}
-
-.metric-val.accent { color: var(--accent); }
-.metric-val.green { color: var(--green); }
-.metric-val.gold { color: var(--gold); }
-.metric-val.purple { color: var(--purple); }
-
-.metric-label {
-  font-size: 11px;
-  color: var(--text2);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.metric-sub {
-  font-size: 11px;
-  color: var(--dim);
-  margin-top: 3px;
-}
-
-/* ─── NEEDS WJP ───────────────────────────────────────── */
-.needs-wjp-list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.wjp-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 12px 14px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  border-left-width: 3px;
-  transition: background 0.15s;
-}
-
-.wjp-item:hover { background: var(--surface2); }
-.wjp-item.blocking { border-left-color: var(--red); }
-.wjp-item.enabling { border-left-color: var(--orange); }
-.wjp-item.signal { border-left-color: var(--gold); }
-.wjp-item.resolved { border-left-color: var(--green); opacity: 0.5; }
-
-.wjp-emoji { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
-.wjp-content { flex: 1; min-width: 0; }
-.wjp-title {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: 3px;
-}
-.wjp-detail {
-  font-size: 13px;
-  color: var(--text2);
-  line-height: 1.4;
-}
-.wjp-fix {
-  font-size: 12px;
-  font-family: 'SF Mono', ui-monospace, monospace;
-  color: var(--accent);
-  margin-top: 4px;
-  word-break: break-all;
-}
-.wjp-badge {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 3px 8px;
-  border-radius: 999px;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-/* ─── TWO COLUMN ──────────────────────────────────────── */
-.two-col {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
-/* ─── QA FEED ─────────────────────────────────────────── */
-.qa-feed {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.qa-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 12px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-}
-
-.qa-result {
-  font-size: 11px;
-  font-weight: 700;
-  padding: 3px 8px;
-  border-radius: 999px;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.qa-pass { background: rgba(57,255,20,0.12); color: var(--green); }
-.qa-fail { background: rgba(255,59,59,0.12); color: var(--red); }
-.qa-pending { background: rgba(136,136,136,0.12); color: var(--text2); }
-
-.qa-name {
-  flex: 1;
-  font-size: 13px;
-  color: var(--text);
-  font-weight: 500;
-}
-
-.qa-meta {
-  font-size: 11px;
-  color: var(--dim);
-  white-space: nowrap;
-}
-
-.qa-counts {
-  font-size: 12px;
-  color: var(--text2);
-}
-
-.qa-counts .pass { color: var(--green); }
-.qa-counts .fail { color: var(--red); }
-
-/* ─── AGENT CARDS ─────────────────────────────────────── */
-.agents-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-}
-
-.agent-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.agent-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 14px;
-  border-bottom: 1px solid var(--border);
-}
-
-.agent-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  object-fit: cover;
-  flex-shrink: 0;
-}
-
-.agent-name {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--text);
-}
-
-.agent-role {
-  font-size: 11px;
-  color: var(--text2);
-}
-
-.agent-status-pill {
-  margin-left: auto;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 3px 8px;
-  border-radius: 999px;
-  flex-shrink: 0;
-}
-
-.agent-body {
-  padding: 12px 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.agent-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-}
-
-.agent-key { font-size: 11px; color: var(--text2); text-transform: uppercase; letter-spacing: 0.06em; }
-.agent-val { font-size: 13px; color: var(--text); font-weight: 500; text-align: right; max-width: 65%; word-break: break-word; }
-
-.ctx-bar {
-  height: 3px;
-  background: var(--border);
-  border-radius: 999px;
-  margin-top: 4px;
-  overflow: hidden;
-}
-
-.ctx-fill {
-  height: 100%;
-  border-radius: 999px;
-  transition: width 0.5s;
-}
-
-/* ─── PROJECT CARDS ───────────────────────────────────── */
-.projects-list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.project-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 12px 14px;
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-}
-
-.project-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  margin-top: 5px;
-  flex-shrink: 0;
-}
-
-.project-info { flex: 1; min-width: 0; }
-
-.project-name {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 2px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.project-priority {
-  font-size: 10px;
-  font-weight: 700;
-  padding: 1px 6px;
-  border-radius: 999px;
-  background: var(--surface2);
-  color: var(--dim);
-}
-
-.project-desc {
-  font-size: 13px;
-  color: var(--text2);
-  margin-bottom: 6px;
-}
-
-.project-task {
-  font-size: 12px;
-  color: var(--text);
-  background: var(--surface2);
-  padding: 6px 10px;
-  border-radius: 6px;
-}
-
-.project-next {
-  font-size: 11px;
-  color: var(--accent);
-  margin-top: 3px;
-}
-
-.project-status-tag {
-  font-size: 11px;
-  font-weight: 700;
-  padding: 3px 8px;
-  border-radius: 999px;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-/* ─── CRON TABLE ──────────────────────────────────────── */
-.cron-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 12px;
-}
-
-.cron-table th {
-  text-align: left;
-  color: var(--text2);
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 700;
-  padding: 6px 10px;
-  border-bottom: 1px solid var(--border);
-}
-
-.cron-table td {
-  padding: 7px 10px;
-  border-bottom: 1px solid var(--border);
-  color: var(--text);
-  vertical-align: top;
-}
-
-.cron-table tr:last-child td { border-bottom: none; }
-.cron-table tr:hover td { background: var(--surface2); }
-
-.cron-status-dot {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  margin-right: 5px;
-  vertical-align: middle;
-}
-
-.dot-ok { background: var(--green); }
-.dot-err { background: var(--red); }
-.dot-paused { background: var(--gold); }
-
-/* ─── FILE CARDS ──────────────────────────────────────── */
-.files-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 10px;
-}
-
-.file-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 12px;
-  cursor: pointer;
-  transition: border-color 0.15s;
-}
-
-.file-card:hover { border-color: var(--border2); }
-
-.file-card-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 6px;
-}
-
-.file-icon { font-size: 16px; }
-.file-name { font-size: 13px; font-weight: 600; color: var(--text); }
-.file-preview { font-size: 12px; color: var(--text2); line-height: 1.4; }
-
-.file-modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 200;
-  background: rgba(0,0,0,0.8);
-  backdrop-filter: blur(4px);
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-.file-modal.open { display: flex; }
-.file-modal-inner {
-  background: var(--surface);
-  border: 1px solid var(--border2);
-  border-radius: 12px;
-  width: 100%;
-  max-width: 700px;
-  max-height: 80vh;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-.file-modal-header {
-  padding: 14px 16px;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.file-modal-title { font-size: 15px; font-weight: 700; }
-.file-modal-close {
-  cursor: pointer;
-  color: var(--text2);
-  font-size: 20px;
-  line-height: 1;
-  padding: 2px 6px;
-  border-radius: 4px;
-  transition: color 0.15s;
-}
-.file-modal-close:hover { color: var(--text); }
-.file-modal-body {
-  padding: 16px;
-  overflow-y: auto;
-  font-size: 13px;
-  line-height: 1.6;
-  white-space: pre-wrap;
-  color: var(--text2);
-  font-family: 'SF Mono', ui-monospace, monospace;
-  flex: 1;
-}
-
-/* ─── INTEL FEED ──────────────────────────────────────── */
-.intel-list {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.intel-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  padding: 10px 12px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  font-size: 13px;
-}
-
-.intel-bullet {
-  color: var(--gold);
-  font-size: 10px;
-  margin-top: 3px;
-  flex-shrink: 0;
-}
-
-.intel-text { color: var(--text2); flex: 1; }
-.intel-time { font-size: 11px; color: var(--dim); white-space: nowrap; }
-
-/* ─── HEALTH BAR ──────────────────────────────────────── */
-.health-bar {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 12px 16px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  flex-wrap: wrap;
-}
-
-.health-stat {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 13px;
-}
-
-.health-val { font-weight: 700; color: var(--text); }
-.health-label { color: var(--text2); }
-
-.health-divider {
-  width: 1px;
-  height: 16px;
-  background: var(--border2);
-}
-
-.updated-text {
-  font-size: 12px;
-  color: var(--dim);
-  margin-left: auto;
-}
-
-/* ─── EMPTY STATE ─────────────────────────────────────── */
-.empty-state {
-  padding: 24px;
-  text-align: center;
-  color: var(--dim);
-  font-size: 13px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-}
-
-/* ─── SKELETON ────────────────────────────────────────── */
-.skeleton {
-  background: var(--border);
-  border-radius: 4px;
-  animation: pulse 1.5s infinite;
-}
-
-/* ─── RESPONSIVE ──────────────────────────────────────── */
-@media (max-width: 768px) {
-  .main { padding: 12px 16px; gap: 16px; }
-  .team-row { grid-template-columns: 1fr; }
-  .metrics-grid { grid-template-columns: repeat(3, 1fr); }
-  .two-col { grid-template-columns: 1fr; }
-  .agents-grid { grid-template-columns: 1fr; }
-  .bot-stats { grid-template-columns: repeat(3, 1fr); }
-  .header { padding: 8px 16px; }
-}
-
-@media (max-width: 480px) {
-  .metrics-grid { grid-template-columns: repeat(2, 1fr); }
-  .bot-stats { grid-template-columns: 1fr; }
-  .bot-stat { border-right: none; border-bottom: 1px solid var(--border); }
-  .bot-stat:last-child { border-bottom: none; }
-}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #000000;
+    --surface: #1c1c1e;
+    --surface2: #2c2c2e;
+    --border: #38383a;
+    --text: #ffffff;
+    --text2: rgba(235,235,245,0.6);
+    --text3: rgba(235,235,245,0.3);
+    --blue: #0a84ff;
+    --green: #30d158;
+    --amber: #ff9f0a;
+    --red: #ff453a;
+    --purple: #bf5af2;
+    --teal: #5ac8fa;
+  }
+
+  html { background: var(--bg); color: var(--text); }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+    background: var(--bg);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    padding-bottom: 80px;
+  }
+
+  /* ── ANIMATIONS ─────────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.35; }
+  }
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .fade { animation: fadeUp 0.3s ease both; }
+
+  /* ── HEADER ─────────────────────────────────────── */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    height: 52px;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header-title {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  .header-meta {
+    font-size: 12px;
+    color: var(--text3);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .refresh-btn {
+    background: none;
+    border: none;
+    color: var(--blue);
+    font-size: 12px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-family: inherit;
+    transition: background 0.15s;
+  }
+  .refresh-btn:hover { background: rgba(10,132,255,0.12); }
+
+  /* ── LAUNCH STATUS BAR ──────────────────────────── */
+  #launch-bar {
+    padding: 0 24px;
+    margin-bottom: 0;
+  }
+
+  .launch-alert {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    margin: 16px 0 0 0;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(255,159,10,0.15) 0%, rgba(255,69,58,0.12) 100%);
+    border: 1px solid rgba(255,159,10,0.3);
+    animation: fadeUp 0.3s ease both;
+  }
+
+  .pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--amber);
+    flex-shrink: 0;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .launch-alert-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--amber);
+    flex: 1;
+  }
+
+  .launch-alert-sub {
+    font-size: 12px;
+    color: var(--text2);
+    margin-top: 1px;
+  }
+
+  .launch-count {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--amber);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  /* ── MAIN LAYOUT ────────────────────────────────── */
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ── SECTION LABELS ─────────────────────────────── */
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text3);
+    margin: 32px 0 12px 0;
+  }
+
+  /* ── CARD ───────────────────────────────────────── */
+  .card {
+    background: var(--surface);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  /* ── WJP ACTION ITEMS ───────────────────────────── */
+  .action-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 600px) {
+    .action-grid { grid-template-columns: 1fr; }
+  }
+
+  .action-card {
+    background: var(--surface);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    padding: 16px 18px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    animation: fadeUp 0.3s ease both;
+    user-select: none;
+  }
+  .action-card:hover {
+    background: var(--surface2);
+    border-color: rgba(255,255,255,0.12);
+  }
+  .action-card.critical { border-left: 3px solid var(--red); }
+  .action-card.normal   { border-left: 3px solid var(--amber); }
+
+  .action-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+
+  .priority-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .priority-dot.critical { background: var(--red); }
+  .priority-dot.normal   { background: var(--amber); }
+
+  .action-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    flex: 1;
+  }
+
+  .effort-badge {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text3);
+    background: var(--surface2);
+    padding: 2px 7px;
+    border-radius: 6px;
+    white-space: nowrap;
+  }
+
+  .action-detail {
+    font-size: 13px;
+    color: var(--text2);
+    padding-left: 18px;
+    line-height: 1.4;
+  }
+
+  .action-fix {
+    display: none;
+    margin-top: 10px;
+    padding: 10px 12px;
+    background: var(--surface2);
+    border-radius: 10px;
+    font-size: 12px;
+    color: var(--teal);
+    font-family: "SF Mono", "Menlo", monospace;
+    line-height: 1.5;
+    word-break: break-word;
+  }
+  .action-card.open .action-fix { display: block; }
+
+  .action-chevron {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    color: var(--text3);
+    flex-shrink: 0;
+    transition: transform 0.2s;
+  }
+  .action-card.open .action-chevron { transform: rotate(90deg); }
+
+  /* ── AGENT STATUS ───────────────────────────────── */
+  .agent-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 500px) {
+    .agent-grid { grid-template-columns: 1fr; }
+  }
+
+  .agent-card {
+    background: var(--surface);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    padding: 20px;
+    animation: fadeUp 0.3s ease both;
+  }
+
+  .agent-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .agent-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--surface2);
+    flex-shrink: 0;
+  }
+
+  .agent-avatar-fallback {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--surface2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .agent-info { flex: 1; min-width: 0; }
+
+  .agent-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .agent-role {
+    font-size: 12px;
+    color: var(--text3);
+    margin-top: 1px;
+  }
+
+  .status-pill {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 2px 8px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .status-pill.active  { background: rgba(48,209,88,0.15);  color: var(--green); }
+  .status-pill.idle    { background: rgba(255,159,10,0.12); color: var(--amber); }
+  .status-pill.offline { background: rgba(255,69,58,0.12);  color: var(--red);   }
+
+  .status-pill-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+  .status-pill.active .status-pill-dot { animation: pulse 2s ease-in-out infinite; }
+
+  .agent-task {
+    font-size: 12px;
+    color: var(--text2);
+    margin-bottom: 12px;
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .context-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--text3);
+    margin-bottom: 5px;
+  }
+
+  .context-bar-bg {
+    height: 4px;
+    background: var(--surface2);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .context-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.4s ease;
+  }
+  .context-bar-fill.green  { background: var(--green); }
+  .context-bar-fill.amber  { background: var(--amber); }
+  .context-bar-fill.red    { background: var(--red);   }
+
+  /* ── HEALTH STRIP ───────────────────────────────── */
+  .health-strip {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .health-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text2);
+    white-space: nowrap;
+    animation: fadeUp 0.3s ease both;
+  }
+
+  .health-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .health-dot.green  { background: var(--green); }
+  .health-dot.red    { background: var(--red);   }
+  .health-dot.amber  { background: var(--amber); }
+
+  .health-dot.live { animation: pulse 2.5s ease-in-out infinite; }
+
+  /* ── QA FEED ────────────────────────────────────── */
+  .qa-list {
+    background: var(--surface);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .qa-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 18px;
+    border-bottom: 1px solid var(--border);
+    animation: fadeUp 0.3s ease both;
+  }
+  .qa-row:last-child { border-bottom: none; }
+
+  .qa-date {
+    font-size: 11px;
+    color: var(--text3);
+    width: 44px;
+    flex-shrink: 0;
+  }
+
+  .qa-name {
+    font-size: 13px;
+    color: var(--text);
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .qa-badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 2px 8px;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  .qa-badge.PASS    { background: rgba(48,209,88,0.15);  color: var(--green); }
+  .qa-badge.FAIL    { background: rgba(255,69,58,0.12);  color: var(--red);   }
+  .qa-badge.PARTIAL { background: rgba(255,159,10,0.12); color: var(--amber); }
+  .qa-badge.FIXED   { background: rgba(10,132,255,0.12); color: var(--blue);  }
+
+  .qa-runner {
+    font-size: 11px;
+    color: var(--text3);
+    flex-shrink: 0;
+    min-width: 80px;
+    text-align: right;
+  }
+
+  /* ── PROJECTS ───────────────────────────────────── */
+  .project-list {
+    background: var(--surface);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    animation: fadeUp 0.3s ease both;
+  }
+
+  .project-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .project-row:last-child { border-bottom: none; }
+
+  .project-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .project-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    width: 80px;
+    flex-shrink: 0;
+  }
+
+  .project-status-badge {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 2px 8px;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+
+  .project-desc {
+    font-size: 12px;
+    color: var(--text3);
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ── INTEL FEED ─────────────────────────────────── */
+  .intel-list {
+    background: var(--surface);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    animation: fadeUp 0.3s ease both;
+  }
+
+  .intel-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .intel-row:last-child { border-bottom: none; }
+
+  .intel-date {
+    font-size: 11px;
+    color: var(--text3);
+    width: 44px;
+    flex-shrink: 0;
+    padding-top: 1px;
+  }
+
+  .intel-title {
+    font-size: 13px;
+    color: var(--text);
+    flex: 1;
+    line-height: 1.4;
+  }
+
+  .intel-action {
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 2px;
+  }
+
+  .impact-badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 2px 8px;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  .impact-badge.high { background: rgba(255,69,58,0.12);  color: var(--red);   }
+  .impact-badge.medium { background: rgba(255,159,10,0.12); color: var(--amber); }
+
+  /* ── LOADING STATE ──────────────────────────────── */
+  .skeleton {
+    background: linear-gradient(90deg, var(--surface) 25%, var(--surface2) 50%, var(--surface) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.4s infinite;
+    border-radius: 8px;
+    height: 14px;
+  }
+  @keyframes shimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* ── SPINNER ────────────────────────────────────── */
+  .spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--border);
+    border-top-color: var(--blue);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    display: inline-block;
+  }
 </style>
 </head>
 <body>
 
 <!-- HEADER -->
-<header class="header">
-  <div class="header-left">
-    <img src="wjp-pfp.png" style="width:32px;height:32px;border-radius:50%;object-fit:cover;border:1px solid var(--border2);" alt="WJP" onerror="this.style.display='none'">
-    <div class="header-logo">Mission Control <span class="fc-tag">For Crypto</span></div>
-  </div>
-  <div class="header-right">
-    <span id="last-updated" style="font-size:12px;color:var(--dim);">Loading...</span>
-    <div class="refresh-badge" onclick="location.reload()">
-      <div class="refresh-dot"></div>
-      Refresh
-    </div>
+<header>
+  <div class="header-title">Mission Control</div>
+  <div class="header-meta">
+    <span id="last-updated">—</span>
+    <button class="refresh-btn" onclick="refreshData()">Refresh</button>
   </div>
 </header>
 
-<main class="main fade-in">
+<!-- LAUNCH STATUS BAR -->
+<div id="launch-bar" style="max-width:960px;margin:0 auto;padding:0 24px;"></div>
 
-  <!-- ── LAUNCH STATUS ────────────────────────────────── -->
-  <div>
-    <div class="section-title" onclick="toggleSection('launch')">
-      <span>🚀 For Crypto Launch Status</span>
-      <span class="section-toggle" id="toggle-launch">▾</span>
-    </div>
-    <div id="launch" class="collapsible">
-      <div class="launch-banner">
-        <div class="launch-header">
-          <div class="launch-title">
-            <span>forcrypto.market</span>
-            <span id="launch-count-badge" style="font-size:13px;background:rgba(255,59,59,0.15);color:var(--red);padding:3px 10px;border-radius:999px;font-weight:700;"></span>
-          </div>
-          <div class="launch-target">🗓 Target: March 3, 2026</div>
-        </div>
-        <div class="launch-blockers" id="launch-blockers">
-          <!-- populated by JS -->
-        </div>
-      </div>
-    </div>
+<!-- MAIN -->
+<main>
+
+  <!-- WJP ACTION ITEMS -->
+  <div class="section-label">Needs WJP</div>
+  <div class="action-grid" id="wjp-grid"></div>
+
+  <!-- AGENT STATUS -->
+  <div class="section-label">Agents</div>
+  <div class="agent-grid" id="agent-grid">
+    <div class="agent-card"><div class="skeleton" style="height:80px;"></div></div>
+    <div class="agent-card"><div class="skeleton" style="height:80px;"></div></div>
   </div>
 
-  <!-- ── NEEDS WJP ─────────────────────────────────────── -->
-  <div>
-    <div class="section-title" onclick="toggleSection('needs-wjp')">
-      <span>🔴 WJP Action Items</span>
-      <span class="section-toggle" id="toggle-needs-wjp">▾</span>
-    </div>
-    <div id="needs-wjp" class="collapsible">
-      <div class="needs-wjp-list" id="needs-wjp-list">
-        <!-- populated by JS -->
-      </div>
-    </div>
+  <!-- FOR CRYPTO HEALTH -->
+  <div class="section-label">For Crypto</div>
+  <div class="health-strip" id="health-strip">
+    <div class="health-pill"><span class="spinner"></span> Checking…</div>
   </div>
 
-  <!-- ── TEAM STATUS ───────────────────────────────────── -->
-  <div>
-    <div class="section-title" onclick="toggleSection('team')">
-      <span>👥 Team Status</span>
-      <span class="section-toggle" id="toggle-team">▾</span>
-    </div>
-    <div id="team" class="collapsible">
-      <div class="team-row" id="team-row">
-        <!-- populated by JS -->
-      </div>
-    </div>
+  <!-- QA FEED -->
+  <div class="section-label">QA Feed</div>
+  <div class="qa-list" id="qa-list"></div>
+
+  <!-- PROJECTS -->
+  <div class="section-label">Projects</div>
+  <div class="project-list" id="project-list">
+    <div style="padding:20px;"><div class="skeleton"></div></div>
   </div>
 
-  <!-- ── BOT INTEGRATION ───────────────────────────────── -->
-  <div>
-    <div class="section-title" onclick="toggleSection('bots')">
-      <span>🤖 Bot Integration</span>
-      <span class="section-toggle" id="toggle-bots">▾</span>
-    </div>
-    <div id="bots" class="collapsible">
-      <div class="bot-panel">
-        <div class="bot-panel-header">
-          <div class="bot-panel-title">
-            🤖 Bot API — for-crypto.vercel.app
-          </div>
-          <div class="live-indicator" id="bot-api-status">
-            <div class="live-dot yellow"></div>
-            <span style="color:var(--gold)">Checking...</span>
-          </div>
-        </div>
-        <div class="bot-tagline">Humans + Bots. The first marketplace where AI agents sell alongside people.</div>
-        <div class="bot-stats">
-          <div class="bot-stat">
-            <div class="bot-stat-val" id="bot-active-count">—</div>
-            <div class="bot-stat-label">Active Bots</div>
-          </div>
-          <div class="bot-stat">
-            <div class="bot-stat-val" id="bot-listings-count">—</div>
-            <div class="bot-stat-label">Bot Listings</div>
-          </div>
-          <div class="bot-stat">
-            <div class="bot-stat-val" id="bot-endpoint-url" style="font-size:11px;color:var(--text2);font-family:monospace;">/api/bot/listings</div>
-            <div class="bot-stat-label">Endpoint</div>
-          </div>
-        </div>
-        <div class="bot-cta">
-          <span style="font-size:12px;color:var(--text2);">Add your bot to the marketplace</span>
-          <a href="https://for-crypto.vercel.app/bots/new" target="_blank" class="add-bot-link">+ Add a Bot →</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── MARKETPLACE METRICS ───────────────────────────── -->
-  <div>
-    <div class="section-title" onclick="toggleSection('metrics')">
-      <span>📊 Marketplace Metrics</span>
-      <span class="section-toggle" id="toggle-metrics">▾</span>
-    </div>
-    <div id="metrics" class="collapsible">
-      <div class="metrics-grid" id="metrics-grid">
-        <!-- populated by JS -->
-      </div>
-    </div>
-  </div>
-
-  <!-- ── QA FEED ───────────────────────────────────────── -->
-  <div>
-    <div class="section-title" onclick="toggleSection('qa')">
-      <span>🧪 QA / Test Results</span>
-      <span class="section-toggle" id="toggle-qa">▾</span>
-    </div>
-    <div id="qa" class="collapsible">
-      <div class="qa-feed" id="qa-feed">
-        <!-- populated by JS -->
-      </div>
-    </div>
-  </div>
-
-  <!-- ── AGENTS + PROJECTS ─────────────────────────────── -->
-  <div class="two-col">
-    <div>
-      <div class="section-title" onclick="toggleSection('agents')">
-        <span>🤖 Agent Status</span>
-        <span class="section-toggle" id="toggle-agents">▾</span>
-      </div>
-      <div id="agents" class="collapsible">
-        <div class="agents-grid" id="agents-grid">
-          <!-- populated by JS -->
-        </div>
-      </div>
-    </div>
-    <div>
-      <div class="section-title" onclick="toggleSection('projects')">
-        <span>🗂 Projects</span>
-        <span class="section-toggle" id="toggle-projects">▾</span>
-      </div>
-      <div id="projects" class="collapsible">
-        <div class="projects-list" id="projects-list">
-          <!-- populated by JS -->
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── CRON STATUS ───────────────────────────────────── -->
-  <div>
-    <div class="section-title" onclick="toggleSection('crons')">
-      <span>⏱ Cron Status</span>
-      <span class="section-toggle" id="toggle-crons">▾</span>
-    </div>
-    <div id="crons" class="collapsible">
-      <div id="crons-content">
-        <!-- populated by JS -->
-      </div>
-    </div>
-  </div>
-
-  <!-- ── INTEL ─────────────────────────────────────────── -->
-  <div>
-    <div class="section-title" onclick="toggleSection('intel')">
-      <span>📡 Intel Feed</span>
-      <span class="section-toggle" id="toggle-intel">▾</span>
-    </div>
-    <div id="intel" class="collapsible">
-      <div class="intel-list" id="intel-list">
-        <!-- populated by JS -->
-      </div>
-    </div>
-  </div>
-
-  <!-- ── FILES ─────────────────────────────────────────── -->
-  <div>
-    <div class="section-title" onclick="toggleSection('files')">
-      <span>📁 Key Files</span>
-      <span class="section-toggle" id="toggle-files">▾</span>
-    </div>
-    <div id="files" class="collapsible">
-      <div class="files-grid" id="files-grid">
-        <!-- populated by JS -->
-      </div>
-    </div>
-  </div>
-
-  <!-- health bar -->
-  <div class="health-bar" id="health-bar">
-    <div class="health-stat">
-      <div class="live-dot green" style="animation:pulseScale 2s infinite"></div>
-      <span class="health-label">System</span>
-      <span class="health-val" style="color:var(--green)">LIVE</span>
-    </div>
-    <div class="health-divider"></div>
-    <div class="health-stat">
-      <span class="health-label">Crons</span>
-      <span class="health-val" id="cron-health-val">—</span>
-    </div>
-    <div class="health-divider"></div>
-    <div class="health-stat">
-      <span class="health-label">Errors</span>
-      <span class="health-val" id="cron-error-val">—</span>
-    </div>
-    <div class="updated-text" id="updated-footer">—</div>
+  <!-- INTEL -->
+  <div class="section-label">Intel</div>
+  <div class="intel-list" id="intel-list">
+    <div style="padding:20px;"><div class="skeleton"></div></div>
   </div>
 
 </main>
 
-<!-- FILE MODAL -->
-<div class="file-modal" id="file-modal" onclick="closeModal(event)">
-  <div class="file-modal-inner">
-    <div class="file-modal-header">
-      <span class="file-modal-title" id="modal-title"></span>
-      <span class="file-modal-close" onclick="closeModalDirect()">✕</span>
-    </div>
-    <div class="file-modal-body" id="modal-body"></div>
-  </div>
-</div>
-
 <script>
-// ── HARDCODED LAUNCH BLOCKERS ──────────────────────────
-const LAUNCH_BLOCKERS = [
-  {
-    type: 'blocking',
-    emoji: '🔴',
-    label: 'DNS: forcrypto.market → GoDaddy fix needed',
-    detail: 'A: @ → 76.76.21.61 + 76.76.21.98 | CNAME: www → cname.vercel-dns.com',
-    badge: 'BLOCKING',
-    badgeClass: 'badge-blocking'
-  },
-  {
-    type: 'blocking',
-    emoji: '🔴',
-    label: 'DATABASE_URL — Set on Vercel env vars',
-    detail: 'Required for bot API. Vercel dashboard → For Crypto → Settings → Environment Variables',
-    badge: 'BLOCKING',
-    badgeClass: 'badge-blocking'
-  },
-  {
-    type: 'blocking',
-    emoji: '🔴',
-    label: 'Yama bot API key — transfer needed',
-    detail: 'YamaTestBot key created during Phase B. Ask Yama for location or re-register.',
-    badge: 'BLOCKING',
-    badgeClass: 'badge-blocking'
-  },
-  {
-    type: 'warning',
-    emoji: '🟡',
-    label: 'Delete test listings before launch',
-    detail: 'Test data visible in production. Clean before public announcement.',
-    badge: 'TODO',
-    badgeClass: 'badge-warning'
-  },
-  {
-    type: 'warning',
-    emoji: '🟡',
-    label: 'Payout wallet address from WJP',
-    detail: 'Needed for 60 microbusiness listings. Separate from For Crypto treasury.',
-    badge: 'TODO',
-    badgeClass: 'badge-warning'
-  }
+// ── HARDCODED DATA ──────────────────────────────────────────────────────────
+
+const NEEDS_WJP = [
+  { priority: 'critical', title: 'Fix DNS', detail: 'forcrypto.market shows GoDaddy parking page', effort: '2 min',
+    fix: 'GoDaddy → DNS → A: @ → 76.76.21.61, 76.76.21.98 | CNAME: www → cname.vercel-dns.com' },
+  { priority: 'critical', title: 'Add DATABASE_URL', detail: 'Bot API broken on Vercel production', effort: '2 min',
+    fix: 'vercel.com → For Crypto → Settings → Environment Variables → DATABASE_URL' },
+  { priority: 'critical', title: 'Delete test listings', detail: '8 of 12 marketplace listings are dev test data', effort: '5 min',
+    fix: 'for-crypto.vercel.app → sign in → manage listings → delete all test entries' },
+  { priority: 'normal', title: 'Merge PR #18', detail: 'Hero bot messaging + nav fix — build passes', effort: '1 min',
+    fix: 'github.com/00onchain/for-crypto/pull/18' },
+  { priority: 'normal', title: 'Payout wallet address', detail: 'Needed for 60 microbusiness listings', effort: '1 min',
+    fix: 'Share your AI business wallet Solana address' },
 ];
 
-// ── NEEDS WJP ITEMS ────────────────────────────────────
-const NEEDS_WJP_ITEMS = [
-  {
-    type: 'blocking',
-    emoji: '🚨',
-    title: 'GoDaddy DNS fix — forcrypto.market DOWN',
-    detail: 'All traffic hits GoDaddy parking page. Users see ads. Bot API broken. SEO damage accumulating.',
-    fix: 'GoDaddy dashboard → DNS → A record: @ → 76.76.21.61, 76.76.21.98 | CNAME: www → cname.vercel-dns.com',
-    badge: '🔴 BLOCKING',
-    badgeStyle: 'background:rgba(255,59,59,0.15);color:var(--red);'
-  },
-  {
-    type: 'blocking',
-    emoji: '🔴',
-    title: 'DATABASE_URL on Vercel',
-    detail: 'Bot API fails with DB errors in production. 2-min fix in Vercel dashboard.',
-    fix: 'vercel.com → For Crypto → Settings → Environment Variables → Add DATABASE_URL',
-    badge: '🔴 BLOCKING',
-    badgeStyle: 'background:rgba(255,59,59,0.15);color:var(--red);'
-  },
-  {
-    type: 'enabling',
-    emoji: '🟠',
-    title: 'YamaTestBot API key — Phase D blocked',
-    detail: 'Key not in Bitwarden or .env. Phase D bot API testing can\'t proceed without it.',
-    fix: 'Ask Yama for key storage location or have him re-register the bot',
-    badge: '🟠 ENABLING',
-    badgeStyle: 'background:rgba(255,140,0,0.15);color:var(--orange);'
-  },
-  {
-    type: 'signal',
-    emoji: '🟡',
-    title: 'Payout wallet address',
-    detail: 'Needed before uploading 60 microbusiness listings. Separate from For Crypto treasury.',
-    fix: 'Provide your \"AI business wallet\" Solana address',
-    badge: '🟡 NEEDED',
-    badgeStyle: 'background:rgba(255,215,0,0.12);color:var(--gold);'
-  },
-  {
-    type: 'signal',
-    emoji: '🟡',
-    title: '67 brand — re-activate posts?',
-    detail: 'Posts disabled Feb 19. Solana momentum hot. ~2-3 week opportunity window. Market timing critical.',
-    fix: 'Say GO to resume posts + Phase 1 community rebuild',
-    badge: '🟡 SIGNAL',
-    badgeStyle: 'background:rgba(255,215,0,0.12);color:var(--gold);'
-  },
-  {
-    type: 'signal',
-    emoji: '🟡',
-    title: 'Divvvy — signal to activate?',
-    detail: 'GTM docs complete (4 docs). Waiting for WJP GO. Backburner until For Crypto stable.',
-    fix: 'Say GO when ready to start Divvvy dev phase',
-    badge: '🟡 BACKLOG',
-    badgeStyle: 'background:rgba(255,215,0,0.12);color:var(--gold);'
-  }
+const QA = [
+  { date: 'Mar 1', name: 'Embed external site — X-Frame-Options', result: 'FIXED',   runner: 'Yama' },
+  { date: 'Mar 1', name: 'Frontend QA — hero, nav, marketplace',   result: 'PARTIAL', runner: 'Yama' },
+  { date: 'Mar 1', name: 'Embed checkout modal',                    result: 'PASS',    runner: 'Yama' },
+  { date: 'Feb 28', name: 'E2E Suite Phase A-C (52 tests)',         result: 'PASS',    runner: 'Kikai + Yama' },
+  { date: 'Feb 26', name: 'Bot API endpoint verification',          result: 'PASS',    runner: 'Kikai' },
 ];
 
-// ── QA TEST RESULTS ────────────────────────────────────
-const QA_RESULTS = [
-  { name: 'Embed external site test — X-Frame-Options', result: 'FIXED', pass: 1, fail: 0, time: '2026-03-01', runner: 'Yama' },
-  { name: 'Frontend QA — hero, nav, marketplace', result: 'PARTIAL', pass: 4, fail: 3, time: '2026-03-01', runner: 'Yama' },
-  { name: 'Embed checkout modal (/embed page)', result: 'PASS', pass: 5, fail: 0, time: '2026-03-01', runner: 'Yama' },
-  { name: 'For Crypto E2E Suite — Phase A-C', result: 'PASS', pass: 52, fail: 0, time: '2026-02-28', runner: 'Kikai + Yama' },
-  { name: 'Bot API endpoint verification', result: 'PASS', pass: 8, fail: 0, time: '2026-02-26', runner: 'Kikai' }
-];
+// ── DATA FETCH ──────────────────────────────────────────────────────────────
 
-// ── TOGGLE SECTIONS ─────────────────────────────────────
-function toggleSection(id) {
-  const el = document.getElementById(id);
-  const toggle = document.getElementById('toggle-' + id);
-  const title = toggle ? toggle.closest('.section-title') : null;
-  if (!el) return;
-  el.classList.toggle('hidden');
-  if (toggle) {
-    toggle.style.transform = el.classList.contains('hidden') ? 'rotate(-90deg)' : '';
-  }
+const BASE = window.location.origin.includes('github.io')
+  ? '/mission-control/data.json'
+  : 'data.json';
+
+let DATA = null;
+
+async function fetchData() {
+  const res = await fetch(BASE + '?_v=' + Date.now());
+  DATA = await res.json();
+  return DATA;
 }
 
-// ── MODAL ───────────────────────────────────────────────
-function openModal(title, content) {
-  document.getElementById('modal-title').textContent = title;
-  document.getElementById('modal-body').textContent = content;
-  document.getElementById('file-modal').classList.add('open');
-}
-function closeModal(e) {
-  if (e.target === document.getElementById('file-modal')) closeModalDirect();
-}
-function closeModalDirect() {
-  document.getElementById('file-modal').classList.remove('open');
+// ── RENDER ──────────────────────────────────────────────────────────────────
+
+function renderLaunchBar() {
+  const critical = NEEDS_WJP.filter(i => i.priority === 'critical').length;
+  const bar = document.getElementById('launch-bar');
+  if (critical === 0) { bar.innerHTML = ''; return; }
+  bar.innerHTML = `
+    <div class="launch-alert">
+      <span class="launch-count">${critical}</span>
+      <div>
+        <div class="launch-alert-text">item${critical > 1 ? 's' : ''} need WJP before launch</div>
+        <div class="launch-alert-sub">March 3 target — ${critical} critical block${critical > 1 ? 'ers' : 'er'} remaining</div>
+      </div>
+      <span class="pulse-dot"></span>
+    </div>`;
 }
 
-// ── FORMAT TIME ──────────────────────────────────────────
-function fmtTime(isoStr) {
-  if (!isoStr) return '—';
-  try {
-    const d = new Date(isoStr);
-    const now = new Date();
-    const diffMin = Math.round((now - d) / 60000);
-    if (diffMin < 1) return 'just now';
-    if (diffMin < 60) return diffMin + 'm ago';
-    const diffHr = Math.round(diffMin / 60);
-    if (diffHr < 24) return diffHr + 'h ago';
-    return d.toLocaleDateString();
-  } catch { return isoStr; }
+function renderWjpGrid() {
+  const grid = document.getElementById('wjp-grid');
+  grid.innerHTML = NEEDS_WJP.map((item, i) => `
+    <div class="action-card ${item.priority}" style="animation-delay:${i * 60}ms" onclick="toggleAction(this)">
+      <div class="action-card-header">
+        <span class="priority-dot ${item.priority}"></span>
+        <span class="action-title">${item.title}</span>
+        <span class="effort-badge">${item.effort}</span>
+        <svg class="action-chevron" viewBox="0 0 14 14" fill="none">
+          <path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="action-detail">${item.detail}</div>
+      <div class="action-fix">${item.fix}</div>
+    </div>`).join('');
+}
+
+function toggleAction(el) {
+  el.classList.toggle('open');
+}
+
+function contextColor(pct) {
+  if (pct < 60) return 'green';
+  if (pct < 80) return 'amber';
+  return 'red';
+}
+
+function statusPill(s) {
+  const label = s === 'active' ? 'ACTIVE' : s === 'idle' ? 'IDLE' : 'OFFLINE';
+  return `<span class="status-pill ${s}"><span class="status-pill-dot"></span>${label}</span>`;
+}
+
+function renderAgents(agents) {
+  const grid = document.getElementById('agent-grid');
+  const defs = [
+    { key: 'kikai', name: 'Kikai', role: 'Operator', avatar: 'kikai-pfp.png', fallback: '🦊' },
+    { key: 'yama',  name: 'Yama',  role: 'Tester',   avatar: 'yama-pfp.png',  fallback: '🐺' },
+  ];
+
+  grid.innerHTML = defs.map((d, i) => {
+    const a = (agents && agents[d.key]) || {};
+    const pct = a.contextPct || 0;
+    const status = a.status || 'offline';
+    const color = contextColor(pct);
+    const task = a.workingOn || '—';
+    return `
+      <div class="agent-card" style="animation-delay:${i * 80}ms">
+        <div class="agent-top">
+          <div class="agent-avatar-fallback">${d.fallback}</div>
+          <div class="agent-info">
+            <div class="agent-name">${d.name} ${statusPill(status)}</div>
+            <div class="agent-role">${d.role}</div>
+          </div>
+        </div>
+        <div class="agent-task">${task}</div>
+        <div class="context-label">
+          <span>Context</span>
+          <span>${pct}%</span>
+        </div>
+        <div class="context-bar-bg">
+          <div class="context-bar-fill ${color}" style="width:${pct}%"></div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function renderHealth(health, domainLive) {
+  const strip = document.getElementById('health-strip');
+
+  const domain = domainLive
+    ? `<span class="health-dot green live"></span> Domain LIVE`
+    : `<span class="health-dot red"></span> Domain DOWN`;
+
+  const botStatus = health.botApi === 'live'
+    ? `<span class="health-dot green live"></span> Bot API LIVE`
+    : `<span class="health-dot red"></span> Bot API DOWN`;
+
+  const e2e = `<span class="health-dot green"></span> E2E ${health.e2eTests || '52/52'}`;
+
+  const deploy = health.lastDeploy
+    ? `<span class="health-dot green"></span> Deployed ${fmtDate(health.lastDeploy)}`
+    : `<span class="health-dot amber"></span> No deploy data`;
+
+  const pr = `<span class="health-dot amber"></span> PR #18 pending`;
+
+  strip.innerHTML = [domain, botStatus, e2e, deploy, pr]
+    .map((s, i) => `<div class="health-pill" style="animation-delay:${i * 50}ms">${s}</div>`)
+    .join('');
+}
+
+function renderQA() {
+  const list = document.getElementById('qa-list');
+  list.innerHTML = QA.map((q, i) => `
+    <div class="qa-row" style="animation-delay:${i * 50}ms">
+      <span class="qa-date">${q.date}</span>
+      <span class="qa-name">${q.name}</span>
+      <span class="qa-badge ${q.result}">${q.result}</span>
+      <span class="qa-runner">${q.runner}</span>
+    </div>`).join('');
+}
+
+function renderProjects(projects) {
+  const list = document.getElementById('project-list');
+  if (!projects || !projects.length) { list.innerHTML = '<div style="padding:20px;color:var(--text3);font-size:13px;">No project data</div>'; return; }
+  list.innerHTML = projects.map((p, i) => {
+    const statusColor = p.status === 'Active' ? 'var(--green)' : p.status === 'Backburner' ? 'var(--amber)' : 'var(--text3)';
+    const badgeBg = p.status === 'Active' ? 'rgba(48,209,88,0.12)' : p.status === 'Backburner' ? 'rgba(255,159,10,0.1)' : 'rgba(235,235,245,0.08)';
+    return `
+      <div class="project-row" style="animation-delay:${i * 60}ms">
+        <div class="project-dot" style="background:${p.color || 'var(--text3)'}"></div>
+        <div class="project-name">${p.name}</div>
+        <div class="project-status-badge" style="color:${statusColor};background:${badgeBg}">${p.status}</div>
+        <div class="project-desc">${p.description || ''}</div>
+      </div>`;
+  }).join('');
+}
+
+function renderIntel(intel) {
+  const list = document.getElementById('intel-list');
+  if (!intel || !intel.length) { list.innerHTML = '<div style="padding:20px;color:var(--text3);font-size:13px;">No intel</div>'; return; }
+  list.innerHTML = intel.slice(0, 4).map((item, i) => {
+    const d = new Date(item.date);
+    const label = `${d.toLocaleString('en', {month:'short'})} ${d.getDate()}`;
+    return `
+      <div class="intel-row" style="animation-delay:${i * 60}ms">
+        <span class="intel-date">${label}</span>
+        <div class="intel-title">
+          ${item.title}
+          ${item.action ? `<div class="intel-action">${item.action}</div>` : ''}
+        </div>
+        <span class="impact-badge ${item.impact || 'medium'}">${(item.impact || 'med').toUpperCase()}</span>
+      </div>`;
+  }).join('');
 }
 
 function fmtDate(str) {
   if (!str) return '—';
-  try { return new Date(str).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }); }
-  catch { return str; }
+  const d = new Date(str);
+  return `${d.toLocaleString('en', {month:'short'})} ${d.getDate()}`;
 }
 
-// ── CTX COLOR ────────────────────────────────────────────
-function ctxColor(pct) {
-  if (pct >= 80) return 'var(--red)';
-  if (pct >= 60) return 'var(--gold)';
-  return 'var(--green)';
-}
-
-// ── RENDER LAUNCH STATUS ─────────────────────────────────
-function renderLaunch() {
-  const cont = document.getElementById('launch-blockers');
-  const badge = document.getElementById('launch-count-badge');
-  const blocking = LAUNCH_BLOCKERS.filter(b => b.type === 'blocking').length;
-  badge.textContent = blocking + ' blockers';
-
-  cont.innerHTML = LAUNCH_BLOCKERS.map(b => `
-    <div class="blocker-item ${b.type}">
-      <span class="blocker-emoji">${b.emoji}</span>
-      <div class="blocker-text">
-        <div class="blocker-label">${b.label}</div>
-        <div class="blocker-detail">${b.detail}</div>
-      </div>
-      <span class="blocker-badge ${b.badgeClass}">${b.badge}</span>
-    </div>
-  `).join('');
-}
-
-// ── RENDER NEEDS WJP ─────────────────────────────────────
-function renderNeedsWjp() {
-  const cont = document.getElementById('needs-wjp-list');
-  cont.innerHTML = NEEDS_WJP_ITEMS.map(item => `
-    <div class="wjp-item ${item.type}">
-      <span class="wjp-emoji">${item.emoji}</span>
-      <div class="wjp-content">
-        <div class="wjp-title">${item.title}</div>
-        <div class="wjp-detail">${item.detail}</div>
-        <div class="wjp-fix">${item.fix}</div>
-      </div>
-      <span class="wjp-badge" style="${item.badgeStyle}">${item.badge}</span>
-    </div>
-  `).join('');
-}
-
-// ── RENDER TEAM ──────────────────────────────────────────
-function renderTeam(data) {
-  const kikai = data.agents?.kikai || {};
-  const yama = data.agents?.yama || {};
-
-  const members = [
-    {
-      name: 'WJP',
-      role: 'Vision / Principal',
-      pfp: 'wjp-pfp.png',
-      statusLabel: 'Active',
-      statusClass: 'status-active',
-      task: 'Reviewing For Crypto launch plan',
-      detail: 'Target: March 3. Blocking items need decisions (DNS, DB, API key).'
-    },
-    {
-      name: 'Kikai 🦊',
-      role: 'Operator',
-      pfp: 'kikai-pfp.png',
-      statusLabel: kikai.status === 'active' ? 'Active' : kikai.status || 'Active',
-      statusClass: kikai.status === 'active' ? 'status-active' : 'status-idle',
-      task: kikai.workingOn || 'For Crypto ops',
-      detail: kikai.contextPct ? `Context: ${kikai.contextPct}% | Model: ${kikai.model || 'sonnet'}` : 'Monitoring + execution'
-    },
-    {
-      name: 'Yama',
-      role: 'Tester',
-      pfp: 'yama-pfp.png',
-      statusLabel: yama.status === 'ssh-only' ? 'SSH Only' : yama.status || 'Idle',
-      statusClass: yama.status === 'active' ? 'status-active' : yama.status === 'ssh-only' ? 'status-ssh' : 'status-idle',
-      task: yama.workingOn || 'Idle — awaiting Phase D',
-      detail: '52/52 E2E tests passed. Phase D blocked on DNS + API key.'
-    }
-  ];
-
-  document.getElementById('team-row').innerHTML = members.map(m => `
-    <div class="team-card">
-      <div class="team-card-header">
-        <img class="team-pfp" src="${m.pfp}" alt="${m.name}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22><circle cx=%2220%22 cy=%2220%22 r=%2220%22 fill=%22%23242424%22/><text x=%2220%22 y=%2225%22 text-anchor=%22middle%22 fill=%22%23888%22 font-size=%2214%22>${m.name[0]}</text></svg>'">
-        <div>
-          <div class="team-name">${m.name}</div>
-          <div class="team-role">${m.role}</div>
-        </div>
-        <span class="team-status-badge ${m.statusClass}">${m.statusLabel}</span>
-      </div>
-      <div class="team-task">
-        <strong>${m.task}</strong>
-        ${m.detail}
-      </div>
-    </div>
-  `).join('');
-}
-
-// ── RENDER METRICS ───────────────────────────────────────
-function renderMetrics(data) {
-  // Extract from projects if available, otherwise show mock
-  const forCrypto = data.projects?.find(p => p.id === 'for-crypto');
-  const metrics = [
-    { val: '52', label: 'E2E Tests Passing', color: 'green', sub: 'commit 64acab9' },
-    { val: '0', label: 'Total Volume', color: 'accent', sub: 'Pre-launch' },
-    { val: '0', label: 'Active Bots', color: 'purple', sub: 'Post-DNS fix' },
-    { val: '0', label: 'Listings', color: 'gold', sub: 'Pre-launch' },
-    { val: '3', label: 'Launch Blockers', color: 'red', sub: 'WJP action needed' }
-  ];
-
-  document.getElementById('metrics-grid').innerHTML = metrics.map(m => `
-    <div class="metric-card">
-      <div class="metric-val ${m.color}" style="${m.color === 'red' ? 'color:var(--red)' : ''}">${m.val}</div>
-      <div class="metric-label">${m.label}</div>
-      <div class="metric-sub">${m.sub}</div>
-    </div>
-  `).join('');
-}
-
-// ── RENDER QA ────────────────────────────────────────────
-function renderQA() {
-  const cont = document.getElementById('qa-feed');
-  if (!QA_RESULTS.length) {
-    cont.innerHTML = '<div class="empty-state">No test results yet</div>';
-    return;
-  }
-  cont.innerHTML = QA_RESULTS.map(r => `
-    <div class="qa-item">
-      <span class="qa-result ${r.result === 'PASS' ? 'qa-pass' : r.result === 'FAIL' ? 'qa-fail' : 'qa-pending'}">${r.result}</span>
-      <span class="qa-name">${r.name}</span>
-      <span class="qa-counts"><span class="pass">${r.pass}✓</span> <span class="fail">${r.fail > 0 ? r.fail + '✗' : ''}</span></span>
-      <span class="qa-meta">${fmtDate(r.time)} · ${r.runner}</span>
-    </div>
-  `).join('');
-}
-
-// ── RENDER AGENTS ─────────────────────────────────────────
-function renderAgents(data) {
-  const agents = data.agents || {};
-  const cards = Object.entries(agents).map(([key, a]) => {
-    const isActive = a.status === 'active';
-    const statusColor = isActive ? 'status-active' : a.status === 'ssh-only' ? 'status-ssh' : 'status-idle';
-    const ctxPct = a.contextPct || 0;
-    const pfp = key === 'kikai' ? 'kikai-pfp.png' : 'yama-pfp.png';
-    const name = key === 'kikai' ? 'Kikai 🦊' : 'Yama';
-    const role = key === 'kikai' ? 'Operator' : 'Tester';
-
-    return `
-      <div class="agent-card">
-        <div class="agent-header">
-          <img class="agent-icon" src="${pfp}" alt="${name}" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><circle cx=%2216%22 cy=%2216%22 r=%2216%22 fill=%22%23242424%22/></svg>'">
-          <div>
-            <div class="agent-name">${name}</div>
-            <div class="agent-role">${role}</div>
-          </div>
-          <span class="agent-status-pill ${statusColor}">${a.status || 'idle'}</span>
-        </div>
-        <div class="agent-body">
-          <div class="agent-row">
-            <span class="agent-key">Working on</span>
-            <span class="agent-val">${a.workingOn || '—'}</span>
-          </div>
-          <div class="agent-row">
-            <span class="agent-key">Model</span>
-            <span class="agent-val">${a.model || '—'}</span>
-          </div>
-          <div class="agent-row">
-            <span class="agent-key">Context</span>
-            <span class="agent-val" style="color:${ctxColor(ctxPct)}">${ctxPct}%</span>
-          </div>
-          <div class="ctx-bar">
-            <div class="ctx-fill" style="width:${ctxPct}%;background:${ctxColor(ctxPct)}"></div>
-          </div>
-          ${a.sessionDurationMin ? `<div class="agent-row"><span class="agent-key">Session</span><span class="agent-val">${a.sessionDurationMin}m</span></div>` : ''}
-        </div>
-      </div>
-    `;
-  });
-
-  document.getElementById('agents-grid').innerHTML = cards.join('') || '<div class="empty-state">No agent data</div>';
-}
-
-// ── RENDER PROJECTS ───────────────────────────────────────
-function renderProjects(data) {
-  const projects = data.projects || [];
-  const cont = document.getElementById('projects-list');
-
-  cont.innerHTML = projects.map(p => {
-    const task = p.tasks?.[0];
-    const statusColors = { Active: 'status-active', Building: 'status-ssh', Paused: 'status-idle' };
-    return `
-      <div class="project-card">
-        <div class="project-dot" style="background:${p.color || 'var(--text2)'}"></div>
-        <div class="project-info">
-          <div class="project-name">
-            ${p.name}
-            <span class="project-priority">#${p.priority}</span>
-          </div>
-          <div class="project-desc">${p.description}</div>
-          ${task ? `
-            <div class="project-task">
-              ${task.title}
-              ${task.nextAction ? `<div class="project-next">→ ${task.nextAction}</div>` : ''}
-            </div>
-          ` : ''}
-        </div>
-        <span class="project-status-tag ${statusColors[p.status] || 'status-idle'}">${p.status}</span>
-      </div>
-    `;
-  }).join('') || '<div class="empty-state">No projects</div>';
-}
-
-// ── RENDER CRONS ──────────────────────────────────────────
-function renderCrons(data) {
-  const cronData = data.health?.crons;
-  const cont = document.getElementById('crons-content');
-
-  let html = `<div class="health-bar" style="margin-bottom:10px;">
-    <div class="health-stat">
-      <span class="health-label">Healthy</span>
-      <span class="health-val" style="color:var(--green)">${cronData?.healthy || 0}</span>
-    </div>
-    <div class="health-divider"></div>
-    <div class="health-stat">
-      <span class="health-label">Errors</span>
-      <span class="health-val" style="color:${(cronData?.errors || 0) > 0 ? 'var(--red)' : 'var(--text2)'}">${cronData?.errors || 0}</span>
-    </div>
-  </div>`;
-
-  // Known crons from cron-registry
-  const knownCrons = [
-    { name: 'morning-brief', schedule: '8:00 AM PT', model: 'sonnet', status: 'ok' },
-    { name: 'state-freshener', schedule: 'every 6h', model: 'sonnet', status: 'ok' },
-    { name: 'task-resumption', schedule: 'every 4h', model: 'haiku', status: 'ok' },
-    { name: 'yama-health', schedule: 'every 1h', model: 'haiku', status: 'ok' },
-    { name: 'intel-refresh', schedule: '7:00 AM PT', model: 'haiku', status: 'ok' },
-    { name: '67-content-drafts', schedule: '8:15 AM PT', model: 'sonnet', status: 'paused' },
-    { name: 'memory-maintenance', schedule: '11 PM PT', model: 'sonnet', status: 'ok' },
-    { name: 'daily-digest', schedule: '9:30 PM PT', model: 'sonnet', status: 'ok' }
-  ];
-
-  html += `<div class="card"><div class="card-body" style="padding:0;">
-    <table class="cron-table">
-      <thead>
-        <tr>
-          <th>Job</th>
-          <th>Schedule</th>
-          <th>Model</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        ${knownCrons.map(c => `
-          <tr>
-            <td style="font-family:monospace;font-size:12px;">${c.name}</td>
-            <td style="color:var(--text2);font-size:12px;">${c.schedule}</td>
-            <td style="color:var(--dim);font-size:12px;">${c.model}</td>
-            <td><span class="cron-status-dot dot-${c.status === 'ok' ? 'ok' : c.status === 'paused' ? 'paused' : 'err'}"></span>${c.status}</td>
-          </tr>
-        `).join('')}
-      </tbody>
-    </table>
-  </div></div>`;
-
-  cont.innerHTML = html;
-}
-
-// ── RENDER INTEL ──────────────────────────────────────────
-function renderIntel(data) {
-  const intel = data.intel || [];
-  const cont = document.getElementById('intel-list');
-  if (!intel.length) {
-    cont.innerHTML = '<div class="empty-state">No intel available</div>';
-    return;
-  }
-  cont.innerHTML = intel.map(i => `
-    <div class="intel-item">
-      <span class="intel-bullet">◆</span>
-      <span class="intel-text">${i.text}</span>
-      <span class="intel-time">${fmtTime(i.time)}</span>
-    </div>
-  `).join('');
-}
-
-// ── RENDER FILES ──────────────────────────────────────────
-function renderFiles(data) {
-  const files = data.files || [];
-  const cont = document.getElementById('files-grid');
-  cont.innerHTML = files.map(f => `
-    <div class="file-card" onclick="openModal('${f.name}', ${JSON.stringify(f.content || f.preview || '')})">
-      <div class="file-card-header">
-        <span class="file-icon">${f.icon || '📄'}</span>
-        <span class="file-name">${f.name}</span>
-      </div>
-      <div class="file-preview">${(f.preview || '').substring(0, 120)}${(f.preview || '').length > 120 ? '...' : ''}</div>
-    </div>
-  `).join('') || '<div class="empty-state">No files</div>';
-}
-
-// ── RENDER HEALTH BAR ─────────────────────────────────────
-function renderHealth(data) {
-  const h = data.health?.crons;
-  document.getElementById('cron-health-val').textContent = h?.healthy ?? '—';
-  const errEl = document.getElementById('cron-error-val');
-  errEl.textContent = h?.errors ?? '—';
-  if ((h?.errors || 0) > 0) errEl.style.color = 'var(--red)';
-  const updEl = document.getElementById('updated-footer');
-  const updHeader = document.getElementById('last-updated');
-  if (data.updatedAt) {
-    updEl.textContent = 'Updated ' + fmtTime(data.updatedAt);
-    updHeader.textContent = 'Updated ' + fmtTime(data.updatedAt);
+function updateTimestamp(updatedAt) {
+  const el = document.getElementById('last-updated');
+  if (updatedAt) {
+    const d = new Date(updatedAt);
+    el.textContent = `Updated ${d.toLocaleTimeString('en', {hour:'2-digit', minute:'2-digit'})}`;
+  } else {
+    el.textContent = `Loaded ${new Date().toLocaleTimeString('en', {hour:'2-digit', minute:'2-digit'})}`;
   }
 }
 
-// ── CHECK BOT API ─────────────────────────────────────────
-async function checkBotApi() {
-  const statusEl = document.getElementById('bot-api-status');
+// ── LIVE CHECKS ─────────────────────────────────────────────────────────────
+
+async function checkDomain() {
   try {
-    const res = await fetch('https://for-crypto.vercel.app/api/bot/listings', {
-      method: 'GET',
-      signal: AbortSignal.timeout(5000)
-    });
-    // 401 = endpoint exists, just needs auth = LIVE
-    if (res.status === 401 || res.status === 200) {
-      statusEl.innerHTML = '<div class="live-dot green"></div><span style="color:var(--green);font-weight:700;">LIVE</span>';
-    } else {
-      statusEl.innerHTML = `<div class="live-dot red"></div><span style="color:var(--red);font-weight:700;">DOWN (${res.status})</span>`;
-    }
+    const r = await fetch('https://forcrypto.market', { mode: 'no-cors', cache: 'no-store' });
+    return true; // no-cors always succeeds if server responds
   } catch {
-    statusEl.innerHTML = '<div class="live-dot red"></div><span style="color:var(--red);font-weight:700;">UNREACHABLE</span>';
+    return false;
   }
 }
 
-// ── MAIN INIT ─────────────────────────────────────────────
-async function init() {
+// ── MAIN ────────────────────────────────────────────────────────────────────
+
+async function refreshData() {
+  document.getElementById('last-updated').innerHTML = '<span class="spinner"></span>';
   try {
-    // Try relative path first (GitHub Pages), then absolute
-    const dataUrl = window.location.origin.includes('github.io')
-      ? '/mission-control/data.json?_v=' + Date.now()
-      : 'data.json?_v=' + Date.now();
-    const resp = await fetch(dataUrl);
-    if (!resp.ok) throw new Error('data.json ' + resp.status + ' at ' + dataUrl);
-    const data = await resp.json();
-
-    renderLaunch();
-    renderNeedsWjp();
-    renderTeam(data);
-    renderMetrics(data);
-    renderQA();
-    renderAgents(data);
-    renderProjects(data);
-    renderCrons(data);
-    renderIntel(data);
-    renderFiles(data);
-    renderHealth(data);
-
-    // check bot API async
-    checkBotApi();
-
-    // populate bot stats (mock pre-launch)
-    document.getElementById('bot-active-count').textContent = '0';
-    document.getElementById('bot-listings-count').textContent = '0';
-
-  } catch(e) {
-    console.error('Failed to load data.json:', e);
-    document.getElementById('last-updated').textContent = 'Error loading data';
-    // still render static content
-    renderLaunch();
-    renderNeedsWjp();
-    renderQA();
+    const data = await fetchData();
+    const domainLive = data.health && data.health.domain === 'live';
+    updateTimestamp(data.updatedAt);
+    renderAgents(data.agents);
+    renderHealth(data.health || {}, domainLive);
+    renderProjects(data.projects);
+    renderIntel(data.intel);
+  } catch (e) {
+    document.getElementById('last-updated').textContent = 'Fetch failed';
+    console.error(e);
   }
 }
 
-document.addEventListener('DOMContentLoaded', init);
+async function init() {
+  // Render hardcoded sections immediately
+  renderLaunchBar();
+  renderWjpGrid();
+  renderQA();
+
+  // Fetch remote data
+  await refreshData();
+
+  // Auto-refresh every 60s
+  setInterval(refreshData, 60_000);
+}
+
+init();
 </script>
 </body>
 </html>
