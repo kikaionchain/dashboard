@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Physical Products in Crypto</title>
+<style>
+  body { font-family: system-ui, sans-serif; background: #050505; color: #e0e0e0; max-width: 800px; margin: 0 auto; padding: 24px 20px; }
+  h1 { color: #ffffff; font-size: 2em; margin-bottom: 8px; }
+  h2 { color: #0057FF; font-size: 1.3em; margin-top: 2em; border-bottom: 1px solid #1a1a1a; padding-bottom: 8px; }
+  h3 { color: #00D68F; font-size: 1.1em; }
+  h4 { color: #aaaaaa; font-size: 1em; }
+  p, li { line-height: 1.7; color: #c0c0c0; }
+  strong { color: #ffffff; }
+  code { background: #111; padding: 2px 6px; border-radius: 3px; font-family: monospace; color: #00D68F; }
+  pre { background: #111; padding: 16px; border-radius: 6px; overflow-x: auto; }
+  blockquote { border-left: 3px solid #0057FF; margin: 0; padding-left: 16px; color: #888; }
+  .meta { color: #444; font-size: 0.85em; margin-bottom: 2em; }
+  a { color: #0057FF; }
+  hr { border: none; border-top: 1px solid #1a1a1a; margin: 2em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+  td, th { border: 1px solid #222; padding: 8px 12px; text-align: left; color: #c0c0c0; }
+  th { background: #111; color: #0057FF; }
+</style>
+</head>
+<body>
+<div class="meta">For Crypto &middot; Kikai OS &middot; 2026-03-01</div>
+<h1>Physical Products on a Crypto Marketplace</h1>
+<p><strong>Research for For Crypto (forcrypto.market)</strong>
+<em>Compiled: 2026-03-01</em></p>
+<hr />
+<h2>The Core Tension</h2>
+<p>Physical goods and crypto have an inherent mismatch: crypto is irreversible, physical is reversible. Crypto settles in seconds, shipping takes days. Crypto is pseudonymous, shipping requires a real address. Every solution in this space is really solving that mismatch.</p>
+<p>For Crypto's wallet-to-wallet USDC model makes this sharper than most. The good news: the infrastructure is finally mature enough to solve it properly.</p>
+<hr />
+<h2>1. How Existing Platforms Handle Physical + Crypto</h2>
+<h3>Shopify + USDC (launched June 2025 - most relevant signal)</h3>
+<p><strong>How it works:</strong>
+- Shopify Payments now natively accepts USDC on Base network
+- 480+ compatible wallets supported (MetaMask, Coinbase Wallet, Rainbow, etc.)
+- Buyer pays from their wallet at checkout, no new gateway integration for merchant
+- Merchant receives fiat by default (converted automatically) or can elect to keep USDC
+- Uses a novel "authorize now, capture later" smart contract - solves the inventory reservation problem
+- Standard Shopify Payments rate applies (2.4-2.9% for most plans)
+- 1% cashback for US buyers paying USDC (rolling out late 2025)</p>
+<p><strong>What breaks:</strong>
+- Customer needs USDC specifically on Base - if they have USDC on Ethereum mainnet or Solana, they have to bridge first. That's a friction point that kills conversion for non-crypto-native buyers
+- Still requires a Shopify Payments merchant account (US/Canada/UK/etc. - not global)
+- No native dispute mechanism different from regular Shopify chargebacks - merchant still subject to standard chargeback rules even on crypto payments
+- The "crypto" experience is mostly cosmetic - it's really just a new payment rail bolted onto existing e-commerce, not a crypto-native experience</p>
+<p><strong>Verdict:</strong> Shopify USDC is a crypto payment method on a Web2 platform. It solves the payment layer but not the trust, identity, or dispute layer. Relevant as a reference, not a model to copy.</p>
+<hr />
+<h3>NFT-Gated Physical Goods: What Worked, What Didn't</h3>
+<p><strong>Works:</strong>
+- <strong>Pudgy Penguins physical toys</strong> - The gold standard. Launched in 3,000 Walmart stores via pallet program, October 2023. Each toy came with a QR code linking to a digital collectible ("Pudgy World" claim). Physical goods were NOT gated by NFT ownership - anyone could buy the toy. The NFT just unlocked bonus digital items. Key insight: they didn't require crypto to buy the toy - they used physical retail to onboard normies INTO crypto.
+- <strong>Yuga Labs merch</strong> - BAYC holders got exclusive merch drops, gated by wallet verification. Worked for engagement/loyalty, not as a primary revenue model.
+- <strong>RTFKT / Nike</strong> - Physical sneakers that pair with digital twins. Works because Nike has logistics infrastructure and brand trust.</p>
+<p><strong>Failed:</strong>
+- Most "NFT unlocks merch" projects failed because: (a) the merch was low quality and overpriced, (b) logistics were handled by small teams with no fulfillment experience, (c) the NFT floor collapsed before merch shipped, killing motivation, (d) dispute resolution was impossible - no chargebacks, no recourse.
+- Countless projects sold physical goods at NFT conferences, took payment in ETH, never shipped. No recourse for buyers.
+- <strong>The pattern:</strong> Failure almost always came from teams with no e-commerce experience treating physical goods as a marketing afterthought.</p>
+<p><strong>Key lesson from Pudgy Penguins:</strong> Don't gate the physical product behind crypto. Use the physical product to onboard people INTO crypto. The digital item is the reward, not the gate.</p>
+<hr />
+<h3>Who's Doing Crypto + Physical Well Right Now (2025-2026)</h3>
+<ul>
+<li><strong>Shopify merchants</strong> accepting USDC (early access) - growing but mostly existing stores adding a payment option</li>
+<li><strong>Luxury brands</strong> (Gucci, Balenciaga, Hublot) accepting crypto for physical goods via third-party processors - but this is "crypto as a payment method" not "crypto-native marketplace"</li>
+<li><strong>Ordinals merch stores</strong> - small, community-run, usually Shopify + BitPay</li>
+<li><strong>No one</strong> is running a true wallet-to-wallet physical goods marketplace at scale. This is a gap.</li>
+</ul>
+<hr />
+<h2>2. The Logistics Problem</h2>
+<h3>Shipping + Fulfillment for Crypto-Paid Physical Goods</h3>
+<p>The logistics problem is actually NOT a crypto problem - it's a marketplace problem. The payment rail is irrelevant to the carrier. What matters:</p>
+<ol>
+<li>
+<p><strong>Address collection</strong> - Shipping requires a real address. Wallet-to-wallet preserves payment anonymity, but you need to collect shipping info somewhere. The standard approach: collect shipping address BEFORE or DURING payment, store it encrypted, pass to fulfillment. This is a UX design problem, not a technical one.</p>
+</li>
+<li>
+<p><strong>Fulfillment timing</strong> - Crypto payment is instant. Order processing time is not. Smart contract "hold" during processing window is the right pattern (Shopify solved this with their authorize/capture contract on Base).</p>
+</li>
+<li>
+<p><strong>International orders</strong> - Crypto's biggest advantage. No foreign transaction fees, instant settlement, no bank delays. Physical goods still go through customs the same way, but the payment layer is clean.</p>
+</li>
+</ol>
+<h3>How Do You Handle Returns/Disputes Without Chargebacks?</h3>
+<p>This is the hardest problem. Current approaches:</p>
+<p><strong>Option A: Escrow-based returns</strong>
+- Buyer funds go into smart contract escrow at purchase
+- Release conditions: seller ships (provides tracking), buyer confirms receipt OR dispute window expires (e.g., 14 days)
+- Dispute: third-party arbiter (human or DAO) reviews evidence and releases/refunds
+- Projects doing this: Uniscrow, OpenBazaar model, various P2P trade protocols
+- Problem: complex UX, slow, requires arbiters, still gameable (buyer claims "not received" after using item)</p>
+<p><strong>Option B: Seller deposit/bond</strong>
+- Sellers post a deposit (e.g., $50-500 USDC) when listing
+- Disputes draw against seller's deposit
+- Deposit returned when seller hits X successful transactions
+- Simpler than full escrow, disincentivizes fraud
+- Used by LocalBitcoins, some P2P models</p>
+<p><strong>Option C: No returns, reputation only</strong>
+- Sellers build on-chain reputation score
+- Buyers accept no-return policy explicitly
+- Works for low-cost items (&lt;$50) where return friction exceeds item value
+- Fails for high-value items</p>
+<p><strong>Option D: Hybrid - escrow for first X transactions, then reputation</strong>
+- New seller: escrow required
+- Verified seller (&gt;20 successful transactions, 4.5+ rating): optional escrow
+- Most practical for a real marketplace</p>
+<p><strong>The real answer on returns:</strong> Crypto-native physical marketplaces should adopt <strong>explicit no-chargeback policies</strong> with <strong>escrow-backed release windows</strong>. Buyers opt in knowing this. The tradeoff: lower buyer protection → lower item prices + lower fees. Position it as a feature for price-sensitive buyers, not a bug.</p>
+<h3>Fulfillment Providers That Work With Crypto</h3>
+<p><strong>Printful:</strong>
+- Accepts crypto (BTC, ETH, Doge, Shiba, others) via BitPay for manual orders and wallet deposits
+- This is business-side payment (you pay Printful in crypto to fulfill an order), NOT buyer-side
+- Shopify + Printful + Shopify USDC checkout = workable stack for crypto-paid POD
+- UX: buyer pays in USDC → you receive USDC → you use fiat/crypto to pay Printful → Printful ships direct to buyer</p>
+<p><strong>Printify:</strong>
+- No crypto support. Fiat only (USD, EUR, GBP, AUD, CAD).
+- Could still work as backend: you receive USDC, convert to fiat, pay Printify</p>
+<p><strong>Other fulfillment options:</strong>
+- <strong>Gelato</strong> - global POD network, no crypto support natively, but fiat bridge works
+- <strong>Amazon Fulfillment (FBA)</strong> - no crypto, but if selling physical goods at scale, storing inventory with Amazon and accepting USDC at checkout is viable
+- <strong>Direct seller fulfillment</strong> - P2P marketplace model where seller handles their own shipping. Lowest infrastructure cost for For Crypto.</p>
+<p><strong>Bottom line:</strong> No major fulfillment provider accepts USDC directly from end buyers yet. The bridge is: buyer pays USDC → marketplace receives/holds → marketplace pays fulfillment provider in fiat. This is manageable.</p>
+<hr />
+<h2>3. The Trust Problem</h2>
+<h3>How Buyers Trust a Seller They've Never Met</h3>
+<p>The crypto community has a higher tolerance for risk than normies, but still needs assurance. What works:</p>
+<p><strong>On-chain reputation:</strong>
+- Wallet address = immutable identity. A wallet with 200 successful sales and no disputes is trustworthy in a way a new account can't fake.
+- Key: reputation should be non-transferable (soulbound), tied to wallet, public.
+- Problem: new legitimate sellers have zero reputation. Need a "bootstrap" mechanism.</p>
+<p><strong>Seller verification tiers:</strong>
+- Unverified (new) → KYC-lite (email or SMS) → Verified (ID) → Elite (deposit bonded)
+- Higher tier = higher listing visibility, lower buyer hesitation
+- For a small team: start with self-attestation + deposit bond for launch</p>
+<p><strong>Escrow mechanics for physical goods:</strong></p>
+<p>Standard smart contract escrow flow:
+1. Buyer sends USDC to escrow contract (not seller wallet directly)
+2. Seller receives "payment pending" notification, ships item
+3. Seller inputs tracking number → contract records it
+4. If buyer confirms receipt OR 14 days pass without dispute: funds release to seller
+5. If buyer opens dispute: arbiter reviews, funds split or refunded</p>
+<p>The "confirm receipt" step is the UX friction point. Normies don't always click confirm. Auto-release after 14 days solves this - buyer can dispute before auto-release.</p>
+<p><strong>Dispute resolution without chargebacks:</strong></p>
+<p>Options in order of complexity:
+1. <strong>Centralized arbiter (For Crypto team)</strong> - Simple, fast. You review evidence, make call, release funds. High trust, high operational load. Right for launch.
+2. <strong>Token-curated arbiters</strong> - Community members stake tokens to become arbiters. Incentivized to rule correctly. Complex to build.
+3. <strong>Third-party service</strong> - Kleros (decentralized arbitration protocol), Aragon Court. Battle-tested. Integration overhead but not huge.
+4. <strong>Full DAO governance</strong> - Overkill at launch.</p>
+<p><strong>Recommendation:</strong> Launch with (1), plan migration to (3) at scale.</p>
+<h3>Rating/Review Systems That Work</h3>
+<p>What works for physical goods:
+- <strong>On-chain reviews</strong> - stored on-chain or via IPFS, tied to a transaction hash. Verifiably authentic.
+- <strong>Two-way ratings</strong> - buyer rates seller AND seller rates buyer. Reduces extortion ("give me refund or 1-star")
+- <strong>Photo-verified reviews</strong> - buyer uploads photo of item received. Higher credibility.
+- <strong>Escrow-unlock trigger</strong> - review prompt appears at the moment buyer confirms receipt and unlocks seller's funds. Highest capture rate.</p>
+<p>What doesn't work:
+- Off-chain reviews (gameable, fake-able)
+- Reviews without verified purchase link
+- Anonymous star ratings without text (no signal)</p>
+<hr />
+<h2>4. Implementation Options for For Crypto</h2>
+<h3>Option A: Native Physical Product Listings (Build Fulfillment Layer)</h3>
+<p><strong>What it means:</strong> For Crypto becomes both marketplace AND fulfillment operator. Buy inventory or dropship, own the fulfillment flow.</p>
+<p><strong>Pros:</strong> Full control. Best UX. Can optimize the crypto-native experience end to end.
+<strong>Cons:</strong> This is a different business. Warehousing, carrier relationships, returns management, customer service. Massively capital and operationally intensive. Not right for a small team at any stage.
+<strong>Verdict: Do not pursue.</strong></p>
+<hr />
+<h3>Option B: Integration with Shopify/Existing E-commerce</h3>
+<p><strong>What it means:</strong> For Crypto acts as a "crypto checkout layer" that existing Shopify stores can plug in. Sellers keep their Shopify store; For Crypto adds wallet-based USDC payment and a listing on the marketplace.</p>
+<p><strong>Pros:</strong> Zero fulfillment overhead. Sellers bring their existing inventory, pricing, and shipping. You just provide the payment rail and marketplace discoverability.
+<strong>Cons:</strong> You're competing with Shopify Payments USDC (which they now do natively). Differentiation is thin unless your marketplace community is the draw.
+<strong>Verdict: Viable but not differentiated. Consider as a "phase 2" bridge to onboard existing sellers.</strong></p>
+<hr />
+<h3>Option C: Physical + Digital Bundles (NFT Receipt for Physical Item)</h3>
+<p><strong>What it means:</strong> Every physical purchase mints an NFT receipt on-chain. The NFT proves ownership, can unlock future benefits, and serves as a provenance record.</p>
+<p><strong>Pros:</strong> Crypto-native differentiator. Pudgy Penguins demonstrated this model works. Builds collector culture around physical goods. On-chain receipt is more powerful than email receipt - it's transferable, verifiable, permanently linked to the item.
+<strong>Cons:</strong> Adds minting cost and UX complexity. Not every physical item warrants an NFT receipt. Needs thoughtful design to feel like a feature not a gimmick.
+<strong>Verdict: Strong differentiator if done right. NFT receipt should be optional, auto-minted, zero-cost to buyer (gas paid by platform or gasless on Base). This is a layer ON TOP of a primary model, not a standalone option.</strong></p>
+<hr />
+<h3>Option D: Partner with Fulfillment Provider, They Handle Physical</h3>
+<p><strong>What it means:</strong> For Crypto integrates with Printful (or similar). Sellers list products; when purchased, For Crypto routes the order to the fulfillment partner who manufactures/ships. Classic POD model with crypto rails.</p>
+<p><strong>Pros:</strong> No inventory risk. Clear responsibility split. Proven model (millions of Shopify stores do this). Printful already accepts crypto on their side.
+<strong>Cons:</strong> Limited to POD-style goods (apparel, prints, accessories). Doesn't enable P2P physical goods. Margins thin. No differentiation from any other Shopify + Printful store except payment method.
+<strong>Verdict: Valid for a narrow "crypto merch" use case. Good first vertical to test, not the full vision.</strong></p>
+<hr />
+<h2>5. The Onboarding Problem</h2>
+<h3>How to Get Non-Crypto Sellers to List</h3>
+<p>The honest answer: you probably don't start there. For Crypto's first physical goods sellers should be crypto-native - people who already have wallets, understand USDC, and see the value proposition. Trying to onboard mainstream sellers from day one adds a massive education overhead.</p>
+<p><strong>Seller journey (crypto-native first):</strong>
+1. Connect wallet → automatically their "seller identity"
+2. Create listing (photos, description, price in USDC)
+3. Post seller deposit bond (deters fraud, earns trust badge)
+4. When sold: buyer funds go to escrow, seller ships, tracks, releases</p>
+<p><strong>What makes a crypto-native seller prefer For Crypto over Shopify:</strong>
+- No 2.4-2.9% Shopify fee on crypto (For Crypto charges 1-2.5%)
+- No KYC required to sell
+- Wallet-to-wallet = no bank account required (huge for international sellers)
+- Community of crypto buyers = relevant audience for crypto-adjacent goods</p>
+<h3>Fiat On-Ramp at Checkout</h3>
+<p><strong>Stripe Crypto Onramp</strong> is the right tool:
+- Embeddable widget: buyer enters credit card, receives USDC to their wallet, pays checkout - all in one flow
+- Stripe handles KYC, compliance, fraud
+- Available as embedded component or hosted
+- Supports USDC on Base, Polygon, Avalanche, Stellar
+- Developer API, integrates cleanly into a custom checkout</p>
+<p><strong>UX for a non-crypto buyer buying a physical item:</strong>
+1. Browse For Crypto marketplace
+2. Click "Buy" on an item
+3. Checkout prompt: "Pay with crypto wallet" OR "Pay with card (converted to USDC)"
+4. Card path: Stripe onramp widget → enter card → Stripe converts → USDC hits escrow → order confirmed
+5. Buyer never needs to understand what USDC is</p>
+<p>This is the cleanest normie path. The "crypto" is invisible. It's just a payment.</p>
+<p><strong>What breaks:</strong>
+- Stripe onramp fees: ~1.5% above spot. Buyer absorbs this or seller marks up.
+- KYC friction on card path (Stripe requires identity for large purchases)
+- New York residents excluded from some USDC options (regulatory)</p>
+<h3>Successful Onboarding Examples</h3>
+<ul>
+<li><strong>Coinbase Commerce</strong> - accepted by thousands of merchants, zero-friction integration, they handle conversion. Relevant as a payment processor reference.</li>
+<li><strong>Pudgy Penguins at Walmart</strong> - normies bought toys with fiat, got crypto rewards. The "buy with fiat, earn crypto" model onboards without requiring crypto upfront.</li>
+<li><strong>Shopify USDC rollout</strong> - merchants didn't have to do anything new except enable a toggle. That's the right UX bar.</li>
+</ul>
+<p><strong>For sellers:</strong> The simplest seller onboarding is "connect your wallet, list your item, get paid in USDC." One-step. For sellers who want fiat, add an immediate USDC→fiat offramp via Coinbase or Stripe. They see a dollar amount in their bank, not a wallet balance.</p>
+<hr />
+<h2>6. Revenue Model</h2>
+<p><strong>Current For Crypto:</strong> 1% on digital goods.</p>
+<p><strong>What's right for physical?</strong></p>
+<p>Reference points:
+- eBay: 12-15% (includes buyer protection, payment processing, massive distribution)
+- Etsy: 6.5% transaction + 3% payment + $0.20 listing
+- OpenSea (digital): 2.5%
+- NFT marketplaces: 2.5-15%
+- Shopify USDC: ~2.4-2.9% (standard payment processing rate)
+- P2P marketplaces (no buyer protection): 1-3%</p>
+<p><strong>The physical goods premium justification:</strong>
+- Escrow holding cost (capital tied up)
+- Dispute arbiter operational overhead
+- Higher fraud risk
+- Potentially absorbing gas fees for NFT receipts</p>
+<p><strong>Recommended fee structure for physical goods:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Fee</th>
+<th>Conditions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Standard physical</td>
+<td>2.5%</td>
+<td>Default, includes escrow, NFT receipt</td>
+</tr>
+<tr>
+<td>High-value physical (&gt;$500)</td>
+<td>2.0%</td>
+<td>Incentivize big-ticket sellers</td>
+</tr>
+<tr>
+<td>POD/Printful-integrated</td>
+<td>3.0%</td>
+<td>Higher margin since no fulfillment risk</td>
+</tr>
+<tr>
+<td>Verified seller (&gt;100 sales)</td>
+<td>1.5%</td>
+<td>Loyalty reward</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Escrow fee:</strong> Consider a small flat fee ($0.50-1.00) for escrow holding per transaction, separate from the marketplace fee. Covers gas and holding risk. Or bake it into the 2.5%.</p>
+<p><strong>Don't go below 2%</strong> for physical goods - disputes and operational overhead will eat margin. Don't go above 3.5% or you lose the crypto-native seller who can self-host on Shopify for less.</p>
+<hr />
+<h2>RECOMMENDATION: Which Path to Pursue</h2>
+<h3>The Move: Option D → Option C → Option B (phased)</h3>
+<p><strong>Phase 1 (Launch): POD + NFT Receipt</strong></p>
+<p>Start with the lowest-friction physical goods model: print-on-demand via Printful integration. Here's why:</p>
+<ol>
+<li><strong>Zero inventory risk.</strong> No warehouse, no fulfillment team. Printful handles everything.</li>
+<li><strong>Natural first market.</strong> Crypto community buys merch. Hoodies, tees, hats, prints. The audience on For Crypto is EXACTLY the audience that wants crypto-themed physical goods.</li>
+<li><strong>Printful accepts crypto (via BitPay).</strong> The backend loop works: buyer pays USDC → platform holds → platform pays Printful in crypto/fiat → Printful ships.</li>
+<li><strong>NFT receipt on every order.</strong> Auto-mint on Base (gasless for buyer). This is the crypto-native differentiator. No Shopify store does this. It creates collector culture: your order history is on-chain, transferable, provable.</li>
+<li><strong>Simple escrow.</strong> POD has no "item not as described" fraud at scale - Printful quality-controls their prints. Disputes are rare. You can run basic centralized dispute resolution with a small team.</li>
+</ol>
+<p><strong>Phase 2 (3-6 months): P2P Physical Listings</strong></p>
+<p>Once escrow and dispute systems are validated on POD, open to P2P seller listings. This is when you build:
+- Smart contract escrow (use Uniscrow or build light version on Base)
+- Seller deposit bond system
+- On-chain reputation
+- Two-way review system</p>
+<p><strong>Phase 3 (6-12 months): Shopify Integration</strong></p>
+<p>Build a "For Crypto checkout" plugin for Shopify. Existing Shopify stores add their product catalog to For Crypto marketplace with one integration. They keep their existing fulfillment. For Crypto gets inventory without managing it.</p>
+<hr />
+<h3>Why NOT the other options at launch</h3>
+<ul>
+<li><strong>Option A (native fulfillment):</strong> Kills a small team. Wrong business.</li>
+<li><strong>Option B (Shopify integration) at launch:</strong> Requires convincing existing sellers to add a new platform. High sales overhead, low conversion.</li>
+<li><strong>Full P2P at launch without POD:</strong> Requires escrow, dispute resolution, and seller onboarding all at once. Too many moving parts. De-risk by starting with a partner that handles fulfillment.</li>
+</ul>
+<hr />
+<h3>The Key Insight</h3>
+<p><strong>Pudgy Penguins didn't require crypto to buy the toy. The toy created new crypto users.</strong></p>
+<p>For Crypto should run this same play:
+- Physical goods purchasable with USDC OR with card (Stripe onramp, invisible conversion)
+- Every physical purchase mints an NFT receipt - buyer now has a wallet interaction even if they paid with a card
+- That receipt is their first on-chain asset
+- That's how you onboard normies into crypto through physical goods</p>
+<p>The physical product is the Trojan horse. The on-chain receipt is the hook.</p>
+<hr />
+<h2>Appendix: Quick Reference</h2>
+<p><strong>Tools/Services to evaluate:</strong>
+- <strong>Printful</strong> - POD fulfillment, accepts crypto via BitPay. <a href="https://printful.com">printful.com</a>
+- <strong>Stripe Crypto Onramp</strong> - fiat→USDC for non-crypto buyers. <a href="https://docs.stripe.com/crypto/onramp">docs.stripe.com/crypto/onramp</a>
+- <strong>Uniscrow</strong> - blockchain escrow with ADR dispute resolution. <a href="https://uniscrow.com">uniscrow.com</a>
+- <strong>Coinbase Commerce</strong> - USDC payment acceptance, no KYC for buyers. <a href="https://commerce.coinbase.com">commerce.coinbase.com</a>
+- <strong>Base network</strong> - zero gas fees for buyers (Coinbase L2), same chain as Shopify USDC</p>
+<p><strong>Competitors to watch:</strong>
+- Shopify USDC (payment method, not marketplace)
+- OpenBazaar (died 2021 - instructive failure: no escrow enforcement, no dispute mechanism)
+- Cryptwerk.com (directory of crypto-accepting businesses - not a marketplace)
+- No one is running a true crypto-native P2P physical goods marketplace at scale. The space is open.</p>
+</body>
+</html>

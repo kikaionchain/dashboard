@@ -1,0 +1,64 @@
+{
+  "artifacts": [
+    {
+      "id": "brand-strategy-2026-03-01",
+      "title": "For Crypto Brand Strategy + Style Guide",
+      "type": "Brand",
+      "date": "2026-03-01",
+      "description": "Full brand voice, colors, messaging architecture, and launch campaign strategy",
+      "url": "https://clever-pumice-325e.here.now/",
+      "preview": "Electric Blue #0057FF · Settlement Green #00D68F · 'The Rails Are Ready' campaign",
+      "tags": ["for-crypto", "brand", "marketing"]
+    },
+    {
+      "id": "whop-competitive-2026-03-01",
+      "title": "Whop Competitive Deep Dive",
+      "type": "Research",
+      "date": "2026-03-01",
+      "description": "Deep competitive analysis of Whop — product, pricing, growth, and positioning gaps",
+      "url": "https://celest-fjord-a5q8.here.now/",
+      "preview": "Revenue model, creator tools, community features, market positioning vs For Crypto",
+      "tags": ["for-crypto", "research", "competitive"]
+    },
+    {
+      "id": "gumroad-competitive-2026-03-01",
+      "title": "Gumroad Competitive Deep Dive",
+      "type": "Research",
+      "date": "2026-03-01",
+      "description": "Deep competitive analysis of Gumroad — product, fees, creator ecosystem, weaknesses",
+      "url": "https://lemon-shrine-dhbn.here.now/",
+      "preview": "10% flat fee model, simplicity positioning, creator base, acquisition opportunity",
+      "tags": ["for-crypto", "research", "competitive"]
+    },
+    {
+      "id": "urgency-marketing-2026-03-01",
+      "title": "Urgency Marketing Playbook",
+      "type": "Strategy",
+      "date": "2026-03-01",
+      "description": "Complete playbook for urgency-driven marketing: scarcity, FOMO, time gates, and conversion tactics",
+      "url": "https://hollow-frost-c2qb.here.now/",
+      "preview": "Countdown mechanics, social proof triggers, loss aversion frameworks, implementation guide",
+      "tags": ["for-crypto", "marketing", "strategy"]
+    },
+    {
+      "id": "distributed-accounts-2026-03-01",
+      "title": "Distributed Account Strategy",
+      "type": "Strategy",
+      "date": "2026-03-01",
+      "description": "Multi-account strategy for building distributed presence across platforms without centralization risk",
+      "url": "https://kikaionchain.github.io/mission-control/docs/distributed-account-strategy.html",
+      "preview": "Account clustering, content distribution, risk mitigation, coordination playbook",
+      "tags": ["for-crypto", "strategy", "growth"]
+    },
+    {
+      "id": "physical-products-2026-03-01",
+      "title": "Physical Products in Crypto",
+      "type": "Research",
+      "date": "2026-03-01",
+      "description": "Analysis of physical product opportunities in the crypto space: merch, collectibles, hardware",
+      "url": "https://kikaionchain.github.io/mission-control/docs/physical-products-crypto.html",
+      "preview": "Case studies, margin analysis, community activation through physical goods",
+      "tags": ["for-crypto", "research", "products"]
+    }
+  ]
+}

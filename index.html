@@ -1,1643 +1,550 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
-<script>
-// Auto cache-bust: redirect to timestamped URL if no version param
-if (!location.search.includes('_v=')) {
-  location.replace(location.pathname + '?_v=' + Date.now());
-}
-</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mission Control</title>
 <style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html, body { width: 100%; min-height: 100vh; overflow-x: hidden; }
-
-:root {
-  --bg: #000000;
-  --surface: #0d0d0d;
-  --surface2: #141414;
-  --border: #1a1a1a;
-  --border2: #242424;
-  --text: #f0f0f0;
-  --text2: #888;
-  --dim: #555;
-  --accent: #00D9FF;
-  --green: #39FF14;
-  --gold: #FFD700;
-  --red: #FF3B3B;
-  --orange: #FF8C00;
-  --purple: #a78bfa;
-  --pink: #f472b6;
-}
-
-body {
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  font-size: 18px;
-  line-height: 1.5;
-}
-
-/* ─── HEADER ──────────────────────────────────────────── */
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  width: 100%;
-  background: rgba(0,0,0,0.92);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border2);
-  padding: 12px 32px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.header-inner {
-  display: contents;
-}
-
-.header-left {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.wjp-avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 1px solid var(--border2);
-}
-
-.header-logo {
-  font-size: 23px;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-  color: var(--text);
-}
-
-.header-logo span {
-  color: var(--text2);
-  font-weight: 400;
-}
-
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  font-size: 16px;
-  color: var(--text2);
-}
-
-.refresh-badge {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 10px;
-  border: 1px solid var(--border2);
-  border-radius: 999px;
-  font-size: 14px;
-  color: var(--text2);
-  cursor: pointer;
-  transition: border-color 0.2s;
-}
-
-.refresh-badge:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-.refresh-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--dim);
-  animation: pulse 2s infinite;
-}
-
-.refresh-dot.stale {
-  background: var(--dim);
-  animation: none;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
-}
-
-/* ─── MAIN ────────────────────────────────────────────── */
-.main {
-  width: 100%;
-  padding: 24px 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  box-sizing: border-box;
-}
-
-/* ─── SECTION TITLE ───────────────────────────────────── */
-.section-title {
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text2);
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.section-title::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--border);
-}
-
-.section-pfp {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 1px solid var(--border2);
-  flex-shrink: 0;
-}
-
-.section-title.no-line::after {
-  display: none;
-}
-
-/* ─── CARD ────────────────────────────────────────────── */
-.card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.card-body {
-  padding: 16px;
-}
-
-/* ─── ERROR BANNER ────────────────────────────────────── */
-#error-banner {
-  background: rgba(255, 59, 59, 0.08);
-  border: 1px solid rgba(255, 59, 59, 0.4);
-  border-radius: 12px;
-  padding: 20px;
-  text-align: center;
-  display: none;
-}
-
-#error-banner.visible { display: block; }
-
-.error-title {
-  font-size: 21px;
-  font-weight: 700;
-  color: var(--red);
-  margin-bottom: 8px;
-}
-
-.error-url {
-  font-family: monospace;
-  font-size: 17px;
-  color: var(--text2);
-  background: var(--surface2);
-  padding: 6px 12px;
-  border-radius: 6px;
-  margin: 8px 0;
-  word-break: break-all;
-}
-
-.retry-btn {
-  display: inline-block;
-  margin-top: 12px;
-  padding: 8px 20px;
-  background: var(--red);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 17px;
-  font-weight: 600;
-}
-
-/* ─── YOUR MOVE SECTION ───────────────────────────────── */
-.your-move-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  flex: 1;
-}
-
-.move-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 14px 16px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  border-left-width: 3px;
-  transition: background 0.15s;
-  flex: 1;
-}
-
-.move-item:hover { background: var(--surface2); }
-
-.move-item.critical { border-left-color: var(--red); }
-.move-item.high { border-left-color: var(--orange); }
-.move-item.medium { border-left-color: var(--gold); }
-.move-item.low { border-left-color: var(--text2); }
-
-.move-urgency {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 3px 8px;
-  border-radius: 999px;
-  white-space: nowrap;
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-
-.urgency-critical,
-.urgency-high,
-.urgency-medium,
-.urgency-low { background: var(--surface2); color: var(--text2); }
-
-.move-content {
-  flex: 1;
-  min-width: 0;
-}
-
-.move-title {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: 4px;
-}
-
-.move-ask {
-  font-size: 17px;
-  color: var(--text2);
-  line-height: 1.4;
-}
-
-.move-project {
-  font-size: 14px;
-  font-weight: 600;
-  padding: 2px 8px;
-  border-radius: 999px;
-  background: var(--surface2);
-  color: var(--text2);
-  flex-shrink: 0;
-  white-space: nowrap;
-}
-
-.all-clear {
-  padding: 24px;
-  text-align: center;
-  color: var(--text2);
-  font-size: 18px;
-}
-
-.all-clear .icon { font-size: 36px; margin-bottom: 8px; }
-.all-clear .label { color: var(--text2); font-weight: 600; }
-
-/* ─── AGENTS SECTION ──────────────────────────────────── */
-.agents-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 12px;
-}
-
-@media (max-width: 640px) {
-  .agents-grid { grid-template-columns: 1fr; }
-}
-
-.agent-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 16px;
-}
-
-.agent-card.rate-limited {
-  border-color: rgba(255,59,59,0.4);
-  background: rgba(255,59,59,0.03);
-}
-
-.agent-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 12px;
-}
-
-.agent-identity {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.agent-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 1px solid var(--border2);
-  flex-shrink: 0;
-}
-
-.agent-name {
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--text);
-}
-
-.status-pill {
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 3px 10px;
-  border-radius: 999px;
-}
-
-.status-active,
-.status-online,
-.status-ssh-only,
-.status-offline,
-.status-unknown { background: var(--surface2); color: var(--text2); border: 1px solid var(--border2); }
-
-.agent-field {
-  margin-bottom: 10px;
-}
-
-.field-label {
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text2);
-  margin-bottom: 4px;
-}
-
-.field-value {
-  font-size: 17px;
-  color: var(--text);
-}
-
-.field-value.muted { color: var(--text2); }
-
-/* context fuel gauge */
-.fuel-gauge {
-  height: 6px;
-  background: var(--surface2);
-  border-radius: 999px;
-  overflow: hidden;
-  margin-top: 6px;
-}
-
-.fuel-fill {
-  height: 100%;
-  border-radius: 999px;
-  transition: width 0.4s ease;
-}
-
-.fuel-green { background: var(--green); }
-.fuel-yellow { background: var(--gold); }
-.fuel-red { background: var(--red); }
-
-.context-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.context-pct {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--text2);
-}
-
-.rate-limit-warning {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 8px;
-  padding: 6px 10px;
-  background: var(--surface2);
-  border: 1px solid var(--border2);
-  border-radius: 6px;
-  font-size: 16px;
-  color: var(--text2);
-  font-weight: 600;
-}
-
-/* ─── PROJECTS SECTION ────────────────────────────────── */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 12px;
-  align-items: start;
-}
-
-@media (max-width: 768px) {
-  .projects-grid { grid-template-columns: 1fr; }
-}
-
-.project-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  border-left-width: 3px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.project-header {
-  padding: 14px 16px 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-}
-
-.project-name {
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--text);
-}
-
-.project-priority {
-  font-size: 13px;
-  color: var(--text2);
-  font-weight: 600;
-}
-
-.project-status {
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 3px 9px;
-  border-radius: 999px;
-}
-
-.project-status.active,
-.project-status.building,
-.project-status.paused,
-.project-status.blocked,
-.project-status.queued { background: var(--surface2); color: var(--text2); border: 1px solid var(--border2); }
-
-.project-desc {
-  padding: 0 16px 12px;
-  font-size: 16px;
-  color: var(--text2);
-  line-height: 1.4;
-  flex: 1;
-}
-
-.project-divider {
-  height: 1px;
-  background: var(--border);
-  margin: 0 16px;
-}
-
-.project-task {
-  padding: 12px 16px;
-}
-
-.task-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  margin-bottom: 6px;
-}
-
-.task-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  margin-top: 7px;
-  flex-shrink: 0;
-}
-
-.dot-active { background: var(--text2); }
-.dot-blocked { background: var(--dim); }
-.dot-paused { background: var(--dim); }
-.dot-queued { background: var(--border2); }
-
-.task-text {
-  font-size: 16px;
-  color: var(--text2);
-  line-height: 1.4;
-}
-
-.task-text strong {
-  color: var(--text);
-  font-weight: 600;
-}
-
-.next-action {
-  padding: 8px 10px;
-  background: var(--surface2);
-  border-radius: 6px;
-  font-size: 16px;
-  color: var(--text2);
-  border-left: 2px solid var(--border2);
-}
-
-.next-action::before {
-  content: "→ ";
-  color: var(--dim);
-  font-weight: 600;
-}
-
-.project-needs {
-  padding: 0 16px 12px;
-}
-
-.project-checklist {
-  padding: 8px 16px 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.checklist-status {
-  font-size: 13px;
-  color: var(--text2);
-  margin-bottom: 6px;
-  font-weight: 500;
-}
-
-.checklist-overflow {
-  font-size: 13px;
-  color: var(--dim);
-  padding: 4px 0 0;
-  font-style: italic;
-}
-
-.need-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  padding: 7px 0;
-  border-top: 1px solid var(--border);
-  font-size: 16px;
-  line-height: 1.4;
-}
-
-.need-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  margin-top: 6px;
-}
-
-.need-dot.wjp-dot { background: var(--dim); }
-.need-dot.agent-dot { background: var(--border2); }
-
-.need-text {
-  color: var(--text2);
-}
-
-.need-text.wjp {
-  color: var(--text);
-}
-
-.need-item.urgent .need-text { color: var(--text); font-weight: 500; }
-
-/* ─── HEALTH FOOTER ───────────────────────────────────── */
-.health-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-  padding: 14px 32px;
-  border-top: 1px solid var(--border);
-  font-size: 16px;
-  color: var(--text2);
-}
-
-.health-bar-inner {
-  display: contents;
-  font-size: 16px;
-  color: var(--text2);
-}
-
-.health-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.health-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-}
-
-/* ─── LOADING ─────────────────────────────────────────── */
-.loading {
-  text-align: center;
-  padding: 60px 20px;
-  color: var(--text2);
-  font-size: 18px;
-}
-
-.loading::before {
-  content: '';
-  display: block;
-  width: 24px;
-  height: 24px;
-  border: 2px solid var(--border2);
-  border-top-color: var(--accent);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-  margin: 0 auto 16px;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-/* ─── UTIL ────────────────────────────────────────────── */
-.hidden { display: none !important; }
-
-.tag {
-  font-size: 14px;
-  padding: 2px 8px;
-  border-radius: 999px;
-  background: var(--surface2);
-  color: var(--text2);
-  font-weight: 500;
-}
-
-.intel-section {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.intel-item {
-  padding: 10px 14px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  font-size: 17px;
-  color: var(--text2);
-}
-
-/* ─── DASHBOARD LAYOUT ───────────────────────────────── */
-.top-row {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 20px;
-  align-items: stretch;
-}
-
-.top-row .section-block {
-  display: flex;
-  flex-direction: column;
-}
-
-.top-row .your-move-grid {
-  flex: 1;
-  justify-content: space-between;
-}
-
-.middle-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  align-items: start;
-}
-
-.agent-sidebar .agents-grid {
-  grid-template-columns: 1fr 1fr;
-}
-
-.section-block {
-  display: flex;
-  flex-direction: column;
-}
-
-@media (max-width: 1024px) {
-  .top-row { grid-template-columns: 1fr; }
-  .middle-row { grid-template-columns: 1fr; }
-  .agent-sidebar .agents-grid { grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 640px) {
-  .agent-sidebar .agents-grid { grid-template-columns: 1fr; }
-}
-
-/* ─── TASKS ───────────────────────────────────────────── */
-.tasks-container {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.task-section-header {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text2);
-  padding: 10px 0 4px;
-}
-
-.task-line {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 8px 12px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-}
-
-.task-check {
-  width: 18px;
-  height: 18px;
-  border-radius: 4px;
-  flex-shrink: 0;
-  margin-top: 1px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-}
-
-.task-check.done {
-  background: var(--surface2);
-  border: 1px solid var(--dim);
-  color: var(--text2);
-}
-
-.task-check.todo {
-  background: var(--surface2);
-  border: 1px solid var(--border2);
-}
-
-.task-label {
-  font-size: 16px;
-  line-height: 1.4;
-  flex: 1;
-}
-
-.task-label.done-label {
-  color: var(--text2);
-  text-decoration: line-through;
-  text-decoration-color: var(--dim);
-}
-
-.task-label.todo-label {
-  color: var(--text);
-}
-
-.task-status-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 8px 12px;
-  font-size: 14px;
-  color: var(--text2);
-}
-
-/* ─── CRONS ───────────────────────────────────────────── */
-.crons-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 8px;
-}
-
-.cron-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-}
-
-.cron-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.cron-name {
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--text);
-  flex: 1;
-  min-width: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.cron-meta {
-  font-size: 13px;
-  color: var(--text2);
-  white-space: nowrap;
-}
-
-/* ─── FILES ───────────────────────────────────────────── */
-.files-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 10px;
-}
-
-.file-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: border-color 0.15s;
-}
-
-.file-card:hover { border-color: var(--border2); }
-.file-card.open { border-color: var(--accent); }
-
-.file-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 14px;
-}
-
-.file-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
-  background: var(--surface2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  flex-shrink: 0;
-}
-
-.file-name {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--text);
-  flex: 1;
-}
-
-.file-chevron {
-  font-size: 12px;
-  color: var(--text2);
-  transition: transform 0.2s;
-}
-
-.file-card.open .file-chevron { transform: rotate(180deg); }
-
-.file-preview {
-  padding: 0 14px 10px;
-  font-size: 14px;
-  color: var(--text2);
-  line-height: 1.4;
-}
-
-.file-content {
-  display: none;
-  padding: 0 14px 14px;
-  border-top: 1px solid var(--border);
-  margin-top: 4px;
-}
-
-.file-card.open .file-content { display: block; }
-
-.file-content pre {
-  font-family: ui-monospace, monospace;
-  font-size: 13px;
-  color: var(--text2);
-  white-space: pre-wrap;
-  word-break: break-word;
-  max-height: 400px;
-  overflow-y: auto;
-  padding-top: 10px;
-  line-height: 1.5;
-}
-
-/* ─── MOBILE ──────────────────────────────────────────── */
-@media (max-width: 480px) {
-  .header { padding: 10px 16px; }
-  .main { padding: 16px; gap: 20px; }
-  .health-bar { padding: 12px 16px; }
-  .move-title { white-space: normal; }
-}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #070707;
+    --bg2: #0f0f0f;
+    --bg3: #161616;
+    --border: #1e1e1e;
+    --text: #e0e0e0;
+    --muted: #666;
+    --blue: #0057FF;
+    --green: #00D68F;
+    --gold: #F5A623;
+    --red: #FF4444;
+    --purple: #9945FF;
+    --orange: #FF6B00;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 14px;
+  }
+  /* NAV */
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: rgba(7,7,7,0.95);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+  }
+  .nav-logo { font-weight: 700; font-size: 15px; color: #fff; letter-spacing: -0.3px; }
+  .nav-logo span { color: var(--blue); }
+  .nav-links { display: flex; gap: 4px; margin-left: auto; }
+  .nav-links a {
+    padding: 6px 12px;
+    border-radius: 6px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    transition: all 0.15s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: #fff; background: var(--bg3); }
+  .nav-links a.active { color: var(--blue); }
+  /* LAYOUT */
+  .page { display: none; padding: 24px 20px; max-width: 1100px; margin: 0 auto; }
+  .page.active { display: block; }
+  /* GRID */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  @media (max-width: 700px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  }
+  /* CARDS */
+  .card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .card-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .card-title { font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+  .card-sub { font-size: 13px; color: var(--muted); line-height: 1.5; }
+  /* STATUS DOTS */
+  .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 6px; }
+  .dot-green { background: var(--green); box-shadow: 0 0 6px var(--green); }
+  .dot-yellow { background: var(--gold); }
+  .dot-red { background: var(--red); }
+  /* SECTION HEADER */
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    margin-top: 28px;
+  }
+  .section-header:first-child { margin-top: 0; }
+  .section-title { font-size: 13px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.6px; }
+  /* ARTIFACT CARDS */
+  .artifact-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: border-color 0.15s;
+  }
+  .artifact-card:hover { border-color: #333; }
+  .artifact-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+  .artifact-type-badge {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .type-Research { background: rgba(0,87,255,0.15); color: var(--blue); }
+  .type-Brand { background: rgba(0,214,143,0.15); color: var(--green); }
+  .type-Strategy { background: rgba(245,166,35,0.15); color: var(--gold); }
+  .type-Video { background: rgba(153,69,255,0.15); color: var(--purple); }
+  .type-Tool { background: rgba(255,107,0,0.15); color: var(--orange); }
+  .artifact-title { font-size: 14px; font-weight: 600; color: #fff; line-height: 1.3; }
+  .artifact-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+  .artifact-preview {
+    font-size: 12px;
+    color: #444;
+    font-style: italic;
+    line-height: 1.4;
+  }
+  .artifact-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .artifact-date { font-size: 12px; color: #333; }
+  .btn-view {
+    display: inline-block;
+    padding: 7px 16px;
+    background: var(--blue);
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    transition: opacity 0.15s;
+  }
+  .btn-view:hover { opacity: 0.85; }
+  /* FILTER TABS */
+  .filter-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
+  .filter-tab {
+    padding: 6px 14px;
+    border-radius: 6px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .filter-tab:hover { color: #fff; }
+  .filter-tab.active { background: var(--blue); border-color: var(--blue); color: #fff; }
+  /* FEED ITEMS */
+  .feed-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+  }
+  .feed-item:last-child { border-bottom: none; }
+  .feed-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .feed-content { flex: 1; min-width: 0; }
+  .feed-title { font-size: 13px; font-weight: 500; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .feed-meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .feed-arrow { color: #333; font-size: 16px; flex-shrink: 0; }
+  /* PROJECT STATUS */
+  .project-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .project-row:last-child { border-bottom: none; }
+  .project-name { font-size: 13px; font-weight: 500; color: #fff; }
+  .project-status { font-size: 12px; color: var(--muted); }
+  .badge {
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+  .badge-live { background: rgba(0,214,143,0.15); color: var(--green); }
+  .badge-building { background: rgba(0,87,255,0.15); color: var(--blue); }
+  .badge-testing { background: rgba(245,166,35,0.15); color: var(--gold); }
+  /* AGENT STATUS */
+  .agent-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .agent-row:last-child { border-bottom: none; }
+  .agent-avatar {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--border);
+  }
+  .agent-name { font-size: 13px; font-weight: 500; color: #fff; }
+  .agent-role { font-size: 12px; color: var(--muted); }
+  .agent-status { margin-left: auto; display: flex; align-items: center; font-size: 12px; color: var(--green); }
+  /* NEEDS WJP */
+  .needs-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .needs-item:last-child { border-bottom: none; }
+  .needs-priority { font-size: 10px; font-weight: 700; text-transform: uppercase; padding: 2px 6px; border-radius: 3px; flex-shrink: 0; margin-top: 1px; }
+  .p-high { background: rgba(255,68,68,0.15); color: var(--red); }
+  .p-medium { background: rgba(245,166,35,0.15); color: var(--gold); }
+  .p-low { background: rgba(102,102,102,0.15); color: var(--muted); }
+  /* ARTIFACT GALLERY GRID */
+  .artifact-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+  /* UPDATED AT */
+  .updated-at { font-size: 11px; color: #333; margin-top: 4px; }
 </style>
 </head>
 <body>
 
-<!-- ══════════════════════ HEADER ══════════════════════════ -->
-<header class="header">
-  <div class="header-inner">
-    <div class="header-left">
-      <div class="header-logo">Mission Control</div>
-    </div>
-    <div class="header-right">
-      <div id="last-updated" style="font-size:14px;"></div>
-      <div style="font-size:12px;color:var(--dim);" id="build-stamp"></div>
-      <div class="refresh-badge" onclick="loadData()">
-        <div class="refresh-dot" id="refresh-dot"></div>
-        <span id="countdown">60s</span>
-      </div>
+<nav>
+  <div class="nav-logo">⌘ <span>Mission</span> Control</div>
+  <div class="nav-links">
+    <a href="#" class="active" onclick="showPage('home',this)">Home</a>
+    <a href="#" onclick="showPage('artifacts',this)">Artifacts</a>
+    <a href="#" onclick="showPage('projects',this)">Projects</a>
+    <a href="#" onclick="showPage('intel',this)">Intel</a>
+  </div>
+</nav>
+
+<!-- HOME PAGE -->
+<div id="page-home" class="page active">
+  <div class="section-header" style="margin-top:0">
+    <div>
+      <div class="card-title" style="font-size:18px">Good morning, WJP.</div>
+      <div class="updated-at" id="home-updated">Loading...</div>
     </div>
   </div>
-</header>
 
-<!-- ══════════════════════ MAIN ════════════════════════════ -->
-<main class="main" id="main">
-  <div class="loading" id="loading">Loading mission data...</div>
-</main>
+  <!-- STATUS ROW -->
+  <div class="grid-3" id="home-status-cards">
+    <!-- populated by JS -->
+  </div>
 
-<!-- ══════════════════════ HEALTH BAR ══════════════════════ -->
-<div class="health-bar" id="health-bar" style="display:none;">
-  <div class="health-bar-inner">
-    <div class="health-item">
-      <div class="health-dot" id="cron-dot" style="background:var(--dim);"></div>
-      <span id="cron-status">Crons: —</span>
-    </div>
-    <div class="health-item">
-      <span id="data-age">Data age: —</span>
-    </div>
-    <div class="health-item">
-      <a href="./data.json" target="_blank" style="color:var(--text2);font-size:14px;text-decoration:none;">data.json ↗</a>
-    </div>
+  <!-- KIKAI JUST BUILT -->
+  <div class="section-header">
+    <div class="section-title">Kikai just built</div>
+    <a href="#" onclick="showPage('artifacts', document.querySelectorAll('.nav-links a')[1]); return false;" style="font-size:12px; color:var(--blue); text-decoration:none;">View all →</a>
+  </div>
+  <div class="card" style="padding:0 16px">
+    <div id="recent-artifacts">Loading...</div>
+  </div>
+
+  <!-- NEEDS WJP -->
+  <div class="section-header">
+    <div class="section-title">Needs you</div>
+  </div>
+  <div class="card" style="padding: 0 16px" id="needs-wjp-list">
+    <div style="padding:16px 0; color:var(--muted); font-size:13px">Loading...</div>
+  </div>
+
+  <!-- AGENTS -->
+  <div class="section-header">
+    <div class="section-title">Agents</div>
+  </div>
+  <div class="card" style="padding: 0 16px" id="agents-list">
+    <div style="padding:16px 0; color:var(--muted); font-size:13px">Loading...</div>
+  </div>
+</div>
+
+<!-- ARTIFACTS PAGE -->
+<div id="page-artifacts" class="page">
+  <div class="section-header" style="margin-top:0">
+    <div class="section-title">All Artifacts</div>
+    <div class="updated-at" id="artifacts-count"></div>
+  </div>
+  <div class="filter-tabs" id="filter-tabs">
+    <div class="filter-tab active" onclick="filterArtifacts('All', this)">All</div>
+    <div class="filter-tab" onclick="filterArtifacts('Research', this)">Research</div>
+    <div class="filter-tab" onclick="filterArtifacts('Brand', this)">Brand</div>
+    <div class="filter-tab" onclick="filterArtifacts('Strategy', this)">Strategy</div>
+    <div class="filter-tab" onclick="filterArtifacts('Video', this)">Video</div>
+    <div class="filter-tab" onclick="filterArtifacts('Tool', this)">Tool</div>
+  </div>
+  <div class="artifact-grid" id="artifact-grid">
+    <div style="color:var(--muted); font-size:13px">Loading...</div>
+  </div>
+</div>
+
+<!-- PROJECTS PAGE -->
+<div id="page-projects" class="page">
+  <div class="section-header" style="margin-top:0">
+    <div class="section-title">Projects</div>
+  </div>
+  <div class="card" id="projects-list">
+    <div style="color:var(--muted); font-size:13px">Loading...</div>
+  </div>
+</div>
+
+<!-- INTEL PAGE -->
+<div id="page-intel" class="page">
+  <div class="section-header" style="margin-top:0">
+    <div class="section-title">Intel Feed</div>
+  </div>
+  <div id="intel-list">
+    <div style="color:var(--muted); font-size:13px">Loading...</div>
   </div>
 </div>
 
 <script>
-// ════════════════════════════════════════════════════════
-// CONFIG
-// ════════════════════════════════════════════════════════
-const DATA_URL = './data.json';
-const REFRESH_INTERVAL = 60; // seconds
+let data = null;
+let artifacts = null;
+let currentFilter = 'All';
 
-let countdown = REFRESH_INTERVAL;
-let refreshTimer = null;
-let countdownTimer = null;
+const TYPE_ICONS = {
+  Research: '📄',
+  Brand: '🎨',
+  Strategy: '🧭',
+  Video: '🎬',
+  Tool: '🔧'
+};
 
-// ════════════════════════════════════════════════════════
-// FETCH
-// ════════════════════════════════════════════════════════
-async function loadData() {
-  clearTimers();
-
-  try {
-    const t = '?t=' + Date.now();
-    const [dataRes, cronRes] = await Promise.all([
-      fetch(DATA_URL + t, { cache: 'no-store' }),
-      fetch('./cron-snapshot.json' + t, { cache: 'no-store' }).catch(() => null)
-    ]);
-    if (!dataRes.ok) throw new Error('HTTP ' + dataRes.status);
-    const data = await dataRes.json();
-    const crons = cronRes && cronRes.ok ? await cronRes.json() : [];
-    render(data, crons);
-    startRefreshCycle();
-  } catch (err) {
-    showError(DATA_URL, err.message);
-    refreshTimer = setTimeout(loadData, 30000);
-  }
+function showPage(name, el) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  if (el) el.classList.add('active');
 }
 
-function clearTimers() {
-  if (refreshTimer) clearTimeout(refreshTimer);
-  if (countdownTimer) clearInterval(countdownTimer);
+function formatDate(d) {
+  const date = new Date(d);
+  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 }
 
-function startRefreshCycle() {
-  countdown = REFRESH_INTERVAL;
-  updateCountdown();
-  countdownTimer = setInterval(() => {
-    countdown--;
-    updateCountdown();
-    if (countdown <= 0) {
-      clearInterval(countdownTimer);
-      loadData();
-    }
-  }, 1000);
+function timeAgo(d) {
+  const now = new Date(), then = new Date(d);
+  const diff = Math.floor((now - then) / 60000);
+  if (diff < 60) return diff + 'm ago';
+  if (diff < 1440) return Math.floor(diff/60) + 'h ago';
+  return Math.floor(diff/1440) + 'd ago';
 }
 
-function updateCountdown() {
-  const el = document.getElementById('countdown');
-  if (el) el.textContent = countdown + 's';
-}
+function renderHome() {
+  if (!data) return;
 
-// ════════════════════════════════════════════════════════
-// RENDER
-// ════════════════════════════════════════════════════════
-function render(data, crons) {
-  const main = document.getElementById('main');
-  main.innerHTML = '';
+  document.getElementById('home-updated').textContent = 'Updated ' + timeAgo(data.updatedAt);
 
-  // Last updated
-  if (data.updatedAt) {
-    const el = document.getElementById('last-updated');
-    const d = new Date(data.updatedAt);
-    const age = Math.floor((Date.now() - d.getTime()) / 60000);
-    el.textContent = 'Updated ' + (age < 2 ? 'just now' : age + 'm ago');
-    const dot = document.getElementById('refresh-dot');
-    if (age > 180) {
-      dot.classList.add('stale');
-      el.style.color = 'var(--gold)';
-    }
+  // Status cards
+  const projects = data.projects || [];
+  const live = projects.filter(p => p.status === 'live').length;
+  const building = projects.filter(p => p.status !== 'live').length;
+  const needsCount = (data.needsWjp || []).length;
+  const agentsOnline = (data.agents || []).filter(a => a.status === 'online').length;
 
-    const bar = document.getElementById('health-bar');
-    bar.style.display = 'flex';
-    document.getElementById('data-age').textContent = 'Data: ' + d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
-  }
-
-  // Cron health
-  if (data.health && data.health.crons) {
-    const c = data.health.crons;
-    const dot = document.getElementById('cron-dot');
-    const label = document.getElementById('cron-status');
-    if (c.errors > 0) {
-      dot.style.background = 'var(--red)';
-      label.textContent = 'Crons: ' + c.healthy + ' ok / ' + c.errors + ' errors';
-    } else {
-      dot.style.background = 'var(--dim)';
-      label.textContent = 'Crons: ' + c.healthy + ' healthy';
-    }
-  }
-
-  // ── YOUR MOVE ──────────────────────────────────────────
-  const needsWjp = (data.needsWjp || []).filter(n => n.urgency !== 'done');
-  const urgencyOrder = { critical: 0, high: 1, medium: 2, low: 3 };
-  needsWjp.sort((a, b) => (urgencyOrder[a.urgency] || 2) - (urgencyOrder[b.urgency] || 2));
-
-  const yourMoveSection = document.createElement('section');
-  yourMoveSection.innerHTML = '<div class="section-title no-line"><img class="section-pfp" src="./wjp-pfp.png" alt="WJP">WJP</div>';
-  const moveGrid = document.createElement('div');
-  moveGrid.className = 'your-move-grid';
-
-  if (needsWjp.length === 0) {
-    moveGrid.innerHTML = `
-      <div class="all-clear">
-        <div class="icon">✓</div>
-        <div class="label">All clear — no action required</div>
-      </div>`;
-  } else {
-    needsWjp.forEach(item => {
-      const div = document.createElement('div');
-      div.className = 'move-item ' + (item.urgency || 'medium');
-      div.innerHTML = `
-        <span class="move-urgency urgency-${item.urgency || 'medium'}">${item.urgency || 'medium'}</span>
-        <div class="move-content">
-          <div class="move-title">${escHtml(item.title || item.ask || 'Action needed')}${item._local ? '<span class="mc-local-badge">local</span>' : ''}</div>
-          ${item.ask ? '<div class="move-ask">' + escHtml(item.ask) + '</div>' : ''}
-          ${item.impact ? '<div class="move-ask" style="margin-top:2px;color:var(--text2);">' + escHtml(item.impact) + '</div>' : ''}
-        </div>
-        ${item.project ? '<span class="move-project">' + escHtml(item.project) + '</span>' : ''}
-        ${item._local ? '<button class="mc-del" onclick="deleteLocalCard(\'wjp\',\''+item.id+'\')" title="Delete">×</button>' : ''}
-      `;
-      moveGrid.appendChild(div);
-    });
-  }
-
-  yourMoveSection.appendChild(moveGrid);
-
-  // ── TOP ROW: Agents (left) + WJP (right) ──────────────
-  const topRow = document.createElement('div');
-  topRow.className = 'top-row';
-
-  const topLeft = document.createElement('div');
-  topLeft.className = 'section-block agent-sidebar';
-
-  const topRight = document.createElement('div');
-  topRight.className = 'section-block';
-  topRight.appendChild(yourMoveSection);
-
-  if (data.agents) {
-    const agentsSection = document.createElement('section');
-    agentsSection.innerHTML = '<div class="section-title">Agents</div>';
-    const agentsGrid = document.createElement('div');
-    agentsGrid.className = 'agents-grid';
-
-    const agentList = [
-      { key: 'kikai', label: 'Kikai', pfp: './kikai-pfp.png' },
-      { key: 'yama', label: 'Yama', pfp: './yama-pfp.png' },
-    ];
-
-    agentList.forEach(({ key, label, pfp }) => {
-      const a = data.agents[key];
-      if (!a) return;
-
-      const ctx = a.contextPct || 0;
-      const ctxClass = ctx >= 75 ? 'high' : ctx >= 50 ? 'mid' : 'low';
-      const fuelClass = ctx >= 75 ? 'fuel-red' : ctx >= 50 ? 'fuel-yellow' : 'fuel-green';
-      const statusClass = 'status-' + (a.status || 'unknown').replace('_', '-').replace(' ', '-');
-
-      const card = document.createElement('div');
-      card.className = 'agent-card' + (a.rateLimit ? ' rate-limited' : '');
-      card.innerHTML = `
-        <div class="agent-header">
-          <div class="agent-identity">
-            <img class="agent-avatar" src="${pfp}" alt="${label}">
-            <div class="agent-name">${label}</div>
-          </div>
-          <span class="status-pill ${statusClass}">${a.status || 'unknown'}</span>
-        </div>
-
-        <div class="agent-field">
-          <div class="field-label">Working on</div>
-          <div class="field-value ${!a.workingOn || a.workingOn === 'idle' ? 'muted' : ''}">${escHtml(a.workingOn || 'idle')}</div>
-        </div>
-
-        <div class="agent-field">
-          <div class="field-label">Context</div>
-          <div class="context-row">
-            <span class="context-pct ${ctxClass}">${ctx}%</span>
-            <span class="field-label">${a.model || ''}</span>
-          </div>
-          <div class="fuel-gauge">
-            <div class="fuel-fill ${fuelClass}" style="width:${ctx}%;"></div>
-          </div>
-        </div>
-
-        ${a.sessionDurationMin != null ? `
-        <div class="agent-field">
-          <div class="field-label">Session</div>
-          <div class="field-value">${a.sessionDurationMin}m duration${a.lastActivityMin != null ? ' / ' + a.lastActivityMin + 'm idle' : ''}</div>
-        </div>` : ''}
-
-        ${a.rateLimit ? '<div class="rate-limit-warning">Rate limited</div>' : ''}
-      `;
-      agentsGrid.appendChild(card);
-    });
-
-    agentsSection.appendChild(agentsGrid);
-    topLeft.appendChild(agentsSection);
-  }
-
-  topRow.appendChild(topLeft);
-  topRow.appendChild(topRight);
-  main.appendChild(topRow);
-
-  // ── PARSE ACTIVE TASK (for injection into project cards) ─
-  const activeTaskFile = (data.files || []).find(f => f.name === 'ACTIVE TASK');
-  const activeTaskByProject = {}; // projectNameLower → [{done, label}]
-  let activeTaskStatus = '';
-
-  if (activeTaskFile && activeTaskFile.content) {
-    const lines = activeTaskFile.content.split('\n');
-    let taskTitle = '';
-    let matchedProject = null;
-
-    // Determine which project this task belongs to
-    const titleLine = lines.find(l => l.startsWith('# '));
-    if (titleLine) {
-      taskTitle = titleLine.replace('# ', '').trim();
-      activeTaskStatus = (lines.find(l => l.startsWith('**Status:**')) || '')
-        .replace('**Status:**', '').trim();
-      // Match against known project names
-      const projNames = (data.projects || []).map(p => p.name.toLowerCase());
-      matchedProject = projNames.find(n => taskTitle.toLowerCase().includes(n)) || 'other';
-    }
-
-    if (matchedProject) {
-      activeTaskByProject[matchedProject] = [];
-      lines.forEach(line => {
-        const doneMatch = line.match(/^[\s-]*\[x\]\s+(.+)/i);
-        const todoMatch = line.match(/^[\s-]*\[ \]\s+(.+)/);
-        if (doneMatch || todoMatch) {
-          activeTaskByProject[matchedProject].push({
-            done: !!doneMatch,
-            label: ((doneMatch || todoMatch)[1]).trim()
-          });
-        }
-      });
-    }
-  }
-
-  // ── PROJECTS ──────────────────────────────────────────
-  {
-    const projectsSection = document.createElement('section');
-    projectsSection.innerHTML = '<div class="section-title">Projects</div>';
-    const projectsGrid = document.createElement('div');
-    projectsGrid.className = 'projects-grid';
-
-    const projects = data.projects && data.projects.length > 0
-      ? [...data.projects].sort((a, b) => (a.priority || 99) - (b.priority || 99))
-      : [];
-
-    // Track unclaimed needsWjp for "Other" card
-    const claimedNeedIds = new Set();
-
-    projects.forEach(proj => {
-      const card = document.createElement('div');
-      card.className = 'project-card';
-      card.style.borderLeftColor = proj.color || 'var(--border2)';
-
-      const statusStr = (proj.status || 'unknown').toLowerCase();
-      const statusClass = ['active','building','paused','blocked','queued'].includes(statusStr) ? statusStr : 'queued';
-
-      const tasks = proj.tasks || [];
-      let tasksHtml = '';
-      tasks.forEach(t => {
-        const dotClass = 'dot-' + (t.status || 'queued');
-        tasksHtml += `
-          <div class="task-row">
-            <div class="task-dot ${dotClass}"></div>
-            <div class="task-text">
-              <strong>${escHtml(t.title || 'Task')}</strong>
-              ${t.lastUpdate ? ' — ' + escHtml(t.lastUpdate) : ''}
-            </div>
-          </div>
-          ${t.nextAction ? '<div class="next-action">' + escHtml(t.nextAction) + '</div>' : ''}
-        `;
-      });
-
-      // Inject active task checklist — pending items only
-      const projKey = proj.name.toLowerCase();
-      const allItems = activeTaskByProject[projKey] || [];
-      const pendingItems = allItems.filter(i => !i.done);
-      const doneCount = allItems.length - pendingItems.length;
-      let checklistHtml = '';
-      if (allItems.length > 0) {
-        checklistHtml = `<div class="project-divider"></div><div class="project-checklist">`;
-        if (activeTaskStatus || doneCount > 0) {
-          checklistHtml += `<div class="checklist-status">${escHtml(activeTaskStatus)}${doneCount > 0 ? ` — ${doneCount}/${allItems.length} done` : ''}</div>`;
-        }
-        const MAX = 5;
-        const showItems = (pendingItems.length > 0 ? pendingItems : allItems).slice(0, MAX);
-        const overflow = (pendingItems.length > 0 ? pendingItems : allItems).length - MAX;
-        showItems.forEach(item => {
-          checklistHtml += `
-            <div class="task-line">
-              <div class="task-check ${item.done ? 'done' : 'todo'}">${item.done ? '✓' : ''}</div>
-              <div class="task-label ${item.done ? 'done-label' : 'todo-label'}">${escHtml(item.label)}</div>
-            </div>`;
-        });
-        if (overflow > 0) {
-          checklistHtml += `<div class="checklist-overflow">+${overflow} more pending</div>`;
-        }
-        checklistHtml += `</div>`;
-      }
-
-      const needs = proj.needsToDo || [];
-      let needsHtml = '';
-      needs.forEach(n => {
-        if (n.id) claimedNeedIds.add(n.id);
-        const isUrgent = n.urgent ? ' urgent' : '';
-        const dotClass = n.wjp ? 'wjp-dot' : 'agent-dot';
-        needsHtml += `
-          <div class="need-item${isUrgent}">
-            <div class="need-dot ${dotClass}"></div>
-            <span class="need-text ${n.wjp ? 'wjp' : ''}">${escHtml(n.text || '')}</span>
-          </div>
-        `;
-      });
-
-      card.innerHTML = `
-        <div class="project-header">
-          <div>
-            <div class="project-name">${escHtml(proj.name)}</div>
-            <div class="project-priority">Priority ${proj.priority || '—'}</div>
-          </div>
-          <span class="project-status ${statusClass}">${escHtml(proj.status || 'unknown')}</span>
-        </div>
-        <div class="project-desc">${escHtml(proj.description || '')}</div>
-        ${tasksHtml || needs.length > 0 ? '<div class="project-divider"></div>' : ''}
-        ${tasksHtml ? '<div class="project-task">' + tasksHtml + '</div>' : ''}
-        ${needsHtml ? '<div class="project-needs">' + needsHtml + '</div>' : ''}
-        ${checklistHtml}
-      `;
-
-      projectsGrid.appendChild(card);
-    });
-
-    // ── OTHER PROJECT CARD ─────────────────────────────
-    const otherNeeds = (data.needsWjp || []).filter(n => !n.project || !projects.find(p => p.name === n.project));
-    const otherChecklist = activeTaskByProject['other'] || [];
-    const otherCard = document.createElement('div');
-    otherCard.className = 'project-card';
-    otherCard.style.borderLeftColor = 'var(--border2)';
-
-    let otherNeedsHtml = otherNeeds.map(n => `
-      <div class="need-item${n.urgent ? ' urgent' : ''}">
-        <div class="need-dot ${n.wjp ? 'wjp-dot' : 'agent-dot'}"></div>
-        <span class="need-text ${n.wjp ? 'wjp' : ''}">${escHtml(n.text || '')}</span>
-      </div>`).join('');
-
-    let otherCheckHtml = otherChecklist.map(item => `
-      <div class="task-line">
-        <div class="task-check ${item.done ? 'done' : 'todo'}">${item.done ? '✓' : ''}</div>
-        <div class="task-label ${item.done ? 'done-label' : 'todo-label'}">${escHtml(item.label)}</div>
-      </div>`).join('');
-
-    // Fill Other card with intel if no unassigned items
-    const intelItems = Array.isArray(data.intel) ? data.intel : [];
-    let otherIntelHtml = '';
-    if (!otherNeedsHtml && !otherCheckHtml && intelItems.length > 0) {
-      otherIntelHtml = '<div class="project-divider"></div><div class="project-task">';
-      intelItems.slice(0, 4).forEach(item => {
-        otherIntelHtml += `<div class="task-row"><div class="task-dot dot-active"></div><div class="task-text">${escHtml(item.text || String(item))}</div></div>`;
-      });
-      otherIntelHtml += '</div>';
-    }
-
-    otherCard.innerHTML = `
-      <div class="project-header">
-        <div>
-          <div class="project-name">Other</div>
-          <div class="project-priority">General</div>
-        </div>
-        <span class="project-status queued">misc</span>
+  document.getElementById('home-status-cards').innerHTML = `
+    <div class="card">
+      <div class="card-label">Projects</div>
+      <div style="display:flex;align-items:baseline;gap:6px">
+        <span style="font-size:28px;font-weight:700;color:#fff">${projects.length}</span>
+        <span style="color:var(--green);font-size:12px">${live} live</span>
       </div>
-      <div class="project-desc">Unassigned items + market intel.</div>
-      ${otherNeedsHtml || otherCheckHtml || otherIntelHtml ? '' : ''}
-      ${otherNeedsHtml ? '<div class="project-divider"></div><div class="project-needs">' + otherNeedsHtml + '</div>' : ''}
-      ${otherCheckHtml ? '<div class="project-checklist">' + otherCheckHtml + '</div>' : ''}
-      ${otherIntelHtml}
-    `;
-    projectsGrid.appendChild(otherCard);
-
-    projectsSection.appendChild(projectsGrid);
-    main.appendChild(projectsSection);
-  }
-
-  // ── CRONS (full width, tasks are now inside project cards) ─
-
-  // ── CRONS ─────────────────────────────────────────────
-  if (Array.isArray(crons) && crons.length > 0) {
-    const cronsSection = document.createElement('section');
-    cronsSection.innerHTML = '<div class="section-title">Crons</div>';
-    const cronsGrid = document.createElement('div');
-    cronsGrid.className = 'crons-grid';
-
-    crons.forEach(job => {
-      const ok = job.lastStatus === 'ok' || job.consecutiveErrors === 0;
-      const disabled = !job.enabled;
-      const dotColor = disabled ? 'var(--border2)' : ok ? 'var(--dim)' : 'var(--red)';
-
-      // Format last run
-      let lastRun = '—';
-      if (job.lastRunMs) {
-        const mins = Math.floor((Date.now() - job.lastRunMs) / 60000);
-        lastRun = mins < 60 ? mins + 'm ago' : Math.floor(mins/60) + 'h ago';
-      }
-
-      const item = document.createElement('div');
-      item.className = 'cron-item';
-      item.innerHTML = `
-        <div class="cron-dot" style="background:${dotColor};"></div>
-        <div class="cron-name">${escHtml(job.name)}</div>
-        <div class="cron-meta">${disabled ? 'off' : lastRun}</div>
-      `;
-      cronsGrid.appendChild(item);
-    });
-
-    cronsSection.appendChild(cronsGrid);
-    main.appendChild(cronsSection);
-  }
-
-  // ── FILES ──────────────────────────────────────────────
-  const files = Array.isArray(data.files) ? data.files : [];
-  if (files.length > 0) {
-    const filesSection = document.createElement('section');
-    filesSection.innerHTML = '<div class="section-title">Files</div>';
-    const filesGrid = document.createElement('div');
-    filesGrid.className = 'files-grid';
-
-    files.forEach(file => {
-      const card = document.createElement('div');
-      card.className = 'file-card';
-      card.innerHTML = `
-        <div class="file-header">
-          <div class="file-icon">${file.icon || '📄'}</div>
-          <div class="file-name">${escHtml(file.name)}</div>
-          <div class="file-chevron">▼</div>
-        </div>
-        <div class="file-preview">${escHtml((file.preview || '').slice(0, 120))}</div>
-        <div class="file-content"><pre>${escHtml(file.content || '')}</pre></div>
-      `;
-      card.querySelector('.file-header').addEventListener('click', () => {
-        card.classList.toggle('open');
-      });
-      filesGrid.appendChild(card);
-    });
-
-    filesSection.appendChild(filesGrid);
-    main.appendChild(filesSection);
-  }
-
-  // ── INTEL ─────────────────────────────────────────────
-  const intel = Array.isArray(data.intel) ? data.intel : [];
-  if (intel.length > 0) {
-    const intelSection = document.createElement('section');
-    intelSection.innerHTML = '<div class="section-title">Intel</div>';
-    const intelGrid = document.createElement('div');
-    intelGrid.className = 'intel-section';
-    intel.slice(0, 10).forEach(item => {
-      const div = document.createElement('div');
-      div.className = 'intel-item';
-      if (item._local) {
-        div.innerHTML = escHtml(item.text || String(item)) + '<span class="mc-local-badge">local</span><button class="mc-del" onclick="deleteLocalCard(\'intel\',\'' + item.id + '\')" title="Delete">×</button>';
-      } else {
-        div.textContent = item.text || String(item);
-      }
-      intelGrid.appendChild(div);
-    });
-    intelSection.appendChild(intelGrid);
-    main.appendChild(intelSection);
-  }
-}
-
-// ════════════════════════════════════════════════════════
-// ERROR
-// ════════════════════════════════════════════════════════
-function showError(url, msg) {
-  const main = document.getElementById('main');
-  main.innerHTML = `
-    <div id="error-banner" class="visible">
-      <div class="error-title">Failed to load mission data</div>
-      <div class="error-url">${escHtml(url)}</div>
-      <div style="font-size:17px;color:var(--text2);margin-top:4px;">${escHtml(msg)}</div>
-      <button class="retry-btn" onclick="loadData()">Retry</button>
+      <div class="card-sub">${building} in dev</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Needs You</div>
+      <div style="font-size:28px;font-weight:700;color:${needsCount > 0 ? 'var(--gold)' : '#fff'}">${needsCount}</div>
+      <div class="card-sub">${needsCount > 0 ? 'items waiting' : 'all clear'}</div>
+    </div>
+    <div class="card">
+      <div class="card-label">Agents</div>
+      <div style="display:flex;align-items:baseline;gap:6px">
+        <span style="font-size:28px;font-weight:700;color:#fff">${(data.agents||[]).length}</span>
+        <span style="color:var(--green);font-size:12px">${agentsOnline} online</span>
+      </div>
+      <div class="card-sub">Kikai + Yama</div>
     </div>
   `;
 }
 
-// ════════════════════════════════════════════════════════
-// UTIL
-// ════════════════════════════════════════════════════════
-function escHtml(str) {
-  if (str == null) return '';
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-}
+function renderRecentArtifacts() {
+  if (!artifacts) return;
+  const recent = [...artifacts.artifacts]
+    .sort((a,b) => b.date.localeCompare(a.date))
+    .slice(0, 5);
 
-// ════════════════════════════════════════════════════════
-// INIT
-// ════════════════════════════════════════════════════════
-const stamp = document.getElementById('build-stamp');
-if (stamp) stamp.textContent = 'loaded ' + new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
-loadData();
-</script>
-
-<!-- ── CREATE CARD UI ─────────────────────────────────── -->
-<style>
-#fab { position:fixed; bottom:28px; right:28px; width:52px; height:52px; border-radius:50%; background:var(--accent); color:#000; font-size:28px; line-height:52px; text-align:center; cursor:pointer; z-index:1000; box-shadow:0 4px 16px rgba(0,217,255,0.35); border:none; font-weight:300; transition:transform 0.15s; }
-#fab:hover { transform:scale(1.08); }
-#mc-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.75); z-index:1001; align-items:center; justify-content:center; }
-#mc-overlay.open { display:flex; }
-#mc-modal { background:#111; border:1px solid #2a2a2a; border-radius:10px; width:100%; max-width:460px; padding:24px; position:relative; }
-#mc-modal h3 { font-size:15px; font-weight:600; color:var(--text); margin-bottom:16px; letter-spacing:0.03em; }
-.mc-close { position:absolute; top:14px; right:16px; background:none; border:none; color:var(--dim); font-size:20px; cursor:pointer; line-height:1; }
-.mc-close:hover { color:var(--text); }
-.mc-tabs { display:flex; gap:0; border-bottom:1px solid #2a2a2a; margin-bottom:18px; }
-.mc-tab { padding:6px 16px; font-size:12px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; background:none; border:none; color:var(--dim); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-1px; }
-.mc-tab.active { color:var(--accent); border-bottom-color:var(--accent); }
-.mc-field { margin-bottom:14px; }
-.mc-field label { display:block; font-size:11px; color:#777; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:5px; }
-.mc-field input, .mc-field textarea, .mc-field select { width:100%; background:#1a1a1a; border:1px solid #333; color:var(--text); padding:8px 10px; border-radius:5px; font-size:14px; font-family:inherit; resize:vertical; }
-.mc-field textarea { min-height:72px; }
-.mc-field input:focus, .mc-field textarea:focus, .mc-field select:focus { outline:none; border-color:var(--accent); }
-.mc-radios { display:flex; gap:12px; }
-.mc-radios label { display:flex; align-items:center; gap:6px; font-size:13px; color:var(--text2); cursor:pointer; text-transform:none; letter-spacing:0; }
-.mc-submit { background:var(--accent); color:#000; font-weight:700; border:none; padding:9px 22px; border-radius:5px; font-size:13px; cursor:pointer; margin-top:4px; }
-.mc-submit:hover { opacity:0.9; }
-.mc-pane { display:none; }
-.mc-pane.active { display:block; }
-.mc-local-badge { font-size:10px; background:#1a1a1a; border:1px solid #333; color:#666; padding:1px 5px; border-radius:3px; margin-left:6px; vertical-align:middle; }
-.mc-del { background:none; border:none; color:#444; font-size:13px; cursor:pointer; padding:0 4px; float:right; line-height:1; margin-top:2px; }
-.mc-del:hover { color:var(--red); }
-</style>
-
-<button id="fab" title="Add card">+</button>
-
-<div id="mc-overlay">
-  <div id="mc-modal">
-    <h3>NEW CARD</h3>
-    <button class="mc-close" onclick="closeMC()">×</button>
-    <div class="mc-tabs">
-      <button class="mc-tab active" onclick="switchTab('wjp',this)">WJP Item</button>
-      <button class="mc-tab" onclick="switchTab('intel',this)">Intel</button>
-    </div>
-    <div id="pane-wjp" class="mc-pane active">
-      <div class="mc-field"><label>Project</label>
-        <select id="mc-project"><option>For Crypto</option><option>Divvvy</option><option>67</option><option>OS</option><option>Other</option></select>
+  const html = recent.map(a => `
+    <a class="feed-item" href="${a.url}" target="_blank">
+      <div class="feed-icon" style="background:rgba(0,87,255,0.1)">${TYPE_ICONS[a.type] || '📄'}</div>
+      <div class="feed-content">
+        <div class="feed-title">${a.title}</div>
+        <div class="feed-meta"><span class="artifact-type-badge type-${a.type}" style="font-size:10px;padding:2px 6px">${a.type}</span> · ${formatDate(a.date)}</div>
       </div>
-      <div class="mc-field"><label>Title</label><input id="mc-title" type="text" placeholder="Short title..."></div>
-      <div class="mc-field"><label>Urgency</label>
-        <div class="mc-radios">
-          <label><input type="radio" name="mc-urgency" value="critical" checked> Critical</label>
-          <label><input type="radio" name="mc-urgency" value="medium"> Medium</label>
-        </div>
+      <div class="feed-arrow">›</div>
+    </a>
+  `).join('');
+
+  document.getElementById('recent-artifacts').innerHTML = html;
+  document.getElementById('artifacts-count').textContent = artifacts.artifacts.length + ' total';
+}
+
+function renderArtifactGrid(filter) {
+  if (!artifacts) return;
+  const list = filter === 'All'
+    ? artifacts.artifacts
+    : artifacts.artifacts.filter(a => a.type === filter);
+
+  const sorted = [...list].sort((a,b) => b.date.localeCompare(a.date));
+
+  if (!sorted.length) {
+    document.getElementById('artifact-grid').innerHTML = '<div style="color:var(--muted);font-size:13px;grid-column:1/-1">No artifacts of this type yet.</div>';
+    return;
+  }
+
+  document.getElementById('artifact-grid').innerHTML = sorted.map(a => `
+    <div class="artifact-card">
+      <div class="artifact-header">
+        <div class="artifact-title">${a.title}</div>
+        <span class="artifact-type-badge type-${a.type}">${a.type}</span>
       </div>
-      <div class="mc-field"><label>Ask / Details</label><textarea id="mc-ask" placeholder="What needs to happen..."></textarea></div>
-      <button class="mc-submit" onclick="saveWjpCard()">Save Card</button>
+      <div class="artifact-desc">${a.description}</div>
+      ${a.preview ? `<div class="artifact-preview">${a.preview}</div>` : ''}
+      <div class="artifact-footer">
+        <div class="artifact-date">${formatDate(a.date)}</div>
+        <a class="btn-view" href="${a.url}" target="_blank">View →</a>
+      </div>
     </div>
-    <div id="pane-intel" class="mc-pane">
-      <div class="mc-field"><label>Intel Text</label><textarea id="mc-intel-text" placeholder="Market note, observation..."></textarea></div>
-      <button class="mc-submit" onclick="saveIntelCard()">Save Card</button>
+  `).join('');
+}
+
+function filterArtifacts(type, el) {
+  currentFilter = type;
+  document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  renderArtifactGrid(type);
+}
+
+function renderProjects() {
+  if (!data || !data.projects) return;
+  const statusMap = { live: 'badge-live', testing: 'badge-testing', building: 'badge-building', paused: '' };
+  document.getElementById('projects-list').innerHTML = data.projects.map(p => `
+    <div class="project-row">
+      <div>
+        <div class="project-name">${p.name}</div>
+        <div class="project-status">${p.description || ''}</div>
+      </div>
+      <span class="badge ${statusMap[p.status] || 'badge-building'}">${p.status}</span>
     </div>
-  </div>
-</div>
-
-<script>
-document.getElementById('fab').addEventListener('click', () => {
-  document.getElementById('mc-overlay').classList.add('open');
-});
-function closeMC() { document.getElementById('mc-overlay').classList.remove('open'); }
-document.getElementById('mc-overlay').addEventListener('click', e => { if (e.target === e.currentTarget) closeMC(); });
-
-function switchTab(name, btn) {
-  document.querySelectorAll('.mc-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.mc-pane').forEach(p => p.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('pane-' + name).classList.add('active');
+  `).join('');
 }
 
-function getLocalCards() {
-  try { return JSON.parse(localStorage.getItem('mc_user_cards') || '{"needsWjp":[],"intel":[]}'); }
-  catch(e) { return {needsWjp:[], intel:[]}; }
-}
-function saveLocalCards(c) { localStorage.setItem('mc_user_cards', JSON.stringify(c)); }
-
-function saveWjpCard() {
-  const title = document.getElementById('mc-title').value.trim();
-  const ask = document.getElementById('mc-ask').value.trim();
-  if (!title) { alert('Title required'); return; }
-  const c = getLocalCards();
-  c.needsWjp.push({
-    id: 'user-' + Date.now(),
-    project: document.getElementById('mc-project').value,
-    title, urgency: document.querySelector('input[name="mc-urgency"]:checked').value,
-    ask, updatedAt: new Date().toISOString(), _local: true
-  });
-  saveLocalCards(c);
-  closeMC();
-  document.getElementById('mc-title').value = '';
-  document.getElementById('mc-ask').value = '';
-  loadData();
+function renderAgents() {
+  if (!data || !data.agents) return;
+  document.getElementById('agents-list').innerHTML = data.agents.map(a => `
+    <div class="agent-row">
+      <img class="agent-avatar" src="${a.avatar || ''}" onerror="this.style.display='none'">
+      <div>
+        <div class="agent-name">${a.name}</div>
+        <div class="agent-role">${a.role || ''}</div>
+      </div>
+      <div class="agent-status">
+        <span class="dot ${a.status === 'online' ? 'dot-green' : 'dot-yellow'}"></span>
+        ${a.status}
+      </div>
+    </div>
+  `).join('');
 }
 
-function saveIntelCard() {
-  const text = document.getElementById('mc-intel-text').value.trim();
-  if (!text) { alert('Text required'); return; }
-  const c = getLocalCards();
-  c.intel.push({ id: 'intel-' + Date.now(), text, time: new Date().toISOString(), _local: true });
-  saveLocalCards(c);
-  closeMC();
-  document.getElementById('mc-intel-text').value = '';
-  loadData();
+function renderNeedsWjp() {
+  if (!data) return;
+  const items = data.needsWjp || [];
+  if (!items.length) {
+    document.getElementById('needs-wjp-list').innerHTML = '<div style="padding:16px 0;color:var(--muted);font-size:13px">Nothing pending — all clear.</div>';
+    return;
+  }
+  document.getElementById('needs-wjp-list').innerHTML = items.map(i => `
+    <div class="needs-item">
+      <span class="needs-priority p-${i.priority || 'medium'}">${i.priority || 'medium'}</span>
+      <div>
+        <div style="font-size:13px;font-weight:500;color:#fff">${i.title}</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:2px">${i.description || ''}</div>
+      </div>
+    </div>
+  `).join('');
 }
 
-function deleteLocalCard(type, id) {
-  const c = getLocalCards();
-  if (type === 'wjp') c.needsWjp = c.needsWjp.filter(x => x.id !== id);
-  if (type === 'intel') c.intel = c.intel.filter(x => x.id !== id);
-  saveLocalCards(c);
-  loadData();
+function renderIntel() {
+  if (!data || !data.intel) return;
+  const items = Array.isArray(data.intel) ? data.intel : (data.intel.items || []);
+  document.getElementById('intel-list').innerHTML = items.slice(0, 20).map(i => `
+    <div class="card" style="margin-bottom:10px">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:6px">
+        <div class="card-title" style="font-size:14px">${i.title || i.headline || ''}</div>
+        <div style="font-size:11px;color:var(--muted);white-space:nowrap">${i.date ? formatDate(i.date) : ''}</div>
+      </div>
+      <div class="card-sub">${i.summary || i.description || ''}</div>
+      ${i.url ? `<a href="${i.url}" target="_blank" style="font-size:12px;color:var(--blue);margin-top:8px;display:inline-block">Read →</a>` : ''}
+    </div>
+  `).join('');
 }
 
-// Patch loadData to merge local cards after fetch
-const _origLoadData = loadData;
-window.loadData = function() {
-  const orig = window.render;
-  window.render = function(data, crons) {
-    const local = getLocalCards();
-    if (local.needsWjp && local.needsWjp.length) data.needsWjp = [...(data.needsWjp||[]), ...local.needsWjp];
-    if (local.intel && local.intel.length) data.intel = [...(data.intel||[]), ...local.intel];
-    orig(data, crons);
-    window.render = orig; // restore after one use
-  };
-  _origLoadData();
-};
+async function loadAll() {
+  try {
+    const [dataRes, artifactsRes] = await Promise.all([
+      fetch('data.json?t=' + Date.now()),
+      fetch('artifacts.json?t=' + Date.now())
+    ]);
+    data = await dataRes.json();
+    artifacts = await artifactsRes.json();
+  } catch(e) {
+    try { data = await (await fetch('data.json')).json(); } catch(e2) {}
+    try { artifacts = await (await fetch('artifacts.json')).json(); } catch(e2) {}
+  }
+
+  renderHome();
+  renderRecentArtifacts();
+  renderArtifactGrid('All');
+  renderProjects();
+  renderAgents();
+  renderNeedsWjp();
+  renderIntel();
+}
+
+loadAll();
 </script>
 </body>
 </html>
