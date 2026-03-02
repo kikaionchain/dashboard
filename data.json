@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-01T22:25:59.424535+00:00",
+  "updatedAt": "2026-03-02T00:25:59.385991+00:00",
   "projects": [
     {
       "id": "for-crypto",
@@ -11,11 +11,11 @@
       "tasks": [
         {
           "id": "fc-testing",
-          "title": "For Crypto Ops Sprint \u2014 Bot Positioning + Internal Dashboard",
+          "title": "For Crypto + Mission Control \u2014 Sprint Complete, Feedback Round",
           "owner": "Kikai",
           "status": "active",
           "lastUpdate": "Task in progress.",
-          "nextAction": "Mission Control upgrade (sub-agent building \u2014 auto-announces when done)"
+          "nextAction": "Continue task"
         }
       ],
       "needsToDo": []
@@ -88,8 +88,8 @@
   "agents": {
     "kikai": {
       "status": "active",
-      "workingOn": "For Crypto Ops Sprint \u2014 Bot Positioning + Internal Dashboard",
-      "contextPct": 56,
+      "workingOn": "For Crypto + Mission Control \u2014 Sprint Complete, Feedback Round",
+      "contextPct": 57,
       "model": "claude-sonnet-4-6",
       "sessionDurationMin": 239,
       "lastActivityMin": 0,
@@ -98,7 +98,7 @@
     "yama": {
       "status": "ssh-only",
       "workingOn": "idle",
-      "contextPct": 60,
+      "contextPct": 71,
       "model": "claude-sonnet-4-6",
       "sessionDurationMin": null,
       "lastActivityMin": null,
@@ -129,8 +129,8 @@
       "name": "ACTIVE TASK",
       "icon": "\u26a1",
       "path": "ops/ACTIVE-TASK.md",
-      "content": "# ACTIVE TASK: For Crypto Ops Sprint \u2014 Bot Positioning + Internal Dashboard\nStatus: IN_PROGRESS\nUpdated: 2026-03-01 13:15 PT\n\n## WJP Directive (1:02 PM)\n- Lead with bot integration as core differentiator vs WAP (raised $200M, Tether-integrated, traditional)\n- New hero: \"Humans. Bots. Sell. Cosell. For Crypto.\"\n- Build internal ops dashboard for WJP + Kikai + Yama coordination\n- Have Yama test frontend + Mission Control for 2 hours\n\n## Completed\n- [x] Hero copy updated: \"Humans. Bots. Sell. Cosell. For Crypto.\" \u2014 branch `hero-bot-messaging`\n- [x] SEO title + description updated to bot-forward messaging\n- [x] Committed (5ba5110) on hero-bot-messaging branch\n- [x] Yama messaged with frontend QA + Mission Control review tasks\n- [x] Sub-agent spawned to build upgraded Mission Control dashboard\n\n## In Progress\n- [ ] Mission Control upgrade (sub-agent building \u2014 auto-announces when done)\n- [ ] Yama frontend QA results (check #testing)\n- [ ] PR for hero copy changes \u2192 needs WJP review before merge to main\n\n## Next Steps\n- When Yama reports back: synthesize findings, act on critical issues\n- When sub-agent finishes: review dashboard, deploy, send WJP the URL\n- Open PR for hero-bot-messaging branch\n\n## Bot Integration Positioning Notes (WJP directive)\n- WAP (raised $200M, integrating Tether) is traditional \u2014 would NOT lead with bot/AI\n- Our differentiator: AI chat widget + bot marketplace integration\n- Homepage should make bots feel native, not bolted-on\n- \"The first marketplace where humans and AI agents sell side by side\"\n- Consider: bot-specific listing badge, bot creator section, AI seller stats\n",
-      "preview": "Status: IN_PROGRESS"
+      "content": "# ACTIVE TASK: For Crypto + Mission Control \u2014 Sprint Complete, Feedback Round\nStatus: AWAITING FEEDBACK\nUpdated: 2026-03-01 15:38 PT\n\n## What Just Happened (Last Hour Sprint: 2:23 PM - 3:23 PM)\n\n**Mission Control Apple Redesign**\n- Sub-agent spawned at 2:24 PM\n- Built: typography-first dark mode, WJP action items as hero, agent status cards, health strip, QA feed\n- Deployed live at ~2:39 PM to GitHub Pages\n- Yama on standby to design review \u2014 awaiting feedback now\n\n**Yama's Parallel Work: For Crypto Epic Audit**\n- Comprehensive Apple-level analysis of entire platform\n- Identified gaps: hero needs visual dominance, bot section buried, no USD prices, no proof of life, test listings polluting marketplace\n- Provided future roadmap: Tier 1 (ship at launch), Tier 2 (next quarter), Tier 3 (Q2+)\n- Flagged: /settings broken, /bots/new loses auth redirect, buy flow unverified without live wallet\n\n---\n\n## Blocking Issues (need resolution)\n\n### High priority \u2014 For Crypto Launch (March 3)\n1. \u2705 Hero copy \"Humans. Bots.\" on branch (PR #18) \u2014 ready for WJP merge\n2. \u2705 Embed X-Frame-Options fix \u2014 already in main\n3. \u274c **GoDaddy DNS fix** \u2014 WJP only. domain.forcrypto.market still shows parking page\n4. \u274c **DATABASE_URL on Vercel** \u2014 WJP only. Bot API broken on prod\n5. \u274c **Delete 8 test listings** \u2014 WJP only. First impression is broken\n6. \u274c **/settings route broken** \u2014 double notification regions, wrong 404 handler (needs code fix)\n7. \u274c **/bots/new loses auth redirect** \u2014 after signing in, doesn't return to registration form (needs code fix)\n\n### Medium priority \u2014 Platform Quality\n1. \u26a0\ufe0f **Mission Control design feedback** \u2014 waiting for Yama to review the new Apple redesign\n2. \u26a0\ufe0f **For Crypto hero visual** \u2014 needs one dominant visual moment, not text + cards\n3. \u26a0\ufe0f **USD price equivalents** \u2014 \"29 USDC \u2248 $29\" missing everywhere\n4. \u26a0\ufe0f **Cosell CTA passive** \u2014 should lead with money: \"Earn 15% on every sale\"\n\n---\n\n## What's Ready\n\n### PR #18 (Hero Bot Messaging)\n- Humans. Bots. Sell. Cosell. For Crypto.\n- Nav legal link fix (Security/Privacy/Terms/Cookies moved to footer)\n- Build passes clean\n- **Status:** Waiting for WJP merge on GitHub\n\n### Mission Control Apple Redesign v1\n- Live at: https://kikaionchain.github.io/mission-control/?_v=cache-bust\n- Includes: Launch status bar, WJP action items (expandable), agent cards, health strip, QA feed, projects, intel\n- Apple color palette exact, staggered fade-up animations\n- **Status:** Deployed, awaiting Yama design review\n\n---\n\n## Next Steps (In Order)\n\n1. **Yama tests Apple Mission Control redesign**\n   - Does it feel premium?\n   - Are WJP's action items the first thing you see?\n   - What feels out of place?\n   \n2. **Code fixes for /settings and /bots/new** \u2014 spawn sub-agent after Yama feedback\n\n3. **WJP's three 2-min fixes:**\n   - GoDaddy DNS\n   - DATABASE_URL\n   - Delete test listings\n\n4. **For Crypto visual polish** (if time before March 3):\n   - Hero needs visual dominance (live transaction counter? cinematic bg?)\n   - USD price equivalents\n   - Cosell CTA rewrite\n\n5. **Post-launch roadmap** \u2014 Yama's future features (live tx feed, seller onboarding, analytics, bot profiles)\n\n---\n\n## Key Files for Reference\n- PR #18: https://github.com/00onchain/for-crypto/pull/18\n- For Crypto epic vision: #testing (Yama's 8-message audit)\n- Mission Control: /Users/kikai/clawd/mission-control/index.html\n",
+      "preview": "Status: AWAITING FEEDBACK"
     },
     {
       "name": "NEEDS WJP",
@@ -180,6 +180,6 @@
       "healthy": 17,
       "errors": 1
     },
-    "lastHeartbeat": "2026-03-01T22:25:59.424535+00:00"
+    "lastHeartbeat": "2026-03-02T00:25:59.385991+00:00"
   }
 }
