@@ -92,6 +92,82 @@
   }
   .refresh-btn:hover { background: rgba(10,132,255,0.12); }
 
+  /* ── BUSINESSES ──────────────────────────────── */
+  .biz-stats-strip {
+    display: flex; gap: 2px; padding: 0 24px; max-width: 960px; margin: 0 auto 2px;
+    flex-wrap: wrap;
+  }
+  .biz-stat {
+    flex: 1; min-width: 120px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 16px 18px;
+  }
+  .biz-stat-value { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; color: var(--text); }
+  .biz-stat-label { font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+
+  .biz-pipeline {
+    max-width: 960px; margin: 0 auto; padding: 12px 24px 16px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .biz-pipe-segment {
+    height: 6px; border-radius: 3px; transition: width 0.4s ease;
+  }
+  .biz-pipe-label {
+    font-size: 10px; color: var(--text3); letter-spacing: 0.06em; margin-left: 6px; white-space: nowrap;
+  }
+
+  .biz-grid {
+    max-width: 960px; margin: 0 auto; padding: 0 24px 16px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 8px;
+  }
+
+  .biz-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 18px 20px; position: relative; overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .biz-card:hover { border-color: #555; }
+  .biz-card-accent { position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+
+  .biz-card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .biz-card-name { font-size: 16px; font-weight: 700; letter-spacing: -0.02em; }
+  .biz-card-price { font-size: 13px; font-weight: 600; color: var(--green); }
+
+  .biz-card-meta { font-size: 11px; color: var(--text3); margin-bottom: 6px; display: flex; gap: 8px; align-items: center; }
+  .biz-card-aesthetic {
+    font-size: 10px; padding: 2px 8px; border-radius: 4px;
+    border: 1px solid var(--border); color: var(--text2); letter-spacing: 0.02em;
+  }
+  .biz-card-seller { font-size: 11px; color: var(--text3); font-style: italic; margin-bottom: 12px; }
+
+  .biz-card-status {
+    display: inline-block; font-size: 10px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 2px 8px; border-radius: 4px;
+  }
+  .biz-card-status.draft { background: rgba(255,159,10,0.12); color: var(--amber); }
+  .biz-card-status.listed { background: rgba(48,209,88,0.12); color: var(--green); }
+  .biz-card-status.live { background: rgba(48,209,88,0.2); color: var(--green); }
+  .biz-card-status.paused { background: rgba(235,235,245,0.08); color: var(--text3); }
+
+  .biz-readiness { display: flex; gap: 4px; margin-top: 12px; }
+  .biz-readiness-dot {
+    width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--border);
+    position: relative;
+  }
+  .biz-readiness-dot.done { background: var(--green); border-color: var(--green); }
+  .biz-readiness-dot.pending { background: transparent; }
+
+  .biz-readiness-labels { display: flex; gap: 4px; margin-top: 4px; }
+  .biz-readiness-lbl { font-size: 8px; color: var(--text3); text-align: center; width: 8px; overflow: visible; white-space: nowrap; }
+
+  .biz-metrics-row { display: flex; gap: 16px; margin-top: 12px; border-top: 1px solid var(--border); padding-top: 10px; }
+  .biz-metric { flex: 1; }
+  .biz-metric-val { font-size: 14px; font-weight: 700; color: var(--text); }
+  .biz-metric-lbl { font-size: 9px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.06em; }
+
   .done-btn {
     margin-left: auto;
     margin-right: 8px;
@@ -644,6 +720,20 @@
     <div class="health-pill"><span class="spinner"></span> Checking…</div>
   </div>
 
+  <!-- BUSINESSES -->
+  <div class="section-label">Businesses <span id="biz-count" style="color:var(--text3);font-weight:400;margin-left:4px;"></span></div>
+
+  <!-- Aggregate Stats -->
+  <div id="biz-stats" class="biz-stats-strip"></div>
+
+  <!-- Pipeline -->
+  <div id="biz-pipeline" class="biz-pipeline"></div>
+
+  <!-- Business Cards -->
+  <div id="biz-grid" class="biz-grid">
+    <div style="padding:20px;"><div class="skeleton"></div></div>
+  </div>
+
   <!-- QA FEED -->
   <div class="section-label">QA Feed</div>
   <div class="qa-list" id="qa-list"></div>
@@ -893,6 +983,107 @@ function updateTimestamp(updatedAt) {
   }
 }
 
+// ── BUSINESSES ──────────────────────────────────────────────────────────────
+
+const BIZ_BASE = window.location.origin.includes('github.io')
+  ? '/mission-control/businesses.json'
+  : 'businesses.json';
+
+async function fetchBusinesses() {
+  try {
+    const res = await fetch(BIZ_BASE + '?_v=' + Date.now());
+    return await res.json();
+  } catch { return null; }
+}
+
+function renderBizStats(data) {
+  const s = data.aggregate;
+  const el = document.getElementById('biz-stats');
+  const totalPrice = data.businesses.reduce((a, b) => a + b.price, 0);
+  const avgPrice = Math.round(totalPrice / data.businesses.length);
+
+  el.innerHTML = `
+    <div class="biz-stat fade"><div class="biz-stat-value">${data.businesses.length}</div><div class="biz-stat-label">Businesses</div></div>
+    <div class="biz-stat fade"><div class="biz-stat-value">$${avgPrice}</div><div class="biz-stat-label">Avg Price</div></div>
+    <div class="biz-stat fade"><div class="biz-stat-value">${s.listed}</div><div class="biz-stat-label">Listed</div></div>
+    <div class="biz-stat fade"><div class="biz-stat-value">$${s.totalRevenue.toLocaleString()}</div><div class="biz-stat-label">Revenue</div></div>
+    <div class="biz-stat fade"><div class="biz-stat-value">${s.totalUnits}</div><div class="biz-stat-label">Units Sold</div></div>
+    <div class="biz-stat fade"><div class="biz-stat-value">${s.avgConversion}%</div><div class="biz-stat-label">Conversion</div></div>
+  `;
+}
+
+function renderBizPipeline(data) {
+  const el = document.getElementById('biz-pipeline');
+  const total = data.businesses.length;
+  const counts = { draft: 0, listed: 0, live: 0, paused: 0 };
+  data.businesses.forEach(b => counts[b.status] = (counts[b.status] || 0) + 1);
+
+  const colors = { draft: 'var(--amber)', listed: 'var(--blue)', live: 'var(--green)', paused: 'var(--text3)' };
+  let html = '';
+  for (const [status, count] of Object.entries(counts)) {
+    if (count === 0) continue;
+    const pct = Math.round((count / total) * 100);
+    html += `<div class="biz-pipe-segment" style="width:${pct}%;background:${colors[status]}"></div>`;
+  }
+  const labels = Object.entries(counts).filter(([,c]) => c > 0).map(([s,c]) => `${c} ${s}`).join(' · ');
+  html += `<span class="biz-pipe-label">${labels}</span>`;
+  el.innerHTML = html;
+}
+
+function renderBizGrid(data) {
+  const grid = document.getElementById('biz-grid');
+  const count = document.getElementById('biz-count');
+  count.textContent = `(${data.businesses.length})`;
+
+  const taskLabels = ['I', 'L', 'B', 'P', 'Q'];
+  const taskKeys = ['images', 'listing', 'brand', 'product', 'qa'];
+  const taskTitles = ['Images', 'Listing', 'Brand', 'Product', 'QA'];
+
+  grid.innerHTML = data.businesses.map((b, i) => {
+    const dots = taskKeys.map((k, j) =>
+      `<div class="biz-readiness-dot ${b.tasks[k] ? 'done' : 'pending'}" title="${taskTitles[j]}: ${b.tasks[k] ? 'Done' : 'Pending'}"></div>`
+    ).join('');
+
+    const doneCount = taskKeys.filter(k => b.tasks[k]).length;
+    const readinessPct = Math.round((doneCount / taskKeys.length) * 100);
+
+    const hasMetrics = b.metrics.views > 0 || b.metrics.units > 0;
+
+    return `
+    <div class="biz-card fade" style="animation-delay:${i * 40}ms">
+      <div class="biz-card-accent" style="background:${b.color}"></div>
+      <div class="biz-card-top">
+        <span class="biz-card-name" style="color:${b.color}">${b.name}</span>
+        <span class="biz-card-price">$${b.price}</span>
+      </div>
+      <div class="biz-card-meta">
+        <span class="biz-card-aesthetic">${b.aesthetic}</span>
+        <span class="biz-card-status ${b.status}">${b.status}</span>
+      </div>
+      <div class="biz-card-seller">${b.seller} · ${b.category}</div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="biz-readiness">${dots}</div>
+        <span style="font-size:10px;color:var(--text3);">${readinessPct}% ready</span>
+      </div>
+      ${hasMetrics ? `
+      <div class="biz-metrics-row">
+        <div class="biz-metric"><div class="biz-metric-val">${b.metrics.views}</div><div class="biz-metric-lbl">Views</div></div>
+        <div class="biz-metric"><div class="biz-metric-val">${b.metrics.units}</div><div class="biz-metric-lbl">Sold</div></div>
+        <div class="biz-metric"><div class="biz-metric-val">$${b.metrics.revenue}</div><div class="biz-metric-lbl">Revenue</div></div>
+        <div class="biz-metric"><div class="biz-metric-val">${b.metrics.conversion}%</div><div class="biz-metric-lbl">Conv</div></div>
+      </div>` : ''}
+    </div>`;
+  }).join('');
+}
+
+async function renderBusinesses() {
+  const data = await fetchBusinesses();
+  if (!data) return;
+  renderBizStats(data);
+  renderBizPipeline(data);
+  renderBizGrid(data);
+}
+
 // ── LIVE CHECKS ─────────────────────────────────────────────────────────────
 
 async function checkDomain() {
@@ -929,10 +1120,10 @@ async function init() {
   renderQA();
 
   // Fetch remote data
-  await refreshData();
+  await Promise.all([refreshData(), renderBusinesses()]);
 
   // Auto-refresh every 60s
-  setInterval(refreshData, 60_000);
+  setInterval(() => { refreshData(); renderBusinesses(); }, 60_000);
 }
 
 init();
