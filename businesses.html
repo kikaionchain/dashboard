@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10 Businesses — WJP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400&family=Space+Grotesk:wght@700;900&family=Courier+Prime&family=Playfair+Display:ital,wght@0,700;1,400&family=Lora&family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Futura:wght@700&family=Inter:wght@400;600&family=Spectral:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #0e0e0e; font-family: -apple-system, sans-serif; }
+
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(14,14,14,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid #222;
+  padding: 0 32px; height: 52px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo { color: #fff; font-size: 13px; font-weight: 600; letter-spacing: 0.05em; }
+.nav-sub { color: #555; font-size: 12px; }
+
+.page-header {
+  padding: 64px 32px 48px;
+  border-bottom: 1px solid #1a1a1a;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.page-header h1 { color: #fff; font-size: clamp(28px, 4vw, 48px); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 10px; }
+.page-header p { color: #555; font-size: 14px; max-width: 520px; line-height: 1.6; }
+.count-badge { display: inline-block; background: #1a1a1a; color: #888; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 20px; margin-bottom: 20px; }
+
+.grid {
+  max-width: 1200px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 2px;
+  padding: 2px;
+}
+
+/* Each card is a completely different universe */
+
+/* 1. VESSEL — Japanese Minimalism */
+.card-vessel {
+  background: #faf8f3;
+  padding: 48px 40px;
+  min-height: 420px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+.card-vessel::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: #c0392b;
+}
+.card-vessel .biz-num { font-family: 'Noto Serif JP', serif; font-size: 11px; color: #bbb; letter-spacing: 0.2em; margin-bottom: 40px; }
+.card-vessel .biz-name { font-family: 'Noto Serif JP', serif; font-size: 36px; font-weight: 300; color: #1a1814; letter-spacing: 0.15em; margin-bottom: 16px; }
+.card-vessel .biz-tagline { font-family: 'Noto Serif JP', serif; font-size: 13px; color: #888; line-height: 2; letter-spacing: 0.05em; font-style: italic; }
+.card-vessel .biz-price { font-family: 'Noto Serif JP', serif; font-size: 13px; color: #c0392b; letter-spacing: 0.1em; }
+.card-vessel .biz-category { font-size: 10px; color: #bbb; letter-spacing: 0.2em; text-transform: uppercase; }
+.card-vessel .biz-visual {
+  position: absolute; right: 32px; top: 50%; transform: translateY(-50%);
+  width: 80px; height: 80px;
+  border: 1px solid #e0dbd0;
+  display: flex; align-items: center; justify-content: center;
+}
+.card-vessel .biz-visual span { font-family: 'Noto Serif JP', serif; font-size: 28px; color: #c0392b; opacity: 0.6; }
+
+/* 2. DRAFT — Neo-Brutalism */
+.card-draft {
+  background: #f5e642;
+  padding: 32px;
+  min-height: 420px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  border: 3px solid #0a0a0a;
+}
+.card-draft .biz-num { font-family: 'Courier Prime', monospace; font-size: 11px; color: #0a0a0a; opacity: 0.4; }
+.card-draft .biz-name { font-family: 'Space Grotesk', sans-serif; font-size: 52px; font-weight: 900; color: #0a0a0a; line-height: 0.9; letter-spacing: -0.04em; margin: 16px 0; }
+.card-draft .biz-tagline { font-family: 'Courier Prime', monospace; font-size: 12px; color: #0a0a0a; line-height: 1.7; border-left: 3px solid #0a0a0a; padding-left: 12px; }
+.card-draft .biz-price { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 900; color: #0a0a0a; }
+.card-draft .biz-category { font-family: 'Courier Prime', monospace; font-size: 10px; color: #0a0a0a; opacity: 0.5; text-transform: uppercase; letter-spacing: 0.15em; }
+.card-draft .biz-stripe { position: absolute; bottom: 0; left: 0; right: 0; height: 8px; background: repeating-linear-gradient(90deg, #0a0a0a 0, #0a0a0a 20px, #f5e642 20px, #f5e642 40px); }
+
+/* 3. STACK — Swiss Typography */
+.card-stack {
+  background: #f7f7f7;
+  padding: 40px;
+  min-height: 420px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  border-left: 8px solid #e8180c;
+}
+.card-stack .biz-num { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600; color: #999; letter-spacing: 0.2em; text-transform: uppercase; }
+.card-stack .biz-name { font-family: 'Inter', sans-serif; font-size: 48px; font-weight: 700; color: #1a1a1a; letter-spacing: -0.03em; line-height: 1; margin: 20px 0 8px; }
+.card-stack .biz-rule { height: 2px; background: #e8180c; margin: 16px 0; width: 100%; }
+.card-stack .biz-tagline { font-family: 'Inter', sans-serif; font-size: 12px; color: #555; line-height: 1.7; letter-spacing: 0.01em; }
+.card-stack .biz-price { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; color: #e8180c; letter-spacing: 0.05em; }
+.card-stack .biz-category { font-family: 'Inter', sans-serif; font-size: 9px; color: #bbb; letter-spacing: 0.25em; text-transform: uppercase; }
+.card-stack .biz-grid { position: absolute; top: 40px; right: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+.card-stack .biz-grid span { width: 12px; height: 12px; display: block; }
+.card-stack .biz-grid span:nth-child(odd) { background: #e8180c; }
+.card-stack .biz-grid span:nth-child(even) { background: #e8e8e8; }
+
+/* 4. BLUEPRINT — 90s Rave */
+.card-blueprint {
+  background: #050505;
+  padding: 36px;
+  min-height: 420px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+.card-blueprint::before {
+  content: 'BLUEPRINT';
+  position: absolute; top: -10px; left: -5px;
+  font-family: 'Inter', monospace; font-size: 80px; font-weight: 900;
+  color: #39ff14; opacity: 0.04; letter-spacing: -0.05em; white-space: nowrap;
+}
+.card-blueprint .biz-num { font-family: 'Courier Prime', monospace; font-size: 10px; color: #39ff14; opacity: 0.5; letter-spacing: 0.2em; }
+.card-blueprint .biz-name { font-family: 'Inter', sans-serif; font-size: 40px; font-weight: 900; letter-spacing: -0.02em; line-height: 0.95; margin: 12px 0; }
+.card-blueprint .biz-name span { display: block; }
+.card-blueprint .biz-name span:nth-child(1) { color: #39ff14; }
+.card-blueprint .biz-name span:nth-child(2) { color: #ff006e; }
+.card-blueprint .biz-tagline { font-family: 'Courier Prime', monospace; font-size: 11px; color: #888; line-height: 1.8; }
+.card-blueprint .biz-price { font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 900; color: #00d4ff; }
+.card-blueprint .biz-category { font-family: 'Courier Prime', monospace; font-size: 9px; color: #39ff14; opacity: 0.5; text-transform: uppercase; letter-spacing: 0.2em; }
+.card-blueprint .biz-dot { position: absolute; top: 36px; right: 36px; width: 48px; height: 48px; border-radius: 50%; background: radial-gradient(circle, #ff006e, #39ff14); opacity: 0.7; filter: blur(2px); }
+
+/* 5. LEDGER — Luxury Fashion */
+.card-ledger {
+  background: #f3efe8;
+  padding: 48px 44px;
+  min-height: 420px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  position: relative;
+}
+.card-ledger .biz-num { font-family: 'Cormorant Garamond', serif; font-size: 10px; color: #bbb; letter-spacing: 0.4em; text-transform: uppercase; }
+.card-ledger .biz-name { font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 300; color: #111; letter-spacing: 0.25em; margin: 24px 0 8px; text-transform: uppercase; }
+.card-ledger .biz-rule { height: 1px; background: #c9a84c; width: 40px; margin: 20px 0; }
+.card-ledger .biz-tagline { font-family: 'Cormorant Garamond', serif; font-size: 14px; color: #777; line-height: 1.9; font-style: italic; }
+.card-ledger .biz-price { font-family: 'Cormorant Garamond', serif; font-size: 14px; color: #c9a84c; letter-spacing: 0.2em; text-transform: uppercase; }
+.card-ledger .biz-category { font-family: 'Cormorant Garamond', serif; font-size: 9px; color: #ccc; letter-spacing: 0.3em; text-transform: uppercase; }
+
+/* 6. FLOW — Cottagecore */
+.card-flow {
+  background: #f7f3eb;
+  padding: 44px 40px;
+  min-height: 420px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+.card-flow::after {
+  content: '❧';
+  position: absolute; bottom: 32px; right: 32px;
+  font-size: 48px; color: #8fad91; opacity: 0.3;
+}
+.card-flow .biz-num { font-family: 'Lora', serif; font-size: 10px; color: #bbb; letter-spacing: 0.15em; font-style: italic; }
+.card-flow .biz-name { font-family: 'Playfair Display', serif; font-size: 42px; font-style: italic; color: #4a3728; letter-spacing: -0.01em; margin: 16px 0 8px; }
+.card-flow .biz-tagline { font-family: 'Lora', serif; font-size: 13px; color: #8a7060; line-height: 1.9; }
+.card-flow .biz-price { font-family: 'Playfair Display', serif; font-size: 15px; color: #c07850; font-style: italic; }
+.card-flow .biz-category { font-family: 'Lora', serif; font-size: 10px; color: #c0a898; letter-spacing: 0.1em; text-transform: uppercase; }
+.card-flow .biz-ornament { height: 1px; background: linear-gradient(90deg, transparent, #c07850, transparent); margin: 18px 0; }
+
+/* 7. PULSE — Y2K Retrofuturism */
+.card-pulse {
+  background: #0a0e1a;
+  padding: 40px 36px;
+  min-height: 420px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+.card-pulse::before {
+  content: '';
+  position: absolute; top: -60px; right: -60px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, #ff6b9d, #c3f0ff, #4f8ef7, #ff6b9d);
+  opacity: 0.15; filter: blur(20px);
+}
+.card-pulse .biz-num { font-family: 'Inter', sans-serif; font-size: 10px; color: #4f8ef7; letter-spacing: 0.2em; opacity: 0.6; }
+.card-pulse .biz-name { font-size: 52px; font-weight: 900; font-family: 'Inter', sans-serif; letter-spacing: -0.04em; line-height: 0.9; margin: 16px 0; background: linear-gradient(135deg, #d4d4d8, #4f8ef7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.card-pulse .biz-tagline { font-family: 'Inter', sans-serif; font-size: 12px; color: #8899bb; line-height: 1.7; }
+.card-pulse .biz-price { font-family: 'Inter', sans-serif; font-size: 22px; font-weight: 700; background: linear-gradient(90deg, #ff6b9d, #c3f0ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.card-pulse .biz-category { font-family: 'Inter', sans-serif; font-size: 9px; color: #4f8ef7; letter-spacing: 0.25em; text-transform: uppercase; }
+.card-pulse .biz-scan { position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, #4f8ef7, transparent); }
+
+/* 8. FORGE — Bauhaus */
+.card-forge {
+  background: #fafafa;
+  padding: 40px;
+  min-height: 420px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+.card-forge .biz-geo { position: absolute; top: 32px; right: 32px; }
+.card-forge .biz-geo .circle { width: 56px; height: 56px; border-radius: 50%; background: #d62828; }
+.card-forge .biz-geo .square { width: 40px; height: 40px; background: #023e8a; margin-top: 6px; margin-left: 16px; }
+.card-forge .biz-num { font-family: 'Inter', sans-serif; font-size: 10px; color: #bbb; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 600; }
+.card-forge .biz-name { font-family: 'Inter', sans-serif; font-size: 48px; font-weight: 900; color: #0e0e0e; letter-spacing: -0.03em; line-height: 1; margin: 20px 0 4px; }
+.card-forge .biz-slash { color: #d62828; }
+.card-forge .biz-rule { height: 4px; background: #ffd60a; width: 60px; margin: 16px 0; }
+.card-forge .biz-tagline { font-family: 'Inter', sans-serif; font-size: 12px; color: #444; line-height: 1.7; font-weight: 400; }
+.card-forge .biz-price { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; color: #d62828; letter-spacing: 0.05em; }
+.card-forge .biz-category { font-family: 'Inter', sans-serif; font-size: 9px; color: #bbb; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 600; }
+
+/* 9. SIGNAL — Editorial Magazine */
+.card-signal {
+  background: #f9f6f0;
+  padding: 48px 44px;
+  min-height: 420px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  position: relative;
+  border-top: 4px solid #1b2a4a;
+}
+.card-signal .biz-num { font-family: 'Inter', sans-serif; font-size: 9px; color: #bbb; letter-spacing: 0.35em; text-transform: uppercase; font-weight: 600; }
+.card-signal .biz-name { font-family: Georgia, 'Times New Roman', serif; font-size: 42px; font-weight: 400; color: #1b2a4a; letter-spacing: -0.01em; margin: 20px 0 4px; font-style: italic; }
+.card-signal .biz-dek { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600; color: #9e4a2a; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; }
+.card-signal .biz-tagline { font-family: Georgia, serif; font-size: 14px; color: #5a5040; line-height: 1.8; }
+.card-signal .biz-price { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: #1b2a4a; letter-spacing: 0.05em; }
+.card-signal .biz-category { font-family: 'Inter', sans-serif; font-size: 9px; color: #bbb; letter-spacing: 0.3em; text-transform: uppercase; }
+.card-signal .biz-rule { height: 1px; background: #d8d0c0; margin: 20px 0; }
+
+/* 10. MINT — Maximalist Jewel */
+.card-mint {
+  background: #1c1510;
+  padding: 44px 40px;
+  min-height: 420px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #2a2018;
+}
+.card-mint::before {
+  content: '✦';
+  position: absolute; top: 28px; right: 28px;
+  font-size: 24px; color: #e8930a; opacity: 0.6;
+}
+.card-mint::after {
+  content: '❧';
+  position: absolute; bottom: 28px; right: 28px;
+  font-size: 20px; color: #1a6b4a; opacity: 0.5;
+}
+.card-mint .biz-num { font-family: 'Spectral', serif; font-size: 10px; color: #e8930a; opacity: 0.5; letter-spacing: 0.2em; font-style: italic; }
+.card-mint .biz-name { font-family: 'Spectral', serif; font-size: 48px; font-weight: 400; color: #e8930a; letter-spacing: 0.05em; margin: 16px 0 4px; font-style: italic; }
+.card-mint .biz-ornament { font-size: 11px; color: #1a6b4a; letter-spacing: 0.3em; margin-bottom: 16px; }
+.card-mint .biz-tagline { font-family: 'Spectral', serif; font-size: 13px; color: #9a8878; line-height: 1.9; }
+.card-mint .biz-price { font-family: 'Spectral', serif; font-size: 16px; color: #1a6b4a; font-style: italic; }
+.card-mint .biz-category { font-family: 'Spectral', serif; font-size: 10px; color: #555; letter-spacing: 0.15em; text-transform: uppercase; font-style: italic; }
+
+.new-tag {
+  display: inline-block;
+  background: #e8930a; color: #1c1510;
+  font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+  padding: 2px 7px; border-radius: 2px;
+  text-transform: uppercase; vertical-align: middle;
+  margin-left: 8px;
+}
+.new-tag-draft {
+  display: inline-block;
+  background: #0a0a0a; color: #f5e642;
+  font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+  padding: 2px 7px;
+  text-transform: uppercase; vertical-align: middle;
+  margin-left: 8px;
+}
+
+footer {
+  border-top: 1px solid #1a1a1a;
+  padding: 32px;
+  text-align: center;
+  color: #333;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  margin-top: 48px;
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">WJP / Businesses</span>
+  <span class="nav-sub">Draft Preview — 2026-03-01</span>
+</nav>
+
+<div class="page-header">
+  <div class="count-badge">10 BUSINESSES · DRAFT STAGE</div>
+  <h1>10 Distinct Worlds</h1>
+  <p>Each business is designed to look like it came from a completely different creator. No shared aesthetics, no shared palette, no shared voice.</p>
+</div>
+
+<div class="grid">
+
+  <!-- 1. VESSEL -->
+  <div class="card-vessel">
+    <div>
+      <div class="biz-num">01 / 10</div>
+      <div class="biz-name">VESSEL</div>
+      <div class="biz-tagline">Carry your culture from day one.<br>A token launch system for founders<br>who understand this is a ceremony.</div>
+    </div>
+    <div class="biz-visual"><span>器</span></div>
+    <div>
+      <div class="biz-category">Notion Template · Launch System</div>
+      <div class="biz-price">$47</div>
+    </div>
+  </div>
+
+  <!-- 2. DRAFT -->
+  <div class="card-draft">
+    <div class="biz-num">02 / 10</div>
+    <div class="biz-name">DR<br>AFT</div>
+    <div class="biz-tagline">Stop writing from scratch.<br>// 90 days of crypto content,<br>formatted and ready to ship.</div>
+    <div>
+      <div class="biz-category">Content Pack · Template System</div>
+      <div class="biz-price">$39 <span class="new-tag-draft">SHIP IT</span></div>
+    </div>
+    <div class="biz-stripe"></div>
+  </div>
+
+  <!-- 3. STACK -->
+  <div class="card-stack">
+    <div class="biz-grid">
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+    </div>
+    <div>
+      <div class="biz-num">03 / 10</div>
+      <div class="biz-name">STACK</div>
+      <div class="biz-rule"></div>
+      <div class="biz-tagline">631 prompts. Organized by function.<br>Tested for output quality. Built on the<br>same logic as a good index.</div>
+    </div>
+    <div>
+      <div class="biz-category">AI Prompt Library · Reference System</div>
+      <div class="biz-price">$49</div>
+    </div>
+  </div>
+
+  <!-- 4. BLUEPRINT -->
+  <div class="card-blueprint">
+    <div class="biz-dot"></div>
+    <div>
+      <div class="biz-num">04 / 10</div>
+      <div class="biz-name"><span>BLUE</span><span>PRINT</span></div>
+      <div class="biz-tagline">Your brand shouldn't whisper.<br>// logos, color systems, voice guides<br>— built loud, built distinct.</div>
+    </div>
+    <div>
+      <div class="biz-category">Brand Kit · Identity System</div>
+      <div class="biz-price">$79</div>
+    </div>
+  </div>
+
+  <!-- 5. LEDGER -->
+  <div class="card-ledger">
+    <div>
+      <div class="biz-num">05 · X</div>
+      <div class="biz-name">LEDGER</div>
+      <div class="biz-rule"></div>
+      <div class="biz-tagline">Your portfolio deserves the same attention you give your positions. Every buy, sell, and swap logged with precision and restraint.</div>
+    </div>
+    <div>
+      <div class="biz-category">Notion Template · Portfolio Tracker</div>
+      <div class="biz-price">$29</div>
+    </div>
+  </div>
+
+  <!-- 6. FLOW -->
+  <div class="card-flow">
+    <div>
+      <div class="biz-num">№ six</div>
+      <div class="biz-name">Flow</div>
+      <div class="biz-ornament"></div>
+      <div class="biz-tagline">Community doesn't grow from funnels. It grows from trust, consistency, and showing up the same way every week.</div>
+    </div>
+    <div>
+      <div class="biz-category">PDF Playbook · Community Growth</div>
+      <div class="biz-price">$47</div>
+    </div>
+  </div>
+
+  <!-- 7. PULSE -->
+  <div class="card-pulse">
+    <div class="biz-scan"></div>
+    <div>
+      <div class="biz-num">07.pulse</div>
+      <div class="biz-name">PULSE</div>
+      <div class="biz-tagline">231 viral thread templates. Drop them in, change the numbers, post. What the best accounts are running — turned into a system.</div>
+    </div>
+    <div>
+      <div class="biz-category">Thread Templates · X / Twitter</div>
+      <div class="biz-price">$37</div>
+    </div>
+  </div>
+
+  <!-- 8. FORGE -->
+  <div class="card-forge">
+    <div class="biz-geo">
+      <div class="circle"></div>
+      <div class="square"></div>
+    </div>
+    <div>
+      <div class="biz-num">08 — FORGE</div>
+      <div class="biz-name">FOR<span class="biz-slash">/</span>GE</div>
+      <div class="biz-rule"></div>
+      <div class="biz-tagline">A workspace is an argument about how work should happen. FORGE makes that argument in your favor — geometry-first, function-first.</div>
+    </div>
+    <div>
+      <div class="biz-category">Notion Workspace · OS System</div>
+      <div class="biz-price">$59</div>
+    </div>
+  </div>
+
+  <!-- 9. SIGNAL (new) -->
+  <div class="card-signal">
+    <div>
+      <div class="biz-num">09 of 10 <span class="new-tag">New</span></div>
+      <div class="biz-dek">Narrative Intelligence</div>
+      <div class="biz-name">Signal</div>
+      <div class="biz-rule"></div>
+      <div class="biz-tagline">Every project has a story. Most of them tell it too late, too vague, or to the wrong room. 12 frameworks, 40 positioning templates, a launch arc planner.</div>
+    </div>
+    <div>
+      <div class="biz-category">Notion + PDF · Narrative Kit</div>
+      <div class="biz-price">$49</div>
+    </div>
+  </div>
+
+  <!-- 10. MINT (new) -->
+  <div class="card-mint">
+    <div>
+      <div class="biz-num">10 / x <span class="new-tag">New</span></div>
+      <div class="biz-name">Mint</div>
+      <div class="biz-ornament">✦ ◆ ✦</div>
+      <div class="biz-tagline">Your digital product business is a creative act. Revenue tracking, launch sequencing, 90-day sprint planning — one Notion system that thinks like a founder.</div>
+    </div>
+    <div>
+      <div class="biz-category">Notion + Airtable · Creator OS</div>
+      <div class="biz-price">$39</div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  WJP — Draft Preview · forcrypto.market · Images pending generation
+</footer>
+
+</body>
+</html>
