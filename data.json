@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-02T12:26:03.695902+00:00",
+  "updatedAt": "2026-03-02T14:26:00.174124+00:00",
   "projects": [
     {
       "id": "for-crypto",
@@ -89,7 +89,7 @@
     "kikai": {
       "status": "active",
       "workingOn": "For Crypto + Mission Control \u2014 Sprint Complete, Feedback Round",
-      "contextPct": 8,
+      "contextPct": 5,
       "model": "claude-sonnet-4-6",
       "sessionDurationMin": 239,
       "lastActivityMin": 0,
@@ -173,6 +173,6 @@
       "healthy": 17,
       "errors": 1
     },
-    "lastHeartbeat": "2026-03-02T12:26:03.695902+00:00"
+    "lastHeartbeat": "2026-03-02T14:26:00.174124+00:00"
   }
 }
