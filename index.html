@@ -92,6 +92,26 @@
   }
   .refresh-btn:hover { background: rgba(10,132,255,0.12); }
 
+  .done-btn {
+    margin-left: auto;
+    margin-right: 8px;
+    background: rgba(48,209,88,0.1);
+    border: 1px solid rgba(48,209,88,0.25);
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-family: inherit;
+    letter-spacing: 0.02em;
+    transition: background 0.15s, border-color 0.15s;
+    flex-shrink: 0;
+  }
+  .done-btn:hover { background: rgba(48,209,88,0.2); border-color: rgba(48,209,88,0.5); }
+
+  .action-card-header { display: flex; align-items: center; gap: 10px; }
+
   /* ── LAUNCH STATUS BAR ──────────────────────────── */
   #launch-bar {
     padding: 0 24px;
@@ -646,16 +666,14 @@
 // ── HARDCODED DATA ──────────────────────────────────────────────────────────
 
 const NEEDS_WJP = [
-  { priority: 'critical', title: 'Fix DNS', detail: 'forcrypto.market shows GoDaddy parking page', effort: '2 min',
-    fix: 'GoDaddy → DNS → A: @ → 76.76.21.61, 76.76.21.98 | CNAME: www → cname.vercel-dns.com' },
-  { priority: 'critical', title: 'Add DATABASE_URL', detail: 'Bot API broken on Vercel production', effort: '2 min',
+  { id: 'vite-app-url', priority: 'critical', title: 'Set VITE_APP_URL in Vercel', detail: 'Production env var missing — codebase still references localhost in some paths', effort: '2 min',
+    fix: 'vercel.com → For Crypto → Settings → Environment Variables → VITE_APP_URL = https://forcrypto.market' },
+  { id: 'database-url', priority: 'critical', title: 'Add DATABASE_URL to Vercel', detail: 'Bot API auth fails silently without this — wallet connect broken in production', effort: '2 min',
     fix: 'vercel.com → For Crypto → Settings → Environment Variables → DATABASE_URL' },
-  { priority: 'critical', title: 'Delete test listings', detail: '8 of 12 marketplace listings are dev test data', effort: '5 min',
-    fix: 'for-crypto.vercel.app → sign in → manage listings → delete all test entries' },
-  { priority: 'normal', title: 'Merge PR #18', detail: 'Hero bot messaging + nav fix — build passes', effort: '1 min',
-    fix: 'github.com/00onchain/for-crypto/pull/18' },
-  { priority: 'normal', title: 'Payout wallet address', detail: 'Needed for 60 microbusiness listings', effort: '1 min',
-    fix: 'Share your AI business wallet Solana address' },
+  { id: 'yama-api-key', priority: 'normal', title: 'Transfer Yama bot API key', detail: 'Yama needs a valid bot API key to test the listing flow end-to-end', effort: '2 min',
+    fix: 'Share the bot API key with Yama in #yama' },
+  { id: 'google-tos', priority: 'normal', title: 'Accept Google AI Studio TOS', detail: 'Blocks Nano Banana (Imagen 3) image generation — TOS pending on kikaionchain@gmail.com', effort: '1 min',
+    fix: 'aistudio.google.com → sign in as kikaionchain@gmail.com → accept terms' },
 ];
 
 const QA = [
@@ -683,7 +701,8 @@ async function fetchData() {
 // ── RENDER ──────────────────────────────────────────────────────────────────
 
 function renderLaunchBar() {
-  const critical = NEEDS_WJP.filter(i => i.priority === 'critical').length;
+  const dismissed = getDismissed();
+  const critical = NEEDS_WJP.filter(i => i.priority === 'critical' && !dismissed.includes(i.id)).length;
   const bar = document.getElementById('launch-bar');
   if (critical === 0) { bar.innerHTML = ''; return; }
   bar.innerHTML = `
@@ -697,14 +716,40 @@ function renderLaunchBar() {
     </div>`;
 }
 
+function getDismissed() {
+  try { return JSON.parse(localStorage.getItem('mc_dismissed') || '[]'); } catch { return []; }
+}
+function dismiss(id) {
+  const d = getDismissed();
+  if (!d.includes(id)) d.push(id);
+  localStorage.setItem('mc_dismissed', JSON.stringify(d));
+  renderWjpGrid();
+  renderLaunchBar();
+}
+
 function renderWjpGrid() {
   const grid = document.getElementById('wjp-grid');
-  grid.innerHTML = NEEDS_WJP.map((item, i) => `
+  const dismissed = getDismissed();
+  const visible = NEEDS_WJP.filter(i => !dismissed.includes(i.id));
+
+  if (visible.length === 0) {
+    grid.innerHTML = `<div style="padding:24px 20px;color:var(--text3);font-size:13px;text-align:center;">
+      ✅ All clear — nothing needs WJP right now
+      <br><button onclick="localStorage.removeItem('mc_dismissed');renderWjpGrid();renderLaunchBar();"
+        style="margin-top:12px;background:none;border:1px solid var(--border);color:var(--text3);font-size:11px;padding:4px 12px;border-radius:6px;cursor:pointer;font-family:inherit;">
+        Show dismissed
+      </button>
+    </div>`;
+    return;
+  }
+
+  grid.innerHTML = visible.map((item, i) => `
     <div class="action-card ${item.priority}" style="animation-delay:${i * 60}ms" onclick="toggleAction(this)">
       <div class="action-card-header">
         <span class="priority-dot ${item.priority}"></span>
         <span class="action-title">${item.title}</span>
         <span class="effort-badge">${item.effort}</span>
+        <button class="done-btn" onclick="event.stopPropagation();dismiss('${item.id}')" title="Mark done">✓ Done</button>
         <svg class="action-chevron" viewBox="0 0 14 14" fill="none">
           <path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
