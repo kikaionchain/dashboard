@@ -1,0 +1,39 @@
+{
+  "items": [
+    {
+      "priority": "blocking",
+      "title": "For Crypto REST API Decision",
+      "ask": "Add REST endpoints to web app (Option A) or build separate API service (Option B)?",
+      "impact": "Mobile development completely stalled since Feb 9. This decision unblocks same-day.",
+      "dateAdded": "2026-02-19"
+    },
+    {
+      "priority": "blocking",
+      "title": "fal.ai Balance ($10 top-up)",
+      "ask": "Top up fal.ai at <https://fal.ai/dashboard/billing>",
+      "impact": "67 post image generation is broken ($0 balance). All 67 posts are running TEXT-ONLY.",
+      "dateAdded": "2026-02-19"
+    },
+    {
+      "priority": "enabling",
+      "title": "GitHub Password Setup",
+      "ask": "Set a password at github.com \u2192 Settings \u2192 Password and Security",
+      "impact": "GitHub account is OAuth-only (no password). This blocks:",
+      "dateAdded": "2026-02-19"
+    },
+    {
+      "priority": "signal",
+      "title": "For Crypto - Review Backup Branch + Merge Decision",
+      "ask": "Review the backup branch and decide what to merge to main",
+      "impact": "",
+      "dateAdded": "2026-02-19 | **Updated:** 2026-02-20 (Kikai backed up + created PR overnight)"
+    },
+    {
+      "priority": "signal",
+      "title": "For Crypto Wallet Testing",
+      "ask": "Test buy/sell flow on forcrypto.fun with WJP's wallet (needs actual USDC on Base)",
+      "impact": "No end-to-end checkout test has been run since last audit",
+      "dateAdded": "2026-02-19"
+    }
+  ]
+}

@@ -92,6 +92,26 @@
   }
   .refresh-btn:hover { background: rgba(10,132,255,0.12); }
 
+  /* ── QUICK ACCESS ────────────────────────────── */
+  .qa-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: 8px 14px;
+    color: var(--text2); font-size: 12px; font-weight: 500;
+    text-decoration: none;
+    transition: border-color 0.15s, background 0.15s, color 0.15s;
+    letter-spacing: 0.01em;
+  }
+  .qa-link:hover { border-color: #555; color: var(--text); background: var(--surface2); }
+  .qa-link .qa-icon { font-size: 14px; }
+  .qa-link .qa-badge {
+    font-size: 9px; font-weight: 700; padding: 1px 5px; border-radius: 3px;
+    letter-spacing: 0.06em; text-transform: uppercase; margin-left: 2px;
+  }
+  .qa-badge-live { background: rgba(48,209,88,0.15); color: var(--green); }
+  .qa-badge-new { background: rgba(10,132,255,0.15); color: var(--blue); }
+  .qa-badge-draft { background: rgba(255,159,10,0.12); color: var(--amber); }
+
   /* ── BUSINESSES ──────────────────────────────── */
   .biz-stats-strip {
     display: flex; gap: 2px; padding: 0 24px; max-width: 960px; margin: 0 auto 2px;
@@ -700,6 +720,11 @@
 <!-- LAUNCH STATUS BAR -->
 <div id="launch-bar" style="max-width:960px;margin:0 auto;padding:0 24px;"></div>
 
+<!-- QUICK ACCESS -->
+<div id="quick-access" style="max-width:960px;margin:0 auto;padding:16px 24px 8px;">
+  <div style="display:flex;flex-wrap:wrap;gap:6px;" id="quick-links"></div>
+</div>
+
 <!-- MAIN -->
 <main>
 
@@ -983,6 +1008,30 @@ function updateTimestamp(updatedAt) {
   }
 }
 
+// ── QUICK ACCESS ────────────────────────────────────────────────────────────
+
+const QUICK_LINKS = [
+  { icon: '🌐', label: 'forcrypto.market', url: 'https://forcrypto.market', badge: 'live', badgeClass: 'live' },
+  { icon: '🏪', label: 'Businesses Showcase', url: 'businesses.html', badge: 'new', badgeClass: 'new' },
+  { icon: '📊', label: 'Redesign Briefs', url: 'briefs.html', badge: 'new', badgeClass: 'new' },
+  { icon: '🔧', label: 'GitHub: For Crypto', url: 'https://github.com/00onchain/for-crypto' },
+  { icon: '🚀', label: 'Vercel Dashboard', url: 'https://vercel.com' },
+  { icon: '📂', label: 'GitHub: Mission Control', url: 'https://github.com/kikaionchain/mission-control' },
+  { icon: '🎨', label: 'Brand Style Guide', url: 'brand-guide.html', badge: 'draft', badgeClass: 'draft' },
+  { icon: '💰', label: 'Payout Wallet', url: 'https://solscan.io/account/GHsLQN16CKEwSCCXXyYEhL8s6mULH4YccUXPFDAUsz4a' },
+];
+
+function renderQuickLinks() {
+  const el = document.getElementById('quick-links');
+  el.innerHTML = QUICK_LINKS.map(l => `
+    <a href="${l.url}" target="${l.url.startsWith('http') ? '_blank' : '_self'}" class="qa-link" rel="noopener">
+      <span class="qa-icon">${l.icon}</span>
+      ${l.label}
+      ${l.badge ? `<span class="qa-badge qa-badge-${l.badgeClass}">${l.badge}</span>` : ''}
+    </a>
+  `).join('');
+}
+
 // ── BUSINESSES ──────────────────────────────────────────────────────────────
 
 const BIZ_BASE = window.location.origin.includes('github.io')
@@ -1050,7 +1099,7 @@ function renderBizGrid(data) {
     const hasMetrics = b.metrics.views > 0 || b.metrics.units > 0;
 
     return `
-    <div class="biz-card fade" style="animation-delay:${i * 40}ms">
+    <a href="businesses.html#${b.id}" class="biz-card fade" style="animation-delay:${i * 40}ms;text-decoration:none;color:inherit;cursor:pointer;">
       <div class="biz-card-accent" style="background:${b.color}"></div>
       <div class="biz-card-top">
         <span class="biz-card-name" style="color:${b.color}">${b.name}</span>
@@ -1072,7 +1121,7 @@ function renderBizGrid(data) {
         <div class="biz-metric"><div class="biz-metric-val">$${b.metrics.revenue}</div><div class="biz-metric-lbl">Revenue</div></div>
         <div class="biz-metric"><div class="biz-metric-val">${b.metrics.conversion}%</div><div class="biz-metric-lbl">Conv</div></div>
       </div>` : ''}
-    </div>`;
+    </a>`;
   }).join('');
 }
 
@@ -1115,6 +1164,7 @@ async function refreshData() {
 
 async function init() {
   // Render hardcoded sections immediately
+  renderQuickLinks();
   renderLaunchBar();
   renderWjpGrid();
   renderQA();

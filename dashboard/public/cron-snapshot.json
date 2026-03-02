@@ -1,0 +1,82 @@
+[
+  {
+    "name": "morning-brief",
+    "enabled": true,
+    "schedule": "0 8 * * *",
+    "lastStatus": "ok",
+    "lastRunMs": 1771603200009,
+    "model": "sonnet-4-6"
+  },
+  {
+    "name": "memory-maintenance",
+    "enabled": true,
+    "schedule": "0 14 * * 0,3",
+    "lastStatus": "ok",
+    "lastRunMs": 1771452000012,
+    "model": "sonnet-4-6"
+  },
+  {
+    "name": "session-cleanup",
+    "enabled": true,
+    "schedule": "every 240min",
+    "lastStatus": "ok",
+    "lastRunMs": 1771606911705,
+    "model": "haiku-4-5"
+  },
+  {
+    "name": "OpenClaw Release Monitor",
+    "enabled": true,
+    "schedule": "0 9 * * 1,4",
+    "lastStatus": "error",
+    "lastRunMs": 1771570954662,
+    "model": "haiku-4-5"
+  },
+  {
+    "name": "Nightly Build Sprint",
+    "enabled": true,
+    "schedule": "0 23 * * *",
+    "lastStatus": "error",
+    "lastRunMs": 1771570800011,
+    "model": "sonnet-4-6"
+  },
+  {
+    "name": "session-state-freshener",
+    "enabled": true,
+    "schedule": "every 360min",
+    "lastStatus": "ok",
+    "lastRunMs": 1771601025264,
+    "model": "haiku-4-5"
+  },
+  {
+    "name": "Task Resumption Check",
+    "enabled": true,
+    "schedule": "every 240min",
+    "lastStatus": "error",
+    "lastRunMs": 1771615425279,
+    "model": "sonnet-4-6"
+  },
+  {
+    "name": "Monthly 30-Day Review",
+    "enabled": true,
+    "schedule": "0 6 1 * *",
+    "lastStatus": null,
+    "lastRunMs": null,
+    "model": "sonnet-4-6"
+  },
+  {
+    "name": "Mission Control Data Refresh",
+    "enabled": true,
+    "schedule": "every 120min",
+    "lastStatus": "ok",
+    "lastRunMs": 1771611902464,
+    "model": "haiku-4-5"
+  },
+  {
+    "name": "intel-refresh",
+    "enabled": true,
+    "schedule": "0 7 * * *",
+    "lastStatus": null,
+    "lastRunMs": null,
+    "model": "haiku-4-5"
+  }
+]
