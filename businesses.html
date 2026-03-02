@@ -63,6 +63,10 @@ body { background: #0a0a0a; font-family: -apple-system, sans-serif; }
   opacity: 0.15;
   line-height: 1;
 }
+/* Hero images */
+.biz-hero { width: 100%; height: auto; display: block; }
+.biz-hero-cover { width: 100%; height: 280px; object-fit: cover; display: block; }
+.biz-hero-contain { max-width: 100%; max-height: 320px; object-fit: contain; display: block; margin: 0 auto; }
 .vessel-num { font-family: 'Noto Serif JP', serif; font-size: 10px; color: #c4b9a8; letter-spacing: 0.4em; margin-bottom: 48px; }
 .vessel-name { font-family: 'Noto Serif JP', serif; font-size: 56px; font-weight: 200; color: #1a1814; letter-spacing: 0.2em; margin-bottom: 24px; }
 .vessel-tag { font-family: 'Noto Serif JP', serif; font-size: 14px; color: #999; line-height: 2.2; letter-spacing: 0.06em; max-width: 380px; }
@@ -432,8 +436,8 @@ body { background: #0a0a0a; font-family: -apple-system, sans-serif; }
         <div class="vessel-cat">Notion Template · Launch System</div>
       </div>
     </div>
-    <div class="vessel-right">
-      <div class="vessel-seal">器</div>
+    <div class="vessel-right" style="flex:0 0 40%;overflow:hidden;">
+      <img src="img/businesses/vessel.jpg" class="biz-hero" style="width:100%;height:100%;object-fit:cover;opacity:0.9;" alt="VESSEL">
     </div>
   </div>
 
@@ -442,6 +446,7 @@ body { background: #0a0a0a; font-family: -apple-system, sans-serif; }
     <div class="draft-sidebar">CONTENT TEMPLATE PACK · 2026</div>
     <div class="draft-body">
       <div class="draft-name">DRAFT.</div>
+      <img src="img/businesses/draft.jpg" style="width:100%;height:200px;object-fit:cover;border:3px solid #0a0a0a;margin:16px 0;" alt="DRAFT">
       <div class="draft-desc">Stop writing from scratch. These are the templates your crypto team actually needs — formatted, battle-tested, ready to paste. No aesthetic bullshit. Just content that ships.</div>
       <div class="draft-footer">
         <div class="draft-price">$39</div>
@@ -458,6 +463,7 @@ body { background: #0a0a0a; font-family: -apple-system, sans-serif; }
     <div class="stack-stat">631</div>
     <div class="stack-stat-label">Prompts · Organized by Function</div>
     <div class="stack-desc">Tested for output quality. Built on the same logic as a good index, readable in any direction. A reference library, not a listicle.</div>
+    <img src="img/businesses/stack.jpg" style="width:100%;height:180px;object-fit:cover;margin:24px 0 0;" alt="STACK">
     <div class="stack-bottom">
       <div class="stack-price">$49</div>
       <div class="stack-cat">AI Prompt Library</div>
@@ -469,6 +475,7 @@ body { background: #0a0a0a; font-family: -apple-system, sans-serif; }
     <div class="blueprint-blob1"></div>
     <div class="blueprint-blob2"></div>
     <div class="blueprint-ghost">BLUEPRINT BLUEPRINT</div>
+    <img src="img/businesses/blueprint.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0.3;z-index:0;" alt="BLUEPRINT">
     <div class="blueprint-content">
       <div class="blueprint-num">_04 // IDENTITY_SYS</div>
       <div class="blueprint-name">
@@ -487,6 +494,7 @@ body { background: #0a0a0a; font-family: -apple-system, sans-serif; }
   <div class="ledger-section" id="ledger">
     <div class="ledger-cat">Portfolio Tracker</div>
     <div class="ledger-name">LEDGER</div>
+    <img src="img/businesses/ledger.jpg" style="width:240px;height:auto;margin:24px auto;opacity:0.9;" alt="LEDGER">
     <div class="ledger-line"></div>
     <div class="ledger-desc">Your portfolio deserves the same attention you give your positions. Every buy, sell, and swap logged with precision and restraint — nothing decorative, nothing superfluous.</div>
     <div class="ledger-price">$29</div>
@@ -494,7 +502,8 @@ body { background: #0a0a0a; font-family: -apple-system, sans-serif; }
 
   <!-- 6. FLOW — Cottagecore -->
   <div class="flow-section" id="flow">
-    <div class="flow-left">
+    <div class="flow-left" style="position:relative;overflow:hidden;">
+      <img src="img/businesses/flow.jpg" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0.2;" alt="FLOW">
       <div class="flow-ornament">❧</div>
       <div class="flow-name">Flow</div>
       <div class="flow-price">$47</div>
@@ -513,6 +522,7 @@ body { background: #0a0a0a; font-family: -apple-system, sans-serif; }
       <div class="pulse-name">PULSE</div>
       <div class="pulse-stat">231</div>
       <div class="pulse-stat-label">Viral Thread Templates</div>
+      <img src="img/businesses/pulse.jpg" style="width:100%;height:160px;object-fit:cover;margin-top:20px;border-radius:4px;opacity:0.8;" alt="PULSE">
     </div>
     <div class="pulse-bottom">
       <div class="pulse-desc">Drop them in, change the numbers, post. What the best accounts are running — turned into a system you can plug straight in.</div>
@@ -527,6 +537,7 @@ body { background: #0a0a0a; font-family: -apple-system, sans-serif; }
       <div class="forge-circle"></div>
       <div class="forge-square"></div>
       <div class="forge-triangle"></div>
+      <img src="img/businesses/forge.jpg" style="width:140px;height:140px;object-fit:cover;margin-top:12px;" alt="FORGE">
     </div>
     <div class="forge-body">
       <div class="forge-name">FOR<span class="forge-slash">/</span>GE</div>
@@ -546,6 +557,7 @@ body { background: #0a0a0a; font-family: -apple-system, sans-serif; }
       <div class="signal-name">Signal</div>
       <div class="signal-dek">Narrative Intelligence</div>
       <div class="signal-price">$49</div>
+      <img src="img/businesses/signal.jpg" style="width:100%;height:140px;object-fit:cover;margin-top:16px;opacity:0.85;" alt="SIGNAL">
     </div>
     <div class="signal-col">
       <div class="signal-desc">Every project has a story. Most of them tell it too late, too vague, or to the wrong room. 12 frameworks, 40 positioning templates, a launch arc planner.</div>
@@ -559,6 +571,7 @@ body { background: #0a0a0a; font-family: -apple-system, sans-serif; }
     <div class="mint-corner-br">❧</div>
     <div class="mint-ornament">✦ ◆ ✦ ◆ ✦</div>
     <div class="mint-name">Mint</div>
+    <img src="img/businesses/mint.jpg" style="width:320px;height:auto;margin:24px auto;display:block;border:1px solid #2a2018;opacity:0.85;" alt="MINT">
     <div class="mint-rule"></div>
     <div class="mint-desc">Your digital product business is a creative act, not a side hustle. Revenue tracking, launch sequencing, 90-day sprint planning — one Notion system that thinks like a founder and feels like a studio.</div>
     <div class="mint-bottom">
