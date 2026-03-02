@@ -5,450 +5,569 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>10 Businesses — WJP</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400&family=Space+Grotesk:wght@700;900&family=Courier+Prime&family=Playfair+Display:ital,wght@0,700;1,400&family=Lora&family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Futura:wght@700&family=Inter:wght@400;600&family=Spectral:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400&family=Space+Grotesk:wght@400;700;900&family=Courier+Prime&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Spectral:ital,wght@0,400;1,400&family=Inter:wght@300;400;600;700;900&family=VT323&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: #0e0e0e; font-family: -apple-system, sans-serif; }
+body { background: #0a0a0a; font-family: -apple-system, sans-serif; }
 
-nav {
+.page-nav {
   position: sticky; top: 0; z-index: 100;
-  background: rgba(14,14,14,0.95); backdrop-filter: blur(12px);
-  border-bottom: 1px solid #222;
-  padding: 0 32px; height: 52px;
+  background: rgba(10,10,10,0.92); backdrop-filter: blur(12px);
+  border-bottom: 1px solid #1a1a1a;
+  padding: 0 32px; height: 48px;
   display: flex; align-items: center; justify-content: space-between;
 }
-.nav-logo { color: #fff; font-size: 13px; font-weight: 600; letter-spacing: 0.05em; }
-.nav-sub { color: #555; font-size: 12px; }
+.page-nav span { color: #555; font-size: 12px; letter-spacing: 0.04em; }
+.page-nav strong { color: #aaa; font-size: 13px; font-weight: 600; }
 
-.page-header {
-  padding: 64px 32px 48px;
-  border-bottom: 1px solid #1a1a1a;
-  max-width: 1200px;
+/* Each business is a completely different page/section — no shared grid */
+.showcase {
+  max-width: 1100px;
   margin: 0 auto;
-}
-.page-header h1 { color: #fff; font-size: clamp(28px, 4vw, 48px); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 10px; }
-.page-header p { color: #555; font-size: 14px; max-width: 520px; line-height: 1.6; }
-.count-badge { display: inline-block; background: #1a1a1a; color: #888; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 20px; margin-bottom: 20px; }
-
-.grid {
-  max-width: 1200px; margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 2px;
-  padding: 2px;
+  padding: 24px 20px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
 }
 
-/* Each card is a completely different universe */
-
-/* 1. VESSEL — Japanese Minimalism */
-.card-vessel {
+/* ═══════════════════════════════════════════════════
+   1. VESSEL — Japanese Minimalism
+   Full-width horizontal, enormous whitespace, text left-aligned
+   ═══════════════════════════════════════════════════ */
+.vessel-section {
   background: #faf8f3;
-  padding: 48px 40px;
-  min-height: 420px;
-  display: flex; flex-direction: column; justify-content: space-between;
+  min-height: 500px;
+  display: flex;
+  align-items: stretch;
   position: relative;
-  overflow: hidden;
 }
-.card-vessel::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: #c0392b;
+.vessel-left {
+  flex: 0 0 65%;
+  padding: 80px 60px 80px 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-.card-vessel .biz-num { font-family: 'Noto Serif JP', serif; font-size: 11px; color: #bbb; letter-spacing: 0.2em; margin-bottom: 40px; }
-.card-vessel .biz-name { font-family: 'Noto Serif JP', serif; font-size: 36px; font-weight: 300; color: #1a1814; letter-spacing: 0.15em; margin-bottom: 16px; }
-.card-vessel .biz-tagline { font-family: 'Noto Serif JP', serif; font-size: 13px; color: #888; line-height: 2; letter-spacing: 0.05em; font-style: italic; }
-.card-vessel .biz-price { font-family: 'Noto Serif JP', serif; font-size: 13px; color: #c0392b; letter-spacing: 0.1em; }
-.card-vessel .biz-category { font-size: 10px; color: #bbb; letter-spacing: 0.2em; text-transform: uppercase; }
-.card-vessel .biz-visual {
-  position: absolute; right: 32px; top: 50%; transform: translateY(-50%);
-  width: 80px; height: 80px;
-  border: 1px solid #e0dbd0;
-  display: flex; align-items: center; justify-content: center;
+.vessel-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid #e8e2d6;
 }
-.card-vessel .biz-visual span { font-family: 'Noto Serif JP', serif; font-size: 28px; color: #c0392b; opacity: 0.6; }
+.vessel-seal {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 120px;
+  font-weight: 200;
+  color: #c0392b;
+  opacity: 0.15;
+  line-height: 1;
+}
+.vessel-num { font-family: 'Noto Serif JP', serif; font-size: 10px; color: #c4b9a8; letter-spacing: 0.4em; margin-bottom: 48px; }
+.vessel-name { font-family: 'Noto Serif JP', serif; font-size: 56px; font-weight: 200; color: #1a1814; letter-spacing: 0.2em; margin-bottom: 24px; }
+.vessel-tag { font-family: 'Noto Serif JP', serif; font-size: 14px; color: #999; line-height: 2.2; letter-spacing: 0.06em; max-width: 380px; }
+.vessel-bottom { margin-top: 48px; display: flex; gap: 40px; align-items: baseline; }
+.vessel-price { font-family: 'Noto Serif JP', serif; font-size: 13px; color: #c0392b; letter-spacing: 0.15em; }
+.vessel-cat { font-family: 'Noto Serif JP', serif; font-size: 10px; color: #c4b9a8; letter-spacing: 0.25em; text-transform: uppercase; }
 
-/* 2. DRAFT — Neo-Brutalism */
-.card-draft {
+/* ═══════════════════════════════════════════════════
+   2. DRAFT — Neo-Brutalism
+   Asymmetric, rotated text, aggressive stacking
+   ═══════════════════════════════════════════════════ */
+.draft-section {
   background: #f5e642;
-  padding: 32px;
-  min-height: 420px;
-  display: flex; flex-direction: column; justify-content: space-between;
+  border: 4px solid #0a0a0a;
+  padding: 0;
   position: relative;
-  overflow: hidden;
-  border: 3px solid #0a0a0a;
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  min-height: 320px;
 }
-.card-draft .biz-num { font-family: 'Courier Prime', monospace; font-size: 11px; color: #0a0a0a; opacity: 0.4; }
-.card-draft .biz-name { font-family: 'Space Grotesk', sans-serif; font-size: 52px; font-weight: 900; color: #0a0a0a; line-height: 0.9; letter-spacing: -0.04em; margin: 16px 0; }
-.card-draft .biz-tagline { font-family: 'Courier Prime', monospace; font-size: 12px; color: #0a0a0a; line-height: 1.7; border-left: 3px solid #0a0a0a; padding-left: 12px; }
-.card-draft .biz-price { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 900; color: #0a0a0a; }
-.card-draft .biz-category { font-family: 'Courier Prime', monospace; font-size: 10px; color: #0a0a0a; opacity: 0.5; text-transform: uppercase; letter-spacing: 0.15em; }
-.card-draft .biz-stripe { position: absolute; bottom: 0; left: 0; right: 0; height: 8px; background: repeating-linear-gradient(90deg, #0a0a0a 0, #0a0a0a 20px, #f5e642 20px, #f5e642 40px); }
+.draft-sidebar {
+  background: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  color: #f5e642;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  padding: 20px 0;
+}
+.draft-body {
+  padding: 40px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.draft-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 96px;
+  font-weight: 900;
+  color: #0a0a0a;
+  line-height: 0.85;
+  letter-spacing: -0.06em;
+}
+.draft-desc {
+  font-family: 'Courier Prime', monospace;
+  font-size: 13px;
+  color: #0a0a0a;
+  line-height: 1.6;
+  max-width: 500px;
+  border-left: 4px solid #0a0a0a;
+  padding-left: 16px;
+  margin: 24px 0;
+}
+.draft-footer {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  border-top: 4px solid #0a0a0a; padding-top: 16px; margin-top: 12px;
+}
+.draft-price { font-family: 'Space Grotesk', sans-serif; font-size: 32px; font-weight: 900; color: #0a0a0a; }
+.draft-meta { font-family: 'Courier Prime', monospace; font-size: 10px; color: #0a0a0a; opacity: 0.5; text-align: right; line-height: 1.8; }
 
-/* 3. STACK — Swiss Typography */
-.card-stack {
+/* ═══════════════════════════════════════════════════
+   3. STACK — Swiss Typographic
+   Rigid grid, type-only, centered column
+   ═══════════════════════════════════════════════════ */
+.stack-section {
   background: #f7f7f7;
-  padding: 40px;
-  min-height: 420px;
-  display: flex; flex-direction: column; justify-content: space-between;
-  position: relative;
-  overflow: hidden;
-  border-left: 8px solid #e8180c;
+  max-width: 640px;
+  margin: 0 auto;
+  border-left: 6px solid #e8180c;
+  padding: 56px 48px;
+  text-align: left;
 }
-.card-stack .biz-num { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600; color: #999; letter-spacing: 0.2em; text-transform: uppercase; }
-.card-stack .biz-name { font-family: 'Inter', sans-serif; font-size: 48px; font-weight: 700; color: #1a1a1a; letter-spacing: -0.03em; line-height: 1; margin: 20px 0 8px; }
-.card-stack .biz-rule { height: 2px; background: #e8180c; margin: 16px 0; width: 100%; }
-.card-stack .biz-tagline { font-family: 'Inter', sans-serif; font-size: 12px; color: #555; line-height: 1.7; letter-spacing: 0.01em; }
-.card-stack .biz-price { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; color: #e8180c; letter-spacing: 0.05em; }
-.card-stack .biz-category { font-family: 'Inter', sans-serif; font-size: 9px; color: #bbb; letter-spacing: 0.25em; text-transform: uppercase; }
-.card-stack .biz-grid { position: absolute; top: 40px; right: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
-.card-stack .biz-grid span { width: 12px; height: 12px; display: block; }
-.card-stack .biz-grid span:nth-child(odd) { background: #e8180c; }
-.card-stack .biz-grid span:nth-child(even) { background: #e8e8e8; }
+.stack-num { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600; color: #ccc; letter-spacing: 0.3em; text-transform: uppercase; }
+.stack-rule { height: 2px; background: #e8180c; margin: 20px 0; }
+.stack-name { font-family: 'Inter', sans-serif; font-size: 64px; font-weight: 900; color: #1a1a1a; letter-spacing: -0.04em; line-height: 1; }
+.stack-stat { font-family: 'Inter', sans-serif; font-size: 72px; font-weight: 300; color: #e8180c; letter-spacing: -0.03em; margin-top: 16px; }
+.stack-stat-label { font-family: 'Inter', sans-serif; font-size: 10px; color: #999; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 20px; }
+.stack-desc { font-family: 'Inter', sans-serif; font-size: 14px; color: #555; line-height: 1.8; }
+.stack-bottom { margin-top: 32px; display: flex; justify-content: space-between; align-items: baseline; }
+.stack-price { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 700; color: #e8180c; }
+.stack-cat { font-family: 'Inter', sans-serif; font-size: 9px; color: #bbb; letter-spacing: 0.3em; text-transform: uppercase; }
 
-/* 4. BLUEPRINT — 90s Rave */
-.card-blueprint {
+/* ═══════════════════════════════════════════════════
+   4. BLUEPRINT — 90s Rave
+   Dark, layered text, blurred color blobs, chaotic
+   ═══════════════════════════════════════════════════ */
+.blueprint-section {
   background: #050505;
-  padding: 36px;
-  min-height: 420px;
-  display: flex; flex-direction: column; justify-content: space-between;
+  min-height: 400px;
+  padding: 60px;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
-.card-blueprint::before {
-  content: 'BLUEPRINT';
-  position: absolute; top: -10px; left: -5px;
-  font-family: 'Inter', monospace; font-size: 80px; font-weight: 900;
-  color: #39ff14; opacity: 0.04; letter-spacing: -0.05em; white-space: nowrap;
+.blueprint-blob1 {
+  position: absolute; top: -40px; right: 60px;
+  width: 250px; height: 250px; border-radius: 50%;
+  background: radial-gradient(circle, #ff006e 0%, transparent 70%);
+  opacity: 0.25; filter: blur(40px);
 }
-.card-blueprint .biz-num { font-family: 'Courier Prime', monospace; font-size: 10px; color: #39ff14; opacity: 0.5; letter-spacing: 0.2em; }
-.card-blueprint .biz-name { font-family: 'Inter', sans-serif; font-size: 40px; font-weight: 900; letter-spacing: -0.02em; line-height: 0.95; margin: 12px 0; }
-.card-blueprint .biz-name span { display: block; }
-.card-blueprint .biz-name span:nth-child(1) { color: #39ff14; }
-.card-blueprint .biz-name span:nth-child(2) { color: #ff006e; }
-.card-blueprint .biz-tagline { font-family: 'Courier Prime', monospace; font-size: 11px; color: #888; line-height: 1.8; }
-.card-blueprint .biz-price { font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 900; color: #00d4ff; }
-.card-blueprint .biz-category { font-family: 'Courier Prime', monospace; font-size: 9px; color: #39ff14; opacity: 0.5; text-transform: uppercase; letter-spacing: 0.2em; }
-.card-blueprint .biz-dot { position: absolute; top: 36px; right: 36px; width: 48px; height: 48px; border-radius: 50%; background: radial-gradient(circle, #ff006e, #39ff14); opacity: 0.7; filter: blur(2px); }
+.blueprint-blob2 {
+  position: absolute; bottom: -30px; left: 100px;
+  width: 300px; height: 300px; border-radius: 50%;
+  background: radial-gradient(circle, #39ff14 0%, transparent 70%);
+  opacity: 0.2; filter: blur(50px);
+}
+.blueprint-ghost {
+  position: absolute; top: 40px; left: 48px;
+  font-family: 'VT323', monospace;
+  font-size: 140px; color: #39ff14; opacity: 0.04;
+  letter-spacing: -0.05em; white-space: nowrap;
+}
+.blueprint-content { position: relative; z-index: 1; }
+.blueprint-num { font-family: 'VT323', monospace; font-size: 13px; color: #39ff14; opacity: 0.5; letter-spacing: 0.3em; }
+.blueprint-name { margin-top: 12px; }
+.blueprint-name span { display: block; font-family: 'Inter', sans-serif; font-weight: 900; letter-spacing: -0.03em; }
+.blueprint-name span:nth-child(1) { font-size: 72px; color: #39ff14; line-height: 0.9; }
+.blueprint-name span:nth-child(2) { font-size: 72px; color: #ff006e; line-height: 0.9; }
+.blueprint-desc { font-family: 'VT323', monospace; font-size: 16px; color: #888; line-height: 1.6; margin-top: 20px; max-width: 500px; }
+.blueprint-row { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 24px; }
+.blueprint-price { font-family: 'Inter', sans-serif; font-size: 28px; font-weight: 900; color: #00d4ff; }
+.blueprint-cat { font-family: 'VT323', monospace; font-size: 13px; color: #39ff14; opacity: 0.4; }
 
-/* 5. LEDGER — Luxury Fashion */
-.card-ledger {
+/* ═══════════════════════════════════════════════════
+   5. LEDGER — Luxury Fashion
+   Tall portrait, centered, lots of negative space
+   ═══════════════════════════════════════════════════ */
+.ledger-section {
   background: #f3efe8;
-  padding: 48px 44px;
-  min-height: 420px;
-  display: flex; flex-direction: column; justify-content: space-between;
-  position: relative;
-}
-.card-ledger .biz-num { font-family: 'Cormorant Garamond', serif; font-size: 10px; color: #bbb; letter-spacing: 0.4em; text-transform: uppercase; }
-.card-ledger .biz-name { font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 300; color: #111; letter-spacing: 0.25em; margin: 24px 0 8px; text-transform: uppercase; }
-.card-ledger .biz-rule { height: 1px; background: #c9a84c; width: 40px; margin: 20px 0; }
-.card-ledger .biz-tagline { font-family: 'Cormorant Garamond', serif; font-size: 14px; color: #777; line-height: 1.9; font-style: italic; }
-.card-ledger .biz-price { font-family: 'Cormorant Garamond', serif; font-size: 14px; color: #c9a84c; letter-spacing: 0.2em; text-transform: uppercase; }
-.card-ledger .biz-category { font-family: 'Cormorant Garamond', serif; font-size: 9px; color: #ccc; letter-spacing: 0.3em; text-transform: uppercase; }
-
-/* 6. FLOW — Cottagecore */
-.card-flow {
-  background: #f7f3eb;
-  padding: 44px 40px;
-  min-height: 420px;
-  display: flex; flex-direction: column; justify-content: space-between;
-  position: relative;
-  overflow: hidden;
-}
-.card-flow::after {
-  content: '❧';
-  position: absolute; bottom: 32px; right: 32px;
-  font-size: 48px; color: #8fad91; opacity: 0.3;
-}
-.card-flow .biz-num { font-family: 'Lora', serif; font-size: 10px; color: #bbb; letter-spacing: 0.15em; font-style: italic; }
-.card-flow .biz-name { font-family: 'Playfair Display', serif; font-size: 42px; font-style: italic; color: #4a3728; letter-spacing: -0.01em; margin: 16px 0 8px; }
-.card-flow .biz-tagline { font-family: 'Lora', serif; font-size: 13px; color: #8a7060; line-height: 1.9; }
-.card-flow .biz-price { font-family: 'Playfair Display', serif; font-size: 15px; color: #c07850; font-style: italic; }
-.card-flow .biz-category { font-family: 'Lora', serif; font-size: 10px; color: #c0a898; letter-spacing: 0.1em; text-transform: uppercase; }
-.card-flow .biz-ornament { height: 1px; background: linear-gradient(90deg, transparent, #c07850, transparent); margin: 18px 0; }
-
-/* 7. PULSE — Y2K Retrofuturism */
-.card-pulse {
-  background: #0a0e1a;
-  padding: 40px 36px;
-  min-height: 420px;
-  display: flex; flex-direction: column; justify-content: space-between;
-  position: relative;
-  overflow: hidden;
-}
-.card-pulse::before {
-  content: '';
-  position: absolute; top: -60px; right: -60px;
-  width: 200px; height: 200px;
-  border-radius: 50%;
-  background: conic-gradient(from 0deg, #ff6b9d, #c3f0ff, #4f8ef7, #ff6b9d);
-  opacity: 0.15; filter: blur(20px);
-}
-.card-pulse .biz-num { font-family: 'Inter', sans-serif; font-size: 10px; color: #4f8ef7; letter-spacing: 0.2em; opacity: 0.6; }
-.card-pulse .biz-name { font-size: 52px; font-weight: 900; font-family: 'Inter', sans-serif; letter-spacing: -0.04em; line-height: 0.9; margin: 16px 0; background: linear-gradient(135deg, #d4d4d8, #4f8ef7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.card-pulse .biz-tagline { font-family: 'Inter', sans-serif; font-size: 12px; color: #8899bb; line-height: 1.7; }
-.card-pulse .biz-price { font-family: 'Inter', sans-serif; font-size: 22px; font-weight: 700; background: linear-gradient(90deg, #ff6b9d, #c3f0ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.card-pulse .biz-category { font-family: 'Inter', sans-serif; font-size: 9px; color: #4f8ef7; letter-spacing: 0.25em; text-transform: uppercase; }
-.card-pulse .biz-scan { position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, #4f8ef7, transparent); }
-
-/* 8. FORGE — Bauhaus */
-.card-forge {
-  background: #fafafa;
-  padding: 40px;
-  min-height: 420px;
-  display: flex; flex-direction: column; justify-content: space-between;
-  position: relative;
-  overflow: hidden;
-}
-.card-forge .biz-geo { position: absolute; top: 32px; right: 32px; }
-.card-forge .biz-geo .circle { width: 56px; height: 56px; border-radius: 50%; background: #d62828; }
-.card-forge .biz-geo .square { width: 40px; height: 40px; background: #023e8a; margin-top: 6px; margin-left: 16px; }
-.card-forge .biz-num { font-family: 'Inter', sans-serif; font-size: 10px; color: #bbb; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 600; }
-.card-forge .biz-name { font-family: 'Inter', sans-serif; font-size: 48px; font-weight: 900; color: #0e0e0e; letter-spacing: -0.03em; line-height: 1; margin: 20px 0 4px; }
-.card-forge .biz-slash { color: #d62828; }
-.card-forge .biz-rule { height: 4px; background: #ffd60a; width: 60px; margin: 16px 0; }
-.card-forge .biz-tagline { font-family: 'Inter', sans-serif; font-size: 12px; color: #444; line-height: 1.7; font-weight: 400; }
-.card-forge .biz-price { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700; color: #d62828; letter-spacing: 0.05em; }
-.card-forge .biz-category { font-family: 'Inter', sans-serif; font-size: 9px; color: #bbb; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 600; }
-
-/* 9. SIGNAL — Editorial Magazine */
-.card-signal {
-  background: #f9f6f0;
-  padding: 48px 44px;
-  min-height: 420px;
-  display: flex; flex-direction: column; justify-content: space-between;
-  position: relative;
-  border-top: 4px solid #1b2a4a;
-}
-.card-signal .biz-num { font-family: 'Inter', sans-serif; font-size: 9px; color: #bbb; letter-spacing: 0.35em; text-transform: uppercase; font-weight: 600; }
-.card-signal .biz-name { font-family: Georgia, 'Times New Roman', serif; font-size: 42px; font-weight: 400; color: #1b2a4a; letter-spacing: -0.01em; margin: 20px 0 4px; font-style: italic; }
-.card-signal .biz-dek { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600; color: #9e4a2a; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; }
-.card-signal .biz-tagline { font-family: Georgia, serif; font-size: 14px; color: #5a5040; line-height: 1.8; }
-.card-signal .biz-price { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: #1b2a4a; letter-spacing: 0.05em; }
-.card-signal .biz-category { font-family: 'Inter', sans-serif; font-size: 9px; color: #bbb; letter-spacing: 0.3em; text-transform: uppercase; }
-.card-signal .biz-rule { height: 1px; background: #d8d0c0; margin: 20px 0; }
-
-/* 10. MINT — Maximalist Jewel */
-.card-mint {
-  background: #1c1510;
-  padding: 44px 40px;
-  min-height: 420px;
-  display: flex; flex-direction: column; justify-content: space-between;
-  position: relative;
-  overflow: hidden;
-  border: 1px solid #2a2018;
-}
-.card-mint::before {
-  content: '✦';
-  position: absolute; top: 28px; right: 28px;
-  font-size: 24px; color: #e8930a; opacity: 0.6;
-}
-.card-mint::after {
-  content: '❧';
-  position: absolute; bottom: 28px; right: 28px;
-  font-size: 20px; color: #1a6b4a; opacity: 0.5;
-}
-.card-mint .biz-num { font-family: 'Spectral', serif; font-size: 10px; color: #e8930a; opacity: 0.5; letter-spacing: 0.2em; font-style: italic; }
-.card-mint .biz-name { font-family: 'Spectral', serif; font-size: 48px; font-weight: 400; color: #e8930a; letter-spacing: 0.05em; margin: 16px 0 4px; font-style: italic; }
-.card-mint .biz-ornament { font-size: 11px; color: #1a6b4a; letter-spacing: 0.3em; margin-bottom: 16px; }
-.card-mint .biz-tagline { font-family: 'Spectral', serif; font-size: 13px; color: #9a8878; line-height: 1.9; }
-.card-mint .biz-price { font-family: 'Spectral', serif; font-size: 16px; color: #1a6b4a; font-style: italic; }
-.card-mint .biz-category { font-family: 'Spectral', serif; font-size: 10px; color: #555; letter-spacing: 0.15em; text-transform: uppercase; font-style: italic; }
-
-.new-tag {
-  display: inline-block;
-  background: #e8930a; color: #1c1510;
-  font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
-  padding: 2px 7px; border-radius: 2px;
-  text-transform: uppercase; vertical-align: middle;
-  margin-left: 8px;
-}
-.new-tag-draft {
-  display: inline-block;
-  background: #0a0a0a; color: #f5e642;
-  font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
-  padding: 2px 7px;
-  text-transform: uppercase; vertical-align: middle;
-  margin-left: 8px;
-}
-
-footer {
-  border-top: 1px solid #1a1a1a;
-  padding: 32px;
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 580px;
+  padding: 72px 56px;
   text-align: center;
-  color: #333;
-  font-size: 11px;
-  letter-spacing: 0.05em;
-  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.ledger-cat { font-family: 'Cormorant Garamond', serif; font-size: 10px; color: #c9a84c; letter-spacing: 0.5em; text-transform: uppercase; }
+.ledger-name { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 300; color: #111; letter-spacing: 0.35em; text-transform: uppercase; margin: 40px 0 24px; }
+.ledger-line { width: 1px; height: 48px; background: #c9a84c; margin: 0 auto; }
+.ledger-desc { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; color: #888; line-height: 2; max-width: 300px; margin-top: 32px; }
+.ledger-price { font-family: 'Cormorant Garamond', serif; font-size: 14px; color: #c9a84c; letter-spacing: 0.3em; margin-top: 40px; text-transform: uppercase; }
+
+/* ═══════════════════════════════════════════════════
+   6. FLOW — Cottagecore
+   Warm, wide, off-center text, organic ornaments
+   ═══════════════════════════════════════════════════ */
+.flow-section {
+  background: #f7f3eb;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 380px;
+  position: relative;
+}
+.flow-left {
+  padding: 56px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 1px solid #e4ddd0;
+}
+.flow-right {
+  padding: 56px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.flow-ornament { font-size: 48px; color: #8fad91; opacity: 0.3; margin-bottom: 24px; }
+.flow-name { font-family: 'Playfair Display', serif; font-size: 64px; font-style: italic; color: #4a3728; letter-spacing: -0.02em; }
+.flow-price { font-family: 'Playfair Display', serif; font-size: 18px; color: #c07850; font-style: italic; margin-top: 8px; }
+.flow-desc { font-family: 'Lora', serif; font-size: 14px; color: #8a7060; line-height: 2; }
+.flow-cat { font-family: 'Lora', serif; font-size: 10px; color: #c4b090; letter-spacing: 0.15em; text-transform: uppercase; margin-top: 24px; }
+.flow-rule { width: 60px; height: 1px; background: linear-gradient(90deg, #c07850, transparent); margin-top: 20px; }
+
+/* ═══════════════════════════════════════════════════
+   7. PULSE — Y2K Retrofuturism
+   Stacked rows, chrome gradient text, scan lines
+   ═══════════════════════════════════════════════════ */
+.pulse-section {
+  background: #0a0e1a;
+  display: flex;
+  flex-direction: column;
+  min-height: 360px;
+  position: relative;
+  overflow: hidden;
+}
+.pulse-holo {
+  position: absolute; top: -50px; right: -50px;
+  width: 280px; height: 280px; border-radius: 50%;
+  background: conic-gradient(from 45deg, #ff6b9d, #c3f0ff, #4f8ef7, #ff6b9d);
+  opacity: 0.08; filter: blur(30px);
+}
+.pulse-top {
+  padding: 48px 56px 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative; z-index: 1;
+}
+.pulse-name {
+  font-family: 'Inter', sans-serif; font-size: 88px; font-weight: 900;
+  letter-spacing: -0.06em; line-height: 0.85;
+  background: linear-gradient(135deg, #d4d4d8 30%, #4f8ef7 70%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.pulse-stat { font-family: 'Inter', sans-serif; font-size: 48px; font-weight: 300; color: #4f8ef7; letter-spacing: -0.03em; margin-top: 8px; }
+.pulse-stat-label { font-family: 'Inter', sans-serif; font-size: 10px; color: #4f8ef7; opacity: 0.5; letter-spacing: 0.2em; text-transform: uppercase; }
+.pulse-bottom {
+  border-top: 1px solid rgba(79,142,247,0.15);
+  padding: 20px 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative; z-index: 1;
+}
+.pulse-desc { font-family: 'Inter', sans-serif; font-size: 13px; color: #6688aa; max-width: 400px; line-height: 1.6; }
+.pulse-price {
+  font-family: 'Inter', sans-serif; font-size: 24px; font-weight: 700;
+  background: linear-gradient(90deg, #ff6b9d, #c3f0ff);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.pulse-scan { position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, #4f8ef7, transparent); }
+
+/* ═══════════════════════════════════════════════════
+   8. FORGE — Bauhaus
+   Geometric blocks, primary colors, poster layout
+   ═══════════════════════════════════════════════════ */
+.forge-section {
+  background: #fafafa;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  min-height: 360px;
+}
+.forge-geo {
+  background: #fafafa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 40px;
+}
+.forge-circle { width: 100px; height: 100px; border-radius: 50%; background: #d62828; }
+.forge-square { width: 72px; height: 72px; background: #023e8a; }
+.forge-triangle { width: 0; height: 0; border-left: 40px solid transparent; border-right: 40px solid transparent; border-bottom: 70px solid #ffd60a; }
+.forge-body {
+  border-left: 6px solid #d62828;
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.forge-name { font-family: 'Inter', sans-serif; font-size: 56px; font-weight: 900; color: #0e0e0e; letter-spacing: -0.04em; line-height: 1; }
+.forge-slash { color: #d62828; }
+.forge-rule { height: 4px; background: #ffd60a; width: 72px; margin: 20px 0; }
+.forge-desc { font-family: 'Inter', sans-serif; font-size: 13px; color: #555; line-height: 1.8; max-width: 400px; }
+.forge-row { margin-top: 24px; display: flex; gap: 32px; align-items: baseline; }
+.forge-price { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; color: #d62828; }
+.forge-cat { font-family: 'Inter', sans-serif; font-size: 9px; color: #bbb; letter-spacing: 0.3em; text-transform: uppercase; }
+
+/* ═══════════════════════════════════════════════════
+   9. SIGNAL — Editorial Magazine
+   Column layout, narrow, dense typographic
+   ═══════════════════════════════════════════════════ */
+.signal-section {
+  background: #f9f6f0;
+  max-width: 720px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 5px solid #1b2a4a;
+  min-height: 400px;
+}
+.signal-col {
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.signal-col:first-child { border-right: 1px solid #d8d0c0; }
+.signal-folio { font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 600; color: #bbb; letter-spacing: 0.4em; text-transform: uppercase; }
+.signal-name { font-family: Georgia, serif; font-size: 56px; font-weight: 400; font-style: italic; color: #1b2a4a; line-height: 1.05; margin-top: 16px; }
+.signal-dek { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600; color: #9e4a2a; letter-spacing: 0.18em; text-transform: uppercase; margin-top: 16px; }
+.signal-price { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: #1b2a4a; margin-top: 24px; }
+.signal-desc { font-family: Georgia, serif; font-size: 15px; color: #5a5040; line-height: 1.9; }
+.signal-pull { font-family: Georgia, serif; font-size: 22px; font-style: italic; color: #1b2a4a; line-height: 1.5; margin-top: 24px; border-left: 2px solid #9e4a2a; padding-left: 16px; }
+
+/* ═══════════════════════════════════════════════════
+   10. MINT — Maximalist Jewel
+   Dark, ornamental, reverse of everything above
+   ═══════════════════════════════════════════════════ */
+.mint-section {
+  background: #1c1510;
+  border: 1px solid #2a2018;
+  padding: 72px 64px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.mint-corner-tl, .mint-corner-br {
+  position: absolute; font-size: 36px; color: #1a6b4a; opacity: 0.2;
+}
+.mint-corner-tl { top: 24px; left: 28px; }
+.mint-corner-br { bottom: 24px; right: 28px; }
+.mint-ornament { font-size: 14px; color: #e8930a; letter-spacing: 0.6em; margin-bottom: 32px; opacity: 0.6; }
+.mint-name { font-family: 'Spectral', serif; font-size: 72px; font-style: italic; color: #e8930a; letter-spacing: 0.1em; }
+.mint-rule { width: 1px; height: 40px; background: #1a6b4a; margin: 24px auto; opacity: 0.5; }
+.mint-desc { font-family: 'Spectral', serif; font-size: 15px; color: #9a8878; line-height: 2; max-width: 480px; margin: 0 auto; }
+.mint-bottom { margin-top: 40px; }
+.mint-price { font-family: 'Spectral', serif; font-size: 20px; font-style: italic; color: #1a6b4a; }
+.mint-cat { font-family: 'Spectral', serif; font-size: 10px; color: #555; letter-spacing: 0.2em; text-transform: uppercase; margin-top: 8px; font-style: italic; }
+
+.new-badge {
+  display: inline-block; background: #e8930a; color: #1c1510;
+  font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+  padding: 2px 7px; border-radius: 2px; text-transform: uppercase;
+  vertical-align: middle; margin-left: 8px;
+}
+
+@media (max-width: 768px) {
+  .vessel-section { flex-direction: column; }
+  .vessel-left { flex: auto; padding: 48px 32px; }
+  .vessel-right { display: none; }
+  .draft-section { grid-template-columns: 1fr; }
+  .draft-sidebar { display: none; }
+  .flow-section { grid-template-columns: 1fr; }
+  .flow-right { border-top: 1px solid #e4ddd0; }
+  .forge-section { grid-template-columns: 1fr; }
+  .forge-geo { flex-direction: row; padding: 24px; }
+  .signal-section { grid-template-columns: 1fr; }
+  .signal-col:first-child { border-right: none; border-bottom: 1px solid #d8d0c0; }
+  .stack-section, .ledger-section { max-width: 100%; }
 }
 </style>
 </head>
 <body>
 
-<nav>
-  <span class="nav-logo">WJP / Businesses</span>
-  <span class="nav-sub">Draft Preview — 2026-03-01</span>
+<nav class="page-nav">
+  <strong>10 Businesses</strong>
+  <span>Draft Preview — 2026-03-01 · Images pending</span>
 </nav>
 
-<div class="page-header">
-  <div class="count-badge">10 BUSINESSES · DRAFT STAGE</div>
-  <h1>10 Distinct Worlds</h1>
-  <p>Each business is designed to look like it came from a completely different creator. No shared aesthetics, no shared palette, no shared voice.</p>
-</div>
+<div class="showcase">
 
-<div class="grid">
-
-  <!-- 1. VESSEL -->
-  <div class="card-vessel">
-    <div>
-      <div class="biz-num">01 / 10</div>
-      <div class="biz-name">VESSEL</div>
-      <div class="biz-tagline">Carry your culture from day one.<br>A token launch system for founders<br>who understand this is a ceremony.</div>
+  <!-- 1. VESSEL — Japanese Minimalism -->
+  <div class="vessel-section">
+    <div class="vessel-left">
+      <div class="vessel-num">零壱 — 01</div>
+      <div class="vessel-name">VESSEL</div>
+      <div class="vessel-tag">A token launch is a ceremony. VESSEL gives it the structure it deserves — nothing more, nothing less. Every template is a vessel waiting to be filled with something true.</div>
+      <div class="vessel-bottom">
+        <div class="vessel-price">¥ $47</div>
+        <div class="vessel-cat">Notion Template · Launch System</div>
+      </div>
     </div>
-    <div class="biz-visual"><span>器</span></div>
-    <div>
-      <div class="biz-category">Notion Template · Launch System</div>
-      <div class="biz-price">$47</div>
+    <div class="vessel-right">
+      <div class="vessel-seal">器</div>
     </div>
   </div>
 
-  <!-- 2. DRAFT -->
-  <div class="card-draft">
-    <div class="biz-num">02 / 10</div>
-    <div class="biz-name">DR<br>AFT</div>
-    <div class="biz-tagline">Stop writing from scratch.<br>// 90 days of crypto content,<br>formatted and ready to ship.</div>
-    <div>
-      <div class="biz-category">Content Pack · Template System</div>
-      <div class="biz-price">$39 <span class="new-tag-draft">SHIP IT</span></div>
-    </div>
-    <div class="biz-stripe"></div>
-  </div>
-
-  <!-- 3. STACK -->
-  <div class="card-stack">
-    <div class="biz-grid">
-      <span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span>
-    </div>
-    <div>
-      <div class="biz-num">03 / 10</div>
-      <div class="biz-name">STACK</div>
-      <div class="biz-rule"></div>
-      <div class="biz-tagline">631 prompts. Organized by function.<br>Tested for output quality. Built on the<br>same logic as a good index.</div>
-    </div>
-    <div>
-      <div class="biz-category">AI Prompt Library · Reference System</div>
-      <div class="biz-price">$49</div>
+  <!-- 2. DRAFT — Neo-Brutalism -->
+  <div class="draft-section">
+    <div class="draft-sidebar">CONTENT TEMPLATE PACK · 2026</div>
+    <div class="draft-body">
+      <div class="draft-name">DRAFT.</div>
+      <div class="draft-desc">Stop writing from scratch. These are the templates your crypto team actually needs — formatted, battle-tested, ready to paste. No aesthetic bullshit. Just content that ships.</div>
+      <div class="draft-footer">
+        <div class="draft-price">$39</div>
+        <div class="draft-meta">90 DAYS OF CONTENT<br>FORMATTED + READY</div>
+      </div>
     </div>
   </div>
 
-  <!-- 4. BLUEPRINT -->
-  <div class="card-blueprint">
-    <div class="biz-dot"></div>
-    <div>
-      <div class="biz-num">04 / 10</div>
-      <div class="biz-name"><span>BLUE</span><span>PRINT</span></div>
-      <div class="biz-tagline">Your brand shouldn't whisper.<br>// logos, color systems, voice guides<br>— built loud, built distinct.</div>
-    </div>
-    <div>
-      <div class="biz-category">Brand Kit · Identity System</div>
-      <div class="biz-price">$79</div>
-    </div>
-  </div>
-
-  <!-- 5. LEDGER -->
-  <div class="card-ledger">
-    <div>
-      <div class="biz-num">05 · X</div>
-      <div class="biz-name">LEDGER</div>
-      <div class="biz-rule"></div>
-      <div class="biz-tagline">Your portfolio deserves the same attention you give your positions. Every buy, sell, and swap logged with precision and restraint.</div>
-    </div>
-    <div>
-      <div class="biz-category">Notion Template · Portfolio Tracker</div>
-      <div class="biz-price">$29</div>
+  <!-- 3. STACK — Swiss Typography -->
+  <div class="stack-section">
+    <div class="stack-num">03 — REFERENCE SYSTEM</div>
+    <div class="stack-name">STACK</div>
+    <div class="stack-rule"></div>
+    <div class="stack-stat">631</div>
+    <div class="stack-stat-label">Prompts · Organized by Function</div>
+    <div class="stack-desc">Tested for output quality. Built on the same logic as a good index, readable in any direction. A reference library, not a listicle.</div>
+    <div class="stack-bottom">
+      <div class="stack-price">$49</div>
+      <div class="stack-cat">AI Prompt Library</div>
     </div>
   </div>
 
-  <!-- 6. FLOW -->
-  <div class="card-flow">
-    <div>
-      <div class="biz-num">№ six</div>
-      <div class="biz-name">Flow</div>
-      <div class="biz-ornament"></div>
-      <div class="biz-tagline">Community doesn't grow from funnels. It grows from trust, consistency, and showing up the same way every week.</div>
-    </div>
-    <div>
-      <div class="biz-category">PDF Playbook · Community Growth</div>
-      <div class="biz-price">$47</div>
-    </div>
-  </div>
-
-  <!-- 7. PULSE -->
-  <div class="card-pulse">
-    <div class="biz-scan"></div>
-    <div>
-      <div class="biz-num">07.pulse</div>
-      <div class="biz-name">PULSE</div>
-      <div class="biz-tagline">231 viral thread templates. Drop them in, change the numbers, post. What the best accounts are running — turned into a system.</div>
-    </div>
-    <div>
-      <div class="biz-category">Thread Templates · X / Twitter</div>
-      <div class="biz-price">$37</div>
+  <!-- 4. BLUEPRINT — 90s Rave -->
+  <div class="blueprint-section">
+    <div class="blueprint-blob1"></div>
+    <div class="blueprint-blob2"></div>
+    <div class="blueprint-ghost">BLUEPRINT BLUEPRINT</div>
+    <div class="blueprint-content">
+      <div class="blueprint-num">_04 // IDENTITY_SYS</div>
+      <div class="blueprint-name">
+        <span>BLUE</span>
+        <span>PRINT</span>
+      </div>
+      <div class="blueprint-desc">Your brand shouldn't whisper. Logos, color systems, voice guidelines — built loud, built distinct, built to live in dark rooms and bright feeds simultaneously.</div>
+      <div class="blueprint-row">
+        <div class="blueprint-price">$79</div>
+        <div class="blueprint-cat">BRAND KIT · IDENTITY SYSTEM</div>
+      </div>
     </div>
   </div>
 
-  <!-- 8. FORGE -->
-  <div class="card-forge">
-    <div class="biz-geo">
-      <div class="circle"></div>
-      <div class="square"></div>
+  <!-- 5. LEDGER — Luxury Fashion -->
+  <div class="ledger-section">
+    <div class="ledger-cat">Portfolio Tracker</div>
+    <div class="ledger-name">LEDGER</div>
+    <div class="ledger-line"></div>
+    <div class="ledger-desc">Your portfolio deserves the same attention you give your positions. Every buy, sell, and swap logged with precision and restraint — nothing decorative, nothing superfluous.</div>
+    <div class="ledger-price">$29</div>
+  </div>
+
+  <!-- 6. FLOW — Cottagecore -->
+  <div class="flow-section">
+    <div class="flow-left">
+      <div class="flow-ornament">❧</div>
+      <div class="flow-name">Flow</div>
+      <div class="flow-price">$47</div>
+      <div class="flow-rule"></div>
     </div>
-    <div>
-      <div class="biz-num">08 — FORGE</div>
-      <div class="biz-name">FOR<span class="biz-slash">/</span>GE</div>
-      <div class="biz-rule"></div>
-      <div class="biz-tagline">A workspace is an argument about how work should happen. FORGE makes that argument in your favor — geometry-first, function-first.</div>
-    </div>
-    <div>
-      <div class="biz-category">Notion Workspace · OS System</div>
-      <div class="biz-price">$59</div>
+    <div class="flow-right">
+      <div class="flow-desc">Community doesn't grow from funnels. It grows from trust, consistency, and showing up the same way every week. This is the playbook we wish we'd had — warm, practical, built for humans not metrics.</div>
+      <div class="flow-cat">PDF Playbook · Community Growth</div>
     </div>
   </div>
 
-  <!-- 9. SIGNAL (new) -->
-  <div class="card-signal">
-    <div>
-      <div class="biz-num">09 of 10 <span class="new-tag">New</span></div>
-      <div class="biz-dek">Narrative Intelligence</div>
-      <div class="biz-name">Signal</div>
-      <div class="biz-rule"></div>
-      <div class="biz-tagline">Every project has a story. Most of them tell it too late, too vague, or to the wrong room. 12 frameworks, 40 positioning templates, a launch arc planner.</div>
+  <!-- 7. PULSE — Y2K Retrofuturism -->
+  <div class="pulse-section">
+    <div class="pulse-holo"></div>
+    <div class="pulse-top">
+      <div class="pulse-name">PULSE</div>
+      <div class="pulse-stat">231</div>
+      <div class="pulse-stat-label">Viral Thread Templates</div>
     </div>
-    <div>
-      <div class="biz-category">Notion + PDF · Narrative Kit</div>
-      <div class="biz-price">$49</div>
+    <div class="pulse-bottom">
+      <div class="pulse-desc">Drop them in, change the numbers, post. What the best accounts are running — turned into a system you can plug straight in.</div>
+      <div class="pulse-price">$37</div>
+    </div>
+    <div class="pulse-scan"></div>
+  </div>
+
+  <!-- 8. FORGE — Bauhaus -->
+  <div class="forge-section">
+    <div class="forge-geo">
+      <div class="forge-circle"></div>
+      <div class="forge-square"></div>
+      <div class="forge-triangle"></div>
+    </div>
+    <div class="forge-body">
+      <div class="forge-name">FOR<span class="forge-slash">/</span>GE</div>
+      <div class="forge-rule"></div>
+      <div class="forge-desc">A workspace is an argument about how work should happen. FORGE makes that argument in your favor — geometry-first, function-first, with no room for clutter and no patience for systems that need explaining.</div>
+      <div class="forge-row">
+        <div class="forge-price">$59</div>
+        <div class="forge-cat">Notion Workspace · OS</div>
+      </div>
     </div>
   </div>
 
-  <!-- 10. MINT (new) -->
-  <div class="card-mint">
-    <div>
-      <div class="biz-num">10 / x <span class="new-tag">New</span></div>
-      <div class="biz-name">Mint</div>
-      <div class="biz-ornament">✦ ◆ ✦</div>
-      <div class="biz-tagline">Your digital product business is a creative act. Revenue tracking, launch sequencing, 90-day sprint planning — one Notion system that thinks like a founder.</div>
+  <!-- 9. SIGNAL — Editorial Magazine -->
+  <div class="signal-section">
+    <div class="signal-col">
+      <div class="signal-folio">Issue No. 09 <span class="new-badge">New</span></div>
+      <div class="signal-name">Signal</div>
+      <div class="signal-dek">Narrative Intelligence</div>
+      <div class="signal-price">$49</div>
     </div>
-    <div>
-      <div class="biz-category">Notion + Airtable · Creator OS</div>
-      <div class="biz-price">$39</div>
+    <div class="signal-col">
+      <div class="signal-desc">Every project has a story. Most of them tell it too late, too vague, or to the wrong room. 12 frameworks, 40 positioning templates, a launch arc planner.</div>
+      <div class="signal-pull">"Know what to say, to whom, and in what order."</div>
+    </div>
+  </div>
+
+  <!-- 10. MINT — Maximalist Jewel -->
+  <div class="mint-section">
+    <div class="mint-corner-tl">✦</div>
+    <div class="mint-corner-br">❧</div>
+    <div class="mint-ornament">✦ ◆ ✦ ◆ ✦</div>
+    <div class="mint-name">Mint</div>
+    <div class="mint-rule"></div>
+    <div class="mint-desc">Your digital product business is a creative act, not a side hustle. Revenue tracking, launch sequencing, 90-day sprint planning — one Notion system that thinks like a founder and feels like a studio.</div>
+    <div class="mint-bottom">
+      <div class="mint-price">$39 <span class="new-badge">New</span></div>
+      <div class="mint-cat">Notion + Airtable · Creator OS</div>
     </div>
   </div>
 
 </div>
-
-<footer>
-  WJP — Draft Preview · forcrypto.market · Images pending generation
-</footer>
 
 </body>
 </html>
