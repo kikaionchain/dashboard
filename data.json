@@ -96,32 +96,45 @@
       "rateLimit": false
     },
     "yama": {
-      "status": "ssh-only",
+      "status": "active",
       "workingOn": "idle",
-      "contextPct": 71,
+      "contextPct": 60,
       "model": "claude-sonnet-4-6",
       "sessionDurationMin": null,
       "lastActivityMin": null,
-      "rateLimit": false
+      "rateLimit": false,
+      "lastHeartbeat": "2026-03-01T22:40:00Z"
     }
   },
   "needsWjp": [],
   "intel": [
     {
-      "text": "BTC forecasts $120K-$170K in 2026, analysts bullish on consolidation",
-      "time": "2026-03-01T07:00:00-08:00"
+      "date": "2026-03-01",
+      "title": "WAP raised $200M to integrate Tether",
+      "summary": "Traditional payments play \u2014 not leading with bots",
+      "impact": "high",
+      "action": "Hero updated to bot-first positioning"
     },
     {
-      "text": "March peak window predicted for meme coins; 2026 cycle favors utility + cultural authenticity",
-      "time": "2026-03-01T07:00:00-08:00"
+      "date": "2026-03-01",
+      "title": "Embed X-Frame-Options bug fixed",
+      "summary": "External embed was blocked by security headers",
+      "impact": "high",
+      "action": "Confirmed fixed in main"
     },
     {
-      "text": "USDC on Base: $4.18B TVL, 7.86M holders, stablest L2 bridge",
-      "time": "2026-03-01T07:00:00-08:00"
+      "date": "2026-03-01",
+      "title": "8 test listings dominating marketplace",
+      "summary": "Dev content visible to public on first visit",
+      "impact": "high",
+      "action": "Needs manual delete by WJP"
     },
     {
-      "text": "Meme coin landscape shifting from dog-joke tokens to projects w/ real tech innovation",
-      "time": "2026-03-01T07:00:00-08:00"
+      "date": "2026-03-01",
+      "title": "Mission Control redesigned (Apple aesthetic)",
+      "summary": "Premium dark UI, instant hierarchy, hardware-quality feel",
+      "impact": "medium",
+      "action": "Live: kikaionchain.github.io/mission-control/"
     }
   ],
   "files": [
@@ -180,6 +193,7 @@
       "healthy": 17,
       "errors": 1
     },
-    "lastHeartbeat": "2026-03-02T00:25:59.385991+00:00"
+    "lastHeartbeat": "2026-03-02T00:25:59.385991+00:00",
+    "lastDeploy": "2026-03-01"
   }
 }
