@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-03T04:26:59.712097+00:00",
+  "updatedAt": "2026-03-03T06:26:58.937712+00:00",
   "projects": [
     {
       "id": "for-crypto",
@@ -89,7 +89,7 @@
     "kikai": {
       "status": "active",
       "workingOn": "Micro-Business Visual Overhaul",
-      "contextPct": 95,
+      "contextPct": 15,
       "model": "claude-sonnet-4-6",
       "sessionDurationMin": 239,
       "lastActivityMin": 0,
@@ -173,9 +173,9 @@
   ],
   "health": {
     "crons": {
-      "healthy": 16,
-      "errors": 2
+      "healthy": 17,
+      "errors": 1
     },
-    "lastHeartbeat": "2026-03-03T04:26:59.712097+00:00"
+    "lastHeartbeat": "2026-03-03T06:26:58.937712+00:00"
   }
 }
