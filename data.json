@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-04T19:56:05.091119+00:00",
+  "updatedAt": "2026-03-04T20:01:02.935510+00:00",
   "projects": [
     {
       "id": "for-crypto",
@@ -89,9 +89,9 @@
     "kikai": {
       "status": "active",
       "workingOn": "Micro-Business Visual Overhaul",
-      "contextPct": 78,
+      "contextPct": 82,
       "model": "claude-sonnet-4-6",
-      "sessionDurationMin": 231,
+      "sessionDurationMin": 236,
       "lastActivityMin": 0,
       "rateLimit": false
     },
@@ -181,7 +181,7 @@
         "task": "Micro-Business Visual Overhaul \u2014 8 distinct covers + Remotion videos",
         "owner": "Kikai",
         "project": "For Crypto",
-        "started": "2026-03-02"
+        "started": "HIGH"
       }
     ],
     "queued": [
@@ -196,29 +196,24 @@
         "priority": "HIGH"
       },
       {
-        "task": "Upload remaining 7 micro-businesses",
+        "task": "Upload remaining 7 micro-businesses after visual overhaul",
         "project": "For Crypto",
-        "priority": "MED"
-      },
-      {
-        "task": "Build shared task queue cron \u2014 auto-check for stale tasks",
-        "project": "OS",
-        "priority": "MED"
-      },
-      {
-        "task": "67 agent setup \u2014 new Mac Mini, Osaurus/OpenClaw, Claude subscription",
-        "project": "67",
-        "priority": "MED"
-      },
-      {
-        "task": "Mission Control \u2014 add shared task queue view",
-        "project": "OS",
         "priority": "MED"
       },
       {
         "task": "Yama model switch \u2014 Opus \u2192 Sonnet",
         "project": "OS",
-        "priority": "LOW"
+        "priority": "MED"
+      },
+      {
+        "task": "Mission Control \u2014 task queue section polish",
+        "project": "OS",
+        "priority": "MED"
+      },
+      {
+        "task": "67 agent setup \u2014 new Mac Mini, OpenClaw, Claude subscription",
+        "project": "67",
+        "priority": "MED"
       },
       {
         "task": "Test Qwen 3.5 vs Haiku for monitoring crons",
@@ -230,35 +225,50 @@
       {
         "task": "VITE_APP_URL in Vercel dashboard",
         "blockedBy": "WJP sets env var",
-        "urgency": "2 min"
+        "urgency": "HIGH"
       },
       {
         "task": "DATABASE_URL in Vercel dashboard",
         "blockedBy": "WJP sets env var",
-        "urgency": "2 min"
+        "urgency": "HIGH"
       },
       {
         "task": "Yama bot API key",
         "blockedBy": "WJP transfers",
-        "urgency": "5 min"
+        "urgency": "HIGH"
       },
       {
         "task": "Delete test listings from marketplace",
         "blockedBy": "WJP action",
-        "urgency": "5 min"
+        "urgency": "HIGH"
       },
       {
-        "task": "Accept Google AI Studio TOS",
-        "blockedBy": "WJP logs into kikaionchain@gmail.com",
-        "urgency": "2 min"
+        "task": "Accept Google AI Studio TOS (kikaionchain@gmail.com)",
+        "blockedBy": "WJP login",
+        "urgency": "MED"
       },
       {
         "task": "PR #17 approve + merge",
         "blockedBy": "WJP review",
-        "urgency": "5 min"
+        "urgency": "MED"
+      },
+      {
+        "task": "Buy 16GB Mac Mini for 67 agent",
+        "blockedBy": "WJP purchase",
+        "urgency": "MED"
       }
     ],
     "done": [
+      {
+        "task": "Shared task queue build",
+        "owner": "Kikai",
+        "completed": "2026-03-04"
+      },
+      {
+        "task": "Alex Finn research",
+        "owner": "Kikai",
+        "completed": "2026-03-04"
+      },
       {
         "task": "GoDaddy DNS fix",
         "owner": "Kikai",
@@ -285,9 +295,29 @@
         "completed": "2026-03-01"
       },
       {
-        "task": "Alex Finn research",
-        "owner": "Kikai",
-        "completed": "2026-03-04"
+        "task": "Agent",
+        "owner": "Works On",
+        "completed": "Never Assign"
+      },
+      {
+        "task": "Kikai",
+        "owner": "OS, coordination, research, writing, cross-project",
+        "completed": "Heavy coding sprints"
+      },
+      {
+        "task": "Yama",
+        "owner": "For Crypto QA + testing only",
+        "completed": "Build tasks, other projects"
+      },
+      {
+        "task": "67 Agent (coming)",
+        "owner": "67 world \u2014 marketplace, map, ecosystem",
+        "completed": "For Crypto, Divvvy, OS"
+      },
+      {
+        "task": "Mac Studios (coming)",
+        "owner": "Any build task \u2014 grab and execute",
+        "completed": "Nothing \u2014 they're the powerhouse"
       }
     ]
   },
@@ -296,6 +326,6 @@
       "healthy": 18,
       "errors": 0
     },
-    "lastHeartbeat": "2026-03-04T19:56:05.091119+00:00"
+    "lastHeartbeat": "2026-03-04T20:01:02.935510+00:00"
   }
 }
