@@ -6,461 +6,435 @@
 <title>WJP — Product Portfolio</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#080808;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'Inter',sans-serif;padding:40px 32px;min-height:100vh}
-header{margin-bottom:40px;border-bottom:1px solid #1a1a1a;padding-bottom:20px;display:flex;justify-content:space-between;align-items:flex-end}
-header h1{font-size:24px;font-weight:700;letter-spacing:-.5px}
-header p{font-size:13px;color:#444;margin-top:3px}
-.hright{text-align:right}.hright .lbl{font-size:10px;color:#333;text-transform:uppercase;letter-spacing:2px}.hright .cnt{font-size:28px;font-weight:800;color:#0057FF}
-.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
-.card{background:#111;border:1px solid #1c1c1c;border-radius:10px;overflow:hidden;cursor:pointer;transition:transform .2s,box-shadow .2s}
-.card:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,.5),0 0 0 1px var(--c)33}
-.card:hover .open-hint{opacity:1}
-.card-bar{height:3px;background:var(--c)}
-.card-img{width:100%;aspect-ratio:1;overflow:hidden;background:#161616}
-.card-img img{width:100%;height:100%;object-fit:cover;display:block}
-.no-img{display:flex;align-items:center;justify-content:center;height:100%;color:#2a2a2a;font-size:24px}
-.card-body{padding:14px}
-.row{display:flex;align-items:center;gap:6px;margin-bottom:8px}
-.num{font-size:10px;color:#3a3a3a;font-weight:600}.cat{font-size:9px;background:#1e1e1e;color:#666;padding:2px 7px;border-radius:20px;text-transform:uppercase;letter-spacing:.5px}.price{font-size:13px;color:var(--c);font-weight:700;margin-left:auto}
-h2{font-size:16px;font-weight:800;letter-spacing:-.2px;margin-bottom:4px}
-.tagline{font-size:10px;color:#555;font-style:italic;margin-bottom:5px}
-.short{font-size:10px;color:#444;line-height:1.4;margin-bottom:10px}
-.open-hint{font-size:10px;color:var(--c);opacity:0;transition:opacity .2s;font-weight:600}
+body{background:#080808;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'Inter',sans-serif;padding:40px 32px}
+header{margin-bottom:36px;border-bottom:1px solid #1a1a1a;padding-bottom:18px;display:flex;justify-content:space-between;align-items:flex-end}
+header h1{font-size:22px;font-weight:700;letter-spacing:-.5px}
+header p{font-size:12px;color:#444;margin-top:3px}
+.hcnt{font-size:26px;font-weight:800;color:#0057FF}
+.hlbl{font-size:10px;color:#333;text-transform:uppercase;letter-spacing:2px;text-align:right}
+
+/* Grid */
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.card{background:#111;border:1px solid #1c1c1c;border-radius:10px;overflow:hidden;cursor:pointer;transition:transform .18s,box-shadow .18s}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 32px #0006,0 0 0 1px color-mix(in srgb,var(--c) 20%,transparent)}
+.card:hover .chint{opacity:1}
+.cbar{height:3px;background:var(--c)}
+.cimg{aspect-ratio:1;overflow:hidden;background:#161616}
+.cimg img{width:100%;height:100%;object-fit:cover;display:block}
+.no-img{display:flex;align-items:center;justify-content:center;height:100%;color:#2a2a2a;font-size:20px}
+.cbody{padding:12px}
+.crow{display:flex;align-items:center;gap:5px;margin-bottom:7px}
+.cnum{font-size:10px;color:#3a3a3a;font-weight:600}
+.ccat{font-size:8.5px;background:#1e1e1e;color:#555;padding:2px 6px;border-radius:20px;text-transform:uppercase;letter-spacing:.5px}
+.cprice{font-size:13px;color:var(--c);font-weight:700;margin-left:auto}
+.card h2{font-size:15px;font-weight:800;letter-spacing:-.2px;margin-bottom:3px}
+.ctag{font-size:9.5px;color:#555;font-style:italic;margin-bottom:5px}
+.cshort{font-size:9.5px;color:#3d3d3d;line-height:1.45;margin-bottom:8px}
+.chint{font-size:9px;color:var(--c);font-weight:600;opacity:0;transition:opacity .18s}
+
 /* Modal */
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:100;align-items:center;justify-content:center;padding:20px}
+.modal{display:none;position:fixed;inset:0;background:#000000cc;z-index:200;align-items:center;justify-content:center;padding:20px}
 .modal.open{display:flex}
-.modal-inner{background:#111;border:1px solid #222;border-radius:16px;max-width:760px;width:100%;max-height:90vh;overflow-y:auto;position:relative}
-.modal-close{position:sticky;top:12px;left:100%;float:right;margin:12px 12px 0 0;background:#1e1e1e;border:none;color:#888;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;z-index:10}
-.modal-close:hover{color:#fff;background:#333}
-.modal-header{display:grid;grid-template-columns:200px 1fr;gap:24px;padding:28px 28px 20px;border-bottom:1px solid #1a1a1a}
-.modal-img{width:200px;height:200px;border-radius:10px;overflow:hidden;background:#161616;flex-shrink:0}
-.modal-img img{width:100%;height:100%;object-fit:cover}
-.modal-meta{display:flex;flex-direction:column;justify-content:center}
-.modal-cat{font-size:10px;background:#1e1e1e;color:#666;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:.5px;display:inline-block;margin-bottom:10px;width:fit-content}
-.modal-name{font-size:32px;font-weight:900;letter-spacing:-1px;color:#fff;margin-bottom:4px}
-.modal-tagline{font-size:13px;color:#555;font-style:italic;margin-bottom:12px}
-.modal-price{font-size:28px;font-weight:800;color:var(--c);margin-bottom:8px}
-.modal-title-txt{font-size:12px;color:#444;line-height:1.5}
-.modal-body{padding:28px}
-.modal-body h3{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:#444;margin:20px 0 10px;font-weight:600}
-.modal-body h3:first-child{margin-top:0}
-.modal-body p{font-size:13px;color:#888;line-height:1.7}
-.bullets{list-style:none;display:flex;flex-direction:column;gap:10px}
-.bullets li{font-size:12px;color:#666;line-height:1.6;padding-left:12px;border-left:2px solid var(--c,#0057FF)33;padding:8px 0 8px 14px;background:#0d0d0d;border-radius:0 6px 6px 0}
-.bullets li strong{color:#aaa;display:block;margin-bottom:2px}
-.faqs{display:flex;flex-direction:column;gap:12px}
-.faq-item{background:#0d0d0d;border-radius:8px;padding:14px}
-.faq-q{font-size:12px;font-weight:600;color:#888;margin-bottom:6px}
-.faq-a{font-size:12px;color:#555;line-height:1.6}
-footer{margin-top:40px;border-top:1px solid #151515;padding-top:14px;display:flex;justify-content:space-between}
+.mbox{background:#0f0f0f;border:1px solid #222;border-radius:16px;width:100%;max-width:900px;max-height:92vh;overflow:hidden;display:grid;grid-template-rows:auto 1fr;position:relative}
+.mclose{position:absolute;top:14px;right:14px;z-index:10;background:#1e1e1e;border:none;color:#888;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center}
+.mclose:hover{color:#fff;background:#2a2a2a}
+
+/* Carousel */
+.mcarousel{position:relative;background:#0a0a0a;aspect-ratio:16/7;overflow:hidden;flex-shrink:0}
+.slide{display:none;width:100%;height:100%}
+.slide.active{display:block}
+.slide img{width:100%;height:100%;object-fit:cover}
+.carr-btn{position:absolute;top:50%;transform:translateY(-50%);background:#00000088;border:none;color:#fff;font-size:28px;width:40px;height:60px;cursor:pointer;border-radius:4px;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s}
+.mcarousel:hover .carr-btn{opacity:1}
+.carr-btn.prev{left:10px}.carr-btn.next{right:10px}
+.dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:5px}
+.dot{width:6px;height:6px;border-radius:50%;background:#ffffff44;cursor:pointer;transition:background .2s}
+.dot.active{background:#fff}
+
+/* Content */
+.mcontent{padding:24px 28px;overflow-y:auto}
+.mtop{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid #1a1a1a}
+.mcat{font-size:9px;background:#1e1e1e;color:#666;padding:2px 8px;border-radius:20px;text-transform:uppercase;letter-spacing:.5px;display:inline-block;margin-bottom:10px}
+.mcontent h1{font-size:28px;font-weight:900;letter-spacing:-.8px;margin-bottom:4px}
+.mtag{font-size:12px;color:#555;font-style:italic;margin-bottom:10px}
+.mprice{font-size:26px;font-weight:800;color:var(--c)}
+.mfulltitle{font-size:12px;color:#444;margin-bottom:10px;font-style:italic}
+.mdesc{font-size:13px;color:#666;line-height:1.7;margin-bottom:20px}
+.mcontent h3{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:#3a3a3a;margin:20px 0 10px;font-weight:600}
+.mbullets{list-style:none;display:flex;flex-direction:column;gap:8px}
+.mbullets li{font-size:12px;color:#555;line-height:1.6;padding:10px 14px;background:#0d0d0d;border-radius:0 8px 8px 0;border-left:2px solid var(--c,#0057FF)}
+.mbullets li strong{color:#888;display:block;margin-bottom:3px;font-size:11px}
+.mbullets li span{color:#555}
+.mfaqs{display:flex;flex-direction:column;gap:10px;padding-bottom:8px}
+.faq{background:#0a0a0a;border-radius:8px;padding:14px}
+.fq{font-size:12px;font-weight:600;color:#666;margin-bottom:6px}
+.fa{font-size:12px;color:#444;line-height:1.65}
+footer{margin-top:36px;border-top:1px solid #141414;padding-top:12px;display:flex;justify-content:space-between}
 footer span{font-size:10px;color:#2a2a2a}
 </style>
 </head>
 <body>
 <header>
   <div><h1>WJP — Product Portfolio</h1><p>10 Micro-Businesses · For Crypto Marketplace · Confidential</p></div>
-  <div class="hright"><div class="lbl">Products</div><div class="cnt">10</div></div>
+  <div style="text-align:right"><div class="hlbl">Products</div><div class="hcnt">10</div></div>
 </header>
-<div class="grid">
-<div class="card" data-id="01" onclick="openModal('01')" style="--c:#0057FF">
-  <div class="card-bar"></div>
-  <div class="card-img"><img src="covers/v2/01-vessel.png" alt="VESSEL"></div>
-  <div class="card-body">
-    <div class="row">
-      <span class="num">01</span>
-      <span class="cat">Notion Template</span>
-      <span class="price">$47</span>
-    </div>
+<div class="grid"><div class="card" onclick="openModal('01')" style="--c:#0057FF">
+  <div class="cbar"></div>
+  <div class="cimg"><img src="businesses/01-vessel/images/cover.jpg" alt="VESSEL"></div>
+  <div class="cbody">
+    <div class="crow"><span class="cnum">01</span><span class="ccat">Notion Template</span><span class="cprice">$47</span></div>
     <h2>VESSEL</h2>
-    <p class="tagline">"Carry your culture from day one."</p>
-    <p class="short">The cultural operating system for your token launch. Checklists, community frame...</p>
-    <div class="open-hint">Click to open →</div>
+    <p class="ctag">"Carry your culture from day one."</p>
+    <p class="cshort">The cultural operating system for your token launch. Checklists, community framework, narr...</p>
+    <div class="chint">Open →</div>
   </div>
-</div>
-
-<div class="modal" id="modal-01">
-  <div class="modal-inner">
-    <button class="modal-close" onclick="closeModal(event)">✕</button>
-    <div class="modal-header" style="--c:#0057FF">
-      <div class="modal-img"><img src="covers/v2/01-vessel.png" alt="VESSEL"></div>
-      <div class="modal-meta">
-        <span class="modal-cat">Notion Template</span>
-        <h1 class="modal-name">VESSEL</h1>
-        <p class="modal-tagline">"Carry your culture from day one."</p>
-        <div class="modal-price">$47</div>
-        <p class="modal-title-txt">The Token Launch Playbook — Notion Template for Founders</p>
-      </div>
-    </div>
-    <div class="modal-body">
-      <h3>Description</h3>
-      <p>The cultural operating system for your token launch. Checklists, community framework, narrative worksheets, and post-launch playbook — all in Notion.</p>
-      <h3>What's Included</h3>
-      <ul class="bullets"><li><strong>20-item pre-launch checklist</strong> — Every critical cultural and community infrastructure task before your token goes live. Nothing technical; everything that actually determines whether people stay.</li><li><strong>5-phase community building framework</strong> — From founding your internal culture (Phase 1) to building a self-sustaining community (Phase 5). Each phase has specific activities, milestones, and the one mistake most projects make.</li><li><strong>Narrative development worksheet</strong> — 6-part worksheet that surfaces your project's real story: core belief, origin, characters, enemy, promise, and voice. Your answers power every piece of content for the next 12 months.</li><li><strong>Multi-channel announcement template</strong> — Ready-to-edit templates for your launch tweet, 8-tweet thread, Discord/Telegram announcement, and Medium/Mirror article outline. Fill in the [BRACKETS] and publish.</li><li><strong>Week 1-4 post-launch playbook</strong> — Daily content direction for launch week, then weekly themes through the first month. Built around the arc your community needs: Show Your Work → Teach Something → Build Together → Show the Future.</li></ul>
-      <h3>FAQ</h3>
-      <div class="faqs"><div class="faq-item"><div class="faq-q">Q: Is this a technical guide about deploying a token contract?</div><div class="faq-a">A: No. This is a cultural and community guide. It assumes you've solved the technical side (or have someone who has). VESSEL is about the other 80% of the launch that most founders ignore until it's too late: narrative, community building, content, and the first 30 days of showing up.</div></div><div class="faq-item"><div class="faq-q">Q: Does this work if I'm a solo founder without a team?</div><div class="faq-a">A: Yes, and in some ways it's more useful solo. VESSEL is built around what one focused person can actually execute. The community phases scale from small (5 founding members) to large — start where you are.</div></div><div class="faq-item"><div class="faq-q">Q: How do I use this? Is it a PDF or a Notion template?</div><div class="faq-a">A: It's a Notion template. You'll receive a link to duplicate the page directly into your own Notion workspace. From there it's yours — edit, fill in, delete what doesn't apply. No login required beyond a standard free Notion account.</div></div></div>
-    </div>
-  </div>
-</div>
-<div class="card" data-id="02" onclick="openModal('02')" style="--c:#00D68F">
-  <div class="card-bar"></div>
-  <div class="card-img"><img src="covers/v2/02-draft.png" alt="DRAFT"></div>
-  <div class="card-body">
-    <div class="row">
-      <span class="num">02</span>
-      <span class="cat">Content Template Pack</span>
-      <span class="price">$39</span>
-    </div>
+</div><div class="card" onclick="openModal('02')" style="--c:#00D68F">
+  <div class="cbar"></div>
+  <div class="cimg"><img src="businesses/02-draft/images/cover.jpg" alt="DRAFT"></div>
+  <div class="cbody">
+    <div class="crow"><span class="cnum">02</span><span class="ccat">Content Templates</span><span class="cprice">$39</span></div>
     <h2>DRAFT</h2>
-    <p class="tagline">"Write less. Say more."</p>
-    <p class="short">90 ready-to-edit social post templates for crypto projects. Hype, education, com...</p>
-    <div class="open-hint">Click to open →</div>
+    <p class="ctag">"Write less. Say more."</p>
+    <p class="cshort">90 ready-to-edit social post templates for crypto projects. Hype, education, community, ma...</p>
+    <div class="chint">Open →</div>
   </div>
-</div>
-
-<div class="modal" id="modal-02">
-  <div class="modal-inner">
-    <button class="modal-close" onclick="closeModal(event)">✕</button>
-    <div class="modal-header" style="--c:#00D68F">
-      <div class="modal-img"><img src="covers/v2/02-draft.png" alt="DRAFT"></div>
-      <div class="modal-meta">
-        <span class="modal-cat">Content Template Pack</span>
-        <h1 class="modal-name">DRAFT</h1>
-        <p class="modal-tagline">"Write less. Say more."</p>
-        <div class="modal-price">$39</div>
-        <p class="modal-title-txt">90 Days of Crypto Content — Done-For-You Social Post Templates</p>
-      </div>
-    </div>
-    <div class="modal-body">
-      <h3>Description</h3>
-      <p>90 ready-to-edit social post templates for crypto projects. Hype, education, community, market commentary, culture. Copy, edit, post.</p>
-      <h3>What's Included</h3>
-      <ul class="bullets"><li><strong>20 hype & launch post templates</strong> — Announcement drops, milestone posts, partnership teases, exchange listings, governance votes, version launches, and the exact formats that generate attention without empty hype.</li><li><strong>20 education post templates</strong> — Explainers, comparisons, tokenomics breakdowns, risk disclosures, how-to walkthroughs, ecosystem maps, and the "what we're NOT" post that stops FUD before it starts.</li><li><strong>20 community post templates</strong> — Introduction prompts, contributor spotlights, culture posts, community challenges, feedback requests, meetup announcements, and monthly state-of-community updates.</li><li><strong>15 market commentary templates</strong> — Red day responses, bull market posts, token unlock transparency posts, competitor commentary, and long-term holder appreciation posts for every market condition.</li><li><strong>15 culture & meme post templates</strong> — Behind-the-scenes energy, conviction posts, honest "bad week" posts, community brag posts, and the manifesto format that builds a project's personality over time.</li></ul>
-      <h3>FAQ</h3>
-      <div class="faqs"><div class="faq-item"><div class="faq-q">Q: Are these for Twitter/X only?</div><div class="faq-a">A: No — the templates are written for any text-based social platform: Twitter/X, Farcaster, Lens, Telegram, Discord announcements, or anywhere you post text. Some templates include format notes specifying where they perform best.</div></div><div class="faq-item"><div class="faq-q">Q: How much editing do they need?</div><div class="faq-a">A: You'll fill in [BRACKETS] with your project's details and adjust the tone to match your voice. Some templates will need minimal editing — just fill in the blanks. Others are starting points for something more original. The goal is to eliminate the blank-page problem, not to replace your voice.</div></div><div class="faq-item"><div class="faq-q">Q: Are these designed for any specific blockchain or sector?</div><div class="faq-a">A: The templates are sector-agnostic and work for DeFi protocols, NFT projects, DAOs, L1/L2 chains, and any other crypto category. The [BRACKETS] system means you adapt them to your specific context.</div></div></div>
-    </div>
-  </div>
-</div>
-<div class="card" data-id="03" onclick="openModal('03')" style="--c:#FF6B00">
-  <div class="card-bar"></div>
-  <div class="card-img"><img src="covers/v2/03-stack.png" alt="STACK"></div>
-  <div class="card-body">
-    <div class="row">
-      <span class="num">03</span>
-      <span class="cat">AI Prompt Library</span>
-      <span class="price">$49</span>
-    </div>
+</div><div class="card" onclick="openModal('03')" style="--c:#FF6B00">
+  <div class="cbar"></div>
+  <div class="cimg"><img src="businesses/03-stack/images/cover.jpg" alt="STACK"></div>
+  <div class="cbody">
+    <div class="crow"><span class="cnum">03</span><span class="ccat">AI Prompt Library</span><span class="cprice">$49</span></div>
     <h2>STACK</h2>
-    <p class="tagline">"Your unfair AI advantage."</p>
-    <p class="short">100 copy-paste AI prompts for crypto operators. Community management, content, i...</p>
-    <div class="open-hint">Click to open →</div>
+    <p class="ctag">"Your unfair AI advantage."</p>
+    <p class="cshort">100 copy-paste AI prompts for crypto operators. Community management, content, investor ou...</p>
+    <div class="chint">Open →</div>
   </div>
-</div>
-
-<div class="modal" id="modal-03">
-  <div class="modal-inner">
-    <button class="modal-close" onclick="closeModal(event)">✕</button>
-    <div class="modal-header" style="--c:#FF6B00">
-      <div class="modal-img"><img src="covers/v2/03-stack.png" alt="STACK"></div>
-      <div class="modal-meta">
-        <span class="modal-cat">AI Prompt Library</span>
-        <h1 class="modal-name">STACK</h1>
-        <p class="modal-tagline">"Your unfair AI advantage."</p>
-        <div class="modal-price">$49</div>
-        <p class="modal-title-txt">The Crypto AI Prompt Vault — 100 Production-Ready Prompts for Crypto Teams</p>
-      </div>
-    </div>
-    <div class="modal-body">
-      <h3>Description</h3>
-      <p>100 copy-paste AI prompts for crypto operators. Community management, content, investor outreach, research, and launch planning. Built for daily use.</p>
-      <h3>What's Included</h3>
-      <ul class="bullets"><li><strong>20 community management prompts</strong> — Welcome sequences, FUD response frameworks, conflict de-escalation, ambassador program copy, crisis communication templates, governance summaries, and monthly community culture documents.</li><li><strong>20 content creation prompts</strong> — Thread generators, long-form article writers, tokenomics explainer copy, pitch deck narratives, brand voice guides, competitor analysis posts, manifesto/vision statements, and 30-day content calendars.</li><li><strong>20 investor outreach prompts</strong> — Cold investor emails, warm intro requests, monthly investor updates (including the "bad news" version), partnership outreach, term sheet explainers, deal memo bullet points, and annual token holder letters.</li><li><strong>20 token research prompts</strong> — Project research frameworks, on-chain metrics interpretation, competitor analysis templates, tokenomics analysis, whitepaper critique, smart contract audit translation, and sentiment analysis frameworks.</li><li><strong>20 launch planning prompts</strong> — Launch timeline generators, multi-channel announcement strategies, launch-day operations playbooks, pre-launch community growth plans, airdrop campaign design, KOL brief writers, and 6-month launch review frameworks.</li></ul>
-      <h3>FAQ</h3>
-      <div class="faqs"><div class="faq-item"><div class="faq-q">Q: Which AI models do these prompts work with?</div><div class="faq-a">A: All prompts are tested with and optimized for ChatGPT-4, Claude (Anthropic), and Gemini. They work with any major language model. The more context you add to the [VARIABLE] fields, the better the output from any model.</div></div><div class="faq-item"><div class="faq-q">Q: Do I need AI experience to use these?</div><div class="faq-a">A: No. If you can copy-paste and fill in brackets, you can use every prompt in STACK. The [VARIABLE] system removes the guesswork — you provide your project's specific details, the AI does the rest. A short usage guide is included.</div></div><div class="faq-item"><div class="faq-q">Q: Can I edit and reuse these prompts for multiple projects?</div><div class="faq-a">A: Yes. Once you purchase STACK, the prompts are yours to use across any project, indefinitely. There are no restrictions on use, adaptation, or how many times you run them.</div></div></div>
-    </div>
-  </div>
-</div>
-<div class="card" data-id="04" onclick="openModal('04')" style="--c:#A855F7">
-  <div class="card-bar"></div>
-  <div class="card-img"><img src="covers/v2/04-blueprint.png" alt="BLUEPRINT"></div>
-  <div class="card-body">
-    <div class="row">
-      <span class="num">04</span>
-      <span class="cat">Brand Kit</span>
-      <span class="price">$79</span>
-    </div>
+</div><div class="card" onclick="openModal('04')" style="--c:#A855F7">
+  <div class="cbar"></div>
+  <div class="cimg"><img src="businesses/04-blueprint/images/cover.jpg" alt="BLUEPRINT"></div>
+  <div class="cbody">
+    <div class="crow"><span class="cnum">04</span><span class="ccat">Brand Kit</span><span class="cprice">$79</span></div>
     <h2>BLUEPRINT</h2>
-    <p class="tagline">"Look like you mean it."</p>
-    <p class="short">5 color palettes, 5 type pairings, logo brief worksheet, social sizing guide, pi...</p>
-    <div class="open-hint">Click to open →</div>
+    <p class="ctag">"Look like you mean it."</p>
+    <p class="cshort">5 color palettes, 5 type pairings, logo brief worksheet, social sizing guide, pitch deck o...</p>
+    <div class="chint">Open →</div>
   </div>
-</div>
-
-<div class="modal" id="modal-04">
-  <div class="modal-inner">
-    <button class="modal-close" onclick="closeModal(event)">✕</button>
-    <div class="modal-header" style="--c:#A855F7">
-      <div class="modal-img"><img src="covers/v2/04-blueprint.png" alt="BLUEPRINT"></div>
-      <div class="modal-meta">
-        <span class="modal-cat">Brand Kit</span>
-        <h1 class="modal-name">BLUEPRINT</h1>
-        <p class="modal-tagline">"Look like you mean it."</p>
-        <div class="modal-price">$79</div>
-        <p class="modal-title-txt">Web3 Brand Starter Kit — Complete Identity System for Crypto Projects</p>
-      </div>
-    </div>
-    <div class="modal-body">
-      <h3>Description</h3>
-      <p>5 color palettes, 5 type pairings, logo brief worksheet, social sizing guide, pitch deck outline, one-pager template, and brand voice system.</p>
-      <h3>What's Included</h3>
-      <ul class="bullets"><li><strong>5 complete color system palettes</strong> — "The Protocol" (DeFi/finance), "The Genesis" (L1/L2 chains), "The Community" (DAOs/governance), "The Challenger" (NFT/gaming), and "The Founder" (early-stage/versatile). Each includes primary, secondary, accent, neutral, and background colors with hex codes, RGB values, and guidance on where to use every color.</li><li><strong>5 typography pairing guides</strong> — Complete type combinations for every project type: authority/financial, technical/developer, community/warm, disruptive/bold, and editorial. Each includes font names (with free alternatives), usage rules, size guidance, and a full visual specimen showing each combination in action.</li><li><strong>Logo direction worksheet</strong> — A complete designer brief template covering logo type selection, personality sliders, visual criteria, what to avoid, and a summary brief. Hand this to any designer or AI design tool and get a logo that's actually right for your project.</li><li><strong>Social media sizing guide + Canva setup guide</strong> — Correct dimensions for every platform (profile images, banners, post formats, story sizes) with safe zone guidance. Includes a step-by-step Canva brand kit setup so your whole team posts consistently from day one.</li><li><strong>Pitch deck outline + one-pager + brand voice system</strong> — 12-slide pitch deck with specific guidance for each slide. A one-pager template with a copy framework that replaces vague descriptions with specific language. A brand voice worksheet with the 4-attribute model, vocabulary guide, and application rules.</li></ul>
-      <h3>FAQ</h3>
-      <div class="faqs"><div class="faq-item"><div class="faq-q">Q: Do I need design software to use this?</div><div class="faq-a">A: No. BLUEPRINT is brand strategy and direction — everything you need to either implement yourself (using free tools like Canva, which this kit has a setup guide for) or hand to a designer or AI tool as a brief. No Figma, Photoshop, or Illustrator required. The color codes, font names, and worksheets work as starting points for any design tool.</div></div><div class="faq-item"><div class="faq-q">Q: Is this for established projects or early-stage founders?</div><div class="faq-a">A: Both. Early-stage founders use BLUEPRINT to establish their brand from scratch — the worksheets guide you through every decision. Established projects use it to audit and upgrade an inconsistent brand. The 5 color palettes and type pairings are reusable across projects, so teams and agencies often find it valuable across multiple builds.</div></div><div class="faq-item"><div class="faq-q">Q: How is this different from just using a Canva template?</div><div class="faq-a">A: Canva templates give you a visual layout. BLUEPRINT gives you the strategy underneath the visuals — why to use specific colors for specific project types, how to brief a logo designer, what your brand voice should sound like, how your pitch deck should be structured. The visual execution is yours to do however you like; BLUEPRINT is the thinking that makes that execution coherent and professional.</div></div></div>
-    </div>
-  </div>
-</div>
-<div class="card" data-id="05" onclick="openModal('05')" style="--c:#EC4899">
-  <div class="card-bar"></div>
-  <div class="card-img"><img src="covers/v2/05-ledger.png" alt="LEDGER"></div>
-  <div class="card-body">
-    <div class="row">
-      <span class="num">05</span>
-      <span class="cat">Notion Template</span>
-      <span class="price">$29</span>
-    </div>
+</div><div class="card" onclick="openModal('05')" style="--c:#EC4899">
+  <div class="cbar"></div>
+  <div class="cimg"><img src="businesses/05-ledger/images/cover.jpg" alt="LEDGER"></div>
+  <div class="cbody">
+    <div class="crow"><span class="cnum">05</span><span class="ccat">Notion Template</span><span class="cprice">$29</span></div>
     <h2>LEDGER</h2>
-    <p class="tagline">"Know your numbers."</p>
-    <p class="short"></p>
-    <div class="open-hint">Click to open →</div>
+    <p class="ctag">"Know your numbers."</p>
+    <p class="cshort"></p>
+    <div class="chint">Open →</div>
   </div>
-</div>
-
-<div class="modal" id="modal-05">
-  <div class="modal-inner">
-    <button class="modal-close" onclick="closeModal(event)">✕</button>
-    <div class="modal-header" style="--c:#EC4899">
-      <div class="modal-img"><img src="covers/v2/05-ledger.png" alt="LEDGER"></div>
-      <div class="modal-meta">
-        <span class="modal-cat">Notion Template</span>
-        <h1 class="modal-name">LEDGER</h1>
-        <p class="modal-tagline">"Know your numbers."</p>
-        <div class="modal-price">$29</div>
-        <p class="modal-title-txt">Crypto Portfolio & Token Tracker Pro — Notion Template</p>
-      </div>
-    </div>
-    <div class="modal-body">
-      <h3>Description</h3>
-      <p></p>
-      <h3>What's Included</h3>
-      <ul class="bullets"></ul>
-      <h3>FAQ</h3>
-      <div class="faqs"></div>
-    </div>
-  </div>
-</div>
-<div class="card" data-id="06" onclick="openModal('06')" style="--c:#14B8A6">
-  <div class="card-bar"></div>
-  <div class="card-img"><img src="covers/v2/06-flow.png" alt="FLOW"></div>
-  <div class="card-body">
-    <div class="row">
-      <span class="num">06</span>
-      <span class="cat">PDF Playbook</span>
-      <span class="price">$47</span>
-    </div>
+</div><div class="card" onclick="openModal('06')" style="--c:#14B8A6">
+  <div class="cbar"></div>
+  <div class="cimg"><img src="businesses/06-flow/images/cover.jpg" alt="FLOW"></div>
+  <div class="cbody">
+    <div class="crow"><span class="cnum">06</span><span class="ccat">PDF Playbook</span><span class="cprice">$47</span></div>
     <h2>FLOW</h2>
-    <p class="tagline">"Ship without burning out."</p>
-    <p class="short"></p>
-    <div class="open-hint">Click to open →</div>
+    <p class="ctag">"Ship without burning out."</p>
+    <p class="cshort"></p>
+    <div class="chint">Open →</div>
   </div>
-</div>
-
-<div class="modal" id="modal-06">
-  <div class="modal-inner">
-    <button class="modal-close" onclick="closeModal(event)">✕</button>
-    <div class="modal-header" style="--c:#14B8A6">
-      <div class="modal-img"><img src="covers/v2/06-flow.png" alt="FLOW"></div>
-      <div class="modal-meta">
-        <span class="modal-cat">PDF Playbook</span>
-        <h1 class="modal-name">FLOW</h1>
-        <p class="modal-tagline">"Ship without burning out."</p>
-        <div class="modal-price">$47</div>
-        <p class="modal-title-txt">The Crypto Community Growth Bible — 0 to 10,000 Members Playbook</p>
-      </div>
-    </div>
-    <div class="modal-body">
-      <h3>Description</h3>
-      <p></p>
-      <h3>What's Included</h3>
-      <ul class="bullets"></ul>
-      <h3>FAQ</h3>
-      <div class="faqs"></div>
-    </div>
-  </div>
-</div>
-<div class="card" data-id="07" onclick="openModal('07')" style="--c:#F59E0B">
-  <div class="card-bar"></div>
-  <div class="card-img"><img src="covers/v2/07-pulse.png" alt="PULSE"></div>
-  <div class="card-body">
-    <div class="row">
-      <span class="num">07</span>
-      <span class="cat">Thread Templates</span>
-      <span class="price">$37</span>
-    </div>
+</div><div class="card" onclick="openModal('07')" style="--c:#F59E0B">
+  <div class="cbar"></div>
+  <div class="cimg"><img src="businesses/07-pulse/images/cover.jpg" alt="PULSE"></div>
+  <div class="cbody">
+    <div class="crow"><span class="cnum">07</span><span class="ccat">Thread Templates</span><span class="cprice">$37</span></div>
     <h2>PULSE</h2>
-    <p class="tagline">"Every post, a signal."</p>
-    <p class="short"></p>
-    <div class="open-hint">Click to open →</div>
+    <p class="ctag">"Every post, a signal."</p>
+    <p class="cshort"></p>
+    <div class="chint">Open →</div>
   </div>
-</div>
-
-<div class="modal" id="modal-07">
-  <div class="modal-inner">
-    <button class="modal-close" onclick="closeModal(event)">✕</button>
-    <div class="modal-header" style="--c:#F59E0B">
-      <div class="modal-img"><img src="covers/v2/07-pulse.png" alt="PULSE"></div>
-      <div class="modal-meta">
-        <span class="modal-cat">Thread Templates</span>
-        <h1 class="modal-name">PULSE</h1>
-        <p class="modal-tagline">"Every post, a signal."</p>
-        <div class="modal-price">$37</div>
-        <p class="modal-title-txt">Crypto Twitter Mastery Pack — 50 Thread Templates + Growth Guide</p>
-      </div>
-    </div>
-    <div class="modal-body">
-      <h3>Description</h3>
-      <p></p>
-      <h3>What's Included</h3>
-      <ul class="bullets"></ul>
-      <h3>FAQ</h3>
-      <div class="faqs"></div>
-    </div>
-  </div>
-</div>
-<div class="card" data-id="08" onclick="openModal('08')" style="--c:#EF4444">
-  <div class="card-bar"></div>
-  <div class="card-img"><img src="covers/v2/08-forge.png" alt="FORGE"></div>
-  <div class="card-body">
-    <div class="row">
-      <span class="num">08</span>
-      <span class="cat">Notion Workspace</span>
-      <span class="price">$59</span>
-    </div>
+</div><div class="card" onclick="openModal('08')" style="--c:#EF4444">
+  <div class="cbar"></div>
+  <div class="cimg"><img src="businesses/08-forge/images/cover.jpg" alt="FORGE"></div>
+  <div class="cbody">
+    <div class="crow"><span class="cnum">08</span><span class="ccat">Notion Workspace</span><span class="cprice">$59</span></div>
     <h2>FORGE</h2>
-    <p class="tagline">"Build in public, ship in private."</p>
-    <p class="short"></p>
-    <div class="open-hint">Click to open →</div>
+    <p class="ctag">"Build in public, ship in private."</p>
+    <p class="cshort"></p>
+    <div class="chint">Open →</div>
   </div>
-</div>
-
-<div class="modal" id="modal-08">
-  <div class="modal-inner">
-    <button class="modal-close" onclick="closeModal(event)">✕</button>
-    <div class="modal-header" style="--c:#EF4444">
-      <div class="modal-img"><img src="covers/v2/08-forge.png" alt="FORGE"></div>
-      <div class="modal-meta">
-        <span class="modal-cat">Notion Workspace</span>
-        <h1 class="modal-name">FORGE</h1>
-        <p class="modal-tagline">"Build in public, ship in private."</p>
-        <div class="modal-price">$59</div>
-        <p class="modal-title-txt">Web3 Founder Operations Kit — Complete Notion Workspace for Crypto Startups</p>
-      </div>
-    </div>
-    <div class="modal-body">
-      <h3>Description</h3>
-      <p></p>
-      <h3>What's Included</h3>
-      <ul class="bullets"></ul>
-      <h3>FAQ</h3>
-      <div class="faqs"></div>
-    </div>
-  </div>
-</div>
-<div class="card" data-id="09" onclick="openModal('09')" style="--c:#6366F1">
-  <div class="card-bar"></div>
-  <div class="card-img"><div class="no-img">—</div></div>
-  <div class="card-body">
-    <div class="row">
-      <span class="num">09</span>
-      <span class="cat">Research Toolkit</span>
-      <span class="price">$44</span>
-    </div>
+</div><div class="card" onclick="openModal('09')" style="--c:#6366F1">
+  <div class="cbar"></div>
+  <div class="cimg"><img src="businesses/09-signal/images/hero-new.jpg" alt="SIGNAL"></div>
+  <div class="cbody">
+    <div class="crow"><span class="cnum">09</span><span class="ccat">Research Toolkit</span><span class="cprice">$44</span></div>
     <h2>SIGNAL</h2>
-    <p class="tagline">"Cut through the noise."</p>
-    <p class="short"></p>
-    <div class="open-hint">Click to open →</div>
+    <p class="ctag">"Cut through the noise."</p>
+    <p class="cshort"></p>
+    <div class="chint">Open →</div>
   </div>
-</div>
-
-<div class="modal" id="modal-09">
-  <div class="modal-inner">
-    <button class="modal-close" onclick="closeModal(event)">✕</button>
-    <div class="modal-header" style="--c:#6366F1">
-      <div class="modal-img"><div class="no-img">—</div></div>
-      <div class="modal-meta">
-        <span class="modal-cat">Research Toolkit</span>
-        <h1 class="modal-name">SIGNAL</h1>
-        <p class="modal-tagline">"Cut through the noise."</p>
-        <div class="modal-price">$44</div>
-        <p class="modal-title-txt"></p>
-      </div>
-    </div>
-    <div class="modal-body">
-      <h3>Description</h3>
-      <p></p>
-      <h3>What's Included</h3>
-      <ul class="bullets"></ul>
-      <h3>FAQ</h3>
-      <div class="faqs"></div>
-    </div>
-  </div>
-</div>
-<div class="card" data-id="10" onclick="openModal('10')" style="--c:#84CC16">
-  <div class="card-bar"></div>
-  <div class="card-img"><div class="no-img">—</div></div>
-  <div class="card-body">
-    <div class="row">
-      <span class="num">10</span>
-      <span class="cat">Launch Playbook</span>
-      <span class="price">$54</span>
-    </div>
+</div><div class="card" onclick="openModal('10')" style="--c:#84CC16">
+  <div class="cbar"></div>
+  <div class="cimg"><img src="businesses/10-mint/images/cover.jpg" alt="MINT"></div>
+  <div class="cbody">
+    <div class="crow"><span class="cnum">10</span><span class="ccat">Launch Playbook</span><span class="cprice">$54</span></div>
     <h2>MINT</h2>
-    <p class="tagline">"First drop, right."</p>
-    <p class="short"></p>
-    <div class="open-hint">Click to open →</div>
-  </div>
-</div>
-
-<div class="modal" id="modal-10">
-  <div class="modal-inner">
-    <button class="modal-close" onclick="closeModal(event)">✕</button>
-    <div class="modal-header" style="--c:#84CC16">
-      <div class="modal-img"><div class="no-img">—</div></div>
-      <div class="modal-meta">
-        <span class="modal-cat">Launch Playbook</span>
-        <h1 class="modal-name">MINT</h1>
-        <p class="modal-tagline">"First drop, right."</p>
-        <div class="modal-price">$54</div>
-        <p class="modal-title-txt"></p>
-      </div>
-    </div>
-    <div class="modal-body">
-      <h3>Description</h3>
-      <p></p>
-      <h3>What's Included</h3>
-      <ul class="bullets"></ul>
-      <h3>FAQ</h3>
-      <div class="faqs"></div>
-    </div>
+    <p class="ctag">"First drop, right."</p>
+    <p class="cshort"></p>
+    <div class="chint">Open →</div>
   </div>
 </div></div>
+<div class="modal" id="m01" onclick="bgClose(event,'01')">
+  <div class="mbox">
+    <button class="mclose" onclick="closeModal('01')">✕</button>
+    <div class="mcarousel" id="car01">
+      <div class="slide"><img src="businesses/01-vessel/images/cover.jpg" alt="VESSEL 1"></div><div class="slide"><img src="businesses/01-vessel/images/hero-new.jpg" alt="VESSEL 2"></div><div class="slide"><img src="businesses/01-vessel/images/feature-1.jpg" alt="VESSEL 3"></div><div class="slide"><img src="businesses/01-vessel/images/feature-2.jpg" alt="VESSEL 4"></div><div class="slide"><img src="businesses/01-vessel/images/preview.jpg" alt="VESSEL 5"></div><div class="slide"><img src="businesses/01-vessel/images/hero-v2.jpg" alt="VESSEL 6"></div>
+      <button class="carr-btn prev" onclick="shiftSlide('01',-1)">‹</button>
+      <button class="carr-btn next" onclick="shiftSlide('01',1)">›</button>
+      <div class="dots"><span class="dot active" onclick="goSlide('01',0)"></span><span class="dot " onclick="goSlide('01',1)"></span><span class="dot " onclick="goSlide('01',2)"></span><span class="dot " onclick="goSlide('01',3)"></span><span class="dot " onclick="goSlide('01',4)"></span><span class="dot " onclick="goSlide('01',5)"></span></div>
+    </div>
+    <div class="mcontent">
+      <div class="mtop" style="--c:#0057FF">
+        <span class="mcat">Notion Template</span>
+        <h1>VESSEL</h1>
+        <p class="mtag">"Carry your culture from day one."</p>
+        <div class="mprice">$47</div>
+      </div>
+      <p class="mfulltitle">The Token Launch Playbook — Notion Template for Founders</p>
+      <p class="mdesc">The cultural operating system for your token launch. Checklists, community framework, narrative worksheets, and post-launch playbook — all in Notion.</p>
+      <h3>What's Included</h3>
+      <ul class="mbullets"><li><strong>20-item pre-launch checklist</strong><span>Every critical cultural and community infrastructure task before your token goes live. Nothing technical; everything that actually determines whether people stay.</span></li><li><strong>5-phase community building framework</strong><span>From founding your internal culture (Phase 1) to building a self-sustaining community (Phase 5). Each phase has specific activities, milestones, and the one mistake most projects make.</span></li><li><strong>Narrative development worksheet</strong><span>6-part worksheet that surfaces your project's real story: core belief, origin, characters, enemy, promise, and voice. Your answers power every piece of content for the next 12 months.</span></li><li><strong>Multi-channel announcement template</strong><span>Ready-to-edit templates for your launch tweet, 8-tweet thread, Discord/Telegram announcement, and Medium/Mirror article outline. Fill in the [BRACKETS] and publish.</span></li><li><strong>Week 1-4 post-launch playbook</strong><span>Daily content direction for launch week, then weekly themes through the first month. Built around the arc your community needs: Show Your Work → Teach Something → Build Together → Show the Future.</span></li></ul>
+      <h3>FAQ</h3>
+      <div class="mfaqs"><div class="faq"><div class="fq">Q: Is this a technical guide about deploying a token contract?</div><div class="fa">A: No. This is a cultural and community guide. It assumes you've solved the technical side (or have someone who has). VESSEL is about the other 80% of the launch that most founders ignore until it's too late: narrative, community building, content, and the first 30 days of showing up.</div></div><div class="faq"><div class="fq">Q: Does this work if I'm a solo founder without a team?</div><div class="fa">A: Yes, and in some ways it's more useful solo. VESSEL is built around what one focused person can actually execute. The community phases scale from small (5 founding members) to large — start where you are.</div></div><div class="faq"><div class="fq">Q: How do I use this? Is it a PDF or a Notion template?</div><div class="fa">A: It's a Notion template. You'll receive a link to duplicate the page directly into your own Notion workspace. From there it's yours — edit, fill in, delete what doesn't apply. No login required beyond a standard free Notion account.</div></div></div>
+    </div>
+  </div>
+</div><div class="modal" id="m02" onclick="bgClose(event,'02')">
+  <div class="mbox">
+    <button class="mclose" onclick="closeModal('02')">✕</button>
+    <div class="mcarousel" id="car02">
+      <div class="slide"><img src="businesses/02-draft/images/cover.jpg" alt="DRAFT 1"></div><div class="slide"><img src="businesses/02-draft/images/hero-new.jpg" alt="DRAFT 2"></div><div class="slide"><img src="businesses/02-draft/images/feature-1.jpg" alt="DRAFT 3"></div><div class="slide"><img src="businesses/02-draft/images/feature-2.jpg" alt="DRAFT 4"></div><div class="slide"><img src="businesses/02-draft/images/preview.jpg" alt="DRAFT 5"></div><div class="slide"><img src="businesses/02-draft/images/hero-v2.jpg" alt="DRAFT 6"></div>
+      <button class="carr-btn prev" onclick="shiftSlide('02',-1)">‹</button>
+      <button class="carr-btn next" onclick="shiftSlide('02',1)">›</button>
+      <div class="dots"><span class="dot active" onclick="goSlide('02',0)"></span><span class="dot " onclick="goSlide('02',1)"></span><span class="dot " onclick="goSlide('02',2)"></span><span class="dot " onclick="goSlide('02',3)"></span><span class="dot " onclick="goSlide('02',4)"></span><span class="dot " onclick="goSlide('02',5)"></span></div>
+    </div>
+    <div class="mcontent">
+      <div class="mtop" style="--c:#00D68F">
+        <span class="mcat">Content Templates</span>
+        <h1>DRAFT</h1>
+        <p class="mtag">"Write less. Say more."</p>
+        <div class="mprice">$39</div>
+      </div>
+      <p class="mfulltitle">90 Days of Crypto Content — Done-For-You Social Post Templates</p>
+      <p class="mdesc">90 ready-to-edit social post templates for crypto projects. Hype, education, community, market commentary, culture. Copy, edit, post.</p>
+      <h3>What's Included</h3>
+      <ul class="mbullets"><li><strong>20 hype & launch post templates</strong><span>Announcement drops, milestone posts, partnership teases, exchange listings, governance votes, version launches, and the exact formats that generate attention without empty hype.</span></li><li><strong>20 education post templates</strong><span>Explainers, comparisons, tokenomics breakdowns, risk disclosures, how-to walkthroughs, ecosystem maps, and the "what we're NOT" post that stops FUD before it starts.</span></li><li><strong>20 community post templates</strong><span>Introduction prompts, contributor spotlights, culture posts, community challenges, feedback requests, meetup announcements, and monthly state-of-community updates.</span></li><li><strong>15 market commentary templates</strong><span>Red day responses, bull market posts, token unlock transparency posts, competitor commentary, and long-term holder appreciation posts for every market condition.</span></li><li><strong>15 culture & meme post templates</strong><span>Behind-the-scenes energy, conviction posts, honest "bad week" posts, community brag posts, and the manifesto format that builds a project's personality over time.</span></li></ul>
+      <h3>FAQ</h3>
+      <div class="mfaqs"><div class="faq"><div class="fq">Q: Are these for Twitter/X only?</div><div class="fa">A: No — the templates are written for any text-based social platform: Twitter/X, Farcaster, Lens, Telegram, Discord announcements, or anywhere you post text. Some templates include format notes specifying where they perform best.</div></div><div class="faq"><div class="fq">Q: How much editing do they need?</div><div class="fa">A: You'll fill in [BRACKETS] with your project's details and adjust the tone to match your voice. Some templates will need minimal editing — just fill in the blanks. Others are starting points for something more original. The goal is to eliminate the blank-page problem, not to replace your voice.</div></div><div class="faq"><div class="fq">Q: Are these designed for any specific blockchain or sector?</div><div class="fa">A: The templates are sector-agnostic and work for DeFi protocols, NFT projects, DAOs, L1/L2 chains, and any other crypto category. The [BRACKETS] system means you adapt them to your specific context.</div></div></div>
+    </div>
+  </div>
+</div><div class="modal" id="m03" onclick="bgClose(event,'03')">
+  <div class="mbox">
+    <button class="mclose" onclick="closeModal('03')">✕</button>
+    <div class="mcarousel" id="car03">
+      <div class="slide"><img src="businesses/03-stack/images/cover.jpg" alt="STACK 1"></div><div class="slide"><img src="businesses/03-stack/images/hero-new.jpg" alt="STACK 2"></div><div class="slide"><img src="businesses/03-stack/images/feature-1.jpg" alt="STACK 3"></div><div class="slide"><img src="businesses/03-stack/images/feature-2.jpg" alt="STACK 4"></div><div class="slide"><img src="businesses/03-stack/images/preview.jpg" alt="STACK 5"></div><div class="slide"><img src="businesses/03-stack/images/hero-v2.jpg" alt="STACK 6"></div>
+      <button class="carr-btn prev" onclick="shiftSlide('03',-1)">‹</button>
+      <button class="carr-btn next" onclick="shiftSlide('03',1)">›</button>
+      <div class="dots"><span class="dot active" onclick="goSlide('03',0)"></span><span class="dot " onclick="goSlide('03',1)"></span><span class="dot " onclick="goSlide('03',2)"></span><span class="dot " onclick="goSlide('03',3)"></span><span class="dot " onclick="goSlide('03',4)"></span><span class="dot " onclick="goSlide('03',5)"></span></div>
+    </div>
+    <div class="mcontent">
+      <div class="mtop" style="--c:#FF6B00">
+        <span class="mcat">AI Prompt Library</span>
+        <h1>STACK</h1>
+        <p class="mtag">"Your unfair AI advantage."</p>
+        <div class="mprice">$49</div>
+      </div>
+      <p class="mfulltitle">The Crypto AI Prompt Vault — 100 Production-Ready Prompts for Crypto Teams</p>
+      <p class="mdesc">100 copy-paste AI prompts for crypto operators. Community management, content, investor outreach, research, and launch planning. Built for daily use.</p>
+      <h3>What's Included</h3>
+      <ul class="mbullets"><li><strong>20 community management prompts</strong><span>Welcome sequences, FUD response frameworks, conflict de-escalation, ambassador program copy, crisis communication templates, governance summaries, and monthly community culture documents.</span></li><li><strong>20 content creation prompts</strong><span>Thread generators, long-form article writers, tokenomics explainer copy, pitch deck narratives, brand voice guides, competitor analysis posts, manifesto/vision statements, and 30-day content calendars.</span></li><li><strong>20 investor outreach prompts</strong><span>Cold investor emails, warm intro requests, monthly investor updates (including the "bad news" version), partnership outreach, term sheet explainers, deal memo bullet points, and annual token holder letters.</span></li><li><strong>20 token research prompts</strong><span>Project research frameworks, on-chain metrics interpretation, competitor analysis templates, tokenomics analysis, whitepaper critique, smart contract audit translation, and sentiment analysis frameworks.</span></li><li><strong>20 launch planning prompts</strong><span>Launch timeline generators, multi-channel announcement strategies, launch-day operations playbooks, pre-launch community growth plans, airdrop campaign design, KOL brief writers, and 6-month launch review frameworks.</span></li></ul>
+      <h3>FAQ</h3>
+      <div class="mfaqs"><div class="faq"><div class="fq">Q: Which AI models do these prompts work with?</div><div class="fa">A: All prompts are tested with and optimized for ChatGPT-4, Claude (Anthropic), and Gemini. They work with any major language model. The more context you add to the [VARIABLE] fields, the better the output from any model.</div></div><div class="faq"><div class="fq">Q: Do I need AI experience to use these?</div><div class="fa">A: No. If you can copy-paste and fill in brackets, you can use every prompt in STACK. The [VARIABLE] system removes the guesswork — you provide your project's specific details, the AI does the rest. A short usage guide is included.</div></div><div class="faq"><div class="fq">Q: Can I edit and reuse these prompts for multiple projects?</div><div class="fa">A: Yes. Once you purchase STACK, the prompts are yours to use across any project, indefinitely. There are no restrictions on use, adaptation, or how many times you run them.</div></div></div>
+    </div>
+  </div>
+</div><div class="modal" id="m04" onclick="bgClose(event,'04')">
+  <div class="mbox">
+    <button class="mclose" onclick="closeModal('04')">✕</button>
+    <div class="mcarousel" id="car04">
+      <div class="slide"><img src="businesses/04-blueprint/images/cover.jpg" alt="BLUEPRINT 1"></div><div class="slide"><img src="businesses/04-blueprint/images/hero-new.jpg" alt="BLUEPRINT 2"></div><div class="slide"><img src="businesses/04-blueprint/images/feature-1.jpg" alt="BLUEPRINT 3"></div><div class="slide"><img src="businesses/04-blueprint/images/feature-2.jpg" alt="BLUEPRINT 4"></div><div class="slide"><img src="businesses/04-blueprint/images/preview.jpg" alt="BLUEPRINT 5"></div><div class="slide"><img src="businesses/04-blueprint/images/hero-v2.jpg" alt="BLUEPRINT 6"></div>
+      <button class="carr-btn prev" onclick="shiftSlide('04',-1)">‹</button>
+      <button class="carr-btn next" onclick="shiftSlide('04',1)">›</button>
+      <div class="dots"><span class="dot active" onclick="goSlide('04',0)"></span><span class="dot " onclick="goSlide('04',1)"></span><span class="dot " onclick="goSlide('04',2)"></span><span class="dot " onclick="goSlide('04',3)"></span><span class="dot " onclick="goSlide('04',4)"></span><span class="dot " onclick="goSlide('04',5)"></span></div>
+    </div>
+    <div class="mcontent">
+      <div class="mtop" style="--c:#A855F7">
+        <span class="mcat">Brand Kit</span>
+        <h1>BLUEPRINT</h1>
+        <p class="mtag">"Look like you mean it."</p>
+        <div class="mprice">$79</div>
+      </div>
+      <p class="mfulltitle">Web3 Brand Starter Kit — Complete Identity System for Crypto Projects</p>
+      <p class="mdesc">5 color palettes, 5 type pairings, logo brief worksheet, social sizing guide, pitch deck outline, one-pager template, and brand voice system.</p>
+      <h3>What's Included</h3>
+      <ul class="mbullets"><li><strong>5 complete color system palettes</strong><span>"The Protocol" (DeFi/finance), "The Genesis" (L1/L2 chains), "The Community" (DAOs/governance), "The Challenger" (NFT/gaming), and "The Founder" (early-stage/versatile). Each includes primary, secondary, accent, neutral, and background colors with hex codes, RGB values, and guidance on where to use every color.</span></li><li><strong>5 typography pairing guides</strong><span>Complete type combinations for every project type: authority/financial, technical/developer, community/warm, disruptive/bold, and editorial. Each includes font names (with free alternatives), usage rules, size guidance, and a full visual specimen showing each combination in action.</span></li><li><strong>Logo direction worksheet</strong><span>A complete designer brief template covering logo type selection, personality sliders, visual criteria, what to avoid, and a summary brief. Hand this to any designer or AI design tool and get a logo that's actually right for your project.</span></li><li><strong>Social media sizing guide + Canva setup guide</strong><span>Correct dimensions for every platform (profile images, banners, post formats, story sizes) with safe zone guidance. Includes a step-by-step Canva brand kit setup so your whole team posts consistently from day one.</span></li><li><strong>Pitch deck outline + one-pager + brand voice system</strong><span>12-slide pitch deck with specific guidance for each slide. A one-pager template with a copy framework that replaces vague descriptions with specific language. A brand voice worksheet with the 4-attribute model, vocabulary guide, and application rules.</span></li></ul>
+      <h3>FAQ</h3>
+      <div class="mfaqs"><div class="faq"><div class="fq">Q: Do I need design software to use this?</div><div class="fa">A: No. BLUEPRINT is brand strategy and direction — everything you need to either implement yourself (using free tools like Canva, which this kit has a setup guide for) or hand to a designer or AI tool as a brief. No Figma, Photoshop, or Illustrator required. The color codes, font names, and worksheets work as starting points for any design tool.</div></div><div class="faq"><div class="fq">Q: Is this for established projects or early-stage founders?</div><div class="fa">A: Both. Early-stage founders use BLUEPRINT to establish their brand from scratch — the worksheets guide you through every decision. Established projects use it to audit and upgrade an inconsistent brand. The 5 color palettes and type pairings are reusable across projects, so teams and agencies often find it valuable across multiple builds.</div></div><div class="faq"><div class="fq">Q: How is this different from just using a Canva template?</div><div class="fa">A: Canva templates give you a visual layout. BLUEPRINT gives you the strategy underneath the visuals — why to use specific colors for specific project types, how to brief a logo designer, what your brand voice should sound like, how your pitch deck should be structured. The visual execution is yours to do however you like; BLUEPRINT is the thinking that makes that execution coherent and professional.</div></div></div>
+    </div>
+  </div>
+</div><div class="modal" id="m05" onclick="bgClose(event,'05')">
+  <div class="mbox">
+    <button class="mclose" onclick="closeModal('05')">✕</button>
+    <div class="mcarousel" id="car05">
+      <div class="slide"><img src="businesses/05-ledger/images/cover.jpg" alt="LEDGER 1"></div><div class="slide"><img src="businesses/05-ledger/images/hero-new.jpg" alt="LEDGER 2"></div><div class="slide"><img src="businesses/05-ledger/images/feature-1.jpg" alt="LEDGER 3"></div><div class="slide"><img src="businesses/05-ledger/images/feature-2.jpg" alt="LEDGER 4"></div><div class="slide"><img src="businesses/05-ledger/images/preview.jpg" alt="LEDGER 5"></div><div class="slide"><img src="businesses/05-ledger/images/hero-v2.jpg" alt="LEDGER 6"></div>
+      <button class="carr-btn prev" onclick="shiftSlide('05',-1)">‹</button>
+      <button class="carr-btn next" onclick="shiftSlide('05',1)">›</button>
+      <div class="dots"><span class="dot active" onclick="goSlide('05',0)"></span><span class="dot " onclick="goSlide('05',1)"></span><span class="dot " onclick="goSlide('05',2)"></span><span class="dot " onclick="goSlide('05',3)"></span><span class="dot " onclick="goSlide('05',4)"></span><span class="dot " onclick="goSlide('05',5)"></span></div>
+    </div>
+    <div class="mcontent">
+      <div class="mtop" style="--c:#EC4899">
+        <span class="mcat">Notion Template</span>
+        <h1>LEDGER</h1>
+        <p class="mtag">"Know your numbers."</p>
+        <div class="mprice">$29</div>
+      </div>
+      <p class="mfulltitle">Crypto Portfolio & Token Tracker Pro — Notion Template</p>
+      <p class="mdesc"></p>
+      <h3>What's Included</h3>
+      <ul class="mbullets"></ul>
+      <h3>FAQ</h3>
+      <div class="mfaqs"></div>
+    </div>
+  </div>
+</div><div class="modal" id="m06" onclick="bgClose(event,'06')">
+  <div class="mbox">
+    <button class="mclose" onclick="closeModal('06')">✕</button>
+    <div class="mcarousel" id="car06">
+      <div class="slide"><img src="businesses/06-flow/images/cover.jpg" alt="FLOW 1"></div><div class="slide"><img src="businesses/06-flow/images/hero-new.jpg" alt="FLOW 2"></div><div class="slide"><img src="businesses/06-flow/images/feature-1.jpg" alt="FLOW 3"></div><div class="slide"><img src="businesses/06-flow/images/feature-2.jpg" alt="FLOW 4"></div><div class="slide"><img src="businesses/06-flow/images/preview.jpg" alt="FLOW 5"></div><div class="slide"><img src="businesses/06-flow/images/hero-v2.jpg" alt="FLOW 6"></div>
+      <button class="carr-btn prev" onclick="shiftSlide('06',-1)">‹</button>
+      <button class="carr-btn next" onclick="shiftSlide('06',1)">›</button>
+      <div class="dots"><span class="dot active" onclick="goSlide('06',0)"></span><span class="dot " onclick="goSlide('06',1)"></span><span class="dot " onclick="goSlide('06',2)"></span><span class="dot " onclick="goSlide('06',3)"></span><span class="dot " onclick="goSlide('06',4)"></span><span class="dot " onclick="goSlide('06',5)"></span></div>
+    </div>
+    <div class="mcontent">
+      <div class="mtop" style="--c:#14B8A6">
+        <span class="mcat">PDF Playbook</span>
+        <h1>FLOW</h1>
+        <p class="mtag">"Ship without burning out."</p>
+        <div class="mprice">$47</div>
+      </div>
+      <p class="mfulltitle">The Crypto Community Growth Bible — 0 to 10,000 Members Playbook</p>
+      <p class="mdesc"></p>
+      <h3>What's Included</h3>
+      <ul class="mbullets"></ul>
+      <h3>FAQ</h3>
+      <div class="mfaqs"></div>
+    </div>
+  </div>
+</div><div class="modal" id="m07" onclick="bgClose(event,'07')">
+  <div class="mbox">
+    <button class="mclose" onclick="closeModal('07')">✕</button>
+    <div class="mcarousel" id="car07">
+      <div class="slide"><img src="businesses/07-pulse/images/cover.jpg" alt="PULSE 1"></div><div class="slide"><img src="businesses/07-pulse/images/hero-new.jpg" alt="PULSE 2"></div><div class="slide"><img src="businesses/07-pulse/images/feature-1.jpg" alt="PULSE 3"></div><div class="slide"><img src="businesses/07-pulse/images/feature-2.jpg" alt="PULSE 4"></div><div class="slide"><img src="businesses/07-pulse/images/preview.jpg" alt="PULSE 5"></div><div class="slide"><img src="businesses/07-pulse/images/hero-v2.jpg" alt="PULSE 6"></div>
+      <button class="carr-btn prev" onclick="shiftSlide('07',-1)">‹</button>
+      <button class="carr-btn next" onclick="shiftSlide('07',1)">›</button>
+      <div class="dots"><span class="dot active" onclick="goSlide('07',0)"></span><span class="dot " onclick="goSlide('07',1)"></span><span class="dot " onclick="goSlide('07',2)"></span><span class="dot " onclick="goSlide('07',3)"></span><span class="dot " onclick="goSlide('07',4)"></span><span class="dot " onclick="goSlide('07',5)"></span></div>
+    </div>
+    <div class="mcontent">
+      <div class="mtop" style="--c:#F59E0B">
+        <span class="mcat">Thread Templates</span>
+        <h1>PULSE</h1>
+        <p class="mtag">"Every post, a signal."</p>
+        <div class="mprice">$37</div>
+      </div>
+      <p class="mfulltitle">Crypto Twitter Mastery Pack — 50 Thread Templates + Growth Guide</p>
+      <p class="mdesc"></p>
+      <h3>What's Included</h3>
+      <ul class="mbullets"></ul>
+      <h3>FAQ</h3>
+      <div class="mfaqs"></div>
+    </div>
+  </div>
+</div><div class="modal" id="m08" onclick="bgClose(event,'08')">
+  <div class="mbox">
+    <button class="mclose" onclick="closeModal('08')">✕</button>
+    <div class="mcarousel" id="car08">
+      <div class="slide"><img src="businesses/08-forge/images/cover.jpg" alt="FORGE 1"></div><div class="slide"><img src="businesses/08-forge/images/hero-new.jpg" alt="FORGE 2"></div><div class="slide"><img src="businesses/08-forge/images/feature-1.jpg" alt="FORGE 3"></div><div class="slide"><img src="businesses/08-forge/images/feature-2.jpg" alt="FORGE 4"></div><div class="slide"><img src="businesses/08-forge/images/preview.jpg" alt="FORGE 5"></div><div class="slide"><img src="businesses/08-forge/images/hero-v2.jpg" alt="FORGE 6"></div>
+      <button class="carr-btn prev" onclick="shiftSlide('08',-1)">‹</button>
+      <button class="carr-btn next" onclick="shiftSlide('08',1)">›</button>
+      <div class="dots"><span class="dot active" onclick="goSlide('08',0)"></span><span class="dot " onclick="goSlide('08',1)"></span><span class="dot " onclick="goSlide('08',2)"></span><span class="dot " onclick="goSlide('08',3)"></span><span class="dot " onclick="goSlide('08',4)"></span><span class="dot " onclick="goSlide('08',5)"></span></div>
+    </div>
+    <div class="mcontent">
+      <div class="mtop" style="--c:#EF4444">
+        <span class="mcat">Notion Workspace</span>
+        <h1>FORGE</h1>
+        <p class="mtag">"Build in public, ship in private."</p>
+        <div class="mprice">$59</div>
+      </div>
+      <p class="mfulltitle">Web3 Founder Operations Kit — Complete Notion Workspace for Crypto Startups</p>
+      <p class="mdesc"></p>
+      <h3>What's Included</h3>
+      <ul class="mbullets"></ul>
+      <h3>FAQ</h3>
+      <div class="mfaqs"></div>
+    </div>
+  </div>
+</div><div class="modal" id="m09" onclick="bgClose(event,'09')">
+  <div class="mbox">
+    <button class="mclose" onclick="closeModal('09')">✕</button>
+    <div class="mcarousel" id="car09">
+      <div class="slide"><img src="businesses/09-signal/images/hero-new.jpg" alt="SIGNAL 1"></div><div class="slide"><img src="businesses/09-signal/images/hero-v2.jpg" alt="SIGNAL 2"></div><div class="slide"><img src="businesses/09-signal/images/hero-v3.jpg" alt="SIGNAL 3"></div>
+      <button class="carr-btn prev" onclick="shiftSlide('09',-1)">‹</button>
+      <button class="carr-btn next" onclick="shiftSlide('09',1)">›</button>
+      <div class="dots"><span class="dot active" onclick="goSlide('09',0)"></span><span class="dot " onclick="goSlide('09',1)"></span><span class="dot " onclick="goSlide('09',2)"></span></div>
+    </div>
+    <div class="mcontent">
+      <div class="mtop" style="--c:#6366F1">
+        <span class="mcat">Research Toolkit</span>
+        <h1>SIGNAL</h1>
+        <p class="mtag">"Cut through the noise."</p>
+        <div class="mprice">$44</div>
+      </div>
+      <p class="mfulltitle"></p>
+      <p class="mdesc"></p>
+      <h3>What's Included</h3>
+      <ul class="mbullets"></ul>
+      <h3>FAQ</h3>
+      <div class="mfaqs"></div>
+    </div>
+  </div>
+</div><div class="modal" id="m10" onclick="bgClose(event,'10')">
+  <div class="mbox">
+    <button class="mclose" onclick="closeModal('10')">✕</button>
+    <div class="mcarousel" id="car10">
+      <div class="slide"><img src="businesses/10-mint/images/cover.jpg" alt="MINT 1"></div><div class="slide"><img src="businesses/10-mint/images/hero-new.jpg" alt="MINT 2"></div><div class="slide"><img src="businesses/10-mint/images/hero-v2.jpg" alt="MINT 3"></div><div class="slide"><img src="businesses/10-mint/images/hero-v3.jpg" alt="MINT 4"></div><div class="slide"><img src="businesses/10-mint/images/hero-v4.jpg" alt="MINT 5"></div><div class="slide"><img src="businesses/10-mint/images/hero-v5.jpg" alt="MINT 6"></div>
+      <button class="carr-btn prev" onclick="shiftSlide('10',-1)">‹</button>
+      <button class="carr-btn next" onclick="shiftSlide('10',1)">›</button>
+      <div class="dots"><span class="dot active" onclick="goSlide('10',0)"></span><span class="dot " onclick="goSlide('10',1)"></span><span class="dot " onclick="goSlide('10',2)"></span><span class="dot " onclick="goSlide('10',3)"></span><span class="dot " onclick="goSlide('10',4)"></span><span class="dot " onclick="goSlide('10',5)"></span></div>
+    </div>
+    <div class="mcontent">
+      <div class="mtop" style="--c:#84CC16">
+        <span class="mcat">Launch Playbook</span>
+        <h1>MINT</h1>
+        <p class="mtag">"First drop, right."</p>
+        <div class="mprice">$54</div>
+      </div>
+      <p class="mfulltitle"></p>
+      <p class="mdesc"></p>
+      <h3>What's Included</h3>
+      <ul class="mbullets"></ul>
+      <h3>FAQ</h3>
+      <div class="mfaqs"></div>
+    </div>
+  </div>
+</div>
 <footer>
-  <span>March 3, 2026</span>
-  <span>CONFIDENTIAL — WJP Personal</span>
-  <span>forcrypto.market</span>
+  <span>March 3, 2026</span><span>CONFIDENTIAL — WJP Personal</span><span>forcrypto.market</span>
 </footer>
 <script>
-function openModal(id){document.getElementById('modal-'+id).classList.add('open')}
-function closeModal(e){e.stopPropagation();e.target.closest('.modal').classList.remove('open')}
-document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open')}))
+const slides={};
+function openModal(id){document.getElementById('m'+id).classList.add('open');if(!slides[id])initSlides(id)}
+function closeModal(id){document.getElementById('m'+id).classList.remove('open')}
+function bgClose(e,id){if(e.target===e.currentTarget)closeModal(id)}
+function initSlides(id){slides[id]=0;showSlide(id)}
+function showSlide(id){const car=document.getElementById('car'+id);const sl=car.querySelectorAll('.slide');const dots=car.querySelectorAll('.dot');sl.forEach((s,i)=>{s.classList.toggle('active',i===slides[id]);dots[i].classList.toggle('active',i===slides[id])})}
+function shiftSlide(id,dir){const car=document.getElementById('car'+id);const n=car.querySelectorAll('.slide').length;slides[id]=(slides[id]+dir+n)%n;showSlide(id)}
+function goSlide(id,i){slides[id]=i;showSlide(id)}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal.open').forEach(m=>m.classList.remove('open'))})
+// init first slide for all
+document.querySelectorAll('.mcarousel').forEach(c=>{const id=c.id.replace('car','');initSlides(id)})
 </script>
 </body>
 </html>
