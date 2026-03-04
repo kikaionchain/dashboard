@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-04T18:26:59.594717+00:00",
+  "updatedAt": "2026-03-04T19:56:05.091119+00:00",
   "projects": [
     {
       "id": "for-crypto",
@@ -89,9 +89,9 @@
     "kikai": {
       "status": "active",
       "workingOn": "Micro-Business Visual Overhaul",
-      "contextPct": 20,
+      "contextPct": 78,
       "model": "claude-sonnet-4-6",
-      "sessionDurationMin": 239,
+      "sessionDurationMin": 231,
       "lastActivityMin": 0,
       "rateLimit": false
     },
@@ -129,7 +129,7 @@
       "name": "ACTIVE TASK",
       "icon": "\u26a1",
       "path": "ops/ACTIVE-TASK.md",
-      "content": "# ACTIVE TASK: Micro-Business Visual Overhaul\n\n**Status:** IN_PROGRESS\n**Started:** 2026-03-02 19:30 PT\n**Priority:** HIGH - WJP directive\n**Last update:** 2026-03-03 17:45 PT \u2014 Remotion infrastructure live\n\n## Objective\nCreate 8 genuinely distinct product presentations (covers + videos) that look like they came from 8 completely different people. No shared templates, no shared design language.\n\n## The 8 Visual Identities\n\nEach product gets its own:\n- [ ] Unique design system (layout, typography, colors, spacing)\n- [ ] Unique content structure (what info is shown and how)\n- [ ] Unique image treatment (photos vs illustrations vs screenshots vs abstract)\n- [ ] Unique copy voice (casual vs corporate vs data-driven vs storytelling)\n- [ ] Unique Remotion promo video (15-30s animated)\n\n### Design Direction Per Product:\n\n1. **VESSEL** ($47) - Token Launch Playbook\n   - Style: Clean editorial, serif font, cream/dark green, magazine feel\n   - Lead with: \"Built by an operator who ran community from 0 to 80K\"\n   - Image: Notion screenshot as hero\n\n2. **DRAFT** ($39) - 90 Days of Content Templates\n   - Style: Bold/punchy, neon accents on black, social media native\n   - Lead with: \"90 templates. Zero blank pages.\"\n   - Image: Grid of social post previews\n\n3. **STACK** ($49) - AI Prompt Library\n   - Style: Terminal/code aesthetic, monospace font, green-on-black matrix vibes\n   - Lead with: \"100 prompts. Copy. Paste. Ship.\"\n   - Image: Code block / terminal mockup\n\n4. **BLUEPRINT** ($79) - Brand Kit\n   - Style: Minimalist Swiss design, lots of white space, perfect grid\n   - Lead with: Color palette swatches + type specimens shown visually\n   - Image: Brand board mockup\n\n5. **LEDGER** ($29) - Portfolio Tracker\n   - Style: Dashboard/fintech look, dark mode, data visualization\n   - Lead with: Portfolio chart / P&L numbers\n   - Image: Notion dashboard screenshot\n\n6. **FLOW** ($47) - Community Growth Playbook\n   - Style: Warm, human, photography-forward, soft gradients\n   - Lead with: \"0 \u2192 10,000 members\" as big stat\n   - Image: Community/people imagery\n\n7. **PULSE** ($37) - Twitter Thread Templates\n   - Style: Twitter-native blue, thread layout mockup, screenshot-style\n   - Lead with: \"45K followers. 50 proven thread formulas.\"\n   - Image: Fake tweet/thread preview\n\n8. **FORGE** ($59) - Founder Operations Kit\n   - Style: Brutalist, all-caps, industrial, thick borders\n   - Lead with: \"7 modules. One workspace. Zero chaos.\"\n   - Image: Notion workspace overview screenshot\n\n## Image Spec (confirmed by Yama 2026-03-03)\n- Format: 16:9 ratio\n- Pixel dimensions: 1280x720 (or 1920x1080)\n- First slide = cover (object-cover, center-cropped to 16:9)\n- Gallery slides = object-contain\n- Safe zone: center 70% vertically \u2014 keep key content away from top/bottom 10-15%\n\n## Checklist\n- [x] Design 8 distinct cover layouts (detailed reference doc created)\n- [ ] Polish in Figma (colors, spacing, hero images)\n- [ ] Export as PNG (1200\u00d7630 each)\n- [ ] Generate supporting images via fal.ai where needed\n- [x] Set up Remotion project (VESSEL proof-of-concept complete, 7 stubs in place)\n- [ ] Complete 7 remaining video compositions (DRAFT, STACK, BLUEPRINT, LEDGER, FLOW, PULSE, FORGE)\n- [ ] Batch render all 8 videos to MP4\n- [ ] WJP review + Figma Polish\n\n## Notes\n- WJP feedback: \"what in the absolute fuck\" - covers were identical template with color swaps\n- Must be genuinely different people, different content, different everything\n- Remotion reference: https://youtu.be/qOZLHzl415k (Claude Code + Remotion agent skills)\n- Figma file: https://www.figma.com/design/0oblyva5KzGlvMDl6WQBlW/\n- WJP Figma: weston@westonjamespalmer.com (invited, can edit)\n",
+      "content": "# ACTIVE TASK: Micro-Business Visual Overhaul\n\n**Status:** IN_PROGRESS\n**Started:** 2026-03-02 19:30 PT\n**Priority:** HIGH - WJP directive\n**Last update:** 2026-03-04 11:12 PT \u2014 Resumed: building DRAFT + STACK Remotion compositions\n\n## Objective\nCreate 8 genuinely distinct product presentations (covers + videos) that look like they came from 8 completely different people. No shared templates, no shared design language.\n\n## The 8 Visual Identities\n\nEach product gets its own:\n- [ ] Unique design system (layout, typography, colors, spacing)\n- [ ] Unique content structure (what info is shown and how)\n- [ ] Unique image treatment (photos vs illustrations vs screenshots vs abstract)\n- [ ] Unique copy voice (casual vs corporate vs data-driven vs storytelling)\n- [ ] Unique Remotion promo video (15-30s animated)\n\n### Design Direction Per Product:\n\n1. **VESSEL** ($47) - Token Launch Playbook\n   - Style: Clean editorial, serif font, cream/dark green, magazine feel\n   - Lead with: \"Built by an operator who ran community from 0 to 80K\"\n   - Image: Notion screenshot as hero\n\n2. **DRAFT** ($39) - 90 Days of Content Templates\n   - Style: Bold/punchy, neon accents on black, social media native\n   - Lead with: \"90 templates. Zero blank pages.\"\n   - Image: Grid of social post previews\n\n3. **STACK** ($49) - AI Prompt Library\n   - Style: Terminal/code aesthetic, monospace font, green-on-black matrix vibes\n   - Lead with: \"100 prompts. Copy. Paste. Ship.\"\n   - Image: Code block / terminal mockup\n\n4. **BLUEPRINT** ($79) - Brand Kit\n   - Style: Minimalist Swiss design, lots of white space, perfect grid\n   - Lead with: Color palette swatches + type specimens shown visually\n   - Image: Brand board mockup\n\n5. **LEDGER** ($29) - Portfolio Tracker\n   - Style: Dashboard/fintech look, dark mode, data visualization\n   - Lead with: Portfolio chart / P&L numbers\n   - Image: Notion dashboard screenshot\n\n6. **FLOW** ($47) - Community Growth Playbook\n   - Style: Warm, human, photography-forward, soft gradients\n   - Lead with: \"0 \u2192 10,000 members\" as big stat\n   - Image: Community/people imagery\n\n7. **PULSE** ($37) - Twitter Thread Templates\n   - Style: Twitter-native blue, thread layout mockup, screenshot-style\n   - Lead with: \"45K followers. 50 proven thread formulas.\"\n   - Image: Fake tweet/thread preview\n\n8. **FORGE** ($59) - Founder Operations Kit\n   - Style: Brutalist, all-caps, industrial, thick borders\n   - Lead with: \"7 modules. One workspace. Zero chaos.\"\n   - Image: Notion workspace overview screenshot\n\n## Image Spec (confirmed by Yama 2026-03-03)\n- Format: 16:9 ratio\n- Pixel dimensions: 1280x720 (or 1920x1080)\n- First slide = cover (object-cover, center-cropped to 16:9)\n- Gallery slides = object-contain\n- Safe zone: center 70% vertically \u2014 keep key content away from top/bottom 10-15%\n\n## Checklist\n- [x] Design 8 distinct cover layouts (detailed reference doc created)\n- [ ] Polish in Figma (colors, spacing, hero images)\n- [ ] Export as PNG (1200\u00d7630 each)\n- [ ] Generate supporting images via fal.ai where needed\n- [x] Set up Remotion project (VESSEL proof-of-concept complete, 7 stubs in place)\n- [ ] Complete 7 remaining video compositions (DRAFT, STACK, BLUEPRINT, LEDGER, FLOW, PULSE, FORGE)\n- [ ] Batch render all 8 videos to MP4\n- [ ] WJP review + Figma Polish\n\n## Notes\n- WJP feedback: \"what in the absolute fuck\" - covers were identical template with color swaps\n- Must be genuinely different people, different content, different everything\n- Remotion reference: https://youtu.be/qOZLHzl415k (Claude Code + Remotion agent skills)\n- Figma file: https://www.figma.com/design/0oblyva5KzGlvMDl6WQBlW/\n- WJP Figma: weston@westonjamespalmer.com (invited, can edit)\n",
       "preview": "Status: IN_PROGRESS"
     },
     {
@@ -175,11 +175,127 @@
       "preview": "Date: Wednesday, March 4, 2026"
     }
   ],
+  "taskQueue": {
+    "active": [
+      {
+        "task": "Micro-Business Visual Overhaul \u2014 8 distinct covers + Remotion videos",
+        "owner": "Kikai",
+        "project": "For Crypto",
+        "started": "2026-03-02"
+      }
+    ],
+    "queued": [
+      {
+        "task": "PR #17 merge \u2014 cosell data persistence fix",
+        "project": "For Crypto",
+        "priority": "HIGH"
+      },
+      {
+        "task": "Upload STACK to marketplace",
+        "project": "For Crypto",
+        "priority": "HIGH"
+      },
+      {
+        "task": "Upload remaining 7 micro-businesses",
+        "project": "For Crypto",
+        "priority": "MED"
+      },
+      {
+        "task": "Build shared task queue cron \u2014 auto-check for stale tasks",
+        "project": "OS",
+        "priority": "MED"
+      },
+      {
+        "task": "67 agent setup \u2014 new Mac Mini, Osaurus/OpenClaw, Claude subscription",
+        "project": "67",
+        "priority": "MED"
+      },
+      {
+        "task": "Mission Control \u2014 add shared task queue view",
+        "project": "OS",
+        "priority": "MED"
+      },
+      {
+        "task": "Yama model switch \u2014 Opus \u2192 Sonnet",
+        "project": "OS",
+        "priority": "LOW"
+      },
+      {
+        "task": "Test Qwen 3.5 vs Haiku for monitoring crons",
+        "project": "OS",
+        "priority": "LOW"
+      }
+    ],
+    "needsWjp": [
+      {
+        "task": "VITE_APP_URL in Vercel dashboard",
+        "blockedBy": "WJP sets env var",
+        "urgency": "2 min"
+      },
+      {
+        "task": "DATABASE_URL in Vercel dashboard",
+        "blockedBy": "WJP sets env var",
+        "urgency": "2 min"
+      },
+      {
+        "task": "Yama bot API key",
+        "blockedBy": "WJP transfers",
+        "urgency": "5 min"
+      },
+      {
+        "task": "Delete test listings from marketplace",
+        "blockedBy": "WJP action",
+        "urgency": "5 min"
+      },
+      {
+        "task": "Accept Google AI Studio TOS",
+        "blockedBy": "WJP logs into kikaionchain@gmail.com",
+        "urgency": "2 min"
+      },
+      {
+        "task": "PR #17 approve + merge",
+        "blockedBy": "WJP review",
+        "urgency": "5 min"
+      }
+    ],
+    "done": [
+      {
+        "task": "GoDaddy DNS fix",
+        "owner": "Kikai",
+        "completed": "2026-03-01"
+      },
+      {
+        "task": "Vercel custom domain setup",
+        "owner": "Kikai",
+        "completed": "2026-03-01"
+      },
+      {
+        "task": "Codebase URL migration",
+        "owner": "Kikai",
+        "completed": "2026-03-01"
+      },
+      {
+        "task": "Pre-launch competitive audit",
+        "owner": "Kikai",
+        "completed": "2026-03-02"
+      },
+      {
+        "task": "Brand strategy + urgency playbook",
+        "owner": "Kikai",
+        "completed": "2026-03-01"
+      },
+      {
+        "task": "Alex Finn research",
+        "owner": "Kikai",
+        "completed": "2026-03-04"
+      }
+    ]
+  },
   "health": {
     "crons": {
       "healthy": 18,
       "errors": 0
     },
-    "lastHeartbeat": "2026-03-04T18:26:59.594717+00:00"
+    "lastHeartbeat": "2026-03-04T19:56:05.091119+00:00"
   }
 }
