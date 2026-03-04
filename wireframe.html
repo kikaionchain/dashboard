@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WJP — Product Portfolio</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0A0A0A;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'SF Pro Display', sans-serif;
+    padding: 48px 40px;
+    min-height: 100vh;
+  }
+  header {
+    margin-bottom: 48px;
+    border-bottom: 1px solid #1E1E1E;
+    padding-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #fff;
+  }
+  header p {
+    font-size: 14px;
+    color: #555;
+    margin-top: 4px;
+  }
+  .header-right {
+    text-align: right;
+  }
+  .header-right .label {
+    font-size: 11px;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  .header-right .count {
+    font-size: 32px;
+    font-weight: 700;
+    color: #0057FF;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+  }
+  .card {
+    background: #111;
+    border: 1px solid #1E1E1E;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6), 0 0 0 1px var(--accent, #0057FF)22;
+  }
+  .card-accent-bar {
+    height: 3px;
+    background: var(--accent, #0057FF);
+  }
+  .card-img {
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: #1A1A1A;
+  }
+  .card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .no-img {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    font-size: 12px;
+  }
+  .card-body {
+    padding: 16px;
+  }
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .card-num {
+    font-size: 10px;
+    color: #444;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .card-cat {
+    font-size: 9px;
+    background: #1E1E1E;
+    color: #888;
+    padding: 2px 7px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+  }
+  .card-price {
+    font-size: 13px;
+    color: var(--accent, #0057FF);
+    font-weight: 700;
+    margin-left: auto;
+  }
+  .card-name {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+    margin-bottom: 4px;
+    color: #fff;
+  }
+  .card-tagline {
+    font-size: 11px;
+    color: #666;
+    font-style: italic;
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .card-desc {
+    font-size: 11px;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+  .card-notes {
+    border: 1px dashed #222;
+    border-radius: 6px;
+    padding: 8px 10px;
+  }
+  .notes-label {
+    font-size: 9px;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .notes-area {
+    min-height: 36px;
+    color: #333;
+    font-size: 11px;
+  }
+  footer {
+    margin-top: 48px;
+    border-top: 1px solid #1A1A1A;
+    padding-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer span {
+    font-size: 11px;
+    color: #333;
+  }
+  @media print {
+    body { background: white; color: black; padding: 20px; }
+    .card { border: 1px solid #ddd; background: white; }
+    .card-img img { filter: none; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>WJP — Product Portfolio</h1>
+    <p>Micro-Businesses · For Crypto Marketplace · Confidential</p>
+  </div>
+  <div class="header-right">
+    <div class="label">Products</div>
+    <div class="count">10</div>
+  </div>
+</header>
+<div class="grid">
+
+  <div class="card" style="--accent:#0057FF">
+    <div class="card-accent-bar"></div>
+    <div class="card-img"><img src="covers/v2/01-vessel.png" alt="VESSEL" onerror="this.style.display='none'"></div>
+    <div class="card-body">
+      <div class="card-header">
+        <span class="card-num">01</span>
+        <span class="card-cat">Notion Template</span>
+        <span class="card-price">$47</span>
+      </div>
+      <h2 class="card-name">VESSEL</h2>
+      <p class="card-tagline">"Carry your culture from day one."</p>
+      <p class="card-desc">Token launch playbook for founders</p>
+      <div class="card-notes">
+        <span class="notes-label">↳ Notes</span>
+        <div class="notes-area"></div>
+      </div>
+    </div>
+  </div>
+  <div class="card" style="--accent:#00D68F">
+    <div class="card-accent-bar"></div>
+    <div class="card-img"><img src="covers/v2/02-draft.png" alt="DRAFT" onerror="this.style.display='none'"></div>
+    <div class="card-body">
+      <div class="card-header">
+        <span class="card-num">02</span>
+        <span class="card-cat">Content Template Pack</span>
+        <span class="card-price">$39</span>
+      </div>
+      <h2 class="card-name">DRAFT</h2>
+      <p class="card-tagline">"Write less. Say more."</p>
+      <p class="card-desc">Content system for crypto creators</p>
+      <div class="card-notes">
+        <span class="notes-label">↳ Notes</span>
+        <div class="notes-area"></div>
+      </div>
+    </div>
+  </div>
+  <div class="card" style="--accent:#FF6B00">
+    <div class="card-accent-bar"></div>
+    <div class="card-img"><img src="covers/v2/03-stack.png" alt="STACK" onerror="this.style.display='none'"></div>
+    <div class="card-body">
+      <div class="card-header">
+        <span class="card-num">03</span>
+        <span class="card-cat">AI Prompt Library</span>
+        <span class="card-price">$49</span>
+      </div>
+      <h2 class="card-name">STACK</h2>
+      <p class="card-tagline">"Your unfair AI advantage."</p>
+      <p class="card-desc">500+ battle-tested prompts for builders</p>
+      <div class="card-notes">
+        <span class="notes-label">↳ Notes</span>
+        <div class="notes-area"></div>
+      </div>
+    </div>
+  </div>
+  <div class="card" style="--accent:#A855F7">
+    <div class="card-accent-bar"></div>
+    <div class="card-img"><img src="covers/v2/04-blueprint.png" alt="BLUEPRINT" onerror="this.style.display='none'"></div>
+    <div class="card-body">
+      <div class="card-header">
+        <span class="card-num">04</span>
+        <span class="card-cat">Brand Kit</span>
+        <span class="card-price">$79</span>
+      </div>
+      <h2 class="card-name">BLUEPRINT</h2>
+      <p class="card-tagline">"Look like you mean it."</p>
+      <p class="card-desc">Complete brand identity system</p>
+      <div class="card-notes">
+        <span class="notes-label">↳ Notes</span>
+        <div class="notes-area"></div>
+      </div>
+    </div>
+  </div>
+  <div class="card" style="--accent:#EC4899">
+    <div class="card-accent-bar"></div>
+    <div class="card-img"><img src="covers/v2/05-ledger.png" alt="LEDGER" onerror="this.style.display='none'"></div>
+    <div class="card-body">
+      <div class="card-header">
+        <span class="card-num">05</span>
+        <span class="card-cat">Notion Template</span>
+        <span class="card-price">$29</span>
+      </div>
+      <h2 class="card-name">LEDGER</h2>
+      <p class="card-tagline">"Know your numbers, own your growth."</p>
+      <p class="card-desc">Financial tracking for indie builders</p>
+      <div class="card-notes">
+        <span class="notes-label">↳ Notes</span>
+        <div class="notes-area"></div>
+      </div>
+    </div>
+  </div>
+  <div class="card" style="--accent:#14B8A6">
+    <div class="card-accent-bar"></div>
+    <div class="card-img"><img src="covers/v2/06-flow.png" alt="FLOW" onerror="this.style.display='none'"></div>
+    <div class="card-body">
+      <div class="card-header">
+        <span class="card-num">06</span>
+        <span class="card-cat">PDF Playbook</span>
+        <span class="card-price">$47</span>
+      </div>
+      <h2 class="card-name">FLOW</h2>
+      <p class="card-tagline">"Ship without burning out."</p>
+      <p class="card-desc">Async work system for solo operators</p>
+      <div class="card-notes">
+        <span class="notes-label">↳ Notes</span>
+        <div class="notes-area"></div>
+      </div>
+    </div>
+  </div>
+  <div class="card" style="--accent:#F59E0B">
+    <div class="card-accent-bar"></div>
+    <div class="card-img"><img src="covers/v2/07-pulse.png" alt="PULSE" onerror="this.style.display='none'"></div>
+    <div class="card-body">
+      <div class="card-header">
+        <span class="card-num">07</span>
+        <span class="card-cat">Thread Templates</span>
+        <span class="card-price">$37</span>
+      </div>
+      <h2 class="card-name">PULSE</h2>
+      <p class="card-tagline">"Every post, a signal."</p>
+      <p class="card-desc">Viral thread templates for crypto Twitter</p>
+      <div class="card-notes">
+        <span class="notes-label">↳ Notes</span>
+        <div class="notes-area"></div>
+      </div>
+    </div>
+  </div>
+  <div class="card" style="--accent:#EF4444">
+    <div class="card-accent-bar"></div>
+    <div class="card-img"><img src="covers/v2/08-forge.png" alt="FORGE" onerror="this.style.display='none'"></div>
+    <div class="card-body">
+      <div class="card-header">
+        <span class="card-num">08</span>
+        <span class="card-cat">Notion Workspace</span>
+        <span class="card-price">$59</span>
+      </div>
+      <h2 class="card-name">FORGE</h2>
+      <p class="card-tagline">"Build in public, ship in private."</p>
+      <p class="card-desc">Complete builder OS in Notion</p>
+      <div class="card-notes">
+        <span class="notes-label">↳ Notes</span>
+        <div class="notes-area"></div>
+      </div>
+    </div>
+  </div>
+  <div class="card" style="--accent:#6366F1">
+    <div class="card-accent-bar"></div>
+    <div class="card-img"><div class="no-img">No Cover</div></div>
+    <div class="card-body">
+      <div class="card-header">
+        <span class="card-num">09</span>
+        <span class="card-cat">Research Toolkit</span>
+        <span class="card-price">$44</span>
+      </div>
+      <h2 class="card-name">SIGNAL</h2>
+      <p class="card-tagline">"Cut through the noise."</p>
+      <p class="card-desc">On-chain signal research system</p>
+      <div class="card-notes">
+        <span class="notes-label">↳ Notes</span>
+        <div class="notes-area"></div>
+      </div>
+    </div>
+  </div>
+  <div class="card" style="--accent:#84CC16">
+    <div class="card-accent-bar"></div>
+    <div class="card-img"><div class="no-img">No Cover</div></div>
+    <div class="card-body">
+      <div class="card-header">
+        <span class="card-num">10</span>
+        <span class="card-cat">Launch Playbook</span>
+        <span class="card-price">$54</span>
+      </div>
+      <h2 class="card-name">MINT</h2>
+      <p class="card-tagline">"First drop, right."</p>
+      <p class="card-desc">NFT + token mint strategy guide</p>
+      <div class="card-notes">
+        <span class="notes-label">↳ Notes</span>
+        <div class="notes-area"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer>
+  <span>Generated March 3, 2026</span>
+  <span>CONFIDENTIAL — WJP Personal</span>
+  <span>forcrypto.market</span>
+</footer>
+</body>
+</html>
