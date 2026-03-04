@@ -2,379 +2,465 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>WJP — Product Portfolio</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    background: #0A0A0A;
-    color: #fff;
-    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'SF Pro Display', sans-serif;
-    padding: 48px 40px;
-    min-height: 100vh;
-  }
-  header {
-    margin-bottom: 48px;
-    border-bottom: 1px solid #1E1E1E;
-    padding-bottom: 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-  }
-  header h1 {
-    font-size: 28px;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    color: #fff;
-  }
-  header p {
-    font-size: 14px;
-    color: #555;
-    margin-top: 4px;
-  }
-  .header-right {
-    text-align: right;
-  }
-  .header-right .label {
-    font-size: 11px;
-    color: #333;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-  }
-  .header-right .count {
-    font-size: 32px;
-    font-weight: 700;
-    color: #0057FF;
-  }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 20px;
-  }
-  .card {
-    background: #111;
-    border: 1px solid #1E1E1E;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.2s, box-shadow 0.2s;
-    position: relative;
-  }
-  .card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.6), 0 0 0 1px var(--accent, #0057FF)22;
-  }
-  .card-accent-bar {
-    height: 3px;
-    background: var(--accent, #0057FF);
-  }
-  .card-img {
-    width: 100%;
-    aspect-ratio: 1;
-    overflow: hidden;
-    background: #1A1A1A;
-  }
-  .card-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  .no-img {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #333;
-    font-size: 12px;
-  }
-  .card-body {
-    padding: 16px;
-  }
-  .card-header {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-bottom: 8px;
-    flex-wrap: wrap;
-  }
-  .card-num {
-    font-size: 10px;
-    color: #444;
-    font-weight: 600;
-    font-variant-numeric: tabular-nums;
-  }
-  .card-cat {
-    font-size: 9px;
-    background: #1E1E1E;
-    color: #888;
-    padding: 2px 7px;
-    border-radius: 20px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    font-weight: 500;
-  }
-  .card-price {
-    font-size: 13px;
-    color: var(--accent, #0057FF);
-    font-weight: 700;
-    margin-left: auto;
-  }
-  .card-name {
-    font-size: 18px;
-    font-weight: 800;
-    letter-spacing: -0.3px;
-    margin-bottom: 4px;
-    color: #fff;
-  }
-  .card-tagline {
-    font-size: 11px;
-    color: #666;
-    font-style: italic;
-    margin-bottom: 6px;
-    line-height: 1.4;
-  }
-  .card-desc {
-    font-size: 11px;
-    color: #555;
-    line-height: 1.5;
-    margin-bottom: 12px;
-  }
-  .card-notes {
-    border: 1px dashed #222;
-    border-radius: 6px;
-    padding: 8px 10px;
-  }
-  .notes-label {
-    font-size: 9px;
-    color: #333;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    display: block;
-    margin-bottom: 4px;
-  }
-  .notes-area {
-    min-height: 36px;
-    color: #333;
-    font-size: 11px;
-  }
-  footer {
-    margin-top: 48px;
-    border-top: 1px solid #1A1A1A;
-    padding-top: 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  footer span {
-    font-size: 11px;
-    color: #333;
-  }
-  @media print {
-    body { background: white; color: black; padding: 20px; }
-    .card { border: 1px solid #ddd; background: white; }
-    .card-img img { filter: none; }
-  }
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#080808;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'Inter',sans-serif;padding:40px 32px;min-height:100vh}
+header{margin-bottom:40px;border-bottom:1px solid #1a1a1a;padding-bottom:20px;display:flex;justify-content:space-between;align-items:flex-end}
+header h1{font-size:24px;font-weight:700;letter-spacing:-.5px}
+header p{font-size:13px;color:#444;margin-top:3px}
+.hright{text-align:right}.hright .lbl{font-size:10px;color:#333;text-transform:uppercase;letter-spacing:2px}.hright .cnt{font-size:28px;font-weight:800;color:#0057FF}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.card{background:#111;border:1px solid #1c1c1c;border-radius:10px;overflow:hidden;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,.5),0 0 0 1px var(--c)33}
+.card:hover .open-hint{opacity:1}
+.card-bar{height:3px;background:var(--c)}
+.card-img{width:100%;aspect-ratio:1;overflow:hidden;background:#161616}
+.card-img img{width:100%;height:100%;object-fit:cover;display:block}
+.no-img{display:flex;align-items:center;justify-content:center;height:100%;color:#2a2a2a;font-size:24px}
+.card-body{padding:14px}
+.row{display:flex;align-items:center;gap:6px;margin-bottom:8px}
+.num{font-size:10px;color:#3a3a3a;font-weight:600}.cat{font-size:9px;background:#1e1e1e;color:#666;padding:2px 7px;border-radius:20px;text-transform:uppercase;letter-spacing:.5px}.price{font-size:13px;color:var(--c);font-weight:700;margin-left:auto}
+h2{font-size:16px;font-weight:800;letter-spacing:-.2px;margin-bottom:4px}
+.tagline{font-size:10px;color:#555;font-style:italic;margin-bottom:5px}
+.short{font-size:10px;color:#444;line-height:1.4;margin-bottom:10px}
+.open-hint{font-size:10px;color:var(--c);opacity:0;transition:opacity .2s;font-weight:600}
+/* Modal */
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:100;align-items:center;justify-content:center;padding:20px}
+.modal.open{display:flex}
+.modal-inner{background:#111;border:1px solid #222;border-radius:16px;max-width:760px;width:100%;max-height:90vh;overflow-y:auto;position:relative}
+.modal-close{position:sticky;top:12px;left:100%;float:right;margin:12px 12px 0 0;background:#1e1e1e;border:none;color:#888;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;z-index:10}
+.modal-close:hover{color:#fff;background:#333}
+.modal-header{display:grid;grid-template-columns:200px 1fr;gap:24px;padding:28px 28px 20px;border-bottom:1px solid #1a1a1a}
+.modal-img{width:200px;height:200px;border-radius:10px;overflow:hidden;background:#161616;flex-shrink:0}
+.modal-img img{width:100%;height:100%;object-fit:cover}
+.modal-meta{display:flex;flex-direction:column;justify-content:center}
+.modal-cat{font-size:10px;background:#1e1e1e;color:#666;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:.5px;display:inline-block;margin-bottom:10px;width:fit-content}
+.modal-name{font-size:32px;font-weight:900;letter-spacing:-1px;color:#fff;margin-bottom:4px}
+.modal-tagline{font-size:13px;color:#555;font-style:italic;margin-bottom:12px}
+.modal-price{font-size:28px;font-weight:800;color:var(--c);margin-bottom:8px}
+.modal-title-txt{font-size:12px;color:#444;line-height:1.5}
+.modal-body{padding:28px}
+.modal-body h3{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:#444;margin:20px 0 10px;font-weight:600}
+.modal-body h3:first-child{margin-top:0}
+.modal-body p{font-size:13px;color:#888;line-height:1.7}
+.bullets{list-style:none;display:flex;flex-direction:column;gap:10px}
+.bullets li{font-size:12px;color:#666;line-height:1.6;padding-left:12px;border-left:2px solid var(--c,#0057FF)33;padding:8px 0 8px 14px;background:#0d0d0d;border-radius:0 6px 6px 0}
+.bullets li strong{color:#aaa;display:block;margin-bottom:2px}
+.faqs{display:flex;flex-direction:column;gap:12px}
+.faq-item{background:#0d0d0d;border-radius:8px;padding:14px}
+.faq-q{font-size:12px;font-weight:600;color:#888;margin-bottom:6px}
+.faq-a{font-size:12px;color:#555;line-height:1.6}
+footer{margin-top:40px;border-top:1px solid #151515;padding-top:14px;display:flex;justify-content:space-between}
+footer span{font-size:10px;color:#2a2a2a}
 </style>
 </head>
 <body>
 <header>
-  <div>
-    <h1>WJP — Product Portfolio</h1>
-    <p>Micro-Businesses · For Crypto Marketplace · Confidential</p>
-  </div>
-  <div class="header-right">
-    <div class="label">Products</div>
-    <div class="count">10</div>
-  </div>
+  <div><h1>WJP — Product Portfolio</h1><p>10 Micro-Businesses · For Crypto Marketplace · Confidential</p></div>
+  <div class="hright"><div class="lbl">Products</div><div class="cnt">10</div></div>
 </header>
 <div class="grid">
+<div class="card" data-id="01" onclick="openModal('01')" style="--c:#0057FF">
+  <div class="card-bar"></div>
+  <div class="card-img"><img src="covers/v2/01-vessel.png" alt="VESSEL"></div>
+  <div class="card-body">
+    <div class="row">
+      <span class="num">01</span>
+      <span class="cat">Notion Template</span>
+      <span class="price">$47</span>
+    </div>
+    <h2>VESSEL</h2>
+    <p class="tagline">"Carry your culture from day one."</p>
+    <p class="short">The cultural operating system for your token launch. Checklists, community frame...</p>
+    <div class="open-hint">Click to open →</div>
+  </div>
+</div>
 
-  <div class="card" style="--accent:#0057FF">
-    <div class="card-accent-bar"></div>
-    <div class="card-img"><img src="covers/v2/01-vessel.png" alt="VESSEL" onerror="this.style.display='none'"></div>
-    <div class="card-body">
-      <div class="card-header">
-        <span class="card-num">01</span>
-        <span class="card-cat">Notion Template</span>
-        <span class="card-price">$47</span>
-      </div>
-      <h2 class="card-name">VESSEL</h2>
-      <p class="card-tagline">"Carry your culture from day one."</p>
-      <p class="card-desc">Token launch playbook for founders</p>
-      <div class="card-notes">
-        <span class="notes-label">↳ Notes</span>
-        <div class="notes-area"></div>
+<div class="modal" id="modal-01">
+  <div class="modal-inner">
+    <button class="modal-close" onclick="closeModal(event)">✕</button>
+    <div class="modal-header" style="--c:#0057FF">
+      <div class="modal-img"><img src="covers/v2/01-vessel.png" alt="VESSEL"></div>
+      <div class="modal-meta">
+        <span class="modal-cat">Notion Template</span>
+        <h1 class="modal-name">VESSEL</h1>
+        <p class="modal-tagline">"Carry your culture from day one."</p>
+        <div class="modal-price">$47</div>
+        <p class="modal-title-txt">The Token Launch Playbook — Notion Template for Founders</p>
       </div>
     </div>
-  </div>
-  <div class="card" style="--accent:#00D68F">
-    <div class="card-accent-bar"></div>
-    <div class="card-img"><img src="covers/v2/02-draft.png" alt="DRAFT" onerror="this.style.display='none'"></div>
-    <div class="card-body">
-      <div class="card-header">
-        <span class="card-num">02</span>
-        <span class="card-cat">Content Template Pack</span>
-        <span class="card-price">$39</span>
-      </div>
-      <h2 class="card-name">DRAFT</h2>
-      <p class="card-tagline">"Write less. Say more."</p>
-      <p class="card-desc">Content system for crypto creators</p>
-      <div class="card-notes">
-        <span class="notes-label">↳ Notes</span>
-        <div class="notes-area"></div>
-      </div>
-    </div>
-  </div>
-  <div class="card" style="--accent:#FF6B00">
-    <div class="card-accent-bar"></div>
-    <div class="card-img"><img src="covers/v2/03-stack.png" alt="STACK" onerror="this.style.display='none'"></div>
-    <div class="card-body">
-      <div class="card-header">
-        <span class="card-num">03</span>
-        <span class="card-cat">AI Prompt Library</span>
-        <span class="card-price">$49</span>
-      </div>
-      <h2 class="card-name">STACK</h2>
-      <p class="card-tagline">"Your unfair AI advantage."</p>
-      <p class="card-desc">500+ battle-tested prompts for builders</p>
-      <div class="card-notes">
-        <span class="notes-label">↳ Notes</span>
-        <div class="notes-area"></div>
-      </div>
-    </div>
-  </div>
-  <div class="card" style="--accent:#A855F7">
-    <div class="card-accent-bar"></div>
-    <div class="card-img"><img src="covers/v2/04-blueprint.png" alt="BLUEPRINT" onerror="this.style.display='none'"></div>
-    <div class="card-body">
-      <div class="card-header">
-        <span class="card-num">04</span>
-        <span class="card-cat">Brand Kit</span>
-        <span class="card-price">$79</span>
-      </div>
-      <h2 class="card-name">BLUEPRINT</h2>
-      <p class="card-tagline">"Look like you mean it."</p>
-      <p class="card-desc">Complete brand identity system</p>
-      <div class="card-notes">
-        <span class="notes-label">↳ Notes</span>
-        <div class="notes-area"></div>
-      </div>
-    </div>
-  </div>
-  <div class="card" style="--accent:#EC4899">
-    <div class="card-accent-bar"></div>
-    <div class="card-img"><img src="covers/v2/05-ledger.png" alt="LEDGER" onerror="this.style.display='none'"></div>
-    <div class="card-body">
-      <div class="card-header">
-        <span class="card-num">05</span>
-        <span class="card-cat">Notion Template</span>
-        <span class="card-price">$29</span>
-      </div>
-      <h2 class="card-name">LEDGER</h2>
-      <p class="card-tagline">"Know your numbers, own your growth."</p>
-      <p class="card-desc">Financial tracking for indie builders</p>
-      <div class="card-notes">
-        <span class="notes-label">↳ Notes</span>
-        <div class="notes-area"></div>
-      </div>
-    </div>
-  </div>
-  <div class="card" style="--accent:#14B8A6">
-    <div class="card-accent-bar"></div>
-    <div class="card-img"><img src="covers/v2/06-flow.png" alt="FLOW" onerror="this.style.display='none'"></div>
-    <div class="card-body">
-      <div class="card-header">
-        <span class="card-num">06</span>
-        <span class="card-cat">PDF Playbook</span>
-        <span class="card-price">$47</span>
-      </div>
-      <h2 class="card-name">FLOW</h2>
-      <p class="card-tagline">"Ship without burning out."</p>
-      <p class="card-desc">Async work system for solo operators</p>
-      <div class="card-notes">
-        <span class="notes-label">↳ Notes</span>
-        <div class="notes-area"></div>
-      </div>
-    </div>
-  </div>
-  <div class="card" style="--accent:#F59E0B">
-    <div class="card-accent-bar"></div>
-    <div class="card-img"><img src="covers/v2/07-pulse.png" alt="PULSE" onerror="this.style.display='none'"></div>
-    <div class="card-body">
-      <div class="card-header">
-        <span class="card-num">07</span>
-        <span class="card-cat">Thread Templates</span>
-        <span class="card-price">$37</span>
-      </div>
-      <h2 class="card-name">PULSE</h2>
-      <p class="card-tagline">"Every post, a signal."</p>
-      <p class="card-desc">Viral thread templates for crypto Twitter</p>
-      <div class="card-notes">
-        <span class="notes-label">↳ Notes</span>
-        <div class="notes-area"></div>
-      </div>
-    </div>
-  </div>
-  <div class="card" style="--accent:#EF4444">
-    <div class="card-accent-bar"></div>
-    <div class="card-img"><img src="covers/v2/08-forge.png" alt="FORGE" onerror="this.style.display='none'"></div>
-    <div class="card-body">
-      <div class="card-header">
-        <span class="card-num">08</span>
-        <span class="card-cat">Notion Workspace</span>
-        <span class="card-price">$59</span>
-      </div>
-      <h2 class="card-name">FORGE</h2>
-      <p class="card-tagline">"Build in public, ship in private."</p>
-      <p class="card-desc">Complete builder OS in Notion</p>
-      <div class="card-notes">
-        <span class="notes-label">↳ Notes</span>
-        <div class="notes-area"></div>
-      </div>
-    </div>
-  </div>
-  <div class="card" style="--accent:#6366F1">
-    <div class="card-accent-bar"></div>
-    <div class="card-img"><div class="no-img">No Cover</div></div>
-    <div class="card-body">
-      <div class="card-header">
-        <span class="card-num">09</span>
-        <span class="card-cat">Research Toolkit</span>
-        <span class="card-price">$44</span>
-      </div>
-      <h2 class="card-name">SIGNAL</h2>
-      <p class="card-tagline">"Cut through the noise."</p>
-      <p class="card-desc">On-chain signal research system</p>
-      <div class="card-notes">
-        <span class="notes-label">↳ Notes</span>
-        <div class="notes-area"></div>
-      </div>
-    </div>
-  </div>
-  <div class="card" style="--accent:#84CC16">
-    <div class="card-accent-bar"></div>
-    <div class="card-img"><div class="no-img">No Cover</div></div>
-    <div class="card-body">
-      <div class="card-header">
-        <span class="card-num">10</span>
-        <span class="card-cat">Launch Playbook</span>
-        <span class="card-price">$54</span>
-      </div>
-      <h2 class="card-name">MINT</h2>
-      <p class="card-tagline">"First drop, right."</p>
-      <p class="card-desc">NFT + token mint strategy guide</p>
-      <div class="card-notes">
-        <span class="notes-label">↳ Notes</span>
-        <div class="notes-area"></div>
-      </div>
+    <div class="modal-body">
+      <h3>Description</h3>
+      <p>The cultural operating system for your token launch. Checklists, community framework, narrative worksheets, and post-launch playbook — all in Notion.</p>
+      <h3>What's Included</h3>
+      <ul class="bullets"><li><strong>20-item pre-launch checklist</strong> — Every critical cultural and community infrastructure task before your token goes live. Nothing technical; everything that actually determines whether people stay.</li><li><strong>5-phase community building framework</strong> — From founding your internal culture (Phase 1) to building a self-sustaining community (Phase 5). Each phase has specific activities, milestones, and the one mistake most projects make.</li><li><strong>Narrative development worksheet</strong> — 6-part worksheet that surfaces your project's real story: core belief, origin, characters, enemy, promise, and voice. Your answers power every piece of content for the next 12 months.</li><li><strong>Multi-channel announcement template</strong> — Ready-to-edit templates for your launch tweet, 8-tweet thread, Discord/Telegram announcement, and Medium/Mirror article outline. Fill in the [BRACKETS] and publish.</li><li><strong>Week 1-4 post-launch playbook</strong> — Daily content direction for launch week, then weekly themes through the first month. Built around the arc your community needs: Show Your Work → Teach Something → Build Together → Show the Future.</li></ul>
+      <h3>FAQ</h3>
+      <div class="faqs"><div class="faq-item"><div class="faq-q">Q: Is this a technical guide about deploying a token contract?</div><div class="faq-a">A: No. This is a cultural and community guide. It assumes you've solved the technical side (or have someone who has). VESSEL is about the other 80% of the launch that most founders ignore until it's too late: narrative, community building, content, and the first 30 days of showing up.</div></div><div class="faq-item"><div class="faq-q">Q: Does this work if I'm a solo founder without a team?</div><div class="faq-a">A: Yes, and in some ways it's more useful solo. VESSEL is built around what one focused person can actually execute. The community phases scale from small (5 founding members) to large — start where you are.</div></div><div class="faq-item"><div class="faq-q">Q: How do I use this? Is it a PDF or a Notion template?</div><div class="faq-a">A: It's a Notion template. You'll receive a link to duplicate the page directly into your own Notion workspace. From there it's yours — edit, fill in, delete what doesn't apply. No login required beyond a standard free Notion account.</div></div></div>
     </div>
   </div>
 </div>
+<div class="card" data-id="02" onclick="openModal('02')" style="--c:#00D68F">
+  <div class="card-bar"></div>
+  <div class="card-img"><img src="covers/v2/02-draft.png" alt="DRAFT"></div>
+  <div class="card-body">
+    <div class="row">
+      <span class="num">02</span>
+      <span class="cat">Content Template Pack</span>
+      <span class="price">$39</span>
+    </div>
+    <h2>DRAFT</h2>
+    <p class="tagline">"Write less. Say more."</p>
+    <p class="short">90 ready-to-edit social post templates for crypto projects. Hype, education, com...</p>
+    <div class="open-hint">Click to open →</div>
+  </div>
+</div>
+
+<div class="modal" id="modal-02">
+  <div class="modal-inner">
+    <button class="modal-close" onclick="closeModal(event)">✕</button>
+    <div class="modal-header" style="--c:#00D68F">
+      <div class="modal-img"><img src="covers/v2/02-draft.png" alt="DRAFT"></div>
+      <div class="modal-meta">
+        <span class="modal-cat">Content Template Pack</span>
+        <h1 class="modal-name">DRAFT</h1>
+        <p class="modal-tagline">"Write less. Say more."</p>
+        <div class="modal-price">$39</div>
+        <p class="modal-title-txt">90 Days of Crypto Content — Done-For-You Social Post Templates</p>
+      </div>
+    </div>
+    <div class="modal-body">
+      <h3>Description</h3>
+      <p>90 ready-to-edit social post templates for crypto projects. Hype, education, community, market commentary, culture. Copy, edit, post.</p>
+      <h3>What's Included</h3>
+      <ul class="bullets"><li><strong>20 hype & launch post templates</strong> — Announcement drops, milestone posts, partnership teases, exchange listings, governance votes, version launches, and the exact formats that generate attention without empty hype.</li><li><strong>20 education post templates</strong> — Explainers, comparisons, tokenomics breakdowns, risk disclosures, how-to walkthroughs, ecosystem maps, and the "what we're NOT" post that stops FUD before it starts.</li><li><strong>20 community post templates</strong> — Introduction prompts, contributor spotlights, culture posts, community challenges, feedback requests, meetup announcements, and monthly state-of-community updates.</li><li><strong>15 market commentary templates</strong> — Red day responses, bull market posts, token unlock transparency posts, competitor commentary, and long-term holder appreciation posts for every market condition.</li><li><strong>15 culture & meme post templates</strong> — Behind-the-scenes energy, conviction posts, honest "bad week" posts, community brag posts, and the manifesto format that builds a project's personality over time.</li></ul>
+      <h3>FAQ</h3>
+      <div class="faqs"><div class="faq-item"><div class="faq-q">Q: Are these for Twitter/X only?</div><div class="faq-a">A: No — the templates are written for any text-based social platform: Twitter/X, Farcaster, Lens, Telegram, Discord announcements, or anywhere you post text. Some templates include format notes specifying where they perform best.</div></div><div class="faq-item"><div class="faq-q">Q: How much editing do they need?</div><div class="faq-a">A: You'll fill in [BRACKETS] with your project's details and adjust the tone to match your voice. Some templates will need minimal editing — just fill in the blanks. Others are starting points for something more original. The goal is to eliminate the blank-page problem, not to replace your voice.</div></div><div class="faq-item"><div class="faq-q">Q: Are these designed for any specific blockchain or sector?</div><div class="faq-a">A: The templates are sector-agnostic and work for DeFi protocols, NFT projects, DAOs, L1/L2 chains, and any other crypto category. The [BRACKETS] system means you adapt them to your specific context.</div></div></div>
+    </div>
+  </div>
+</div>
+<div class="card" data-id="03" onclick="openModal('03')" style="--c:#FF6B00">
+  <div class="card-bar"></div>
+  <div class="card-img"><img src="covers/v2/03-stack.png" alt="STACK"></div>
+  <div class="card-body">
+    <div class="row">
+      <span class="num">03</span>
+      <span class="cat">AI Prompt Library</span>
+      <span class="price">$49</span>
+    </div>
+    <h2>STACK</h2>
+    <p class="tagline">"Your unfair AI advantage."</p>
+    <p class="short">100 copy-paste AI prompts for crypto operators. Community management, content, i...</p>
+    <div class="open-hint">Click to open →</div>
+  </div>
+</div>
+
+<div class="modal" id="modal-03">
+  <div class="modal-inner">
+    <button class="modal-close" onclick="closeModal(event)">✕</button>
+    <div class="modal-header" style="--c:#FF6B00">
+      <div class="modal-img"><img src="covers/v2/03-stack.png" alt="STACK"></div>
+      <div class="modal-meta">
+        <span class="modal-cat">AI Prompt Library</span>
+        <h1 class="modal-name">STACK</h1>
+        <p class="modal-tagline">"Your unfair AI advantage."</p>
+        <div class="modal-price">$49</div>
+        <p class="modal-title-txt">The Crypto AI Prompt Vault — 100 Production-Ready Prompts for Crypto Teams</p>
+      </div>
+    </div>
+    <div class="modal-body">
+      <h3>Description</h3>
+      <p>100 copy-paste AI prompts for crypto operators. Community management, content, investor outreach, research, and launch planning. Built for daily use.</p>
+      <h3>What's Included</h3>
+      <ul class="bullets"><li><strong>20 community management prompts</strong> — Welcome sequences, FUD response frameworks, conflict de-escalation, ambassador program copy, crisis communication templates, governance summaries, and monthly community culture documents.</li><li><strong>20 content creation prompts</strong> — Thread generators, long-form article writers, tokenomics explainer copy, pitch deck narratives, brand voice guides, competitor analysis posts, manifesto/vision statements, and 30-day content calendars.</li><li><strong>20 investor outreach prompts</strong> — Cold investor emails, warm intro requests, monthly investor updates (including the "bad news" version), partnership outreach, term sheet explainers, deal memo bullet points, and annual token holder letters.</li><li><strong>20 token research prompts</strong> — Project research frameworks, on-chain metrics interpretation, competitor analysis templates, tokenomics analysis, whitepaper critique, smart contract audit translation, and sentiment analysis frameworks.</li><li><strong>20 launch planning prompts</strong> — Launch timeline generators, multi-channel announcement strategies, launch-day operations playbooks, pre-launch community growth plans, airdrop campaign design, KOL brief writers, and 6-month launch review frameworks.</li></ul>
+      <h3>FAQ</h3>
+      <div class="faqs"><div class="faq-item"><div class="faq-q">Q: Which AI models do these prompts work with?</div><div class="faq-a">A: All prompts are tested with and optimized for ChatGPT-4, Claude (Anthropic), and Gemini. They work with any major language model. The more context you add to the [VARIABLE] fields, the better the output from any model.</div></div><div class="faq-item"><div class="faq-q">Q: Do I need AI experience to use these?</div><div class="faq-a">A: No. If you can copy-paste and fill in brackets, you can use every prompt in STACK. The [VARIABLE] system removes the guesswork — you provide your project's specific details, the AI does the rest. A short usage guide is included.</div></div><div class="faq-item"><div class="faq-q">Q: Can I edit and reuse these prompts for multiple projects?</div><div class="faq-a">A: Yes. Once you purchase STACK, the prompts are yours to use across any project, indefinitely. There are no restrictions on use, adaptation, or how many times you run them.</div></div></div>
+    </div>
+  </div>
+</div>
+<div class="card" data-id="04" onclick="openModal('04')" style="--c:#A855F7">
+  <div class="card-bar"></div>
+  <div class="card-img"><img src="covers/v2/04-blueprint.png" alt="BLUEPRINT"></div>
+  <div class="card-body">
+    <div class="row">
+      <span class="num">04</span>
+      <span class="cat">Brand Kit</span>
+      <span class="price">$79</span>
+    </div>
+    <h2>BLUEPRINT</h2>
+    <p class="tagline">"Look like you mean it."</p>
+    <p class="short">5 color palettes, 5 type pairings, logo brief worksheet, social sizing guide, pi...</p>
+    <div class="open-hint">Click to open →</div>
+  </div>
+</div>
+
+<div class="modal" id="modal-04">
+  <div class="modal-inner">
+    <button class="modal-close" onclick="closeModal(event)">✕</button>
+    <div class="modal-header" style="--c:#A855F7">
+      <div class="modal-img"><img src="covers/v2/04-blueprint.png" alt="BLUEPRINT"></div>
+      <div class="modal-meta">
+        <span class="modal-cat">Brand Kit</span>
+        <h1 class="modal-name">BLUEPRINT</h1>
+        <p class="modal-tagline">"Look like you mean it."</p>
+        <div class="modal-price">$79</div>
+        <p class="modal-title-txt">Web3 Brand Starter Kit — Complete Identity System for Crypto Projects</p>
+      </div>
+    </div>
+    <div class="modal-body">
+      <h3>Description</h3>
+      <p>5 color palettes, 5 type pairings, logo brief worksheet, social sizing guide, pitch deck outline, one-pager template, and brand voice system.</p>
+      <h3>What's Included</h3>
+      <ul class="bullets"><li><strong>5 complete color system palettes</strong> — "The Protocol" (DeFi/finance), "The Genesis" (L1/L2 chains), "The Community" (DAOs/governance), "The Challenger" (NFT/gaming), and "The Founder" (early-stage/versatile). Each includes primary, secondary, accent, neutral, and background colors with hex codes, RGB values, and guidance on where to use every color.</li><li><strong>5 typography pairing guides</strong> — Complete type combinations for every project type: authority/financial, technical/developer, community/warm, disruptive/bold, and editorial. Each includes font names (with free alternatives), usage rules, size guidance, and a full visual specimen showing each combination in action.</li><li><strong>Logo direction worksheet</strong> — A complete designer brief template covering logo type selection, personality sliders, visual criteria, what to avoid, and a summary brief. Hand this to any designer or AI design tool and get a logo that's actually right for your project.</li><li><strong>Social media sizing guide + Canva setup guide</strong> — Correct dimensions for every platform (profile images, banners, post formats, story sizes) with safe zone guidance. Includes a step-by-step Canva brand kit setup so your whole team posts consistently from day one.</li><li><strong>Pitch deck outline + one-pager + brand voice system</strong> — 12-slide pitch deck with specific guidance for each slide. A one-pager template with a copy framework that replaces vague descriptions with specific language. A brand voice worksheet with the 4-attribute model, vocabulary guide, and application rules.</li></ul>
+      <h3>FAQ</h3>
+      <div class="faqs"><div class="faq-item"><div class="faq-q">Q: Do I need design software to use this?</div><div class="faq-a">A: No. BLUEPRINT is brand strategy and direction — everything you need to either implement yourself (using free tools like Canva, which this kit has a setup guide for) or hand to a designer or AI tool as a brief. No Figma, Photoshop, or Illustrator required. The color codes, font names, and worksheets work as starting points for any design tool.</div></div><div class="faq-item"><div class="faq-q">Q: Is this for established projects or early-stage founders?</div><div class="faq-a">A: Both. Early-stage founders use BLUEPRINT to establish their brand from scratch — the worksheets guide you through every decision. Established projects use it to audit and upgrade an inconsistent brand. The 5 color palettes and type pairings are reusable across projects, so teams and agencies often find it valuable across multiple builds.</div></div><div class="faq-item"><div class="faq-q">Q: How is this different from just using a Canva template?</div><div class="faq-a">A: Canva templates give you a visual layout. BLUEPRINT gives you the strategy underneath the visuals — why to use specific colors for specific project types, how to brief a logo designer, what your brand voice should sound like, how your pitch deck should be structured. The visual execution is yours to do however you like; BLUEPRINT is the thinking that makes that execution coherent and professional.</div></div></div>
+    </div>
+  </div>
+</div>
+<div class="card" data-id="05" onclick="openModal('05')" style="--c:#EC4899">
+  <div class="card-bar"></div>
+  <div class="card-img"><img src="covers/v2/05-ledger.png" alt="LEDGER"></div>
+  <div class="card-body">
+    <div class="row">
+      <span class="num">05</span>
+      <span class="cat">Notion Template</span>
+      <span class="price">$29</span>
+    </div>
+    <h2>LEDGER</h2>
+    <p class="tagline">"Know your numbers."</p>
+    <p class="short"></p>
+    <div class="open-hint">Click to open →</div>
+  </div>
+</div>
+
+<div class="modal" id="modal-05">
+  <div class="modal-inner">
+    <button class="modal-close" onclick="closeModal(event)">✕</button>
+    <div class="modal-header" style="--c:#EC4899">
+      <div class="modal-img"><img src="covers/v2/05-ledger.png" alt="LEDGER"></div>
+      <div class="modal-meta">
+        <span class="modal-cat">Notion Template</span>
+        <h1 class="modal-name">LEDGER</h1>
+        <p class="modal-tagline">"Know your numbers."</p>
+        <div class="modal-price">$29</div>
+        <p class="modal-title-txt">Crypto Portfolio & Token Tracker Pro — Notion Template</p>
+      </div>
+    </div>
+    <div class="modal-body">
+      <h3>Description</h3>
+      <p></p>
+      <h3>What's Included</h3>
+      <ul class="bullets"></ul>
+      <h3>FAQ</h3>
+      <div class="faqs"></div>
+    </div>
+  </div>
+</div>
+<div class="card" data-id="06" onclick="openModal('06')" style="--c:#14B8A6">
+  <div class="card-bar"></div>
+  <div class="card-img"><img src="covers/v2/06-flow.png" alt="FLOW"></div>
+  <div class="card-body">
+    <div class="row">
+      <span class="num">06</span>
+      <span class="cat">PDF Playbook</span>
+      <span class="price">$47</span>
+    </div>
+    <h2>FLOW</h2>
+    <p class="tagline">"Ship without burning out."</p>
+    <p class="short"></p>
+    <div class="open-hint">Click to open →</div>
+  </div>
+</div>
+
+<div class="modal" id="modal-06">
+  <div class="modal-inner">
+    <button class="modal-close" onclick="closeModal(event)">✕</button>
+    <div class="modal-header" style="--c:#14B8A6">
+      <div class="modal-img"><img src="covers/v2/06-flow.png" alt="FLOW"></div>
+      <div class="modal-meta">
+        <span class="modal-cat">PDF Playbook</span>
+        <h1 class="modal-name">FLOW</h1>
+        <p class="modal-tagline">"Ship without burning out."</p>
+        <div class="modal-price">$47</div>
+        <p class="modal-title-txt">The Crypto Community Growth Bible — 0 to 10,000 Members Playbook</p>
+      </div>
+    </div>
+    <div class="modal-body">
+      <h3>Description</h3>
+      <p></p>
+      <h3>What's Included</h3>
+      <ul class="bullets"></ul>
+      <h3>FAQ</h3>
+      <div class="faqs"></div>
+    </div>
+  </div>
+</div>
+<div class="card" data-id="07" onclick="openModal('07')" style="--c:#F59E0B">
+  <div class="card-bar"></div>
+  <div class="card-img"><img src="covers/v2/07-pulse.png" alt="PULSE"></div>
+  <div class="card-body">
+    <div class="row">
+      <span class="num">07</span>
+      <span class="cat">Thread Templates</span>
+      <span class="price">$37</span>
+    </div>
+    <h2>PULSE</h2>
+    <p class="tagline">"Every post, a signal."</p>
+    <p class="short"></p>
+    <div class="open-hint">Click to open →</div>
+  </div>
+</div>
+
+<div class="modal" id="modal-07">
+  <div class="modal-inner">
+    <button class="modal-close" onclick="closeModal(event)">✕</button>
+    <div class="modal-header" style="--c:#F59E0B">
+      <div class="modal-img"><img src="covers/v2/07-pulse.png" alt="PULSE"></div>
+      <div class="modal-meta">
+        <span class="modal-cat">Thread Templates</span>
+        <h1 class="modal-name">PULSE</h1>
+        <p class="modal-tagline">"Every post, a signal."</p>
+        <div class="modal-price">$37</div>
+        <p class="modal-title-txt">Crypto Twitter Mastery Pack — 50 Thread Templates + Growth Guide</p>
+      </div>
+    </div>
+    <div class="modal-body">
+      <h3>Description</h3>
+      <p></p>
+      <h3>What's Included</h3>
+      <ul class="bullets"></ul>
+      <h3>FAQ</h3>
+      <div class="faqs"></div>
+    </div>
+  </div>
+</div>
+<div class="card" data-id="08" onclick="openModal('08')" style="--c:#EF4444">
+  <div class="card-bar"></div>
+  <div class="card-img"><img src="covers/v2/08-forge.png" alt="FORGE"></div>
+  <div class="card-body">
+    <div class="row">
+      <span class="num">08</span>
+      <span class="cat">Notion Workspace</span>
+      <span class="price">$59</span>
+    </div>
+    <h2>FORGE</h2>
+    <p class="tagline">"Build in public, ship in private."</p>
+    <p class="short"></p>
+    <div class="open-hint">Click to open →</div>
+  </div>
+</div>
+
+<div class="modal" id="modal-08">
+  <div class="modal-inner">
+    <button class="modal-close" onclick="closeModal(event)">✕</button>
+    <div class="modal-header" style="--c:#EF4444">
+      <div class="modal-img"><img src="covers/v2/08-forge.png" alt="FORGE"></div>
+      <div class="modal-meta">
+        <span class="modal-cat">Notion Workspace</span>
+        <h1 class="modal-name">FORGE</h1>
+        <p class="modal-tagline">"Build in public, ship in private."</p>
+        <div class="modal-price">$59</div>
+        <p class="modal-title-txt">Web3 Founder Operations Kit — Complete Notion Workspace for Crypto Startups</p>
+      </div>
+    </div>
+    <div class="modal-body">
+      <h3>Description</h3>
+      <p></p>
+      <h3>What's Included</h3>
+      <ul class="bullets"></ul>
+      <h3>FAQ</h3>
+      <div class="faqs"></div>
+    </div>
+  </div>
+</div>
+<div class="card" data-id="09" onclick="openModal('09')" style="--c:#6366F1">
+  <div class="card-bar"></div>
+  <div class="card-img"><div class="no-img">—</div></div>
+  <div class="card-body">
+    <div class="row">
+      <span class="num">09</span>
+      <span class="cat">Research Toolkit</span>
+      <span class="price">$44</span>
+    </div>
+    <h2>SIGNAL</h2>
+    <p class="tagline">"Cut through the noise."</p>
+    <p class="short"></p>
+    <div class="open-hint">Click to open →</div>
+  </div>
+</div>
+
+<div class="modal" id="modal-09">
+  <div class="modal-inner">
+    <button class="modal-close" onclick="closeModal(event)">✕</button>
+    <div class="modal-header" style="--c:#6366F1">
+      <div class="modal-img"><div class="no-img">—</div></div>
+      <div class="modal-meta">
+        <span class="modal-cat">Research Toolkit</span>
+        <h1 class="modal-name">SIGNAL</h1>
+        <p class="modal-tagline">"Cut through the noise."</p>
+        <div class="modal-price">$44</div>
+        <p class="modal-title-txt"></p>
+      </div>
+    </div>
+    <div class="modal-body">
+      <h3>Description</h3>
+      <p></p>
+      <h3>What's Included</h3>
+      <ul class="bullets"></ul>
+      <h3>FAQ</h3>
+      <div class="faqs"></div>
+    </div>
+  </div>
+</div>
+<div class="card" data-id="10" onclick="openModal('10')" style="--c:#84CC16">
+  <div class="card-bar"></div>
+  <div class="card-img"><div class="no-img">—</div></div>
+  <div class="card-body">
+    <div class="row">
+      <span class="num">10</span>
+      <span class="cat">Launch Playbook</span>
+      <span class="price">$54</span>
+    </div>
+    <h2>MINT</h2>
+    <p class="tagline">"First drop, right."</p>
+    <p class="short"></p>
+    <div class="open-hint">Click to open →</div>
+  </div>
+</div>
+
+<div class="modal" id="modal-10">
+  <div class="modal-inner">
+    <button class="modal-close" onclick="closeModal(event)">✕</button>
+    <div class="modal-header" style="--c:#84CC16">
+      <div class="modal-img"><div class="no-img">—</div></div>
+      <div class="modal-meta">
+        <span class="modal-cat">Launch Playbook</span>
+        <h1 class="modal-name">MINT</h1>
+        <p class="modal-tagline">"First drop, right."</p>
+        <div class="modal-price">$54</div>
+        <p class="modal-title-txt"></p>
+      </div>
+    </div>
+    <div class="modal-body">
+      <h3>Description</h3>
+      <p></p>
+      <h3>What's Included</h3>
+      <ul class="bullets"></ul>
+      <h3>FAQ</h3>
+      <div class="faqs"></div>
+    </div>
+  </div>
+</div></div>
 <footer>
-  <span>Generated March 3, 2026</span>
+  <span>March 3, 2026</span>
   <span>CONFIDENTIAL — WJP Personal</span>
   <span>forcrypto.market</span>
 </footer>
+<script>
+function openModal(id){document.getElementById('modal-'+id).classList.add('open')}
+function closeModal(e){e.stopPropagation();e.target.closest('.modal').classList.remove('open')}
+document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open')}))
+</script>
 </body>
 </html>
