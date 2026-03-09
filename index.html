@@ -160,7 +160,7 @@
     transition: border-color 0.2s;
   }
   .biz-card:hover { border-color: #555; }
-  .biz-card-accent { position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .biz-card-accent { position: absolute; top: 0; left: 0; right: 0; height: 1px; background: var(--border2); }
 
   .biz-card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
   .biz-card-name { font-size: 16px; font-weight: 700; letter-spacing: -0.02em; }
@@ -1952,9 +1952,9 @@ function renderBizGrid(data) {
 
     return `
     <a href="businesses.html#${b.id}" class="biz-card fade" style="animation-delay:${i * 40}ms;text-decoration:none;color:inherit;cursor:pointer;">
-      <div class="biz-card-accent" style="background:${b.color}"></div>
+      <div class="biz-card-accent"></div>
       <div class="biz-card-top">
-        <span class="biz-card-name" style="color:${b.color}">${b.name}</span>
+        <span class="biz-card-name">${b.name}</span>
         <span class="biz-card-price">$${b.price}</span>
       </div>
       <div class="biz-card-meta">
