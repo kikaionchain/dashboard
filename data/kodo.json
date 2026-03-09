@@ -1,14 +1,14 @@
 {
-  "updatedAt": "2026-03-09T16:46:40.456076+00:00",
+  "updatedAt": "2026-03-09T16:49:13.785340+00:00",
   "agent": "kodo",
   "status": "active",
   "activeTask": {
-    "name": "Mission Control Phase 1 Build",
+    "name": "Unknown Task",
     "status": "IN_PROGRESS",
-    "progress_percent": 61,
-    "checklist_total": 21,
-    "checklist_done": 13,
-    "startedAt": "2026-03-09",
+    "progress_percent": 100,
+    "checklist_total": 10,
+    "checklist_done": 10,
+    "startedAt": null,
     "blockedOn": null
   },
   "recentOutputs": [
@@ -54,7 +54,7 @@
       "name": "kodo-workspace-backup",
       "schedule": "every 2h",
       "lastRunMs": 1773071369593,
-      "lastRunAgo": "57m ago",
+      "lastRunAgo": "59m ago",
       "nextRunMs": 1773078569593,
       "status": "ok",
       "errors": 0
@@ -63,7 +63,7 @@
       "name": "kodo-mc-push",
       "schedule": "every 30m",
       "lastRunMs": 1773074613859,
-      "lastRunAgo": "3m ago",
+      "lastRunAgo": "5m ago",
       "nextRunMs": 1773076413859,
       "status": "ok",
       "errors": 0
@@ -106,6 +106,6 @@
       "status": "LIVE"
     }
   ],
-  "lastActiveMs": 1773074742748,
-  "lastActiveAgo": "57s ago"
+  "lastActiveMs": 1773074936673,
+  "lastActiveAgo": "17s ago"
 }
