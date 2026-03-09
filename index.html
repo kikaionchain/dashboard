@@ -1670,7 +1670,11 @@ function renderTaskQueue(queue) {
 function renderWjpHero(data) {
   // Set PFP src now that pfpBase is defined
   const img = document.getElementById('wjp-hero-pfp-img');
-  if (img) img.src = pfpBase + 'wjp-pfp.png';
+  if (img) {
+    img.style.display = '';
+    if (img.nextElementSibling) img.nextElementSibling.style.display = 'none';
+    img.src = pfpBase + 'wjp-pfp.png';
+  }
 
   const list = document.getElementById('wjp-needs-list');
   // Merge: hardcoded NEEDS_WJP + dynamic data.needsWjp
