@@ -1,0 +1,59 @@
+{
+  "updatedAt": "2026-03-09T14:41:14.532822+00:00",
+  "agent": "kodo",
+  "status": "active",
+  "activeTask": {
+    "name": "Mission Control Phase 1 Build",
+    "status": "IN_PROGRESS",
+    "progress_percent": 62,
+    "checklist_total": 8,
+    "checklist_done": 5,
+    "startedAt": "2026-03-09",
+    "blockedOn": null
+  },
+  "recentOutputs": [
+    {
+      "filename": "2026-03-08-whop-study-notes.md",
+      "createdAt": "2026-03-09T04:07:52.385031+00:00",
+      "size": 9607,
+      "agent": "kodo"
+    },
+    {
+      "filename": "2026-03-08-crypto-product-teardown.md",
+      "createdAt": "2026-03-09T04:03:43.010667+00:00",
+      "size": 14144,
+      "agent": "kodo"
+    },
+    {
+      "filename": "2026-03-08-forcrypto-docs-audit.md",
+      "createdAt": "2026-03-09T01:37:07.263560+00:00",
+      "size": 14562,
+      "agent": "kodo"
+    },
+    {
+      "filename": "2026-03-08-web3-testing-methodology.md",
+      "createdAt": "2026-03-08T21:08:26.546253+00:00",
+      "size": 8224,
+      "agent": "kodo"
+    },
+    {
+      "filename": "2026-03-08-forcrypto-architecture.md",
+      "createdAt": "2026-03-08T21:07:25.989676+00:00",
+      "size": 9572,
+      "agent": "kodo"
+    }
+  ],
+  "cronJobs": [
+    {
+      "name": "kodo-workspace-backup",
+      "schedule": "every 2h",
+      "lastRunMs": 1773064169587,
+      "lastRunAgo": "51m ago",
+      "nextRunMs": 1773071369587,
+      "status": "ok",
+      "errors": 0
+    }
+  ],
+  "lastActiveMs": 1773067076564,
+  "lastActiveAgo": "3m ago"
+}

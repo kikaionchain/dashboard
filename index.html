@@ -375,7 +375,7 @@
   /* ── AGENT STATUS ───────────────────────────────── */
   .agent-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 12px;
   }
   @media (max-width: 500px) {
@@ -681,6 +681,193 @@
   .impact-badge.high { background: rgba(255,69,58,0.12);  color: var(--red);   }
   .impact-badge.medium { background: rgba(255,159,10,0.12); color: var(--amber); }
 
+  /* ── ACTIVE WORK ────────────────────────────────── */
+  .active-work-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 12px;
+  }
+
+  .active-work-card {
+    background: var(--surface);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    padding: 18px 20px;
+    animation: fadeUp 0.3s ease both;
+  }
+
+  .active-work-card.blocked { border-left: 3px solid var(--red); }
+  .active-work-card.idle    { opacity: 0.6; }
+
+  .aw-agent-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .aw-agent-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    flex: 1;
+  }
+
+  .aw-status-pill {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 10px;
+  }
+  .aw-status-pill.IN_PROGRESS { background: rgba(10,132,255,0.15); color: var(--blue); }
+  .aw-status-pill.BLOCKED     { background: rgba(255,69,58,0.15);  color: var(--red); }
+  .aw-status-pill.COMPLETE    { background: rgba(48,209,88,0.15);  color: var(--green); }
+  .aw-status-pill.IDLE        { background: rgba(235,235,245,0.08); color: var(--text3); }
+
+  .aw-task-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+
+  .aw-task-meta {
+    font-size: 11px;
+    color: var(--text3);
+    margin-bottom: 12px;
+  }
+
+  .aw-progress-bar-bg {
+    height: 3px;
+    background: var(--surface2);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 8px;
+  }
+  .aw-progress-bar-fill {
+    height: 100%;
+    background: var(--blue);
+    border-radius: 2px;
+    transition: width 0.4s ease;
+  }
+  .aw-progress-label {
+    font-size: 10px;
+    color: var(--text3);
+    margin-top: 4px;
+    text-align: right;
+  }
+
+  /* ── RECENT OUTPUTS ──────────────────────────────── */
+  .outputs-list {
+    background: var(--surface);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .output-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 18px;
+    border-bottom: 1px solid var(--border);
+    animation: fadeUp 0.3s ease both;
+  }
+  .output-row:last-child { border-bottom: none; }
+
+  .output-date {
+    font-size: 11px;
+    color: var(--text3);
+    width: 44px;
+    flex-shrink: 0;
+  }
+
+  .output-name {
+    font-size: 12px;
+    color: var(--text);
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "SF Mono", "Menlo", monospace;
+  }
+
+  .output-agent {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 5px;
+    flex-shrink: 0;
+  }
+  .output-agent.kodo  { background: rgba(191,90,242,0.15); color: var(--purple); }
+  .output-agent.kikai { background: rgba(48,209,88,0.12);  color: var(--green); }
+  .output-agent.yama  { background: rgba(90,200,250,0.12); color: var(--teal); }
+
+  .output-size {
+    font-size: 10px;
+    color: var(--text3);
+    flex-shrink: 0;
+    width: 36px;
+    text-align: right;
+  }
+
+  /* ── CRON JOBS ───────────────────────────────────── */
+  .cron-table {
+    background: var(--surface);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .cron-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 18px;
+    border-bottom: 1px solid var(--border);
+    animation: fadeUp 0.3s ease both;
+  }
+  .cron-row:last-child { border-bottom: none; }
+  .cron-row.header { background: var(--surface2); }
+
+  .cron-name {
+    font-size: 12px;
+    color: var(--text);
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .cron-schedule {
+    font-size: 11px;
+    color: var(--text3);
+    width: 70px;
+    flex-shrink: 0;
+    font-family: "SF Mono", "Menlo", monospace;
+  }
+
+  .cron-last {
+    font-size: 11px;
+    color: var(--text3);
+    width: 72px;
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  .cron-status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .cron-status-dot.ok    { background: var(--green); }
+  .cron-status-dot.error { background: var(--red); animation: pulse 1.5s ease-in-out infinite; }
+  .cron-status-dot.stale { background: var(--amber); }
+
   /* ── LOADING STATE ──────────────────────────────── */
   .skeleton {
     background: linear-gradient(90deg, var(--surface) 25%, var(--surface2) 50%, var(--surface) 75%);
@@ -728,6 +915,14 @@
 <!-- MAIN -->
 <main>
 
+  <!-- ACTIVE WORK -->
+  <div class="section-label">Active Work</div>
+  <div class="active-work-grid" id="active-work-grid">
+    <div class="active-work-card"><div class="skeleton" style="height:90px;"></div></div>
+    <div class="active-work-card"><div class="skeleton" style="height:90px;"></div></div>
+    <div class="active-work-card"><div class="skeleton" style="height:90px;"></div></div>
+  </div>
+
   <!-- WJP ACTION ITEMS -->
   <div class="section-label">Needs WJP</div>
   <div class="action-grid" id="wjp-grid"></div>
@@ -773,6 +968,18 @@
   <div class="section-label">Task Queue</div>
   <div id="task-queue-panel" style="margin-bottom:24px;"></div>
 
+  <!-- RECENT OUTPUTS -->
+  <div class="section-label">Recent Outputs <span id="outputs-count" style="color:var(--text3);font-weight:400;margin-left:4px;"></span></div>
+  <div class="outputs-list" id="outputs-list">
+    <div style="padding:20px;"><div class="skeleton"></div></div>
+  </div>
+
+  <!-- CRON JOBS -->
+  <div class="section-label">Cron Jobs <span id="cron-count" style="color:var(--text3);font-weight:400;margin-left:4px;"></span></div>
+  <div class="cron-table" id="cron-table">
+    <div style="padding:20px;"><div class="skeleton"></div></div>
+  </div>
+
   <!-- INTEL -->
   <div class="section-label">Intel</div>
   <div class="intel-list" id="intel-list">
@@ -802,18 +1009,172 @@ const QA = [
   { date: 'Feb 26', name: 'Bot API endpoint verification',          result: 'PASS',    runner: 'Kikai' },
 ];
 
+// ── PHASE 1 RENDER FUNCTIONS ────────────────────────────────────────────────
+
+function fmtSize(bytes) {
+  if (bytes < 1024) return bytes + 'B';
+  if (bytes < 1024*1024) return Math.round(bytes/1024) + 'K';
+  return (bytes/(1024*1024)).toFixed(1) + 'M';
+}
+
+function fmtOutputDate(isoStr) {
+  const d = new Date(isoStr);
+  return `${d.toLocaleString('en',{month:'short'})} ${d.getDate()}`;
+}
+
+function renderActiveWork(activeWork) {
+  const grid = document.getElementById('active-work-grid');
+  if (!activeWork || !activeWork.length) {
+    grid.innerHTML = '<div style="padding:16px;color:var(--text3);font-size:13px;">No active task data</div>';
+    return;
+  }
+  grid.innerHTML = activeWork.map((agent, i) => {
+    const task = agent.task || {};
+    const statusClass = task.status || 'IDLE';
+    const isIdle = statusClass === 'IDLE' || statusClass === 'COMPLETE';
+    const isBlocked = statusClass === 'BLOCKED';
+    const taskName = task.name || 'Available';
+    const pct = task.progress_percent || 0;
+    const meta = task.startedAt ? `Started ${task.startedAt}` : '';
+    const blockedNote = isBlocked && task.blockedOn ? `⚠️ ${task.blockedOn}` : '';
+
+    return `
+      <div class="active-work-card ${isBlocked ? 'blocked' : ''} ${isIdle ? 'idle' : ''}" style="animation-delay:${i*60}ms">
+        <div class="aw-agent-row">
+          <span class="aw-agent-name">${agent.name}</span>
+          <span class="aw-status-pill ${statusClass}">${statusClass.replace('_',' ')}</span>
+        </div>
+        <div class="aw-task-name">${taskName}</div>
+        ${meta ? `<div class="aw-task-meta">${meta}</div>` : ''}
+        ${blockedNote ? `<div class="aw-task-meta" style="color:var(--red)">${blockedNote}</div>` : ''}
+        ${!isIdle ? `
+          <div class="aw-progress-bar-bg">
+            <div class="aw-progress-bar-fill" style="width:${pct}%"></div>
+          </div>
+          <div class="aw-progress-label">${pct}%</div>
+        ` : ''}
+      </div>`;
+  }).join('');
+}
+
+function renderRecentOutputs(outputs) {
+  const list = document.getElementById('outputs-list');
+  const count = document.getElementById('outputs-count');
+  if (!outputs || !outputs.length) {
+    list.innerHTML = '<div style="padding:16px;color:var(--text3);font-size:13px;">No outputs in last 7 days</div>';
+    return;
+  }
+  count.textContent = `(${outputs.length})`;
+  list.innerHTML = outputs.map((o, i) => `
+    <div class="output-row" style="animation-delay:${i*30}ms">
+      <span class="output-date">${fmtOutputDate(o.createdAt)}</span>
+      <span class="output-name">${o.filename}</span>
+      <span class="output-agent ${o.agent}">${o.agent}</span>
+      <span class="output-size">${fmtSize(o.size)}</span>
+    </div>`).join('');
+}
+
+function renderCronJobs(jobs) {
+  const table = document.getElementById('cron-table');
+  const count = document.getElementById('cron-count');
+  if (!jobs || !jobs.length) {
+    table.innerHTML = '<div style="padding:16px;color:var(--text3);font-size:13px;">No cron data</div>';
+    return;
+  }
+  const ok = jobs.filter(j => j.status === 'ok').length;
+  const err = jobs.filter(j => j.status === 'error').length;
+  count.textContent = `(${ok} ok${err > 0 ? `, ${err} error` : ''})`;
+  table.innerHTML = jobs.map((j, i) => `
+    <div class="cron-row" style="animation-delay:${i*30}ms">
+      <span class="cron-status-dot ${j.status}"></span>
+      <span class="cron-name">${j.name}</span>
+      <span class="cron-schedule">${j.schedule}</span>
+      <span class="cron-last">${j.lastRunAgo}</span>
+    </div>`).join('');
+}
+
 // ── DATA FETCH ──────────────────────────────────────────────────────────────
 
 const BASE = window.location.origin.includes('github.io')
   ? '/mission-control/data.json'
   : 'data.json';
 
+const KODO_BASE = window.location.origin.includes('github.io')
+  ? '/mission-control/kodo-data.json'
+  : 'kodo-data.json';
+
 let DATA = null;
+let KODO_DATA = null;
 
 async function fetchData() {
   const res = await fetch(BASE + '?_v=' + Date.now());
   DATA = await res.json();
   return DATA;
+}
+
+async function fetchKodoData() {
+  try {
+    const res = await fetch(KODO_BASE + '?_v=' + Date.now());
+    KODO_DATA = await res.json();
+    return KODO_DATA;
+  } catch { return null; }
+}
+
+function buildActiveWork(data, kodoData) {
+  const result = [];
+
+  // Kikai
+  if (data && data.agents && data.agents.kikai) {
+    const k = data.agents.kikai;
+    result.push({
+      name: 'Kikai',
+      task: { name: k.workingOn || 'Available', status: k.status === 'active' ? 'IN_PROGRESS' : 'IDLE', progress_percent: 0 }
+    });
+  }
+
+  // Yama
+  if (data && data.agents && data.agents.yama) {
+    const y = data.agents.yama;
+    result.push({
+      name: 'Yama',
+      task: { name: y.workingOn || 'Available', status: y.status === 'active' ? 'IN_PROGRESS' : 'IDLE', progress_percent: 0 }
+    });
+  }
+
+  // Kodo
+  if (kodoData && kodoData.activeTask) {
+    result.push({ name: 'Kodo', task: kodoData.activeTask });
+  } else {
+    result.push({ name: 'Kodo', task: { name: 'Available', status: 'IDLE', progress_percent: 0 } });
+  }
+
+  return result;
+}
+
+function buildCronJobs(data, kodoData) {
+  const jobs = [];
+  // Kodo's cron jobs
+  if (kodoData && kodoData.cronJobs) {
+    kodoData.cronJobs.forEach(j => jobs.push({ ...j, machine: 'kodo' }));
+  }
+  // Kikai's cron snapshot (if available)
+  if (data && data.cronJobs) {
+    data.cronJobs.forEach(j => jobs.push({ ...j, machine: 'kikai' }));
+  }
+  return jobs;
+}
+
+function buildRecentOutputs(data, kodoData) {
+  const outputs = [];
+  if (kodoData && kodoData.recentOutputs) {
+    kodoData.recentOutputs.forEach(o => outputs.push(o));
+  }
+  if (data && data.recentOutputs) {
+    data.recentOutputs.forEach(o => outputs.push(o));
+  }
+  // Sort by date desc
+  outputs.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  return outputs.slice(0, 20);
 }
 
 // ── RENDER ──────────────────────────────────────────────────────────────────
@@ -897,6 +1258,7 @@ function renderAgents(agents) {
   const defs = [
     { key: 'kikai', name: 'Kikai', role: 'Operator', avatar: 'kikai-pfp.png', fallback: '🦊' },
     { key: 'yama',  name: 'Yama',  role: 'Tester',   avatar: 'yama-pfp.png',  fallback: '🐺' },
+    { key: 'kodo',  name: 'Kodo',  role: 'Builder',  avatar: null,            fallback: '🏗️' },
   ];
 
   grid.innerHTML = defs.map((d, i) => {
@@ -1186,14 +1548,34 @@ async function checkDomain() {
 async function refreshData() {
   document.getElementById('last-updated').innerHTML = '<span class="spinner"></span>';
   try {
-    const data = await fetchData();
+    const [data, kodoData] = await Promise.all([fetchData(), fetchKodoData()]);
     const domainLive = data.health && data.health.domain === 'live';
     updateTimestamp(data.updatedAt);
-    renderAgents(data.agents);
+
+    // Merge Kodo into agents for existing agent grid
+    const mergedAgents = {
+      ...(data.agents || {}),
+      kodo: kodoData ? {
+        status: kodoData.status,
+        workingOn: kodoData.activeTask?.name || 'idle',
+        contextPct: 0,
+        model: 'claude-sonnet-4-6',
+        lastActivityMin: kodoData.lastActiveMs ? Math.round((Date.now() - kodoData.lastActiveMs) / 60000) : null,
+        rateLimit: false
+      } : {}
+    };
+
+    renderAgents(mergedAgents);
     renderHealth(data.health || {}, domainLive);
     renderProjects(data.projects);
     renderTaskQueue(data.taskQueue);
     renderIntel(data.intel);
+
+    // Phase 1 panels
+    renderActiveWork(buildActiveWork(data, kodoData));
+    renderRecentOutputs(buildRecentOutputs(data, kodoData));
+    renderCronJobs(buildCronJobs(data, kodoData));
+
   } catch (e) {
     document.getElementById('last-updated').textContent = 'Fetch failed';
     console.error(e);
