@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-09T16:45:25.588991+00:00",
+  "updatedAt": "2026-03-09T16:46:40.456076+00:00",
   "agent": "kodo",
   "status": "active",
   "activeTask": {
@@ -54,7 +54,7 @@
       "name": "kodo-workspace-backup",
       "schedule": "every 2h",
       "lastRunMs": 1773071369593,
-      "lastRunAgo": "55m ago",
+      "lastRunAgo": "57m ago",
       "nextRunMs": 1773078569593,
       "status": "ok",
       "errors": 0
@@ -62,9 +62,9 @@
     {
       "name": "kodo-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773072813856,
-      "lastRunAgo": "31m ago",
-      "nextRunMs": 1773074613856,
+      "lastRunMs": 1773074613859,
+      "lastRunAgo": "3m ago",
+      "nextRunMs": 1773076413859,
       "status": "ok",
       "errors": 0
     }
@@ -72,35 +72,40 @@
   "skills": [
     {
       "name": "agent-orchestration",
-      "status": "PARKED",
-      "uses": 0,
-      "triggerScore": 0
+      "owner": "kodo",
+      "description": "Coordinate parallel sub-agents and worktrees for complex multi-part tasks. Use when a task is large enough to split across multiple agents, when parallel git worktrees are needed, or when orchestrating multiple coding agents simultaneously. Triggers: \"run this in parallel\", \"split this across agents\", \"use multiple worktrees\", \"orchestrate sub-agents\". Do NOT use for single-agent tasks.",
+      "lastModified": "2026-03-09",
+      "status": "PARKED"
     },
     {
       "name": "bug-fix-workflow",
-      "status": "LIVE",
-      "uses": 3,
-      "triggerScore": 9
+      "owner": "kodo",
+      "description": "Structured bug fix process. Use when asked to fix a bug, investigate an error, address a failing test, or resolve a broken flow. Steps: reproduce \u2192 isolate \u2192 fix \u2192 test \u2192 document. Use for any \"something is broken\" request. Do NOT use for feature additions, refactors, code reviews, or general quality audits \u2014 requires a specific confirmed bug to fix.",
+      "lastModified": "2026-03-09",
+      "status": "LIVE"
     },
     {
       "name": "code-review-quality",
-      "status": "LIVE",
-      "uses": 3,
-      "triggerScore": 9
+      "owner": "kodo",
+      "description": "Code review against WJP quality bar. Use when asked to review code, audit a codebase, check code quality, or evaluate a PR/diff. Produces prioritized findings with severity ratings. Use for any \"review this\", \"what's wrong with this\", or \"audit this code\" request. Do NOT use for shipping, bug fixing, or website/site/product page audits.",
+      "lastModified": "2026-03-09",
+      "status": "LIVE"
     },
     {
       "name": "ship-flow",
-      "status": "PARKED",
-      "uses": 0,
-      "triggerScore": 0
+      "owner": "kodo",
+      "description": "End-to-end shipping workflow for TypeScript/JavaScript projects. Use when asked to ship, deploy, push, release, or publish code changes. Covers TypeScript type-check \u2192 build \u2192 commit \u2192 push \u2192 deploy verify \u2192 smoke test. Use for any \"ship this\" or \"get this live\" request. Do NOT use for pure code review without shipping.",
+      "lastModified": "2026-03-09",
+      "status": "PARKED"
     },
     {
       "name": "site-audit",
-      "status": "LIVE",
-      "uses": 5,
-      "triggerScore": 10
+      "owner": "kodo",
+      "description": "Audit live websites and products for functional bugs, UX issues, developer docs gaps, and AI slop in copy. Use when asked to audit, review, or QA a website, web app, product page, or documentation site. Triggers include: \"audit this site\", \"review these pages\", \"QA the docs\", \"check for slop\", \"UX review\", \"find what's broken\", \"check all the links\", \"review the copy\". Supports four audit types \u2014 functional, UX, docs, copy/slop \u2014 or any combination. Do NOT use for code/PR reviews or bug fixes in a codebase.",
+      "lastModified": "2026-03-09",
+      "status": "LIVE"
     }
   ],
-  "lastActiveMs": 1773074718335,
-  "lastActiveAgo": "7s ago"
+  "lastActiveMs": 1773074742748,
+  "lastActiveAgo": "57s ago"
 }

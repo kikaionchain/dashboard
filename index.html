@@ -1571,9 +1571,14 @@ function renderTaskQueue(queue) {
 
 // ── PHASE 2 RENDER FUNCTIONS ────────────────────────────────────────────────
 
-function renderSkillsInventory(kodoData, updatedAt) {
+function renderSkillsInventory(allAgentJsons, updatedAt) {
   const section = document.getElementById('skills-section');
-  if (!kodoData || !kodoData.skills || !kodoData.skills.length) { section.style.display = 'none'; return; }
+  // Merge skills from all agents
+  const allSkills = [];
+  allAgentJsons.forEach(a => {
+    if (a && a.skills) a.skills.forEach(s => allSkills.push(s));
+  });
+  if (!allSkills.length) { section.style.display = 'none'; return; }
   section.style.display = '';
   if (updatedAt) {
     const d = new Date(updatedAt);
@@ -1582,11 +1587,17 @@ function renderSkillsInventory(kodoData, updatedAt) {
   }
   const grid = document.getElementById('skills-grid');
   grid.className = 'skills-grid';
-  grid.innerHTML = kodoData.skills.map((s, i) => `
+  grid.innerHTML = allSkills.map((s, i) => `
     <div class="skill-card" style="animation-delay:${i*40}ms">
-      <div class="skill-name">${s.name}</div>
-      <div class="skill-status ${s.status.toLowerCase()}">${s.status}</div>
-      <div class="skill-meta">${s.uses} use${s.uses !== 1 ? 's' : ''} · ${s.triggerScore}/10</div>
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
+        <div class="skill-name">${s.name}</div>
+        <div class="skill-status ${(s.status||'').toLowerCase()}">${s.status || 'BUILDING'}</div>
+      </div>
+      ${s.description ? `<div class="skill-meta" style="color:var(--text2);font-size:12px;line-height:1.4;margin-bottom:4px;">${s.description.length > 100 ? s.description.substring(0,100)+'…' : s.description}</div>` : ''}
+      <div class="skill-meta">
+        <span style="color:var(--text3)">@${s.owner || '?'}</span>
+        ${s.lastModified ? ` · ${s.lastModified}` : ''}
+      </div>
     </div>`).join('');
 }
 
@@ -1894,7 +1905,7 @@ async function refreshData() {
 
     // Phase 2 panels
     const globalTs = data.updatedAt || kodoTs;
-    renderSkillsInventory(kodoData, kodoTs);
+    renderSkillsInventory(allAgentJsons, kodoTs);
     renderTeamActivity(data, allAgentJsons, globalTs);
     renderWjpDashboard(data, allAgentJsons, globalTs);
 

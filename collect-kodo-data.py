@@ -130,24 +130,46 @@ def get_cron_jobs():
 
 
 def get_skills():
-    """Read skills from ~/skills/ directory."""
+    """Read skills from ~/skills/ — name, description, last modified, owner."""
     skills_dir = Path.home() / "skills"
     skills = []
-    # Known skill metadata — status and use counts tracked manually
-    SKILL_META = {
-        "site-audit":           {"status": "LIVE",    "uses": 5, "triggerScore": 10},
-        "code-review-quality":  {"status": "LIVE",    "uses": 3, "triggerScore": 9},
-        "bug-fix-workflow":     {"status": "LIVE",    "uses": 3, "triggerScore": 9},
-        "ship-flow":            {"status": "PARKED",  "uses": 0, "triggerScore": 0},
-        "agent-orchestration":  {"status": "PARKED",  "uses": 0, "triggerScore": 0},
+    SKILL_STATUS = {
+        "site-audit":          "LIVE",
+        "code-review-quality": "LIVE",
+        "bug-fix-workflow":    "LIVE",
+        "ship-flow":           "PARKED",
+        "agent-orchestration": "PARKED",
     }
     try:
-        if skills_dir.exists():
-            for skill_dir in sorted(skills_dir.iterdir()):
-                if skill_dir.is_dir() and (skill_dir / "SKILL.md").exists():
-                    meta = SKILL_META.get(skill_dir.name, {"status": "BUILDING", "uses": 0, "triggerScore": 0})
-                    skills.append({"name": skill_dir.name, **meta})
-    except Exception:
+        if not skills_dir.exists():
+            return skills
+        for skill_dir in sorted(skills_dir.iterdir()):
+            skill_md = skill_dir / "SKILL.md"
+            if not skill_dir.is_dir() or not skill_md.exists():
+                continue
+            content = skill_md.read_text()
+            # Parse YAML frontmatter
+            description = ""
+            name = skill_dir.name
+            if content.startswith("---"):
+                parts = content.split("---", 2)
+                if len(parts) >= 3:
+                    for line in parts[1].splitlines():
+                        if line.startswith("description:"):
+                            description = line[len("description:"):].strip()
+                        elif line.startswith("name:"):
+                            name = line[len("name:"):].strip()
+            last_modified = datetime.fromtimestamp(
+                skill_md.stat().st_mtime, tz=timezone.utc
+            ).strftime("%Y-%m-%d")
+            skills.append({
+                "name": name,
+                "owner": "kodo",
+                "description": description,
+                "lastModified": last_modified,
+                "status": SKILL_STATUS.get(skill_dir.name, "BUILDING"),
+            })
+    except Exception as e:
         pass
     return skills
 
