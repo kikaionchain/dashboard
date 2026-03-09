@@ -1199,6 +1199,8 @@ function renderActiveWork(activeWork, updatedAt) {
     return `
       <div class="active-work-card ${isBlocked ? 'blocked' : ''} ${isIdle ? 'idle' : ''}" style="animation-delay:${i*60}ms">
         <div class="aw-agent-row">
+          <img class="aw-agent-pfp" src="${pfpBase}${agent.name.toLowerCase()}-pfp.png" alt="${agent.name}"
+            onerror="this.style.display='none'" style="width:22px;height:22px;border-radius:50%;object-fit:cover;flex-shrink:0;">
           <span class="aw-agent-name">${agent.name}</span>
           <span class="aw-status-pill ${statusClass}">${statusClass.replace('_',' ')}</span>
         </div>
@@ -1260,6 +1262,8 @@ function renderCronJobs(jobs, updatedAt) {
 }
 
 // ── DATA FETCH ──────────────────────────────────────────────────────────────
+
+const pfpBase = window.location.origin.includes('github.io') ? '/mission-control/' : '';
 
 const BASE = window.location.origin.includes('github.io')
   ? '/mission-control/data.json'
@@ -1452,9 +1456,9 @@ function statusPill(s) {
 function renderAgents(agents) {
   const grid = document.getElementById('agent-grid');
   const defs = [
-    { key: 'kikai', name: 'Kikai', role: 'Operator', avatar: 'kikai-pfp.png', fallback: '🦊' },
-    { key: 'yama',  name: 'Yama',  role: 'Tester',   avatar: 'yama-pfp.png',  fallback: '🐺' },
-    { key: 'kodo',  name: 'Kodo',  role: 'Builder',  avatar: null,            fallback: '🏗️' },
+    { key: 'kikai', name: 'Kikai', role: 'Operator', avatar: `${pfpBase}kikai-pfp.png` },
+    { key: 'yama',  name: 'Yama',  role: 'Tester',   avatar: `${pfpBase}yama-pfp.png`  },
+    { key: 'kodo',  name: 'Kodo',  role: 'Builder',  avatar: `${pfpBase}kodo-pfp.png`  },
   ];
 
   grid.innerHTML = defs.map((d, i) => {
@@ -1466,7 +1470,8 @@ function renderAgents(agents) {
     return `
       <div class="agent-card" style="animation-delay:${i * 80}ms">
         <div class="agent-top">
-          <div class="agent-avatar-fallback">${d.fallback}</div>
+          <img class="agent-avatar" src="${d.avatar}" alt="${d.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="agent-avatar-fallback" style="display:none">${d.name[0]}</div>
           <div class="agent-info">
             <div class="agent-name">${d.name} ${statusPill(status)}</div>
             <div class="agent-role">${d.role}</div>
