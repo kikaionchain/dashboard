@@ -1130,6 +1130,24 @@ async function fetchKodoData() {
   } catch { return null; }
 }
 
+async function fetchAgentJson(agent) {
+  const base = window.location.origin.includes('github.io') ? '/mission-control/' : '';
+  try {
+    const res = await fetch(`${base}data/${agent}.json?_v=${Date.now()}`);
+    if (!res.ok) return null;
+    return await res.json();
+  } catch { return null; }
+}
+
+async function fetchCronsJson() {
+  const base = window.location.origin.includes('github.io') ? '/mission-control/' : '';
+  try {
+    const res = await fetch(`${base}data/crons.json?_v=${Date.now()}`);
+    if (!res.ok) return null;
+    return await res.json();
+  } catch { return null; }
+}
+
 function buildActiveWork(data, kodoData) {
   const result = [];
 
@@ -1161,30 +1179,42 @@ function buildActiveWork(data, kodoData) {
   return result;
 }
 
-function buildCronJobs(data, kodoData) {
+function buildCronJobs(data, kodoData, cronsJson) {
   const jobs = [];
-  // Kodo's cron jobs
+  // Prefer dedicated crons.json pushed by Kikai's machine
+  if (cronsJson && cronsJson.jobs && cronsJson.jobs.length) {
+    cronsJson.jobs.forEach(j => jobs.push(j));
+    return jobs;
+  }
+  // Fallback: merge from individual agent JSONs
   if (kodoData && kodoData.cronJobs) {
     kodoData.cronJobs.forEach(j => jobs.push({ ...j, machine: 'kodo' }));
   }
-  // Kikai's cron snapshot (if available)
   if (data && data.cronJobs) {
     data.cronJobs.forEach(j => jobs.push({ ...j, machine: 'kikai' }));
   }
   return jobs;
 }
 
-function buildRecentOutputs(data, kodoData) {
+function buildRecentOutputs(data, agentJsons) {
   const outputs = [];
-  if (kodoData && kodoData.recentOutputs) {
-    kodoData.recentOutputs.forEach(o => outputs.push(o));
-  }
+  // Pull from all agent JSONs (kodo, kikai, yama)
+  agentJsons.forEach(a => {
+    if (a && a.recentOutputs) a.recentOutputs.forEach(o => outputs.push(o));
+  });
+  // Also pull from legacy data.json recentOutputs if present
   if (data && data.recentOutputs) {
     data.recentOutputs.forEach(o => outputs.push(o));
   }
-  // Sort by date desc
-  outputs.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-  return outputs.slice(0, 20);
+  // Deduplicate by filename
+  const seen = new Set();
+  const deduped = outputs.filter(o => {
+    if (seen.has(o.name)) return false;
+    seen.add(o.name);
+    return true;
+  });
+  deduped.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  return deduped.slice(0, 20);
 }
 
 // ── RENDER ──────────────────────────────────────────────────────────────────
@@ -1386,14 +1416,20 @@ function renderTaskQueue(queue) {
 function renderIntel(intel) {
   const list = document.getElementById('intel-list');
   if (!intel || !intel.length) { list.innerHTML = '<div style="padding:20px;color:var(--text3);font-size:13px;">No intel</div>'; return; }
-  const valid = intel.filter(i => i.date || i.time); if (!valid.length) { list.innerHTML = "<div style=\"padding:20px;color:var(--text3);font-size:13px;\">No intel</div>"; return; } list.innerHTML = valid.slice(0, 4).map((item, i) => {
+  const valid = intel.filter(i => {
+    if (!i.title && !i.text) return false;
+    const d = new Date(i.date || i.time);
+    return !isNaN(d.getTime());
+  });
+  if (!valid.length) { list.innerHTML = '<div style="padding:20px;color:var(--text3);font-size:13px;">No intel</div>'; return; }
+  list.innerHTML = valid.slice(0, 4).map((item, i) => {
     const d = new Date(item.date || item.time);
     const label = `${d.toLocaleString('en', {month:'short'})} ${d.getDate()}`;
     return `
       <div class="intel-row" style="animation-delay:${i * 60}ms">
         <span class="intel-date">${label}</span>
         <div class="intel-title">
-          ${item.title || item.text || "No title"}
+          ${item.title || item.text}
           ${item.action ? `<div class="intel-action">${item.action}</div>` : ''}
         </div>
         <span class="impact-badge ${item.impact || 'medium'}">${(item.impact || 'med').toUpperCase()}</span>
@@ -1558,7 +1594,10 @@ async function checkDomain() {
 async function refreshData() {
   document.getElementById('last-updated').innerHTML = '<span class="spinner"></span>';
   try {
-    const [data, kodoData] = await Promise.all([fetchData(), fetchKodoData()]);
+    const [data, kodoData, kikaiJson, yamaJson, cronsJson] = await Promise.all([
+      fetchData(), fetchKodoData(),
+      fetchAgentJson('kikai'), fetchAgentJson('yama'), fetchCronsJson()
+    ]);
     const domainLive = data.health && data.health.domain === 'live';
     updateTimestamp(data.updatedAt);
 
@@ -1583,9 +1622,10 @@ async function refreshData() {
 
     // Phase 1 panels
     const kodoTs = kodoData ? kodoData.updatedAt : null;
+    const allAgentJsons = [kodoData, kikaiJson, yamaJson].filter(Boolean);
     renderActiveWork(buildActiveWork(data, kodoData), kodoTs);
-    renderRecentOutputs(buildRecentOutputs(data, kodoData), kodoTs);
-    renderCronJobs(buildCronJobs(data, kodoData), kodoTs);
+    renderRecentOutputs(buildRecentOutputs(data, allAgentJsons), kodoTs);
+    renderCronJobs(buildCronJobs(data, kodoData, cronsJson), kodoTs);
 
   } catch (e) {
     document.getElementById('last-updated').textContent = 'Fetch failed';
