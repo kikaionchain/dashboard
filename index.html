@@ -120,7 +120,7 @@
     letter-spacing: 0.06em; text-transform: uppercase; margin-left: 2px;
   }
   .qa-badge-live { background: rgba(245,245,247,0.06); color: var(--text2); }
-  .qa-badge-new { background: rgba(0,113,227,0.10); color: var(--blue); }
+  .qa-badge-new { background: rgba(245,245,247,0.06); color: var(--text2); }
   .qa-badge-draft { background: rgba(245,245,247,0.06); color: var(--text2); }
 
   /* ── BUSINESSES ──────────────────────────────── */
@@ -1297,7 +1297,7 @@ function renderActiveWork(activeWork, updatedAt) {
         </div>
         <div class="aw-task-name">${taskName}</div>
         ${meta ? `<div class="aw-task-meta">${meta}</div>` : ''}
-        ${blockedNote ? `<div class="aw-task-meta" style="color:var(--red)">${blockedNote}</div>` : ''}
+        ${blockedNote ? `<div class="aw-task-meta" style="color:var(--text2)">${blockedNote}</div>` : ''}
         ${!isIdle ? `
           <div class="aw-progress-bar-bg">
             <div class="aw-progress-bar-fill" style="width:${pct}%"></div>
@@ -1619,7 +1619,7 @@ function renderProjects(projects) {
   const list = document.getElementById('project-list');
   if (!projects || !projects.length) { list.innerHTML = '<div style="padding:20px;color:var(--text3);font-size:13px;">No project data</div>'; return; }
   list.innerHTML = projects.map((p, i) => {
-    const statusColor = p.status === 'Active' ? 'var(--green)' : p.status === 'Backburner' ? 'var(--amber)' : 'var(--text3)';
+    const statusColor = 'var(--text2)';
     const badgeBg = p.status === 'Active' ? 'rgba(245,245,247,0.06)' : p.status === 'Backburner' ? 'rgba(245,245,247,0.06)' : 'rgba(235,235,245,0.08)';
     return `
       <div class="project-row" style="animation-delay:${i * 60}ms">
@@ -1919,7 +1919,7 @@ function renderBizPipeline(data) {
   const counts = { draft: 0, listed: 0, live: 0, paused: 0 };
   data.businesses.forEach(b => counts[b.status] = (counts[b.status] || 0) + 1);
 
-  const colors = { draft: 'var(--amber)', listed: 'var(--blue)', live: 'var(--green)', paused: 'var(--text3)' };
+  const colors = { draft: 'var(--text3)', listed: 'var(--text2)', live: 'var(--text2)', paused: 'var(--text3)' };
   let html = '';
   for (const [status, count] of Object.entries(counts)) {
     if (count === 0) continue;
