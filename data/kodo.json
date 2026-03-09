@@ -1,14 +1,14 @@
 {
-  "updatedAt": "2026-03-09T17:22:17.422598+00:00",
+  "updatedAt": "2026-03-09T17:22:38.801165+00:00",
   "agent": "kodo",
   "status": "active",
   "activeTask": {
-    "name": "Unknown Task",
-    "status": "IN_PROGRESS",
+    "name": "Standing By \u2014 WJP Studio design updates",
+    "status": "IDLE",
     "progress_percent": 100,
     "checklist_total": 10,
     "checklist_done": 10,
-    "startedAt": null,
+    "startedAt": "2026-03-09",
     "blockedOn": null
   },
   "recentOutputs": [
@@ -69,7 +69,7 @@
       "name": "kodo-mc-push",
       "schedule": "every 30m",
       "lastRunMs": 1773076413862,
-      "lastRunAgo": "8m ago",
+      "lastRunAgo": "9m ago",
       "nextRunMs": 1773078213862,
       "status": "ok",
       "errors": 0
@@ -113,5 +113,5 @@
     }
   ],
   "lastActiveMs": 1773076904289,
-  "lastActiveAgo": "33s ago"
+  "lastActiveAgo": "54s ago"
 }
