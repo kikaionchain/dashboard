@@ -1236,7 +1236,7 @@ function renderWjpGrid() {
     <div class="action-card ${item.priority}" style="animation-delay:${i * 60}ms" onclick="toggleAction(this)">
       <div class="action-card-header">
         <span class="priority-dot ${item.priority}"></span>
-        <span class="action-title">${item.title}</span>
+        <span class="action-title">${item.title || item.text || "No title"}</span>
         <span class="effort-badge">${item.effort}</span>
         <button class="done-btn" onclick="event.stopPropagation();dismiss('${item.id}')" title="Mark done">✓ Done</button>
         <svg class="action-chevron" viewBox="0 0 14 14" fill="none">
@@ -1386,14 +1386,14 @@ function renderTaskQueue(queue) {
 function renderIntel(intel) {
   const list = document.getElementById('intel-list');
   if (!intel || !intel.length) { list.innerHTML = '<div style="padding:20px;color:var(--text3);font-size:13px;">No intel</div>'; return; }
-  list.innerHTML = intel.slice(0, 4).map((item, i) => {
-    const d = new Date(item.date);
+  const valid = intel.filter(i => i.date || i.time); if (!valid.length) { list.innerHTML = "<div style=\"padding:20px;color:var(--text3);font-size:13px;\">No intel</div>"; return; } list.innerHTML = valid.slice(0, 4).map((item, i) => {
+    const d = new Date(item.date || item.time);
     const label = `${d.toLocaleString('en', {month:'short'})} ${d.getDate()}`;
     return `
       <div class="intel-row" style="animation-delay:${i * 60}ms">
         <span class="intel-date">${label}</span>
         <div class="intel-title">
-          ${item.title}
+          ${item.title || item.text || "No title"}
           ${item.action ? `<div class="intel-action">${item.action}</div>` : ''}
         </div>
         <span class="impact-badge ${item.impact || 'medium'}">${(item.impact || 'med').toUpperCase()}</span>
