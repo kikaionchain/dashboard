@@ -163,7 +163,8 @@ def main():
         "lastActiveAgo": time_ago(last_active_ms)
     }
 
-    out_path = Path(__file__).parent / "kodo-data.json"
+    out_path = Path(__file__).parent / "data" / "kodo.json"
+    out_path.parent.mkdir(exist_ok=True)
     out_path.write_text(json.dumps(data, indent=2))
     print(f"[OK] kodo-data.json written — {len(recent_outputs)} outputs, {len(cron_jobs)} jobs, task: {active_task['name']}")
 

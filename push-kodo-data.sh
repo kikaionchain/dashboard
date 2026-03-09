@@ -15,11 +15,11 @@ git pull --quiet --rebase origin main 2>/dev/null || true
 python3 "$REPO_DIR/collect-kodo-data.py"
 
 # Commit + push if changed
-if git diff --quiet kodo-data.json 2>/dev/null; then
-  echo "[OK] kodo-data.json unchanged, no push needed"
+if git diff --quiet data/kodo.json 2>/dev/null; then
+  echo "[OK] data/kodo.json unchanged, no push needed"
 else
-  git add kodo-data.json
+  git add data/kodo.json
   git commit -m "kodo: status update $(date -u +%Y-%m-%dT%H:%M:%SZ)"
   git push origin main
-  echo "[OK] kodo-data.json pushed"
+  echo "[OK] data/kodo.json pushed"
 fi

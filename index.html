@@ -916,11 +916,9 @@
 <main>
 
   <!-- ACTIVE WORK -->
-  <div class="section-label">Active Work</div>
-  <div class="active-work-grid" id="active-work-grid">
-    <div class="active-work-card"><div class="skeleton" style="height:90px;"></div></div>
-    <div class="active-work-card"><div class="skeleton" style="height:90px;"></div></div>
-    <div class="active-work-card"><div class="skeleton" style="height:90px;"></div></div>
+  <div id="active-work-section" style="display:none;">
+    <div class="section-label">Active Work <span id="active-work-updated" style="color:var(--text3);font-weight:400;font-size:10px;margin-left:6px;text-transform:none;letter-spacing:0;"></span></div>
+    <div class="active-work-grid" id="active-work-grid"></div>
   </div>
 
   <!-- WJP ACTION ITEMS -->
@@ -969,15 +967,15 @@
   <div id="task-queue-panel" style="margin-bottom:24px;"></div>
 
   <!-- RECENT OUTPUTS -->
-  <div class="section-label">Recent Outputs <span id="outputs-count" style="color:var(--text3);font-weight:400;margin-left:4px;"></span></div>
-  <div class="outputs-list" id="outputs-list">
-    <div style="padding:20px;"><div class="skeleton"></div></div>
+  <div id="outputs-section" style="display:none;">
+    <div class="section-label">Recent Outputs <span id="outputs-count" style="color:var(--text3);font-weight:400;margin-left:4px;"></span><span id="outputs-updated" style="color:var(--text3);font-weight:400;font-size:10px;margin-left:6px;text-transform:none;letter-spacing:0;"></span></div>
+    <div class="outputs-list" id="outputs-list"></div>
   </div>
 
   <!-- CRON JOBS -->
-  <div class="section-label">Cron Jobs <span id="cron-count" style="color:var(--text3);font-weight:400;margin-left:4px;"></span></div>
-  <div class="cron-table" id="cron-table">
-    <div style="padding:20px;"><div class="skeleton"></div></div>
+  <div id="cron-section" style="display:none;">
+    <div class="section-label">Cron Jobs <span id="cron-count" style="color:var(--text3);font-weight:400;margin-left:4px;"></span><span id="cron-updated" style="color:var(--text3);font-weight:400;font-size:10px;margin-left:6px;text-transform:none;letter-spacing:0;"></span></div>
+    <div class="cron-table" id="cron-table"></div>
   </div>
 
   <!-- INTEL -->
@@ -1022,11 +1020,15 @@ function fmtOutputDate(isoStr) {
   return `${d.toLocaleString('en',{month:'short'})} ${d.getDate()}`;
 }
 
-function renderActiveWork(activeWork) {
+function renderActiveWork(activeWork, updatedAt) {
+  const section = document.getElementById('active-work-section');
   const grid = document.getElementById('active-work-grid');
-  if (!activeWork || !activeWork.length) {
-    grid.innerHTML = '<div style="padding:16px;color:var(--text3);font-size:13px;">No active task data</div>';
-    return;
+  if (!activeWork || !activeWork.length) { section.style.display = 'none'; return; }
+  section.style.display = '';
+  if (updatedAt) {
+    const d = new Date(updatedAt);
+    document.getElementById('active-work-updated').textContent =
+      `updated ${d.toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'})}`;
   }
   grid.innerHTML = activeWork.map((agent, i) => {
     const task = agent.task || {};
@@ -1057,14 +1059,18 @@ function renderActiveWork(activeWork) {
   }).join('');
 }
 
-function renderRecentOutputs(outputs) {
+function renderRecentOutputs(outputs, updatedAt) {
+  const section = document.getElementById('outputs-section');
   const list = document.getElementById('outputs-list');
   const count = document.getElementById('outputs-count');
-  if (!outputs || !outputs.length) {
-    list.innerHTML = '<div style="padding:16px;color:var(--text3);font-size:13px;">No outputs in last 7 days</div>';
-    return;
-  }
+  if (!outputs || !outputs.length) { section.style.display = 'none'; return; }
+  section.style.display = '';
   count.textContent = `(${outputs.length})`;
+  if (updatedAt) {
+    const d = new Date(updatedAt);
+    document.getElementById('outputs-updated').textContent =
+      `updated ${d.toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'})}`;
+  }
   list.innerHTML = outputs.map((o, i) => `
     <div class="output-row" style="animation-delay:${i*30}ms">
       <span class="output-date">${fmtOutputDate(o.createdAt)}</span>
@@ -1074,16 +1080,20 @@ function renderRecentOutputs(outputs) {
     </div>`).join('');
 }
 
-function renderCronJobs(jobs) {
+function renderCronJobs(jobs, updatedAt) {
+  const section = document.getElementById('cron-section');
   const table = document.getElementById('cron-table');
   const count = document.getElementById('cron-count');
-  if (!jobs || !jobs.length) {
-    table.innerHTML = '<div style="padding:16px;color:var(--text3);font-size:13px;">No cron data</div>';
-    return;
-  }
+  if (!jobs || !jobs.length) { section.style.display = 'none'; return; }
+  section.style.display = '';
   const ok = jobs.filter(j => j.status === 'ok').length;
   const err = jobs.filter(j => j.status === 'error').length;
-  count.textContent = `(${ok} ok${err > 0 ? `, ${err} error` : ''})`;
+  count.textContent = `(${ok} ok${err > 0 ? `, ${err} err` : ''})`;
+  if (updatedAt) {
+    const d = new Date(updatedAt);
+    document.getElementById('cron-updated').textContent =
+      `updated ${d.toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'})}`;
+  }
   table.innerHTML = jobs.map((j, i) => `
     <div class="cron-row" style="animation-delay:${i*30}ms">
       <span class="cron-status-dot ${j.status}"></span>
@@ -1100,8 +1110,8 @@ const BASE = window.location.origin.includes('github.io')
   : 'data.json';
 
 const KODO_BASE = window.location.origin.includes('github.io')
-  ? '/mission-control/kodo-data.json'
-  : 'kodo-data.json';
+  ? '/mission-control/data/kodo.json'
+  : 'data/kodo.json';
 
 let DATA = null;
 let KODO_DATA = null;
@@ -1572,9 +1582,10 @@ async function refreshData() {
     renderIntel(data.intel);
 
     // Phase 1 panels
-    renderActiveWork(buildActiveWork(data, kodoData));
-    renderRecentOutputs(buildRecentOutputs(data, kodoData));
-    renderCronJobs(buildCronJobs(data, kodoData));
+    const kodoTs = kodoData ? kodoData.updatedAt : null;
+    renderActiveWork(buildActiveWork(data, kodoData), kodoTs);
+    renderRecentOutputs(buildRecentOutputs(data, kodoData), kodoTs);
+    renderCronJobs(buildCronJobs(data, kodoData), kodoTs);
 
   } catch (e) {
     document.getElementById('last-updated').textContent = 'Fetch failed';
