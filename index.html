@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mission Control</title>
+<title>WJP Studio</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -632,6 +632,71 @@
   }
 
   /* ── INTEL FEED ─────────────────────────────────── */
+  /* ── WJP HERO SECTION ───────────────────────────────────────── */
+  .wjp-hero {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+  .wjp-hero-pfp, .wjp-hero-fallback {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  .wjp-hero-fallback {
+    background: var(--surface2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text1);
+  }
+  .wjp-hero-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text1);
+  }
+  .wjp-hero-role {
+    font-size: 12px;
+    color: var(--text3);
+    margin-top: 2px;
+  }
+  .wjp-needs-list {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .wjp-needs-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    animation: fadeIn 0.3s ease both;
+  }
+  .wjp-needs-row:last-child { border-bottom: none; }
+  .wjp-needs-badge {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 7px;
+    border-radius: 4px;
+    white-space: nowrap;
+    text-transform: uppercase;
+    margin-top: 1px;
+  }
+  .wjp-needs-badge.critical { background: rgba(248,113,113,0.15); color: #f87171; }
+  .wjp-needs-badge.high     { background: rgba(251,146,60,0.15);  color: #fb923c; }
+  .wjp-needs-badge.medium   { background: rgba(251,191,36,0.15);  color: #fbbf24; }
+  .wjp-needs-badge.low      { background: rgba(148,163,184,0.12); color: #94a3b8; }
+  .wjp-needs-text { font-size: 13px; color: var(--text1); flex: 1; line-height: 1.4; }
+  .wjp-needs-sub  { font-size: 11px; color: var(--text3); margin-top: 2px; }
+
   /* ── PHASE 2 STYLES ─────────────────────────────────────────── */
   .skills-grid {
     display: grid;
@@ -1035,7 +1100,7 @@
 
 <!-- HEADER -->
 <header>
-  <div class="header-title">Mission Control</div>
+  <div class="header-title">WJP Studio</div>
   <div class="header-meta">
     <span id="last-updated">—</span>
     <button class="refresh-btn" onclick="refreshData()">Refresh</button>
@@ -1053,14 +1118,29 @@
 <!-- MAIN -->
 <main>
 
+  <!-- WJP SECTION -->
+  <div id="wjp-hero-section">
+    <div class="wjp-hero">
+      <img class="wjp-hero-pfp" id="wjp-hero-pfp-img" src="" alt="WJP"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="wjp-hero-fallback" style="display:none">W</div>
+      <div class="wjp-hero-info">
+        <div class="wjp-hero-name">WJP</div>
+        <div class="wjp-hero-role">Studio Director</div>
+      </div>
+    </div>
+    <div class="wjp-needs-list" id="wjp-needs-list">
+      <div style="padding:12px 16px;color:var(--text3);font-size:13px;">Nothing needs your input right now.</div>
+    </div>
+  </div>
+
   <!-- ACTIVE WORK -->
   <div id="active-work-section" style="display:none;">
     <div class="section-label">Active Work <span id="active-work-updated" style="color:var(--text3);font-weight:400;font-size:10px;margin-left:6px;text-transform:none;letter-spacing:0;"></span></div>
     <div class="active-work-grid" id="active-work-grid"></div>
   </div>
 
-  <!-- WJP ACTION ITEMS -->
-  <div class="section-label">Needs WJP</div>
+  <!-- WJP ACTION ITEMS (rendered inside wjp-hero-section above) -->
   <div class="action-grid" id="wjp-grid"></div>
 
   <!-- AGENT STATUS -->
@@ -1574,6 +1654,41 @@ function renderTaskQueue(queue) {
   panel.innerHTML = html;
 }
 
+// ── WJP SECTION ─────────────────────────────────────────────────────────────
+
+function renderWjpHero(data) {
+  // Set PFP src now that pfpBase is defined
+  const img = document.getElementById('wjp-hero-pfp-img');
+  if (img) img.src = pfpBase + 'wjp-pfp.png';
+
+  const list = document.getElementById('wjp-needs-list');
+  // Merge: hardcoded NEEDS_WJP + dynamic data.needsWjp
+  const hardcoded = (typeof NEEDS_WJP !== 'undefined' ? NEEDS_WJP : [])
+    .filter(i => !i.done);
+  const dynamic = (data && data.needsWjp || []).filter(i => !i.done);
+  const all = [...hardcoded, ...dynamic];
+
+  if (!all.length) {
+    list.innerHTML = '<div style="padding:12px 16px;color:var(--text3);font-size:13px;">Nothing needs your input right now. ✅</div>';
+    return;
+  }
+
+  const priority = ['critical','high','medium','low'];
+  all.sort((a, b) => priority.indexOf(a.priority || 'medium') - priority.indexOf(b.priority || 'medium'));
+
+  list.innerHTML = all.map((item, i) => {
+    const p = item.priority || 'medium';
+    const label = item.priority ? item.priority.toUpperCase() : 'ACTION';
+    return `<div class="wjp-needs-row" style="animation-delay:${i*40}ms">
+      <span class="wjp-needs-badge ${p}">${label}</span>
+      <div>
+        <div class="wjp-needs-text">${item.title || item.text || ''}</div>
+        ${item.notes || item.description ? `<div class="wjp-needs-sub">${item.notes || item.description}</div>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
 // ── PHASE 2 RENDER FUNCTIONS ────────────────────────────────────────────────
 
 function renderSkillsInventory(allAgentJsons, updatedAt) {
@@ -1895,6 +2010,7 @@ async function refreshData() {
       } : {}
     };
 
+    renderWjpHero(data);
     renderAgents(mergedAgents);
     renderHealth(data.health || {}, domainLive);
     renderProjects(data.projects);
