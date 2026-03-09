@@ -1,17 +1,23 @@
 {
-  "updatedAt": "2026-03-09T16:13:41.840856+00:00",
+  "updatedAt": "2026-03-09T16:43:36.977519+00:00",
   "agent": "kodo",
   "status": "active",
   "activeTask": {
     "name": "Mission Control Phase 1 Build",
     "status": "IN_PROGRESS",
-    "progress_percent": 72,
-    "checklist_total": 11,
+    "progress_percent": 50,
+    "checklist_total": 16,
     "checklist_done": 8,
     "startedAt": "2026-03-09",
     "blockedOn": null
   },
   "recentOutputs": [
+    {
+      "filename": "2026-03-09-forcrypto-docs-audit-round2.md",
+      "createdAt": "2026-03-09T16:40:33.825175+00:00",
+      "size": 11898,
+      "agent": "kodo"
+    },
     {
       "filename": "2026-03-08-whop-study-notes.md",
       "createdAt": "2026-03-09T04:07:52.385031+00:00",
@@ -48,7 +54,7 @@
       "name": "kodo-workspace-backup",
       "schedule": "every 2h",
       "lastRunMs": 1773071369593,
-      "lastRunAgo": "24m ago",
+      "lastRunAgo": "54m ago",
       "nextRunMs": 1773078569593,
       "status": "ok",
       "errors": 0
@@ -56,13 +62,45 @@
     {
       "name": "kodo-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773071013850,
+      "lastRunMs": 1773072813856,
       "lastRunAgo": "30m ago",
-      "nextRunMs": 1773072813850,
+      "nextRunMs": 1773074613856,
       "status": "ok",
       "errors": 0
     }
   ],
-  "lastActiveMs": 1773072813902,
-  "lastActiveAgo": "7s ago"
+  "skills": [
+    {
+      "name": "agent-orchestration",
+      "status": "PARKED",
+      "uses": 0,
+      "triggerScore": 0
+    },
+    {
+      "name": "bug-fix-workflow",
+      "status": "LIVE",
+      "uses": 3,
+      "triggerScore": 9
+    },
+    {
+      "name": "code-review-quality",
+      "status": "LIVE",
+      "uses": 3,
+      "triggerScore": 9
+    },
+    {
+      "name": "ship-flow",
+      "status": "PARKED",
+      "uses": 0,
+      "triggerScore": 0
+    },
+    {
+      "name": "site-audit",
+      "status": "LIVE",
+      "uses": 5,
+      "triggerScore": 10
+    }
+  ],
+  "lastActiveMs": 1773074480423,
+  "lastActiveAgo": "2m ago"
 }

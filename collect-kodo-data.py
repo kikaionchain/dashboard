@@ -129,6 +129,29 @@ def get_cron_jobs():
         return []
 
 
+def get_skills():
+    """Read skills from ~/skills/ directory."""
+    skills_dir = Path.home() / "skills"
+    skills = []
+    # Known skill metadata — status and use counts tracked manually
+    SKILL_META = {
+        "site-audit":           {"status": "LIVE",    "uses": 5, "triggerScore": 10},
+        "code-review-quality":  {"status": "LIVE",    "uses": 3, "triggerScore": 9},
+        "bug-fix-workflow":     {"status": "LIVE",    "uses": 3, "triggerScore": 9},
+        "ship-flow":            {"status": "PARKED",  "uses": 0, "triggerScore": 0},
+        "agent-orchestration":  {"status": "PARKED",  "uses": 0, "triggerScore": 0},
+    }
+    try:
+        if skills_dir.exists():
+            for skill_dir in sorted(skills_dir.iterdir()):
+                if skill_dir.is_dir() and (skill_dir / "SKILL.md").exists():
+                    meta = SKILL_META.get(skill_dir.name, {"status": "BUILDING", "uses": 0, "triggerScore": 0})
+                    skills.append({"name": skill_dir.name, **meta})
+    except Exception:
+        pass
+    return skills
+
+
 def get_session_status():
     """Check if Kodo has an active OpenClaw session."""
     sessions_dir = OPENCLAW / "agents" / "main" / "sessions"
@@ -151,6 +174,7 @@ def main():
     recent_outputs = get_recent_outputs()
     cron_jobs = get_cron_jobs()
     session_status, last_active_ms = get_session_status()
+    skills = get_skills()
 
     data = {
         "updatedAt": NOW_ISO,
@@ -159,6 +183,7 @@ def main():
         "activeTask": active_task,
         "recentOutputs": recent_outputs,
         "cronJobs": cron_jobs,
+        "skills": skills,
         "lastActiveMs": last_active_ms,
         "lastActiveAgo": time_ago(last_active_ms)
     }

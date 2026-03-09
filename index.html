@@ -632,6 +632,144 @@
   }
 
   /* ── INTEL FEED ─────────────────────────────────── */
+  /* ── PHASE 2 STYLES ─────────────────────────────────────────── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .skill-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    animation: fadeIn 0.3s ease both;
+  }
+  .skill-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text1);
+  }
+  .skill-status {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 4px;
+    display: inline-block;
+    width: fit-content;
+  }
+  .skill-status.live { background: rgba(34,197,94,0.15); color: #22c55e; }
+  .skill-status.parked { background: rgba(251,191,36,0.15); color: #fbbf24; }
+  .skill-status.building { background: rgba(99,102,241,0.15); color: #6366f1; }
+  .skill-meta { font-size: 11px; color: var(--text3); }
+
+  .activity-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .activity-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    animation: fadeIn 0.3s ease both;
+  }
+  .activity-row:last-child { border-bottom: none; }
+  .activity-agent {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+    min-width: 44px;
+    text-align: center;
+  }
+  .activity-agent.kikai { background: rgba(251,113,133,0.15); color: #fb7185; }
+  .activity-agent.yama { background: rgba(251,191,36,0.15); color: #fbbf24; }
+  .activity-agent.kodo { background: rgba(99,102,241,0.15); color: #818cf8; }
+  .activity-text { font-size: 13px; color: var(--text1); flex: 1; }
+  .activity-time { font-size: 11px; color: var(--text3); white-space: nowrap; }
+
+  .wjp-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .wjp-stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  .wjp-stat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    animation: fadeIn 0.3s ease both;
+  }
+  .wjp-stat-value {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text1);
+    line-height: 1.2;
+  }
+  .wjp-stat-label {
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .wjp-blockers {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .wjp-blocker-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    animation: fadeIn 0.3s ease both;
+  }
+  .wjp-blocker-row:last-child { border-bottom: none; }
+  .wjp-blocker-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #f87171;
+    background: rgba(248,113,113,0.12);
+    padding: 2px 6px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .wjp-blocker-text { font-size: 13px; color: var(--text1); }
+  .wjp-section-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 6px 14px 4px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px 8px 0 0;
+    border-bottom: none;
+  }
+
   .intel-list {
     background: var(--surface);
     border-radius: 16px;
@@ -976,6 +1114,24 @@
   <div id="cron-section" style="display:none;">
     <div class="section-label">Cron Jobs <span id="cron-count" style="color:var(--text3);font-weight:400;margin-left:4px;"></span><span id="cron-updated" style="color:var(--text3);font-weight:400;font-size:10px;margin-left:6px;text-transform:none;letter-spacing:0;"></span></div>
     <div class="cron-table" id="cron-table"></div>
+  </div>
+
+  <!-- SKILLS INVENTORY -->
+  <div id="skills-section" style="display:none;">
+    <div class="section-label">Skills Inventory <span id="skills-updated" style="color:var(--text3);font-weight:400;font-size:10px;margin-left:6px;text-transform:none;letter-spacing:0;"></span></div>
+    <div id="skills-grid"></div>
+  </div>
+
+  <!-- TEAM ACTIVITY FEED -->
+  <div id="activity-section" style="display:none;">
+    <div class="section-label">Team Activity <span id="activity-updated" style="color:var(--text3);font-weight:400;font-size:10px;margin-left:6px;text-transform:none;letter-spacing:0;"></span></div>
+    <div id="activity-feed"></div>
+  </div>
+
+  <!-- WJP DASHBOARD -->
+  <div id="wjp-section" style="display:none;">
+    <div class="section-label">WJP Dashboard <span id="wjp-updated" style="color:var(--text3);font-weight:400;font-size:10px;margin-left:6px;text-transform:none;letter-spacing:0;"></span></div>
+    <div id="wjp-panel"></div>
   </div>
 
   <!-- INTEL -->
@@ -1413,6 +1569,115 @@ function renderTaskQueue(queue) {
   panel.innerHTML = html;
 }
 
+// ── PHASE 2 RENDER FUNCTIONS ────────────────────────────────────────────────
+
+function renderSkillsInventory(kodoData, updatedAt) {
+  const section = document.getElementById('skills-section');
+  if (!kodoData || !kodoData.skills || !kodoData.skills.length) { section.style.display = 'none'; return; }
+  section.style.display = '';
+  if (updatedAt) {
+    const d = new Date(updatedAt);
+    document.getElementById('skills-updated').textContent =
+      `updated ${d.toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'})}`;
+  }
+  const grid = document.getElementById('skills-grid');
+  grid.className = 'skills-grid';
+  grid.innerHTML = kodoData.skills.map((s, i) => `
+    <div class="skill-card" style="animation-delay:${i*40}ms">
+      <div class="skill-name">${s.name}</div>
+      <div class="skill-status ${s.status.toLowerCase()}">${s.status}</div>
+      <div class="skill-meta">${s.uses} use${s.uses !== 1 ? 's' : ''} · ${s.triggerScore}/10</div>
+    </div>`).join('');
+}
+
+function renderTeamActivity(data, allAgentJsons, updatedAt) {
+  const section = document.getElementById('activity-section');
+  const events = [];
+
+  allAgentJsons.forEach(a => {
+    if (!a) return;
+    const name = a.agent || 'unknown';
+    if (a.activeTask && a.activeTask.name && a.activeTask.status !== 'IDLE') {
+      events.push({ agent: name, text: a.activeTask.name, ts: a.lastActiveMs, type: 'task' });
+    }
+    if (a.recentOutputs) {
+      a.recentOutputs.slice(0, 2).forEach(o => {
+        events.push({ agent: name, text: `Delivered: ${o.filename}`, ts: new Date(o.createdAt).getTime(), type: 'output' });
+      });
+    }
+  });
+
+  if (!events.length) { section.style.display = 'none'; return; }
+  section.style.display = '';
+
+  events.sort((a, b) => (b.ts || 0) - (a.ts || 0));
+  const recent = events.slice(0, 8);
+
+  if (updatedAt) {
+    const d = new Date(updatedAt);
+    document.getElementById('activity-updated').textContent =
+      `updated ${d.toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'})}`;
+  }
+
+  const feed = document.getElementById('activity-feed');
+  feed.className = 'activity-feed';
+  feed.innerHTML = recent.map((e, i) => {
+    const ago = e.ts ? fmtAgo(e.ts) : '—';
+    return `<div class="activity-row" style="animation-delay:${i*40}ms">
+      <span class="activity-agent ${e.agent}">${e.agent}</span>
+      <span class="activity-text">${e.text}</span>
+      <span class="activity-time">${ago}</span>
+    </div>`;
+  }).join('');
+}
+
+function renderWjpDashboard(data, allAgentJsons, updatedAt) {
+  const section = document.getElementById('wjp-section');
+  if (!data) { section.style.display = 'none'; return; }
+  section.style.display = '';
+
+  if (updatedAt) {
+    const d = new Date(updatedAt);
+    document.getElementById('wjp-updated').textContent =
+      `updated ${d.toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'})}`;
+  }
+
+  // Stats: active agents, open blockers, queued tasks, recent outputs
+  const activeAgents = allAgentJsons.filter(a => a && a.status === 'active').length;
+  const blockers = (data.needsWjp || []).filter(b => !b.done);
+  const queued = (data.taskQueue?.queued || []).length;
+  const outputCount = allAgentJsons.reduce((n, a) => n + (a?.recentOutputs?.length || 0), 0);
+
+  const panel = document.getElementById('wjp-panel');
+  panel.className = 'wjp-panel';
+  panel.innerHTML = `
+    <div class="wjp-stat-row">
+      <div class="wjp-stat"><div class="wjp-stat-value">${activeAgents}</div><div class="wjp-stat-label">Agents Active</div></div>
+      <div class="wjp-stat"><div class="wjp-stat-value">${blockers.length}</div><div class="wjp-stat-label">Need Your Input</div></div>
+      <div class="wjp-stat"><div class="wjp-stat-value">${queued}</div><div class="wjp-stat-label">Queued Tasks</div></div>
+      <div class="wjp-stat"><div class="wjp-stat-value">${outputCount}</div><div class="wjp-stat-label">Outputs (7d)</div></div>
+    </div>
+    ${blockers.length ? `
+    <div class="wjp-section-label">Needs Your Input</div>
+    <div class="wjp-blockers">
+      ${blockers.slice(0,5).map((b,i) => `
+        <div class="wjp-blocker-row" style="animation-delay:${i*40}ms">
+          <span class="wjp-blocker-label">ACTION</span>
+          <span class="wjp-blocker-text">${b.title || b.text || JSON.stringify(b)}</span>
+        </div>`).join('')}
+    </div>` : ''}
+  `;
+}
+
+function fmtAgo(ms) {
+  if (!ms) return '—';
+  const diff = Date.now() - ms;
+  if (diff < 60000) return 'just now';
+  if (diff < 3600000) return `${Math.round(diff/60000)}m ago`;
+  if (diff < 86400000) return `${Math.round(diff/3600000)}h ago`;
+  return `${Math.round(diff/86400000)}d ago`;
+}
+
 function renderIntel(intel) {
   const list = document.getElementById('intel-list');
   if (!intel || !intel.length) { list.innerHTML = '<div style="padding:20px;color:var(--text3);font-size:13px;">No intel</div>'; return; }
@@ -1626,6 +1891,12 @@ async function refreshData() {
     renderActiveWork(buildActiveWork(data, kodoData), kodoTs);
     renderRecentOutputs(buildRecentOutputs(data, allAgentJsons), kodoTs);
     renderCronJobs(buildCronJobs(data, kodoData, cronsJson), kodoTs);
+
+    // Phase 2 panels
+    const globalTs = data.updatedAt || kodoTs;
+    renderSkillsInventory(kodoData, kodoTs);
+    renderTeamActivity(data, allAgentJsons, globalTs);
+    renderWjpDashboard(data, allAgentJsons, globalTs);
 
   } catch (e) {
     document.getElementById('last-updated').textContent = 'Fetch failed';
