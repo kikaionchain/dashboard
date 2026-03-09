@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-09T15:14:24.681398+00:00",
+  "updatedAt": "2026-03-09T15:43:40.168130+00:00",
   "agent": "kodo",
   "status": "active",
   "activeTask": {
@@ -56,13 +56,13 @@
     {
       "name": "kodo-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": null,
-      "lastRunAgo": "never",
-      "nextRunMs": null,
+      "lastRunMs": 1773069213843,
+      "lastRunAgo": "30m ago",
+      "nextRunMs": 1773071013843,
       "status": "ok",
       "errors": 0
     }
   ],
-  "lastActiveMs": 1773069256174,
-  "lastActiveAgo": "8s ago"
+  "lastActiveMs": 1773071013893,
+  "lastActiveAgo": "6s ago"
 }
