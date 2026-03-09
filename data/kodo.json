@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-09T23:13:56.538451+00:00",
+  "updatedAt": "2026-03-09T23:43:42.286196+00:00",
   "agent": "kodo",
   "status": "active",
   "activeTask": {
@@ -12,6 +12,12 @@
     "blockedOn": null
   },
   "recentOutputs": [
+    {
+      "filename": "2026-03-09-forcrypto-retest.md",
+      "createdAt": "2026-03-09T23:18:45.909131+00:00",
+      "size": 5194,
+      "agent": "kodo"
+    },
     {
       "filename": "2026-03-09-gumroad-teardown.md",
       "createdAt": "2026-03-09T22:39:47.219395+00:00",
@@ -98,9 +104,9 @@
     {
       "name": "kodo-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773096213909,
+      "lastRunMs": 1773098013914,
       "lastRunAgo": "30m ago",
-      "nextRunMs": 1773098013909,
+      "nextRunMs": 1773099813914,
       "status": "ok",
       "errors": 0
     }
@@ -142,6 +148,6 @@
       "status": "LIVE"
     }
   ],
-  "lastActiveMs": 1773098030562,
-  "lastActiveAgo": "5s ago"
+  "lastActiveMs": 1773099813948,
+  "lastActiveAgo": "8s ago"
 }
