@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-09T18:17:55.387365+00:00",
+  "updatedAt": "2026-03-09T18:44:20.073746+00:00",
   "agent": "kodo",
   "status": "active",
   "activeTask": {
@@ -12,6 +12,12 @@
     "blockedOn": null
   },
   "recentOutputs": [
+    {
+      "filename": "2026-03-09-forcrypto-works-with.md",
+      "createdAt": "2026-03-09T18:40:47.050778+00:00",
+      "size": 6695,
+      "agent": "kodo"
+    },
     {
       "filename": "2026-03-09-audit-round2-kodo.md",
       "createdAt": "2026-03-09T16:50:28.169724+00:00",
@@ -60,7 +66,7 @@
       "name": "kodo-workspace-backup",
       "schedule": "every 2h",
       "lastRunMs": 1773078569597,
-      "lastRunAgo": "28m ago",
+      "lastRunAgo": "54m ago",
       "nextRunMs": 1773085769597,
       "status": "ok",
       "errors": 0
@@ -69,7 +75,7 @@
       "name": "kodo-mc-push",
       "schedule": "every 30m",
       "lastRunMs": 1773080013869,
-      "lastRunAgo": "4m ago",
+      "lastRunAgo": "30m ago",
       "nextRunMs": 1773081813869,
       "status": "ok",
       "errors": 0
@@ -112,6 +118,6 @@
       "status": "LIVE"
     }
   ],
-  "lastActiveMs": 1773080263613,
-  "lastActiveAgo": "11s ago"
+  "lastActiveMs": 1773081851330,
+  "lastActiveAgo": "8s ago"
 }
