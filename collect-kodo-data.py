@@ -137,7 +137,7 @@ def get_skills():
         "site-audit":          "LIVE",
         "code-review-quality": "LIVE",
         "bug-fix-workflow":    "LIVE",
-        "ship-flow":           "PARKED",
+        "ship-flow":           "LIVE",
         "agent-orchestration": "PARKED",
     }
     try:
