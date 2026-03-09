@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-03-09T21:43:39.511744+00:00",
+  "updatedAt": "2026-03-09T21:52:20.275897+00:00",
   "agent": "kodo",
   "status": "active",
   "activeTask": {
-    "name": "Standing By \u2014 WJP Studio design updates",
-    "status": "IDLE",
-    "progress_percent": 100,
+    "name": "Mission Control data improvements",
+    "status": "IN_PROGRESS",
+    "progress_percent": 70,
     "checklist_total": 10,
-    "checklist_done": 10,
+    "checklist_done": 7,
     "startedAt": "2026-03-09",
     "blockedOn": null
   },
@@ -77,18 +77,18 @@
     {
       "name": "kodo-workspace-backup",
       "schedule": "every 2h",
-      "lastRunMs": 1773085769602,
-      "lastRunAgo": "1h ago",
-      "nextRunMs": 1773092969602,
+      "lastRunMs": 1773092969607,
+      "lastRunAgo": "2m ago",
+      "nextRunMs": 1773100169607,
       "status": "ok",
       "errors": 0
     },
     {
       "name": "kodo-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773090813896,
-      "lastRunAgo": "30m ago",
-      "nextRunMs": 1773092613896,
+      "lastRunMs": 1773092613901,
+      "lastRunAgo": "8m ago",
+      "nextRunMs": 1773094413901,
       "status": "ok",
       "errors": 0
     }
@@ -120,7 +120,7 @@
       "owner": "kodo",
       "description": "End-to-end shipping workflow for TypeScript/JavaScript projects. Use when asked to ship, deploy, push, release, or publish code changes. Covers TypeScript type-check \u2192 build \u2192 commit \u2192 push \u2192 deploy verify \u2192 smoke test. Use for any \"ship this\" or \"get this live\" request. Do NOT use for pure code review without shipping.",
       "lastModified": "2026-03-09",
-      "status": "PARKED"
+      "status": "LIVE"
     },
     {
       "name": "site-audit",
@@ -130,6 +130,6 @@
       "status": "LIVE"
     }
   ],
-  "lastActiveMs": 1773092613931,
-  "lastActiveAgo": "5s ago"
+  "lastActiveMs": 1773093064534,
+  "lastActiveAgo": "1m ago"
 }
