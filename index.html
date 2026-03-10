@@ -399,15 +399,22 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
   }
+  .treasury-grid.cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
   @media (max-width: 700px) {
     .treasury-grid { grid-template-columns: repeat(2, 1fr); }
+    .treasury-grid.cols-3 { grid-template-columns: 1fr; }
   }
   .treasury-card {
     background: var(--surface);
     border-radius: 12px;
     border: 1px solid var(--border);
-    padding: 14px 16px;
+    padding: 18px 20px;
     animation: fadeUp 0.3s ease both;
+  }
+  .treasury-card.accent {
+    border-color: rgba(255, 96, 0, 0.3);
   }
   .treasury-label {
     font-size: 10px;
@@ -415,18 +422,32 @@
     color: var(--text3);
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
   .treasury-value {
-    font-size: 22px;
+    font-size: 26px;
     font-weight: 700;
     color: var(--text);
     line-height: 1.1;
   }
+  .treasury-value.large {
+    font-size: 32px;
+  }
   .treasury-usd {
     font-size: 11px;
     color: var(--text3);
-    margin-top: 4px;
+    margin-top: 6px;
+  }
+  .rev-chart-bar {
+    flex: 1;
+    min-width: 0;
+    border-radius: 2px 2px 0 0;
+    background: rgba(255, 96, 0, 0.6);
+    transition: height 0.3s ease;
+    position: relative;
+  }
+  .rev-chart-bar:hover {
+    background: rgba(255, 96, 0, 0.9);
   }
 
   /* ── USAGE BARS ─────────────────────────────────── */
@@ -1268,7 +1289,7 @@
   <div class="section-label">Revenue Dashboard <span id="rev-updated" style="color:var(--text3);font-weight:400;font-size:10px;margin-left:6px;text-transform:none;letter-spacing:0;"></span></div>
 
   <!-- Treasury -->
-  <div id="treasury-panel" style="margin-bottom:16px;">
+  <div id="treasury-panel" style="margin-bottom:20px;">
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
       <span style="font-size:12px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:0.08em;">Crypto Treasury</span>
       <a href="https://basescan.org/address/0x51e0c3cb17e8AAb6391F40468A34E8E94aa1166E" target="_blank" style="font-size:10px;color:var(--text3);text-decoration:none;">View on BaseScan →</a>
@@ -1286,15 +1307,15 @@
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
       <span style="font-size:12px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:0.08em;">Platform Revenue</span>
     </div>
-    <div class="treasury-grid" id="revenue-cards">
-      <div class="treasury-card"><div class="treasury-label">REVENUE (7D)</div><div class="treasury-value" id="rev-7d">—</div></div>
-      <div class="treasury-card"><div class="treasury-label">REVENUE (30D)</div><div class="treasury-value" id="rev-30d">—</div></div>
-      <div class="treasury-card"><div class="treasury-label">LIFETIME REVENUE</div><div class="treasury-value" id="rev-lifetime">—</div></div>
+    <div class="treasury-grid cols-3" id="revenue-cards">
+      <div class="treasury-card"><div class="treasury-label">REVENUE (7D)</div><div class="treasury-value large" id="rev-7d">—</div></div>
+      <div class="treasury-card"><div class="treasury-label">REVENUE (30D)</div><div class="treasury-value large" id="rev-30d">—</div></div>
+      <div class="treasury-card accent"><div class="treasury-label">LIFETIME REVENUE</div><div class="treasury-value large" id="rev-lifetime">—</div></div>
     </div>
-    <div id="rev-chart-container" style="margin-top:12px;background:var(--surface);border-radius:12px;border:1px solid var(--border);padding:16px;">
-      <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:12px;">Daily Revenue (30 days)</div>
-      <div id="rev-chart" style="height:160px;display:flex;align-items:flex-end;gap:3px;">
-        <div style="color:var(--text3);font-size:11px;margin:auto;">⚠️ Requires Neon DB connection — <a href="#" style="color:var(--accent);">flag WJP</a></div>
+    <div id="rev-chart-container" style="margin-top:12px;background:var(--surface);border-radius:12px;border:1px solid var(--border);padding:20px;">
+      <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:16px;">Daily Revenue by Stream (30 days)</div>
+      <div id="rev-chart" style="height:180px;display:flex;align-items:flex-end;gap:2px;border-bottom:1px solid var(--border);padding-bottom:8px;">
+        <div style="color:var(--text3);font-size:12px;margin:auto;text-align:center;line-height:1.6;">Waiting for Neon DB connection<br><span style="font-size:10px;opacity:0.6;">Revenue data will populate from ForCrypto transaction history</span></div>
       </div>
     </div>
   </div>
@@ -2145,7 +2166,7 @@ async function checkDomain() {
 
 async function fetchTreasury() {
   const BASE_RPC = 'https://mainnet.base.org';
-  const SOL_RPCS = ['https://api.mainnet-beta.solana.com', 'https://rpc.ankr.com/solana'];
+  const SOL_RPCS = ['https://solana-rpc.publicnode.com', 'https://api.mainnet-beta.solana.com'];
   const BASE_TREASURY = '0x51e0c3cb17e8AAb6391F40468A34E8E94aa1166E';
   const SOL_TREASURY = 'DPe3WqzeJisHPj4LyjRNcVgtUYUzJmmC4LkvUifadaLm';
   const USDC_BASE = '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913';
