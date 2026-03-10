@@ -5,8 +5,9 @@
     "kodo": {
       "allModels": 97,
       "sonnet": 97,
-      "opus": null,
-      "updatedAt": "2026-03-10T02:31:00Z"
+      "opus": 3,
+      "updatedAt": "2026-03-10T02:32:00Z",
+      "note": "Switched to Opus — Sonnet paused at 97%"
     },
     "kikai": {
       "allModels": null,
