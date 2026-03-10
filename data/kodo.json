@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-10T04:43:41.718180+00:00",
+  "updatedAt": "2026-03-10T05:13:41.409076+00:00",
   "agent": "kodo",
   "status": "active",
   "activeTask": {
@@ -12,6 +12,12 @@
     "blockedOn": null
   },
   "recentOutputs": [
+    {
+      "filename": "2026-03-09-patreon-teardown.md",
+      "createdAt": "2026-03-10T05:04:20.897008+00:00",
+      "size": 12291,
+      "agent": "kodo"
+    },
     {
       "filename": "2026-03-09-audit-retest.md",
       "createdAt": "2026-03-10T03:49:25.442980+00:00",
@@ -120,7 +126,7 @@
       "name": "kodo-workspace-backup",
       "schedule": "every 2h",
       "lastRunMs": 1773114569621,
-      "lastRunAgo": "54m ago",
+      "lastRunAgo": "1h ago",
       "nextRunMs": 1773121769621,
       "status": "ok",
       "errors": 0
@@ -128,9 +134,9 @@
     {
       "name": "kodo-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773116013952,
+      "lastRunMs": 1773117813959,
       "lastRunAgo": "30m ago",
-      "nextRunMs": 1773117813952,
+      "nextRunMs": 1773119613959,
       "status": "ok",
       "errors": 0
     }
@@ -172,6 +178,6 @@
       "status": "LIVE"
     }
   ],
-  "lastActiveMs": 1773117814005,
+  "lastActiveMs": 1773119614012,
   "lastActiveAgo": "7s ago"
 }
