@@ -393,6 +393,42 @@
     .agent-grid { grid-template-columns: 1fr; }
   }
 
+  /* ── TREASURY / REVENUE ────────────────────────── */
+  .treasury-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  @media (max-width: 700px) {
+    .treasury-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  .treasury-card {
+    background: var(--surface);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    padding: 14px 16px;
+    animation: fadeUp 0.3s ease both;
+  }
+  .treasury-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .treasury-value {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.1;
+  }
+  .treasury-usd {
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 4px;
+  }
+
   /* ── USAGE BARS ─────────────────────────────────── */
   .usage-grid {
     display: grid;
@@ -1226,6 +1262,41 @@
   <div class="section-label">For Crypto</div>
   <div class="health-strip" id="health-strip">
     <div class="health-pill"><span class="spinner"></span> Checking…</div>
+  </div>
+
+  <!-- FOR CRYPTO REVENUE DASHBOARD -->
+  <div class="section-label">Revenue Dashboard <span id="rev-updated" style="color:var(--text3);font-weight:400;font-size:10px;margin-left:6px;text-transform:none;letter-spacing:0;"></span></div>
+
+  <!-- Treasury -->
+  <div id="treasury-panel" style="margin-bottom:16px;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+      <span style="font-size:12px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:0.08em;">Crypto Treasury</span>
+      <a href="https://basescan.org/address/0x51e0c3cb17e8AAb6391F40468A34E8E94aa1166E" target="_blank" style="font-size:10px;color:var(--text3);text-decoration:none;">View on BaseScan →</a>
+    </div>
+    <div class="treasury-grid" id="treasury-cards">
+      <div class="treasury-card"><div class="treasury-label">ETH (Base)</div><div class="treasury-value" id="t-eth"><span class="spinner"></span></div><div class="treasury-usd" id="t-eth-usd"></div></div>
+      <div class="treasury-card"><div class="treasury-label">USDC (Base)</div><div class="treasury-value" id="t-usdc-base"><span class="spinner"></span></div><div class="treasury-usd" id="t-usdc-base-usd"></div></div>
+      <div class="treasury-card"><div class="treasury-label">SOL</div><div class="treasury-value" id="t-sol"><span class="spinner"></span></div><div class="treasury-usd" id="t-sol-usd"></div></div>
+      <div class="treasury-card"><div class="treasury-label">USDC (Solana)</div><div class="treasury-value" id="t-usdc-sol"><span class="spinner"></span></div><div class="treasury-usd" id="t-usdc-sol-usd"></div></div>
+    </div>
+  </div>
+
+  <!-- Revenue Summary — requires DB -->
+  <div id="revenue-summary" style="margin-bottom:16px;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+      <span style="font-size:12px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:0.08em;">Platform Revenue</span>
+    </div>
+    <div class="treasury-grid" id="revenue-cards">
+      <div class="treasury-card"><div class="treasury-label">REVENUE (7D)</div><div class="treasury-value" id="rev-7d">—</div></div>
+      <div class="treasury-card"><div class="treasury-label">REVENUE (30D)</div><div class="treasury-value" id="rev-30d">—</div></div>
+      <div class="treasury-card"><div class="treasury-label">LIFETIME REVENUE</div><div class="treasury-value" id="rev-lifetime">—</div></div>
+    </div>
+    <div id="rev-chart-container" style="margin-top:12px;background:var(--surface);border-radius:12px;border:1px solid var(--border);padding:16px;">
+      <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:12px;">Daily Revenue (30 days)</div>
+      <div id="rev-chart" style="height:160px;display:flex;align-items:flex-end;gap:3px;">
+        <div style="color:var(--text3);font-size:11px;margin:auto;">⚠️ Requires Neon DB connection — <a href="#" style="color:var(--accent);">flag WJP</a></div>
+      </div>
+    </div>
   </div>
 
   <!-- BUSINESSES -->
@@ -2070,6 +2141,66 @@ async function checkDomain() {
   }
 }
 
+// ── TREASURY ────────────────────────────────────────────────────────────────
+
+async function fetchTreasury() {
+  const BASE_RPC = 'https://mainnet.base.org';
+  const SOL_RPC = 'https://api.mainnet-beta.solana.com';
+  const BASE_TREASURY = '0x51e0c3cb17e8AAb6391F40468A34E8E94aa1166E';
+  const SOL_TREASURY = 'DPe3WqzeJisHPj4LyjRNcVgtUYUzJmmC4LkvUifadaLm';
+  const USDC_BASE = '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913';
+  const USDC_SOL_MINT = 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v';
+
+  const rpc = (url, method, params) => fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ jsonrpc: '2.0', method, params, id: 1 })
+  }).then(r => r.json());
+
+  try {
+    // Parallel fetch all balances + prices
+    const [ethRes, usdcBaseRes, solRes, usdcSolRes, priceRes] = await Promise.all([
+      rpc(BASE_RPC, 'eth_getBalance', [BASE_TREASURY, 'latest']),
+      rpc(BASE_RPC, 'eth_call', [{ to: USDC_BASE, data: '0x70a08231000000000000000000000000' + BASE_TREASURY.slice(2).toLowerCase() }, 'latest']),
+      rpc(SOL_RPC, 'getBalance', [SOL_TREASURY]),
+      rpc(SOL_RPC, 'getTokenAccountsByOwner', [SOL_TREASURY, { mint: USDC_SOL_MINT }, { encoding: 'jsonParsed' }]),
+      fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum,solana&vs_currencies=usd').then(r => r.json()).catch(() => ({ ethereum: { usd: 0 }, solana: { usd: 0 } }))
+    ]);
+
+    const ethBal = parseInt(ethRes.result, 16) / 1e18;
+    const usdcBaseBal = parseInt(usdcBaseRes.result, 16) / 1e6;
+    const solBal = (solRes.result?.value || 0) / 1e9;
+    const usdcSolAccounts = usdcSolRes.result?.value || [];
+    const usdcSolBal = usdcSolAccounts.length > 0
+      ? usdcSolAccounts.reduce((s, a) => s + (a.account?.data?.parsed?.info?.tokenAmount?.uiAmount || 0), 0)
+      : 0;
+
+    const ethPrice = priceRes.ethereum?.usd || 0;
+    const solPrice = priceRes.solana?.usd || 0;
+
+    // Render
+    const fmt = (n, d = 2) => n < 0.01 ? n.toFixed(6) : n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
+    const usd = (n) => '≈ $' + n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+    document.getElementById('t-eth').textContent = fmt(ethBal, 4) + ' ETH';
+    document.getElementById('t-eth-usd').textContent = usd(ethBal * ethPrice);
+    document.getElementById('t-usdc-base').textContent = '$' + fmt(usdcBaseBal);
+    document.getElementById('t-usdc-base-usd').textContent = '= USD value at face';
+    document.getElementById('t-sol').textContent = fmt(solBal, 4) + ' SOL';
+    document.getElementById('t-sol-usd').textContent = usd(solBal * solPrice);
+    document.getElementById('t-usdc-sol').textContent = '$' + fmt(usdcSolBal);
+    document.getElementById('t-usdc-sol-usd').textContent = '= USD value at face';
+
+    // Total treasury value
+    const totalUsd = (ethBal * ethPrice) + usdcBaseBal + (solBal * solPrice) + usdcSolBal;
+    document.getElementById('rev-updated').textContent = 'Treasury: $' + totalUsd.toLocaleString(undefined, { maximumFractionDigits: 2 }) + ' • Updated ' + new Date().toLocaleTimeString();
+
+  } catch (e) {
+    console.error('Treasury fetch failed:', e);
+    document.getElementById('t-eth').textContent = 'Error';
+  }
+}
+
 // ── USAGE PANEL ─────────────────────────────────────────────────────────────
 
 function renderUsagePanel(usageData) {
@@ -2152,6 +2283,7 @@ async function refreshData() {
     renderWjpHero(data);
     renderAgents(mergedAgents);
     renderUsagePanel(usageJson);
+    fetchTreasury(); // async, non-blocking
     renderHealth(data.health || {}, domainLive);
     renderProjects(data.projects);
     renderTaskQueue(data.taskQueue);
