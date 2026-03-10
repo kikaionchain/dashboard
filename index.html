@@ -393,6 +393,62 @@
     .agent-grid { grid-template-columns: 1fr; }
   }
 
+  /* ── USAGE BARS ─────────────────────────────────── */
+  .usage-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  @media (max-width: 700px) {
+    .usage-grid { grid-template-columns: 1fr; }
+  }
+  .usage-card {
+    background: var(--surface);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    padding: 16px;
+    animation: fadeUp 0.3s ease both;
+  }
+  .usage-agent-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 12px;
+    text-transform: capitalize;
+  }
+  .usage-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .usage-row:last-child { margin-bottom: 0; }
+  .usage-label {
+    font-size: 11px;
+    color: var(--text2);
+    width: 52px;
+    flex-shrink: 0;
+  }
+  .usage-bar-track {
+    flex: 1;
+    height: 6px;
+    background: var(--surface2);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .usage-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.4s ease;
+  }
+  .usage-pct {
+    font-size: 11px;
+    color: var(--text2);
+    width: 32px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
   .agent-card {
     background: var(--surface);
     border-radius: 16px;
@@ -1162,6 +1218,10 @@
     <div class="agent-card"><div class="skeleton" style="height:80px;"></div></div>
   </div>
 
+  <!-- CLAUDE USAGE -->
+  <div class="section-label">Claude Usage <span id="usage-reset" style="color:var(--text3);font-weight:400;font-size:10px;margin-left:6px;text-transform:none;letter-spacing:0;"></span></div>
+  <div id="usage-panel" style="margin-bottom:24px;"></div>
+
   <!-- FOR CRYPTO HEALTH -->
   <div class="section-label">For Crypto</div>
   <div class="health-strip" id="health-strip">
@@ -1386,6 +1446,15 @@ async function fetchAgentJson(agent) {
   const base = window.location.origin.includes('github.io') ? '/mission-control/' : '';
   try {
     const res = await fetch(`${base}data/${agent}.json?_v=${Date.now()}`);
+    if (!res.ok) return null;
+    return await res.json();
+  } catch { return null; }
+}
+
+async function fetchUsageJson() {
+  const base = window.location.origin.includes('github.io') ? '/mission-control/' : '';
+  try {
+    const res = await fetch(`${base}data/usage.json?_v=${Date.now()}`);
     if (!res.ok) return null;
     return await res.json();
   } catch { return null; }
@@ -2001,14 +2070,70 @@ async function checkDomain() {
   }
 }
 
+// ── USAGE PANEL ─────────────────────────────────────────────────────────────
+
+function renderUsagePanel(usageData) {
+  const panel = document.getElementById('usage-panel');
+  const resetEl = document.getElementById('usage-reset');
+  if (!usageData || !usageData.agents) {
+    panel.innerHTML = '<div style="padding:12px;color:var(--text3);font-size:12px;">No usage data</div>';
+    return;
+  }
+
+  // Show reset time
+  if (usageData.weekResets && resetEl) {
+    const reset = new Date(usageData.weekResets);
+    const now = new Date();
+    const diffH = Math.max(0, Math.round((reset - now) / 3600000));
+    const days = Math.floor(diffH / 24);
+    const hrs = diffH % 24;
+    resetEl.textContent = days > 0 ? `resets in ${days}d ${hrs}h` : `resets in ${hrs}h`;
+  }
+
+  function barColor(pct) {
+    if (pct === null || pct === undefined) return 'var(--surface2)';
+    if (pct >= 90) return '#ff453a';
+    if (pct >= 70) return '#ff9f0a';
+    return 'var(--text3)';
+  }
+
+  const order = ['kikai', 'yama', 'kodo'];
+  let html = '<div class="usage-grid">';
+  for (const name of order) {
+    const a = usageData.agents[name];
+    const allPct = a && a.allModels !== null ? a.allModels : null;
+    const sonPct = a && a.sonnet !== null ? a.sonnet : null;
+
+    html += `<div class="usage-card" style="animation-delay:${order.indexOf(name) * 60}ms">
+      <div class="usage-agent-name">${name}</div>
+      <div class="usage-row">
+        <div class="usage-label">All</div>
+        <div class="usage-bar-track">
+          <div class="usage-bar-fill" style="width:${allPct !== null ? allPct : 0}%;background:${barColor(allPct)};"></div>
+        </div>
+        <div class="usage-pct">${allPct !== null ? allPct + '%' : '—'}</div>
+      </div>
+      <div class="usage-row">
+        <div class="usage-label">Sonnet</div>
+        <div class="usage-bar-track">
+          <div class="usage-bar-fill" style="width:${sonPct !== null ? sonPct : 0}%;background:${barColor(sonPct)};"></div>
+        </div>
+        <div class="usage-pct">${sonPct !== null ? sonPct + '%' : '—'}</div>
+      </div>
+    </div>`;
+  }
+  html += '</div>';
+  panel.innerHTML = html;
+}
+
 // ── MAIN ────────────────────────────────────────────────────────────────────
 
 async function refreshData() {
   document.getElementById('last-updated').innerHTML = '<span class="spinner"></span>';
   try {
-    const [data, kodoData, kikaiJson, yamaJson, cronsJson] = await Promise.all([
+    const [data, kodoData, kikaiJson, yamaJson, cronsJson, usageJson] = await Promise.all([
       fetchData(), fetchKodoData(),
-      fetchAgentJson('kikai'), fetchAgentJson('yama'), fetchCronsJson()
+      fetchAgentJson('kikai'), fetchAgentJson('yama'), fetchCronsJson(), fetchUsageJson()
     ]);
     const domainLive = data.health && data.health.domain === 'live';
     updateTimestamp(data.updatedAt);
@@ -2028,6 +2153,7 @@ async function refreshData() {
 
     renderWjpHero(data);
     renderAgents(mergedAgents);
+    renderUsagePanel(usageJson);
     renderHealth(data.health || {}, domainLive);
     renderProjects(data.projects);
     renderTaskQueue(data.taskQueue);
