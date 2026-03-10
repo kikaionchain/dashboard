@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-10T00:43:41.435537+00:00",
+  "updatedAt": "2026-03-10T01:19:20.328112+00:00",
   "agent": "kodo",
   "status": "active",
   "activeTask": {
@@ -12,6 +12,12 @@
     "blockedOn": null
   },
   "recentOutputs": [
+    {
+      "filename": "2026-03-09-forcrypto-full-audit.md",
+      "createdAt": "2026-03-10T01:14:23.498916+00:00",
+      "size": 6203,
+      "agent": "kodo"
+    },
     {
       "filename": "2026-03-09-whop-teardown.md",
       "createdAt": "2026-03-10T00:41:55.262603+00:00",
@@ -102,7 +108,7 @@
       "name": "kodo-workspace-backup",
       "schedule": "every 2h",
       "lastRunMs": 1773100169612,
-      "lastRunAgo": "54m ago",
+      "lastRunAgo": "1h ago",
       "nextRunMs": 1773107369612,
       "status": "ok",
       "errors": 0
@@ -110,9 +116,9 @@
     {
       "name": "kodo-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773101613919,
-      "lastRunAgo": "30m ago",
-      "nextRunMs": 1773103413919,
+      "lastRunMs": 1773105213925,
+      "lastRunAgo": "5m ago",
+      "nextRunMs": 1773107013925,
       "status": "ok",
       "errors": 0
     }
@@ -154,6 +160,6 @@
       "status": "LIVE"
     }
   ],
-  "lastActiveMs": 1773103413949,
-  "lastActiveAgo": "7s ago"
+  "lastActiveMs": 1773105554705,
+  "lastActiveAgo": "5s ago"
 }
