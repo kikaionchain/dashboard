@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-10T05:13:41.409076+00:00",
+  "updatedAt": "2026-03-10T05:29:33.641363+00:00",
   "agent": "kodo",
   "status": "active",
   "activeTask": {
@@ -12,6 +12,12 @@
     "blockedOn": null
   },
   "recentOutputs": [
+    {
+      "filename": "2026-03-09-kofi-teardown.md",
+      "createdAt": "2026-03-10T05:27:18.386193+00:00",
+      "size": 12333,
+      "agent": "kodo"
+    },
     {
       "filename": "2026-03-09-patreon-teardown.md",
       "createdAt": "2026-03-10T05:04:20.897008+00:00",
@@ -134,9 +140,9 @@
     {
       "name": "kodo-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773117813959,
-      "lastRunAgo": "30m ago",
-      "nextRunMs": 1773119613959,
+      "lastRunMs": 1773119613966,
+      "lastRunAgo": "15m ago",
+      "nextRunMs": 1773121413966,
       "status": "ok",
       "errors": 0
     }
@@ -178,6 +184,6 @@
       "status": "LIVE"
     }
   ],
-  "lastActiveMs": 1773119614012,
-  "lastActiveAgo": "7s ago"
+  "lastActiveMs": 1773120486171,
+  "lastActiveAgo": "1m ago"
 }
