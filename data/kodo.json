@@ -1,17 +1,23 @@
 {
-  "updatedAt": "2026-03-10T00:13:44.693584+00:00",
+  "updatedAt": "2026-03-10T00:43:41.435537+00:00",
   "agent": "kodo",
   "status": "active",
   "activeTask": {
-    "name": "Mission Control data improvements",
+    "name": "Whop seller UX teardown",
     "status": "IN_PROGRESS",
-    "progress_percent": 70,
-    "checklist_total": 10,
-    "checklist_done": 7,
+    "progress_percent": 71,
+    "checklist_total": 14,
+    "checklist_done": 10,
     "startedAt": "2026-03-09",
     "blockedOn": null
   },
   "recentOutputs": [
+    {
+      "filename": "2026-03-09-whop-teardown.md",
+      "createdAt": "2026-03-10T00:41:55.262603+00:00",
+      "size": 11515,
+      "agent": "kodo"
+    },
     {
       "filename": "2026-03-09-forcrypto-retest.md",
       "createdAt": "2026-03-09T23:18:45.909131+00:00",
@@ -96,7 +102,7 @@
       "name": "kodo-workspace-backup",
       "schedule": "every 2h",
       "lastRunMs": 1773100169612,
-      "lastRunAgo": "24m ago",
+      "lastRunAgo": "54m ago",
       "nextRunMs": 1773107369612,
       "status": "ok",
       "errors": 0
@@ -104,9 +110,9 @@
     {
       "name": "kodo-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773099813918,
+      "lastRunMs": 1773101613919,
       "lastRunAgo": "30m ago",
-      "nextRunMs": 1773101613918,
+      "nextRunMs": 1773103413919,
       "status": "ok",
       "errors": 0
     }
@@ -148,6 +154,6 @@
       "status": "LIVE"
     }
   ],
-  "lastActiveMs": 1773101618218,
-  "lastActiveAgo": "6s ago"
+  "lastActiveMs": 1773103413949,
+  "lastActiveAgo": "7s ago"
 }
