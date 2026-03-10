@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-03-10T22:43:48.664822+00:00",
+  "updatedAt": "2026-03-10T23:13:39.835239+00:00",
   "agent": "kodo",
   "status": "active",
   "activeTask": {
-    "name": "ForCrypto buyer flow dry-run \u2014 test every listing page, cosell, embed from buyer perspective",
+    "name": "wjp.studio website \u2014 PR #1 open, all 5 pages on dev, awaiting WJP review",
     "status": "IDLE",
     "progress_percent": 100,
     "checklist_total": 10,
@@ -132,7 +132,7 @@
       "name": "kodo-workspace-backup",
       "schedule": "every 2h",
       "lastRunMs": 1773179369675,
-      "lastRunAgo": "54m ago",
+      "lastRunAgo": "1h ago",
       "nextRunMs": 1773186569675,
       "status": "ok",
       "errors": 0
@@ -140,9 +140,9 @@
     {
       "name": "kodo-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773180814168,
+      "lastRunMs": 1773182614173,
       "lastRunAgo": "30m ago",
-      "nextRunMs": 1773182614168,
+      "nextRunMs": 1773184414173,
       "status": "ok",
       "errors": 0
     }
@@ -184,6 +184,6 @@
       "status": "LIVE"
     }
   ],
-  "lastActiveMs": 1773182620820,
-  "lastActiveAgo": "7s ago"
+  "lastActiveMs": 1773184414220,
+  "lastActiveAgo": "5s ago"
 }
