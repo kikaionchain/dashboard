@@ -2098,29 +2098,27 @@ function renderUsagePanel(usageData) {
   }
 
   const order = ['kikai', 'yama', 'kodo'];
+  const bars = [
+    { key: 'allModels', label: 'All' },
+    { key: 'sonnet', label: 'Sonnet' },
+    { key: 'opus', label: 'Opus' }
+  ];
   let html = '<div class="usage-grid">';
   for (const name of order) {
     const a = usageData.agents[name];
-    const allPct = a && a.allModels !== null ? a.allModels : null;
-    const sonPct = a && a.sonnet !== null ? a.sonnet : null;
-
     html += `<div class="usage-card" style="animation-delay:${order.indexOf(name) * 60}ms">
-      <div class="usage-agent-name">${name}</div>
-      <div class="usage-row">
-        <div class="usage-label">All</div>
+      <div class="usage-agent-name">${name}</div>`;
+    for (const b of bars) {
+      const pct = a && a[b.key] !== null && a[b.key] !== undefined ? a[b.key] : null;
+      html += `<div class="usage-row">
+        <div class="usage-label">${b.label}</div>
         <div class="usage-bar-track">
-          <div class="usage-bar-fill" style="width:${allPct !== null ? allPct : 0}%;background:${barColor(allPct)};"></div>
+          <div class="usage-bar-fill" style="width:${pct !== null ? pct : 0}%;background:${barColor(pct)};"></div>
         </div>
-        <div class="usage-pct">${allPct !== null ? allPct + '%' : '—'}</div>
-      </div>
-      <div class="usage-row">
-        <div class="usage-label">Sonnet</div>
-        <div class="usage-bar-track">
-          <div class="usage-bar-fill" style="width:${sonPct !== null ? sonPct : 0}%;background:${barColor(sonPct)};"></div>
-        </div>
-        <div class="usage-pct">${sonPct !== null ? sonPct + '%' : '—'}</div>
-      </div>
-    </div>`;
+        <div class="usage-pct">${pct !== null ? pct + '%' : '—'}</div>
+      </div>`;
+    }
+    html += '</div>';
   }
   html += '</div>';
   panel.innerHTML = html;

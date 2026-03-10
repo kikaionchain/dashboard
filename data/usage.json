@@ -1,20 +1,23 @@
 {
-  "updatedAt": "2026-03-10T02:20:00Z",
+  "updatedAt": "2026-03-10T02:31:00Z",
   "weekResets": "2026-03-13T02:00:00Z",
   "agents": {
     "kodo": {
       "allModels": 97,
       "sonnet": 97,
-      "updatedAt": "2026-03-10T02:20:00Z"
+      "opus": null,
+      "updatedAt": "2026-03-10T02:31:00Z"
     },
     "kikai": {
       "allModels": null,
       "sonnet": null,
+      "opus": null,
       "updatedAt": null
     },
     "yama": {
       "allModels": null,
       "sonnet": null,
+      "opus": null,
       "updatedAt": null
     }
   }
