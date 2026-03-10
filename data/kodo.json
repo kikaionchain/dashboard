@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-03-10T20:43:43.690706+00:00",
+  "updatedAt": "2026-03-10T21:13:41.964812+00:00",
   "agent": "kodo",
   "status": "active",
   "activeTask": {
-    "name": "Standing by \u2014 awaiting micro-business listings",
+    "name": "ForCrypto buyer flow dry-run \u2014 test every listing page, cosell, embed from buyer perspective",
     "status": "IDLE",
     "progress_percent": 100,
     "checklist_total": 10,
@@ -132,7 +132,7 @@
       "name": "kodo-workspace-backup",
       "schedule": "every 2h",
       "lastRunMs": 1773172169668,
-      "lastRunAgo": "54m ago",
+      "lastRunAgo": "1h ago",
       "nextRunMs": 1773179369668,
       "status": "ok",
       "errors": 0
@@ -140,9 +140,9 @@
     {
       "name": "kodo-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773173614143,
+      "lastRunMs": 1773175414149,
       "lastRunAgo": "30m ago",
-      "nextRunMs": 1773175414143,
+      "nextRunMs": 1773177214149,
       "status": "ok",
       "errors": 0
     }
@@ -184,6 +184,6 @@
       "status": "LIVE"
     }
   ],
-  "lastActiveMs": 1773175417451,
-  "lastActiveAgo": "6s ago"
+  "lastActiveMs": 1773177214199,
+  "lastActiveAgo": "7s ago"
 }
