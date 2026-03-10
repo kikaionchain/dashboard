@@ -2145,7 +2145,7 @@ async function checkDomain() {
 
 async function fetchTreasury() {
   const BASE_RPC = 'https://mainnet.base.org';
-  const SOL_RPC = 'https://api.mainnet-beta.solana.com';
+  const SOL_RPCS = ['https://api.mainnet-beta.solana.com', 'https://rpc.ankr.com/solana'];
   const BASE_TREASURY = '0x51e0c3cb17e8AAb6391F40468A34E8E94aa1166E';
   const SOL_TREASURY = 'DPe3WqzeJisHPj4LyjRNcVgtUYUzJmmC4LkvUifadaLm';
   const USDC_BASE = '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913';
@@ -2157,13 +2157,23 @@ async function fetchTreasury() {
     body: JSON.stringify({ jsonrpc: '2.0', method, params, id: 1 })
   }).then(r => r.json());
 
+  const solRpc = async (method, params) => {
+    for (const url of SOL_RPCS) {
+      try {
+        const res = await rpc(url, method, params);
+        if (res.result !== undefined) return res;
+      } catch {}
+    }
+    return { result: { value: 0 } };
+  };
+
   try {
     // Parallel fetch all balances + prices
     const [ethRes, usdcBaseRes, solRes, usdcSolRes, priceRes] = await Promise.all([
       rpc(BASE_RPC, 'eth_getBalance', [BASE_TREASURY, 'latest']),
       rpc(BASE_RPC, 'eth_call', [{ to: USDC_BASE, data: '0x70a08231000000000000000000000000' + BASE_TREASURY.slice(2).toLowerCase() }, 'latest']),
-      rpc(SOL_RPC, 'getBalance', [SOL_TREASURY]),
-      rpc(SOL_RPC, 'getTokenAccountsByOwner', [SOL_TREASURY, { mint: USDC_SOL_MINT }, { encoding: 'jsonParsed' }]),
+      solRpc('getBalance', [SOL_TREASURY]),
+      solRpc('getTokenAccountsByOwner', [SOL_TREASURY, { mint: USDC_SOL_MINT }, { encoding: 'jsonParsed' }]),
       fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum,solana&vs_currencies=usd').then(r => r.json()).catch(() => ({ ethereum: { usd: 0 }, solana: { usd: 0 } }))
     ]);
 
