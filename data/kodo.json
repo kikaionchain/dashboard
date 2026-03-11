@@ -1,14 +1,14 @@
 {
-  "updatedAt": "2026-03-11T17:13:42.238404+00:00",
+  "updatedAt": "2026-03-11T17:43:39.221841+00:00",
   "agent": "kodo",
   "status": "active",
   "activeTask": {
-    "name": "ForCrypto payment & cosell flow deep dive",
+    "name": "Holding for WJP review",
     "status": "IN_PROGRESS",
-    "progress_percent": 0,
+    "progress_percent": 100,
     "checklist_total": 4,
-    "checklist_done": 0,
-    "startedAt": "2026-03-11 09:09 AM",
+    "checklist_done": 4,
+    "startedAt": null,
     "blockedOn": null
   },
   "recentOutputs": [
@@ -146,9 +146,9 @@
     {
       "name": "kodo-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773247414413,
+      "lastRunMs": 1773249214422,
       "lastRunAgo": "30m ago",
-      "nextRunMs": 1773249214413,
+      "nextRunMs": 1773251014422,
       "status": "ok",
       "errors": 0
     }
@@ -190,6 +190,6 @@
       "status": "LIVE"
     }
   ],
-  "lastActiveMs": 1773249214459,
-  "lastActiveAgo": "7s ago"
+  "lastActiveMs": 1773251014476,
+  "lastActiveAgo": "4s ago"
 }
