@@ -1,14 +1,14 @@
 {
-  "updatedAt": "2026-03-11T18:13:40.360999+00:00",
+  "updatedAt": "2026-03-11T18:43:39.060854+00:00",
   "agent": "kodo",
   "status": "active",
   "activeTask": {
-    "name": "Holding for WJP review",
+    "name": "ForCrypto competitor UX teardown \u2014 checkout flows",
     "status": "IN_PROGRESS",
-    "progress_percent": 100,
-    "checklist_total": 4,
-    "checklist_done": 4,
-    "startedAt": null,
+    "progress_percent": 0,
+    "checklist_total": 0,
+    "checklist_done": 0,
+    "startedAt": "2026-03-11 11:24 AM",
     "blockedOn": null
   },
   "recentOutputs": [
@@ -138,7 +138,7 @@
       "name": "kodo-workspace-backup",
       "schedule": "every 2h",
       "lastRunMs": 1773251369741,
-      "lastRunAgo": "24m ago",
+      "lastRunAgo": "54m ago",
       "nextRunMs": 1773258569741,
       "status": "ok",
       "errors": 0
@@ -146,9 +146,9 @@
     {
       "name": "kodo-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773251014429,
+      "lastRunMs": 1773252814435,
       "lastRunAgo": "30m ago",
-      "nextRunMs": 1773252814429,
+      "nextRunMs": 1773254614435,
       "status": "ok",
       "errors": 0
     }
@@ -190,6 +190,6 @@
       "status": "LIVE"
     }
   ],
-  "lastActiveMs": 1773252814472,
-  "lastActiveAgo": "5s ago"
+  "lastActiveMs": 1773254614486,
+  "lastActiveAgo": "4s ago"
 }
