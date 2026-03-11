@@ -1,14 +1,14 @@
 {
-  "updatedAt": "2026-03-11T15:13:40.823523+00:00",
+  "updatedAt": "2026-03-11T15:43:41.212824+00:00",
   "agent": "kodo",
   "status": "active",
   "activeTask": {
-    "name": "wjp.studio website \u2014 PR #1 open, all 5 pages on dev, awaiting WJP review",
-    "status": "IDLE",
-    "progress_percent": 100,
-    "checklist_total": 10,
-    "checklist_done": 10,
-    "startedAt": "2026-03-09",
+    "name": "ForCrypto launch-week deep dive \u2014 copy issues + UX friction",
+    "status": "IN_PROGRESS",
+    "progress_percent": 0,
+    "checklist_total": 4,
+    "checklist_done": 0,
+    "startedAt": "2026-03-11 08:39 AM",
     "blockedOn": null
   },
   "recentOutputs": [
@@ -146,9 +146,9 @@
     {
       "name": "kodo-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773240214383,
+      "lastRunMs": 1773242014392,
       "lastRunAgo": "30m ago",
-      "nextRunMs": 1773242014383,
+      "nextRunMs": 1773243814392,
       "status": "ok",
       "errors": 0
     }
@@ -190,6 +190,6 @@
       "status": "LIVE"
     }
   ],
-  "lastActiveMs": 1773242014446,
+  "lastActiveMs": 1773243814438,
   "lastActiveAgo": "6s ago"
 }
