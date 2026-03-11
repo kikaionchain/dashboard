@@ -7,11 +7,11 @@
       "priority": 1,
       "status": "LAUNCH MONDAY",
       "color": "#00D9FF",
-      "description": "Cosell marketplace — \"Sell. Cosell. For Crypto.\" USDC on Base + Solana. 2.5% fee, instant payout.",
+      "description": "Cosell marketplace \u2014 \"Sell. Cosell. For Crypto.\" USDC on Base + Solana. 2.5% fee, instant payout.",
       "tasks": [
         {
           "id": "fc-gtm",
-          "title": "Master GTM — launch plan complete",
+          "title": "Master GTM \u2014 launch plan complete",
           "owner": "Yama",
           "status": "complete",
           "lastUpdate": "197-line master GTM doc compiled. 7 sections: positioning, launch window, channels, seller acquisition, 10 products, timeline, success metrics.",
@@ -19,7 +19,7 @@
         },
         {
           "id": "fc-upload",
-          "title": "Upload guide — all 10 products paste-ready",
+          "title": "Upload guide \u2014 all 10 products paste-ready",
           "owner": "Yama",
           "status": "complete",
           "lastUpdate": "Every field mapped to FC listing form. Copy-paste ready. Est. 45-60 min for all 10.",
@@ -27,7 +27,7 @@
         },
         {
           "id": "fc-p0-bugs",
-          "title": "P0 bugs — listing crash + /sell redirect",
+          "title": "P0 bugs \u2014 listing crash + /sell redirect",
           "owner": "Kodo",
           "status": "blocked",
           "lastUpdate": "/posts/show/:id returns 'Something went wrong'. /sell silently redirects to /?auth=required.",
@@ -35,10 +35,10 @@
         },
         {
           "id": "fc-homepage",
-          "title": "Homepage copy — all sections drafted",
+          "title": "Homepage copy \u2014 all sections drafted",
           "owner": "WJP + Kodo",
           "status": "active",
-          "lastUpdate": "Hero, nav, points, cosell, intro, activity feed, closing CTA, FAQ, footer — all prompts delivered.",
+          "lastUpdate": "Hero, nav, points, cosell, intro, activity feed, closing CTA, FAQ, footer \u2014 all prompts delivered.",
           "nextAction": "WJP implementing via Cursor"
         }
       ],
@@ -73,21 +73,21 @@
       "tasks": [
         {
           "id": "mb-copy",
-          "title": "Product copy — all 10 finalized",
+          "title": "Product copy \u2014 all 10 finalized",
           "owner": "Yama",
           "status": "complete",
           "lastUpdate": "Split-agent taglines committed. 3 feature bullets per product. What's Included specs done."
         },
         {
           "id": "mb-screenshots",
-          "title": "Screenshots — 60 total (6 per product)",
+          "title": "Screenshots \u2014 60 total (6 per product)",
           "owner": "Yama",
           "status": "complete",
           "lastUpdate": "1400x900px, dark theme, 9/10 quality via Puppeteer."
         },
         {
           "id": "mb-upload-guide",
-          "title": "Upload guide — paste-ready for WJP",
+          "title": "Upload guide \u2014 paste-ready for WJP",
           "owner": "Yama",
           "status": "complete",
           "lastUpdate": "Every FC form field mapped. 5 open questions need WJP answers."
@@ -112,24 +112,24 @@
       "tasks": [
         {
           "id": "67-hooks",
-          "title": "Hook library — 32 posts across all archetypes",
+          "title": "Hook library \u2014 32 posts across all archetypes",
           "owner": "Yama",
           "status": "complete",
           "lastUpdate": "A1-A6 + phage/reply + price milestones + cultural timing + absurdity. Queue at 11 files."
         },
         {
           "id": "67-playbook",
-          "title": "Meme playbook — 11 laws, 6 archetypes, failure modes",
+          "title": "Meme playbook \u2014 11 laws, 6 archetypes, failure modes",
           "owner": "Yama",
           "status": "complete",
           "lastUpdate": "Built from 'Art of Memetics'. Zeigarnik Effect, capsid model, egregore formation."
         },
         {
           "id": "67-reply-craft",
-          "title": "Reply craft skill — warmup strategy",
+          "title": "Reply craft skill \u2014 warmup strategy",
           "owner": "Yama",
           "status": "complete",
-          "lastUpdate": "5 followers per good reply × 50 replies/month = 250 followers/month floor."
+          "lastUpdate": "5 followers per good reply \u00d7 50 replies/month = 250 followers/month floor."
         }
       ],
       "needsToDo": [
@@ -167,17 +167,17 @@
       "tasks": [
         {
           "id": "os-skills",
-          "title": "Yama skill library — 7 skills built",
+          "title": "Yama skill library \u2014 7 skills built",
           "owner": "Yama",
           "status": "complete",
           "lastUpdate": "x-viral-scan, content-draft, meme-format-library, competitor-content-analysis, feedback-synthesis, x-reply-craft, handoff"
         },
         {
           "id": "os-research",
-          "title": "Research queue — fully cleared",
+          "title": "Research queue \u2014 fully cleared",
           "owner": "Yama",
           "status": "complete",
-          "lastUpdate": "X, TikTok, Instagram, Reddit, Farcaster, Discord, Gumroad, Whop, Felix, GTM, virality — all channels documented."
+          "lastUpdate": "X, TikTok, Instagram, Reddit, Farcaster, Discord, Gumroad, Whop, Felix, GTM, virality \u2014 all channels documented."
         }
       ],
       "needsToDo": []
@@ -206,6 +206,15 @@
       "status": "active",
       "workingOn": "For Crypto bug fixes + homepage implementation",
       "contextPct": 40,
+      "model": "claude-sonnet-4-6",
+      "sessionDurationMin": null,
+      "lastActivityMin": null,
+      "rateLimit": false
+    },
+    "claud": {
+      "status": "active",
+      "workingOn": "WJP brain dumps + code review",
+      "contextPct": null,
       "model": "claude-sonnet-4-6",
       "sessionDurationMin": null,
       "lastActivityMin": null,
@@ -246,11 +255,11 @@
   ],
   "intel": [
     {
-      "text": "Agent commerce narrative peaked this week — CashClaw (340K views), Slash for Agents (391K views), Greg Isenberg (166K views). Launch window is NOW.",
+      "text": "Agent commerce narrative peaked this week \u2014 CashClaw (340K views), Slash for Agents (391K views), Greg Isenberg (166K views). Launch window is NOW.",
       "time": "2026-03-10T15:00:00-07:00"
     },
     {
-      "text": "Brian Armstrong: 'Very soon there will be more AI agents than humans making transactions. They can't open a bank account but they can own a wallet.' — 3.5M views. Direct FC thesis validation.",
+      "text": "Brian Armstrong: 'Very soon there will be more AI agents than humans making transactions. They can't open a bank account but they can own a wallet.' \u2014 3.5M views. Direct FC thesis validation.",
       "time": "2026-03-09T12:00:00-07:00"
     },
     {
@@ -262,38 +271,38 @@
       "time": "2026-03-10T15:30:00-07:00"
     },
     {
-      "text": "WJP 'Pay attention.' post: 12.2% like rate — highest of any studied account. Community already calling it 'Season 2.'",
+      "text": "WJP 'Pay attention.' post: 12.2% like rate \u2014 highest of any studied account. Community already calling it 'Season 2.'",
       "time": "2026-03-09T14:33:00-07:00"
     }
   ],
   "files": [
     {
       "name": "GTM MASTER",
-      "icon": "🚀",
+      "icon": "\ud83d\ude80",
       "path": "ops/output/2026-03-10-forcrypto-gtm-master.md",
-      "preview": "7 sections: positioning, launch window (3 warm threads), channels (X → Farcaster → Discord), seller acquisition, 10 products, week 1 timeline, success metrics."
+      "preview": "7 sections: positioning, launch window (3 warm threads), channels (X \u2192 Farcaster \u2192 Discord), seller acquisition, 10 products, week 1 timeline, success metrics."
     },
     {
       "name": "UPLOAD GUIDE",
-      "icon": "📋",
+      "icon": "\ud83d\udccb",
       "path": "ops/output/2026-03-10-forcrypto-upload-guide.md",
       "preview": "Every FC form field mapped. Copy-paste ready. 5 open questions. Est. 45-60 min."
     },
     {
       "name": "NEEDS WJP",
-      "icon": "🔴",
+      "icon": "\ud83d\udd34",
       "path": "ops/NEEDS-WJP.md",
       "preview": "Wallet for uploads, Farcaster account, X Premium, 67 greenlight, GTM review"
     },
     {
       "name": "67 HOOK LIBRARY",
-      "icon": "🎯",
+      "icon": "\ud83c\udfaf",
       "path": "ops/larry/queue/",
       "preview": "32 hooks across 6 archetypes. 11 queue files. Ready for deployment on WJP greenlight."
     },
     {
       "name": "LAUNCH SIGNALS",
-      "icon": "📡",
+      "icon": "\ud83d\udce1",
       "path": "ops/output/2026-03-10-launch-window-signals.md",
       "preview": "3 warm X threads with reply angles. 72h window closing Wednesday."
     }
@@ -301,13 +310,13 @@
   "taskQueue": {
     "active": [
       {
-        "task": "For Crypto launch prep — all assets ready, waiting on WJP wallet + P0 bug fixes",
+        "task": "For Crypto launch prep \u2014 all assets ready, waiting on WJP wallet + P0 bug fixes",
         "owner": "Kikai + Yama",
         "project": "For Crypto",
         "started": "CRITICAL"
       },
       {
-        "task": "Homepage implementation — WJP running prompts in Cursor",
+        "task": "Homepage implementation \u2014 WJP running prompts in Cursor",
         "owner": "WJP + Kodo",
         "project": "For Crypto",
         "started": "HIGH"
@@ -317,27 +326,27 @@
       {
         "task": "Upload 10 micro-businesses to FC marketplace",
         "project": "For Crypto",
-        "priority": "CRITICAL — blocked on WJP wallet"
+        "priority": "CRITICAL \u2014 blocked on WJP wallet"
       },
       {
         "task": "Fix listing page crash (/posts/show/:id)",
         "project": "For Crypto",
-        "priority": "P0 — blocks all purchases"
+        "priority": "P0 \u2014 blocks all purchases"
       },
       {
         "task": "Fix /sell silent redirect",
         "project": "For Crypto",
-        "priority": "P0 — blocks new sellers"
+        "priority": "P0 \u2014 blocks new sellers"
       },
       {
         "task": "Reply into 3 warm X threads (72h window)",
         "project": "For Crypto",
-        "priority": "HIGH — window closes Wednesday"
+        "priority": "HIGH \u2014 window closes Wednesday"
       },
       {
         "task": "67 campaign launch (32 hooks ready)",
         "project": "67",
-        "priority": "MED — blocked on WJP greenlight"
+        "priority": "MED \u2014 blocked on WJP greenlight"
       }
     ],
     "needsWjp": [
@@ -374,12 +383,12 @@
         "completed": "2026-03-10"
       },
       {
-        "task": "Upload guide — all 10 products paste-ready",
+        "task": "Upload guide \u2014 all 10 products paste-ready",
         "owner": "Yama",
         "completed": "2026-03-10"
       },
       {
-        "task": "67 hook library — 32 posts, all archetypes",
+        "task": "67 hook library \u2014 32 posts, all archetypes",
         "owner": "Yama",
         "completed": "2026-03-10"
       },
@@ -394,7 +403,7 @@
         "completed": "2026-03-10"
       },
       {
-        "task": "Micro-business copy — split-agent taglines committed",
+        "task": "Micro-business copy \u2014 split-agent taglines committed",
         "owner": "Yama",
         "completed": "2026-03-10"
       },
@@ -404,7 +413,7 @@
         "completed": "2026-03-09"
       },
       {
-        "task": "Meme playbook — 11 laws, 6 archetypes",
+        "task": "Meme playbook \u2014 11 laws, 6 archetypes",
         "owner": "Yama",
         "completed": "2026-03-09"
       },

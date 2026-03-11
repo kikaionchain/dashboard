@@ -7,7 +7,7 @@
       "sonnet": 97,
       "opus": 3,
       "updatedAt": "2026-03-11T14:43:42Z",
-      "note": "Switched to Opus — Sonnet paused at 97%"
+      "note": "Switched to Opus \u2014 Sonnet paused at 97%"
     },
     "kikai": {
       "allModels": null,
@@ -16,6 +16,12 @@
       "updatedAt": null
     },
     "yama": {
+      "allModels": null,
+      "sonnet": null,
+      "opus": null,
+      "updatedAt": null
+    },
+    "claud": {
       "allModels": null,
       "sonnet": null,
       "opus": null,
