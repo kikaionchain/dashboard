@@ -186,7 +186,7 @@
   "agents": {
     "kikai": {
       "status": "active",
-      "workingOn": "Mission Control update + team coordination",
+      "workingOn": "Dashboard update + team coordination",
       "contextPct": 45,
       "model": "claude-opus-4-6",
       "sessionDurationMin": 120,

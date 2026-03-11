@@ -354,7 +354,7 @@ data = {
         ],
         "done": [
             "OS Overhaul complete",
-            "Mission Control rebuilt",
+            "Dashboard rebuilt",
             "50+ OpenClaw tips absorbed",
             "For Crypto REST API verified live",
         ]
@@ -363,7 +363,7 @@ data = {
     "wjp": wjp,
 }
 
-out_path = Path("/Users/kikai/clawd/mission-control/data.json")
+out_path = Path("/Users/kikai/clawd/dashboard/data.json")
 out_path.write_text(json.dumps(data, indent=2))
 print(f"✅ data.json written ({len(data['kikai']['cron']['jobs'])} cron jobs, kikai={kikai_status}, yama={yama['status']})")
 if cron_errors:

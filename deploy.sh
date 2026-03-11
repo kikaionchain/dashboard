@@ -1,13 +1,13 @@
 #!/bin/bash
-# Deploy Mission Control (Next.js) to Netlify
+# Deploy Dashboard (Next.js) to Netlify
 # JSON files go to public/ so Next.js bakes them into the build automatically
 set -e
 
 export NETLIFY_AUTH_TOKEN="nfp_84AEp7PQBm7kiZ1EsWr7nkw1GCFpBZiA32a1"
 export NETLIFY_SITE_ID="e09bbb98-5154-4736-b1b9-3bf99b4290bc"
 
-DASHBOARD_DIR="/Users/kikai/clawd/mission-control/dashboard"
-MC_DIR="/Users/kikai/clawd/mission-control"
+DASHBOARD_DIR="/Users/kikai/clawd/dashboard/dashboard"
+MC_DIR="/Users/kikai/clawd/dashboard"
 CLAWD_DIR="/Users/kikai/clawd"
 PUBLIC_DIR="$DASHBOARD_DIR/public"
 
@@ -77,4 +77,4 @@ npx next build 2>&1 | grep -E "✓|error|Error" | head -10
 
 # 5. Deploy out/ to Netlify
 netlify deploy --prod --dir=out 2>&1 | grep -E "URL:|prod|Deployed" | head -5
-echo "✅ Mission Control deployed"
+echo "✅ Dashboard deployed"

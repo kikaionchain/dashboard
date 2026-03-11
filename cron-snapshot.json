@@ -88,7 +88,7 @@
     "model": "sonnet-4-6"
   },
   {
-    "name": "Mission Control Data Refresh",
+    "name": "Dashboard Data Refresh",
     "enabled": true,
     "schedule": "every 120min",
     "lastStatus": "ok",

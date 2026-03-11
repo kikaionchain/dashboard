@@ -5,7 +5,7 @@
 **Category:** Operations
 
 ## Description
-Create a single HTML dashboard (like mission-control but for system health) showing:
+Create a single HTML dashboard (like dashboard but for system health) showing:
 - Cron job status (last run, next run, success/fail)
 - Token usage trends
 - Agent uptime (Kikai + Yama)

@@ -1,11 +1,11 @@
 #!/bin/bash
-# Mission Control — generates data.json for the work board
+# Dashboard — generates data.json for the work board
 # Projects-first format: For Crypto, Divvvy, 67, OS (no Kanso)
 # Run by cron (every 2h) or manually.
 
 WORKSPACE="/Users/kikai/clawd"
-OUTPUT="$WORKSPACE/mission-control/data.json"
-INTEL_FILE="$WORKSPACE/mission-control/intel.json"
+OUTPUT="$WORKSPACE/dashboard/data.json"
+INTEL_FILE="$WORKSPACE/dashboard/intel.json"
 CRON_FILE="$HOME/.openclaw/cron/jobs.json"
 
 python3 << 'PYEOF'
@@ -15,8 +15,8 @@ from datetime import datetime, timezone
 WORKSPACE = "/Users/kikai/clawd"
 CRON_FILE = os.path.expanduser("~/.openclaw/cron/jobs.json")
 SESSIONS_DIR = os.path.expanduser("~/.openclaw/agents/main/sessions")
-OUTPUT = f"{WORKSPACE}/mission-control/data.json"
-INTEL_FILE = f"{WORKSPACE}/mission-control/intel.json"
+OUTPUT = f"{WORKSPACE}/dashboard/data.json"
+INTEL_FILE = f"{WORKSPACE}/dashboard/intel.json"
 now_iso = datetime.now(timezone.utc).isoformat()
 now_ms  = int(datetime.now(timezone.utc).timestamp() * 1000)
 today   = datetime.now().strftime("%Y-%m-%d")

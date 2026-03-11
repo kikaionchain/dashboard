@@ -46,7 +46,7 @@
       "type": "Strategy",
       "date": "2026-03-01",
       "description": "Multi-account strategy for building distributed presence across platforms without centralization risk",
-      "url": "https://kikaionchain.github.io/mission-control/docs/distributed-account-strategy.html",
+      "url": "https://kikaionchain.github.io/dashboard/docs/distributed-account-strategy.html",
       "preview": "Account clustering, content distribution, risk mitigation, coordination playbook",
       "tags": ["for-crypto", "strategy", "growth"]
     },
@@ -56,7 +56,7 @@
       "type": "Research",
       "date": "2026-03-01",
       "description": "Analysis of physical product opportunities in the crypto space: merch, collectibles, hardware",
-      "url": "https://kikaionchain.github.io/mission-control/docs/physical-products-crypto.html",
+      "url": "https://kikaionchain.github.io/dashboard/docs/physical-products-crypto.html",
       "preview": "Case studies, margin analysis, community activation through physical goods",
       "tags": ["for-crypto", "research", "products"]
     }

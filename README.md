@@ -1,4 +1,4 @@
-# Mission Control
+# Dashboard
 
 Shared task board for WJP, Kikai, and Yama.
 

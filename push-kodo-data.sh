@@ -1,11 +1,11 @@
 #!/bin/bash
 # push-kodo-data.sh
-# Collect Kodo status, push kodo-data.json to mission-control repo.
+# Collect Kodo status, push kodo-data.json to dashboard repo.
 # Runs every 30min via OpenClaw cron.
 
 set -e
 
-REPO_DIR="$HOME/clawd/mission-control"
+REPO_DIR="$HOME/clawd/dashboard"
 cd "$REPO_DIR"
 
 # Pull latest first (avoid conflicts)
