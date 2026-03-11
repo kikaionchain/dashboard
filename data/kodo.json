@@ -1,14 +1,14 @@
 {
-  "updatedAt": "2026-03-11T20:13:40.194989+00:00",
+  "updatedAt": "2026-03-11T20:43:38.231271+00:00",
   "agent": "kodo",
   "status": "active",
   "activeTask": {
-    "name": "Competitor checkout flow teardown",
+    "name": "Idle \u2014 awaiting next assignment",
     "status": "IN_PROGRESS",
-    "progress_percent": 0,
-    "checklist_total": 0,
-    "checklist_done": 0,
-    "startedAt": "2026-03-11 13:10 PM",
+    "progress_percent": 100,
+    "checklist_total": 4,
+    "checklist_done": 4,
+    "startedAt": null,
     "blockedOn": null
   },
   "recentOutputs": [
@@ -138,7 +138,7 @@
       "name": "kodo-workspace-backup",
       "schedule": "every 2h",
       "lastRunMs": 1773258569748,
-      "lastRunAgo": "24m ago",
+      "lastRunAgo": "54m ago",
       "nextRunMs": 1773265769748,
       "status": "ok",
       "errors": 0
@@ -146,9 +146,9 @@
     {
       "name": "kodo-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773258214456,
+      "lastRunMs": 1773260014464,
       "lastRunAgo": "30m ago",
-      "nextRunMs": 1773260014456,
+      "nextRunMs": 1773261814464,
       "status": "ok",
       "errors": 0
     }
@@ -190,6 +190,6 @@
       "status": "LIVE"
     }
   ],
-  "lastActiveMs": 1773260014520,
-  "lastActiveAgo": "5s ago"
+  "lastActiveMs": 1773261814531,
+  "lastActiveAgo": "3s ago"
 }
