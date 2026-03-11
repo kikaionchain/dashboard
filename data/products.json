@@ -1,0 +1,65 @@
+{
+  "lastUpdated": "2026-03-11T15:00:00Z",
+  "bundles": [
+    {
+      "id": "launch-stack",
+      "name": "Launch Stack",
+      "price": 19,
+      "includes": ["VESSEL", "DRAFT", "FLOW"],
+      "tagline": "Everything you need to launch with culture and content.",
+      "status": "ready",
+      "addedBy": "studio",
+      "addedAt": "2026-03-11"
+    },
+    {
+      "id": "operator-stack",
+      "name": "Operator Stack",
+      "price": 22,
+      "includes": ["FORGE", "LEDGER", "SIGNAL"],
+      "tagline": "Run operations, track performance, cut through noise.",
+      "status": "ready",
+      "addedBy": "studio",
+      "addedAt": "2026-03-11"
+    },
+    {
+      "id": "creator-stack",
+      "name": "Creator Stack",
+      "price": 27,
+      "includes": ["BLUEPRINT", "PULSE", "MINT"],
+      "tagline": "Build your brand, grow your audience, drop your product.",
+      "status": "ready",
+      "addedBy": "studio",
+      "addedAt": "2026-03-11"
+    },
+    {
+      "id": "full-studio",
+      "name": "Full Studio",
+      "price": 59,
+      "includes": ["VESSEL", "DRAFT", "STACK", "BLUEPRINT", "LEDGER", "FLOW", "PULSE", "FORGE", "SIGNAL", "MINT"],
+      "tagline": "Everything WJP uses to build.",
+      "status": "ready",
+      "addedBy": "studio",
+      "addedAt": "2026-03-11"
+    }
+  ],
+  "pipeline": [
+    {
+      "id": "discovery-quiz",
+      "name": "Discovery Quiz",
+      "description": "5-question quiz → recommends 1-3 products. Increases AOV from 1→3.",
+      "status": "queued",
+      "owner": "Kodo",
+      "addedBy": "studio",
+      "addedAt": "2026-03-11"
+    },
+    {
+      "id": "claude-code-skill-packs",
+      "name": "Claude Code Skill Packs (V2)",
+      "description": "Upgrade 10 products from templates to terminal commands. $49-99 vs $9-14.",
+      "status": "idea",
+      "owner": "Kikai + Kodo",
+      "addedBy": "wjp+claud",
+      "addedAt": "2026-03-11"
+    }
+  ]
+}
