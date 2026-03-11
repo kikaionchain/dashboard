@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-11T14:43:40.138127+00:00",
+  "updatedAt": "2026-03-11T15:13:40.823523+00:00",
   "agent": "kodo",
   "status": "active",
   "activeTask": {
@@ -12,6 +12,18 @@
     "blockedOn": null
   },
   "recentOutputs": [
+    {
+      "filename": "2026-03-11-product-listing-copy.md",
+      "createdAt": "2026-03-11T15:07:02.695266+00:00",
+      "size": 14901,
+      "agent": "kodo"
+    },
+    {
+      "filename": "2026-03-11-bundle-listing-copy.md",
+      "createdAt": "2026-03-11T15:07:02.437428+00:00",
+      "size": 5908,
+      "agent": "kodo"
+    },
     {
       "filename": "2026-03-10-p0-bug-reports.md",
       "createdAt": "2026-03-11T02:31:17.649665+00:00",
@@ -119,18 +131,6 @@
       "createdAt": "2026-03-09T01:37:07.263560+00:00",
       "size": 14562,
       "agent": "kodo"
-    },
-    {
-      "filename": "2026-03-08-web3-testing-methodology.md",
-      "createdAt": "2026-03-08T21:08:26.546253+00:00",
-      "size": 8224,
-      "agent": "kodo"
-    },
-    {
-      "filename": "2026-03-08-forcrypto-architecture.md",
-      "createdAt": "2026-03-08T21:07:25.989676+00:00",
-      "size": 9572,
-      "agent": "kodo"
     }
   ],
   "cronJobs": [
@@ -138,7 +138,7 @@
       "name": "kodo-workspace-backup",
       "schedule": "every 2h",
       "lastRunMs": 1773236969727,
-      "lastRunAgo": "54m ago",
+      "lastRunAgo": "1h ago",
       "nextRunMs": 1773244169727,
       "status": "ok",
       "errors": 0
@@ -146,9 +146,9 @@
     {
       "name": "kodo-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773238414377,
+      "lastRunMs": 1773240214383,
       "lastRunAgo": "30m ago",
-      "nextRunMs": 1773240214377,
+      "nextRunMs": 1773242014383,
       "status": "ok",
       "errors": 0
     }
@@ -190,6 +190,6 @@
       "status": "LIVE"
     }
   ],
-  "lastActiveMs": 1773240214432,
-  "lastActiveAgo": "5s ago"
+  "lastActiveMs": 1773242014446,
+  "lastActiveAgo": "6s ago"
 }
