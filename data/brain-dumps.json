@@ -1,0 +1,40 @@
+{
+  "lastUpdated": "2026-03-11T15:23:00Z",
+  "dumps": [
+    {
+      "id": "2026-03-11-studio-infra",
+      "date": "2026-03-11",
+      "title": "Studio Infrastructure Setup",
+      "source": "wjp+claud",
+      "summary": "7 GitHub orgs created. All repos renamed to app. Agent permissions set. Vercel Discord auth wired. Security cleanup. No agent Vercel access (permanent).",
+      "keyDecisions": [
+        "Org per project — forcryptomarket, 67community, wjpstudio, etc.",
+        "Repo name = app always. Org name = brand.",
+        "Kodo write on wjpstudio/app only. All others fork+PR.",
+        "No Kikai Vercel access — permanent."
+      ],
+      "pending": [
+        "Yama + Kodo org invites — PATs need read:org scope",
+        "westonjamespalmer/app — empty repo, no code yet"
+      ]
+    },
+    {
+      "id": "2026-03-11-overnight-sprint",
+      "date": "2026-03-11",
+      "title": "Overnight Sprint + Morning Feed",
+      "source": "studio",
+      "summary": "Yama: 8 commits — 22 product memes, 5 bundle cards, Remotion stills, Paper.js, meme research, FC growth doc, Week 1 calendar. 9 tweets processed. 7 content formats identified. OS rules updated.",
+      "keyDecisions": [
+        "No good night messages ever — 24/7 mandate",
+        "Test-first bug protocol: reproduce → fix → prove",
+        "BREAKING format = highest leverage (2.6M views)",
+        "Products bridge: both teams push to mission-control/data/"
+      ],
+      "pending": [
+        "Yama: render one MP4",
+        "Kodo: Access Content buttons, auth wall, file download",
+        "WJP: connect wallet, upload 10 products, delete QA listing"
+      ]
+    }
+  ]
+}
