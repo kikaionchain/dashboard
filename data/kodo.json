@@ -1,14 +1,14 @@
 {
-  "updatedAt": "2026-03-11T19:43:38.426194+00:00",
+  "updatedAt": "2026-03-11T20:13:40.194989+00:00",
   "agent": "kodo",
   "status": "active",
   "activeTask": {
-    "name": "ForCrypto competitor UX teardown \u2014 checkout flows",
+    "name": "Competitor checkout flow teardown",
     "status": "IN_PROGRESS",
     "progress_percent": 0,
     "checklist_total": 0,
     "checklist_done": 0,
-    "startedAt": "2026-03-11 11:24 AM",
+    "startedAt": "2026-03-11 13:10 PM",
     "blockedOn": null
   },
   "recentOutputs": [
@@ -137,18 +137,18 @@
     {
       "name": "kodo-workspace-backup",
       "schedule": "every 2h",
-      "lastRunMs": 1773251369741,
-      "lastRunAgo": "1h ago",
-      "nextRunMs": 1773258569741,
+      "lastRunMs": 1773258569748,
+      "lastRunAgo": "24m ago",
+      "nextRunMs": 1773265769748,
       "status": "ok",
       "errors": 0
     },
     {
       "name": "kodo-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773256414448,
+      "lastRunMs": 1773258214456,
       "lastRunAgo": "30m ago",
-      "nextRunMs": 1773258214448,
+      "nextRunMs": 1773260014456,
       "status": "ok",
       "errors": 0
     }
@@ -190,6 +190,6 @@
       "status": "LIVE"
     }
   ],
-  "lastActiveMs": 1773258214513,
-  "lastActiveAgo": "3s ago"
+  "lastActiveMs": 1773260014520,
+  "lastActiveAgo": "5s ago"
 }
