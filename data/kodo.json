@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-11T02:13:42.549981+00:00",
+  "updatedAt": "2026-03-11T02:43:41.554358+00:00",
   "agent": "kodo",
   "status": "active",
   "activeTask": {
@@ -12,6 +12,12 @@
     "blockedOn": null
   },
   "recentOutputs": [
+    {
+      "filename": "2026-03-10-p0-bug-reports.md",
+      "createdAt": "2026-03-11T02:31:17.649665+00:00",
+      "size": 14082,
+      "agent": "kodo"
+    },
     {
       "filename": "2026-03-09-kofi-teardown.md",
       "createdAt": "2026-03-10T05:27:18.386193+00:00",
@@ -132,7 +138,7 @@
       "name": "kodo-workspace-backup",
       "schedule": "every 2h",
       "lastRunMs": 1773193769687,
-      "lastRunAgo": "24m ago",
+      "lastRunAgo": "54m ago",
       "nextRunMs": 1773200969687,
       "status": "ok",
       "errors": 0
@@ -140,9 +146,9 @@
     {
       "name": "kodo-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773193414213,
+      "lastRunMs": 1773195214219,
       "lastRunAgo": "30m ago",
-      "nextRunMs": 1773195214213,
+      "nextRunMs": 1773197014219,
       "status": "ok",
       "errors": 0
     }
@@ -184,6 +190,6 @@
       "status": "LIVE"
     }
   ],
-  "lastActiveMs": 1773195214264,
-  "lastActiveAgo": "8s ago"
+  "lastActiveMs": 1773197014269,
+  "lastActiveAgo": "7s ago"
 }
