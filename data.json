@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-10T22:35:00.000000+00:00",
+  "updatedAt": "2026-03-11T22:41:21.309328+00:00",
   "projects": [
     {
       "id": "for-crypto",
@@ -204,7 +204,7 @@
     },
     "kodo": {
       "status": "active",
-      "workingOn": "For Crypto bug fixes + homepage implementation",
+      "workingOn": "Idle \u2014 awaiting next assignment",
       "contextPct": 40,
       "model": "claude-sonnet-4-6",
       "sessionDurationMin": null,
