@@ -1,14 +1,14 @@
 {
-  "updatedAt": "2026-03-11T15:43:41.212824+00:00",
+  "updatedAt": "2026-03-11T16:13:57.413412+00:00",
   "agent": "kodo",
   "status": "active",
   "activeTask": {
-    "name": "ForCrypto launch-week deep dive \u2014 copy issues + UX friction",
+    "name": "ForCrypto payment & cosell flow deep dive",
     "status": "IN_PROGRESS",
     "progress_percent": 0,
     "checklist_total": 4,
     "checklist_done": 0,
-    "startedAt": "2026-03-11 08:39 AM",
+    "startedAt": "2026-03-11 09:09 AM",
     "blockedOn": null
   },
   "recentOutputs": [
@@ -137,18 +137,18 @@
     {
       "name": "kodo-workspace-backup",
       "schedule": "every 2h",
-      "lastRunMs": 1773236969727,
-      "lastRunAgo": "1h ago",
-      "nextRunMs": 1773244169727,
+      "lastRunMs": 1773244169735,
+      "lastRunAgo": "24m ago",
+      "nextRunMs": 1773251369735,
       "status": "ok",
       "errors": 0
     },
     {
       "name": "kodo-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773242014392,
+      "lastRunMs": 1773243814399,
       "lastRunAgo": "30m ago",
-      "nextRunMs": 1773243814392,
+      "nextRunMs": 1773245614399,
       "status": "ok",
       "errors": 0
     }
@@ -190,6 +190,6 @@
       "status": "LIVE"
     }
   ],
-  "lastActiveMs": 1773243814438,
-  "lastActiveAgo": "6s ago"
+  "lastActiveMs": 1773245614453,
+  "lastActiveAgo": "22s ago"
 }
