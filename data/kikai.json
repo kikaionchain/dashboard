@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-12T02:15:49.439161+00:00",
+  "updatedAt": "2026-03-12T04:09:01.331920+00:00",
   "agent": "kikai",
   "status": "idle",
   "activeTask": {
@@ -12,6 +12,22 @@
     "blockedOn": null
   },
   "recentOutputs": [
+    {
+      "filename": "2026-03-11-fc-verification-report.md",
+      "agent": "kikai"
+    },
+    {
+      "filename": "2026-03-11-x-feed-digest-evening.md",
+      "agent": "kikai"
+    },
+    {
+      "filename": "2026-03-11-cli-anything.md",
+      "agent": "kikai"
+    },
+    {
+      "filename": "2026-03-11-auto-research-karpathy.md",
+      "agent": "kikai"
+    },
     {
       "filename": "2026-03-15-prelaunch-teaser.md",
       "agent": "kikai"
@@ -35,22 +51,6 @@
     {
       "filename": "2026-03-11-aave-oracle-reactive.md",
       "agent": "kikai"
-    },
-    {
-      "filename": "2026-03-11-xmoney-reactive.md",
-      "agent": "kikai"
-    },
-    {
-      "filename": "2026-03-16-asset-index.md",
-      "agent": "kikai"
-    },
-    {
-      "filename": "2026-03-16-objection-handling-replies.md",
-      "agent": "kikai"
-    },
-    {
-      "filename": "2026-03-16-coseller-welcome-packet.md",
-      "agent": "kikai"
     }
   ],
   "cronJobs": [
@@ -58,7 +58,7 @@
       "name": "morning-brief",
       "schedule": "0 8 * * *",
       "lastRunMs": 1773241200006,
-      "lastRunAgo": "11h ago",
+      "lastRunAgo": "13h ago",
       "status": "ok",
       "errors": 0
     },
@@ -66,15 +66,15 @@
       "name": "memory-maintenance",
       "schedule": "0 14 * * 0,3",
       "lastRunMs": 1773262800009,
-      "lastRunAgo": "5h ago",
+      "lastRunAgo": "7h ago",
       "status": "ok",
       "errors": 0
     },
     {
       "name": "Yama Health Monitor",
       "schedule": "every 1h",
-      "lastRunMs": 1773280355453,
-      "lastRunAgo": "23m ago",
+      "lastRunMs": 1773287555471,
+      "lastRunAgo": "16m ago",
       "status": "ok",
       "errors": 0
     },
@@ -82,14 +82,14 @@
       "name": "AI Feed Digest",
       "schedule": "0 8 * * *",
       "lastRunMs": 1773241218720,
-      "lastRunAgo": "11h ago",
+      "lastRunAgo": "13h ago",
       "status": "ok",
       "errors": 0
     },
     {
       "name": "kikai-workspace-backup",
       "schedule": "every 2h",
-      "lastRunMs": 1773275808492,
+      "lastRunMs": 1773283008500,
       "lastRunAgo": "1h ago",
       "status": "ok",
       "errors": 0
@@ -97,16 +97,16 @@
     {
       "name": "agent-gateway-health",
       "schedule": "every 15m",
-      "lastRunMs": 1773281290258,
-      "lastRunAgo": "7m ago",
+      "lastRunMs": 1773288490332,
+      "lastRunAgo": "50s ago",
       "status": "ok",
       "errors": 0
     },
     {
       "name": "agent-activity-monitor",
       "schedule": "every 15m",
-      "lastRunMs": 1773281366553,
-      "lastRunAgo": "6m ago",
+      "lastRunMs": 1773287740440,
+      "lastRunAgo": "13m ago",
       "status": "ok",
       "errors": 0
     },
@@ -114,15 +114,15 @@
       "name": "today-8am",
       "schedule": "0 8 * * *",
       "lastRunMs": 1773241428078,
-      "lastRunAgo": "11h ago",
+      "lastRunAgo": "13h ago",
       "status": "ok",
       "errors": 0
     },
     {
       "name": "today-8pm",
       "schedule": "0 20 * * *",
-      "lastRunMs": 1773198000010,
-      "lastRunAgo": "23h ago",
+      "lastRunMs": 1773284400010,
+      "lastRunAgo": "1h ago",
       "status": "ok",
       "errors": 0
     },
@@ -145,18 +145,18 @@
     {
       "name": "brain-dump-digest-8pm",
       "schedule": "0 20 * * *",
-      "lastRunMs": null,
-      "lastRunAgo": "never",
-      "status": "ok",
-      "errors": 0
+      "lastRunMs": 1773284732208,
+      "lastRunAgo": "1h ago",
+      "status": "error",
+      "errors": 1
     },
     {
       "name": "Agent Gateway Health Monitor",
       "schedule": "every 15m",
-      "lastRunMs": 1773281312129,
-      "lastRunAgo": "7m ago",
+      "lastRunMs": 1773286808465,
+      "lastRunAgo": "28m ago",
       "status": "error",
-      "errors": 3
+      "errors": 6
     }
   ],
   "lastActiveMs": null,
