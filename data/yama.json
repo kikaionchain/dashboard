@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-03-12T19:41:04.674091+00:00",
+  "updatedAt": "2026-03-12T20:12:02.721439+00:00",
   "agent": "yama",
-  "status": "active",
+  "status": "idle",
   "activeTask": {
     "name": "Available",
     "status": "IDLE",
@@ -12,6 +12,10 @@
     "blockedOn": null
   },
   "recentOutputs": [
+    {
+      "filename": "2026-03-12-agent-economy-stack-reactive.md",
+      "agent": "yama"
+    },
     {
       "filename": "2026-03-16-asset-index.md",
       "agent": "yama"
@@ -47,10 +51,6 @@
     {
       "filename": "2026-03-16-stacker-news-post.md",
       "agent": "yama"
-    },
-    {
-      "filename": "2026-03-16-producthunt-launch-copy.md",
-      "agent": "yama"
     }
   ],
   "cronJobs": [
@@ -66,11 +66,11 @@
       "name": "nightly-x-study",
       "schedule": "0 0 * * *",
       "lastRunMs": 1773298800007,
-      "lastRunAgo": "12h ago",
+      "lastRunAgo": "13h ago",
       "status": "error",
       "errors": 3
     }
   ],
-  "lastActiveMs": 1773344388000,
-  "lastActiveAgo": "1m ago"
+  "lastActiveMs": null,
+  "lastActiveAgo": "never"
 }
