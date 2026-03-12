@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-12T17:39:01.542313+00:00",
+  "updatedAt": "2026-03-12T17:41:04.446381+00:00",
   "projects": [
     {
       "id": "for-crypto",
@@ -194,7 +194,7 @@
       "rateLimit": false
     },
     "yama": {
-      "status": "active",
+      "status": "idle",
       "workingOn": "Available",
       "contextPct": 60,
       "model": "claude-sonnet-4-6",
