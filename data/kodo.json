@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-12T00:43:38.563900+00:00",
+  "updatedAt": "2026-03-12T01:13:37.484401+00:00",
   "agent": "kodo",
   "status": "active",
   "activeTask": {
@@ -138,7 +138,7 @@
       "name": "kodo-workspace-backup",
       "schedule": "every 2h",
       "lastRunMs": 1773272969764,
-      "lastRunAgo": "54m ago",
+      "lastRunAgo": "1h ago",
       "nextRunMs": 1773280169764,
       "status": "ok",
       "errors": 0
@@ -146,9 +146,9 @@
     {
       "name": "kodo-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773274414519,
+      "lastRunMs": 1773276214525,
       "lastRunAgo": "30m ago",
-      "nextRunMs": 1773276214519,
+      "nextRunMs": 1773278014525,
       "status": "ok",
       "errors": 0
     }
@@ -190,6 +190,6 @@
       "status": "LIVE"
     }
   ],
-  "lastActiveMs": 1773276214566,
-  "lastActiveAgo": "3s ago"
+  "lastActiveMs": 1773278014573,
+  "lastActiveAgo": "2s ago"
 }
