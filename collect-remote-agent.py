@@ -47,8 +47,8 @@ def get_active_task():
     if not text:
         return default
 
-    title_m = re.search(r'^# ACTIVE TASK[:\s-]+(.+)', text, re.M)
-    name = title_m.group(1).strip() if title_m else "Unknown Task"
+    title_m = re.search(r'^# (.+)', text, re.M)
+    name = title_m.group(1).strip().rstrip(':') if title_m else "Unknown Task"
 
     status = "IN_PROGRESS"
     if re.search(r'\*\*Status:\*\*\s*COMPLETE', text, re.I): status = "COMPLETE"
