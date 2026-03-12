@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-12T21:41:41.312451+00:00",
+  "updatedAt": "2026-03-12T22:11:02.121739+00:00",
   "agent": "yama",
   "status": "active",
   "activeTask": {
@@ -66,11 +66,11 @@
       "name": "nightly-x-study",
       "schedule": "0 0 * * *",
       "lastRunMs": 1773298800007,
-      "lastRunAgo": "14h ago",
+      "lastRunAgo": "15h ago",
       "status": "error",
       "errors": 3
     }
   ],
-  "lastActiveMs": 1773351630000,
-  "lastActiveAgo": "1m ago"
+  "lastActiveMs": 1773353404000,
+  "lastActiveAgo": "58s ago"
 }
