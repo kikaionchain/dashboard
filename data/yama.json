@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-12T14:41:04.725036+00:00",
+  "updatedAt": "2026-03-12T15:11:06.836349+00:00",
   "agent": "yama",
   "status": "idle",
   "activeTask": {
@@ -12,6 +12,10 @@
     "blockedOn": null
   },
   "recentOutputs": [
+    {
+      "filename": "2026-03-12-circle-nanopayments-reactive.md",
+      "agent": "yama"
+    },
     {
       "filename": "2026-03-12-mastercard-reactive.md",
       "agent": "yama"
@@ -47,10 +51,6 @@
     {
       "filename": "2026-03-16-asset-index.md",
       "agent": "yama"
-    },
-    {
-      "filename": "2026-03-15-prelaunch-teaser.md",
-      "agent": "yama"
     }
   ],
   "cronJobs": [
@@ -58,7 +58,7 @@
       "name": "yama-workspace-backup",
       "schedule": "every 2h",
       "lastRunMs": 1773325997620,
-      "lastRunAgo": "7m ago",
+      "lastRunAgo": "37m ago",
       "status": "ok",
       "errors": 0
     },
@@ -66,7 +66,7 @@
       "name": "nightly-x-study",
       "schedule": "0 0 * * *",
       "lastRunMs": 1773298800007,
-      "lastRunAgo": "7h ago",
+      "lastRunAgo": "8h ago",
       "status": "error",
       "errors": 3
     }
