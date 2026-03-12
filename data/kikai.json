@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-12T12:08:59.536406+00:00",
+  "updatedAt": "2026-03-12T12:39:01.913050+00:00",
   "agent": "kikai",
   "status": "idle",
   "activeTask": {
@@ -74,7 +74,7 @@
       "name": "Yama Health Monitor",
       "schedule": "every 1h",
       "lastRunMs": 1773316355559,
-      "lastRunAgo": "16m ago",
+      "lastRunAgo": "46m ago",
       "status": "ok",
       "errors": 0
     },
@@ -89,23 +89,23 @@
     {
       "name": "kikai-workspace-backup",
       "schedule": "every 2h",
-      "lastRunMs": 1773311808543,
-      "lastRunAgo": "1h ago",
+      "lastRunMs": 1773319008552,
+      "lastRunAgo": "2m ago",
       "status": "ok",
       "errors": 0
     },
     {
       "name": "agent-gateway-health",
       "schedule": "every 15m",
-      "lastRunMs": 1773317290641,
-      "lastRunAgo": "48s ago",
-      "status": "ok",
-      "errors": 0
+      "lastRunMs": 1773319090660,
+      "lastRunAgo": "51s ago",
+      "status": "error",
+      "errors": 1
     },
     {
       "name": "agent-activity-monitor",
       "schedule": "every 15m",
-      "lastRunMs": 1773316897416,
+      "lastRunMs": 1773318697434,
       "lastRunAgo": "7m ago",
       "status": "ok",
       "errors": 0
@@ -154,7 +154,7 @@
       "name": "Agent Gateway Health Monitor",
       "schedule": "every 15m",
       "lastRunMs": 1773315938946,
-      "lastRunAgo": "23m ago",
+      "lastRunAgo": "53m ago",
       "status": "error",
       "errors": 14
     }
