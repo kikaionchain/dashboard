@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-12T02:16:23.713929+00:00",
+  "updatedAt": "2026-03-12T02:25:17.166738+00:00",
   "projects": [
     {
       "id": "for-crypto",
@@ -194,8 +194,8 @@
       "rateLimit": false
     },
     "yama": {
-      "status": "active",
-      "workingOn": "GTM compilation + hook library (32 hooks)",
+      "status": "idle",
+      "workingOn": "Available",
       "contextPct": 60,
       "model": "claude-sonnet-4-6",
       "sessionDurationMin": 600,

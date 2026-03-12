@@ -1,0 +1,76 @@
+{
+  "updatedAt": "2026-03-12T02:25:17.166738+00:00",
+  "agent": "yama",
+  "status": "idle",
+  "activeTask": {
+    "name": "Available",
+    "status": "IDLE",
+    "progress_percent": 0,
+    "checklist_total": 0,
+    "checklist_done": 0,
+    "startedAt": null,
+    "blockedOn": null
+  },
+  "recentOutputs": [
+    {
+      "filename": "2026-03-16-asset-index.md",
+      "agent": "yama"
+    },
+    {
+      "filename": "2026-03-15-prelaunch-teaser.md",
+      "agent": "yama"
+    },
+    {
+      "filename": "2026-03-11-llm-explainer-thread.md",
+      "agent": "yama"
+    },
+    {
+      "filename": "2026-03-16-post-purchase-sequence.md",
+      "agent": "yama"
+    },
+    {
+      "filename": "2026-03-16-product-walkthrough-threads.md",
+      "agent": "yama"
+    },
+    {
+      "filename": "2026-03-16-milestone-posts.md",
+      "agent": "yama"
+    },
+    {
+      "filename": "2026-03-11-aave-oracle-reactive.md",
+      "agent": "yama"
+    },
+    {
+      "filename": "2026-03-11-xmoney-reactive.md",
+      "agent": "yama"
+    },
+    {
+      "filename": "2026-03-16-objection-handling-replies.md",
+      "agent": "yama"
+    },
+    {
+      "filename": "2026-03-16-coseller-welcome-packet.md",
+      "agent": "yama"
+    }
+  ],
+  "cronJobs": [
+    {
+      "name": "yama-workspace-backup",
+      "schedule": "every 2h",
+      "lastRunMs": 1773275597573,
+      "lastRunAgo": "1h ago",
+      "status": "ok",
+      "errors": 0
+    },
+    {
+      "name": "nightly-x-study",
+      "schedule": "0 0 * * *",
+      "lastRunMs": 1773212400007,
+      "lastRunAgo": "19h ago",
+      "status": "error",
+      "errors": 2
+    }
+  ],
+  "lastActiveMs": null,
+  "lastActiveAgo": "never"
+}
