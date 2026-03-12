@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-12T14:11:05.688038+00:00",
+  "updatedAt": "2026-03-12T14:41:04.725036+00:00",
   "agent": "yama",
   "status": "idle",
   "activeTask": {
@@ -12,6 +12,14 @@
     "blockedOn": null
   },
   "recentOutputs": [
+    {
+      "filename": "2026-03-12-mastercard-reactive.md",
+      "agent": "yama"
+    },
+    {
+      "filename": "2026-03-11-hyperliquid-reactive.md",
+      "agent": "yama"
+    },
     {
       "filename": "2026-03-12-fc-launch-distribution-plan.md",
       "agent": "yama"
@@ -37,19 +45,11 @@
       "agent": "yama"
     },
     {
-      "filename": "2026-03-11-hyperliquid-reactive.md",
-      "agent": "yama"
-    },
-    {
       "filename": "2026-03-16-asset-index.md",
       "agent": "yama"
     },
     {
       "filename": "2026-03-15-prelaunch-teaser.md",
-      "agent": "yama"
-    },
-    {
-      "filename": "2026-03-11-llm-explainer-thread.md",
       "agent": "yama"
     }
   ],
@@ -57,8 +57,8 @@
     {
       "name": "yama-workspace-backup",
       "schedule": "every 2h",
-      "lastRunMs": 1773318797612,
-      "lastRunAgo": "1h ago",
+      "lastRunMs": 1773325997620,
+      "lastRunAgo": "7m ago",
       "status": "ok",
       "errors": 0
     },
