@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-12T02:25:17.166738+00:00",
+  "updatedAt": "2026-03-12T04:09:14.363313+00:00",
   "agent": "yama",
   "status": "idle",
   "activeTask": {
@@ -12,6 +12,10 @@
     "blockedOn": null
   },
   "recentOutputs": [
+    {
+      "filename": "2026-03-11-hyperliquid-reactive.md",
+      "agent": "yama"
+    },
     {
       "filename": "2026-03-16-asset-index.md",
       "agent": "yama"
@@ -47,17 +51,13 @@
     {
       "filename": "2026-03-16-objection-handling-replies.md",
       "agent": "yama"
-    },
-    {
-      "filename": "2026-03-16-coseller-welcome-packet.md",
-      "agent": "yama"
     }
   ],
   "cronJobs": [
     {
       "name": "yama-workspace-backup",
       "schedule": "every 2h",
-      "lastRunMs": 1773275597573,
+      "lastRunMs": 1773282797580,
       "lastRunAgo": "1h ago",
       "status": "ok",
       "errors": 0
@@ -66,7 +66,7 @@
       "name": "nightly-x-study",
       "schedule": "0 0 * * *",
       "lastRunMs": 1773212400007,
-      "lastRunAgo": "19h ago",
+      "lastRunAgo": "21h ago",
       "status": "error",
       "errors": 2
     }
