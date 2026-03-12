@@ -1,5 +1,97 @@
 {
-  "lastUpdated": "2026-03-11T15:00:00Z",
+  "lastUpdated": "2026-03-12T21:55:00Z",
+  "individual": [
+    {
+      "id": "vessel",
+      "name": "VESSEL",
+      "price": 9,
+      "tagline": "Launch Your Token With Culture From Day One — A Founder Playbook",
+      "category": "playbook",
+      "status": "ready",
+      "deliverable": "Notion"
+    },
+    {
+      "id": "draft",
+      "name": "DRAFT",
+      "price": 9,
+      "tagline": "90 Crypto Post Templates — Stop Starting From Scratch",
+      "category": "templates",
+      "status": "ready",
+      "deliverable": "Notion"
+    },
+    {
+      "id": "stack",
+      "name": "STACK",
+      "price": 7,
+      "tagline": "100 AI Prompts for Crypto Teams — Copy, Paste, Ship",
+      "category": "prompts",
+      "status": "ready",
+      "deliverable": "Notion"
+    },
+    {
+      "id": "blueprint",
+      "name": "BLUEPRINT",
+      "price": 9,
+      "tagline": "Build your brand and drop your product.",
+      "category": "playbook",
+      "status": "ready",
+      "deliverable": "Notion"
+    },
+    {
+      "id": "ledger",
+      "name": "LEDGER",
+      "price": 9,
+      "tagline": "Track performance and run operations.",
+      "category": "toolkit",
+      "status": "ready",
+      "deliverable": "Notion"
+    },
+    {
+      "id": "flow",
+      "name": "FLOW",
+      "price": 9,
+      "tagline": "Turn your community into one that grows.",
+      "category": "playbook",
+      "status": "ready",
+      "deliverable": "Notion"
+    },
+    {
+      "id": "pulse",
+      "name": "PULSE",
+      "price": 9,
+      "tagline": "Thread frameworks and growth systems for consistent builders.",
+      "category": "templates",
+      "status": "ready",
+      "deliverable": "Notion"
+    },
+    {
+      "id": "forge",
+      "name": "FORGE",
+      "price": 12,
+      "tagline": "Cut through noise and run operations.",
+      "category": "toolkit",
+      "status": "ready",
+      "deliverable": "Notion"
+    },
+    {
+      "id": "signal",
+      "name": "SIGNAL",
+      "price": 9,
+      "tagline": "Track performance and cut through noise.",
+      "category": "toolkit",
+      "status": "ready",
+      "deliverable": "Notion"
+    },
+    {
+      "id": "mint",
+      "name": "MINT",
+      "price": 9,
+      "tagline": "Drop your product.",
+      "category": "playbook",
+      "status": "ready",
+      "deliverable": "Notion"
+    }
+  ],
   "bundles": [
     {
       "id": "launch-stack",
