@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-12T21:13:39.980918+00:00",
+  "updatedAt": "2026-03-12T21:43:38.818245+00:00",
   "agent": "kodo",
   "status": "active",
   "activeTask": {
@@ -12,6 +12,12 @@
     "blockedOn": null
   },
   "recentOutputs": [
+    {
+      "filename": "fc-buyer-flow-qa-checklist.md",
+      "createdAt": "2026-03-12T21:40:39.467648+00:00",
+      "size": 2767,
+      "agent": "kodo"
+    },
     {
       "filename": "2026-03-11-product-listing-copy.md",
       "createdAt": "2026-03-11T15:07:02.695266+00:00",
@@ -125,12 +131,6 @@
       "createdAt": "2026-03-09T04:03:43.010667+00:00",
       "size": 14144,
       "agent": "kodo"
-    },
-    {
-      "filename": "2026-03-08-forcrypto-docs-audit.md",
-      "createdAt": "2026-03-09T01:37:07.263560+00:00",
-      "size": 14562,
-      "agent": "kodo"
     }
   ],
   "cronJobs": [
@@ -146,27 +146,27 @@
     {
       "name": "kodo-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773348214810,
+      "lastRunMs": 1773350014817,
       "lastRunAgo": "30m ago",
-      "nextRunMs": 1773350014810,
+      "nextRunMs": 1773351814817,
       "status": "ok",
       "errors": 0
     },
     {
       "name": "kikai-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773349736408,
+      "lastRunMs": 1773351536416,
       "lastRunAgo": "4m ago",
-      "nextRunMs": 1773351536408,
+      "nextRunMs": 1773353336416,
       "status": "ok",
       "errors": 0
     },
     {
       "name": "yama-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773349858522,
+      "lastRunMs": 1773351658530,
       "lastRunAgo": "2m ago",
-      "nextRunMs": 1773351658522,
+      "nextRunMs": 1773353458530,
       "status": "ok",
       "errors": 0
     }
@@ -208,6 +208,6 @@
       "status": "LIVE"
     }
   ],
-  "lastActiveMs": 1773350014870,
-  "lastActiveAgo": "5s ago"
+  "lastActiveMs": 1773351814877,
+  "lastActiveAgo": "3s ago"
 }
