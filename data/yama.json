@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-12T09:09:40.223324+00:00",
+  "updatedAt": "2026-03-12T09:46:18.342269+00:00",
   "agent": "yama",
   "status": "idle",
   "activeTask": {
@@ -12,6 +12,22 @@
     "blockedOn": null
   },
   "recentOutputs": [
+    {
+      "filename": "2026-03-12-fc-launch-distribution-plan.md",
+      "agent": "yama"
+    },
+    {
+      "filename": "2026-03-11-seo-prompt-system.md",
+      "agent": "yama"
+    },
+    {
+      "filename": "2026-03-12-listing-seo-patch.md",
+      "agent": "yama"
+    },
+    {
+      "filename": "2026-03-12-seo-system-forcrypto.md",
+      "agent": "yama"
+    },
     {
       "filename": "content-playbook.md",
       "agent": "yama"
@@ -35,22 +51,6 @@
     {
       "filename": "2026-03-11-llm-explainer-thread.md",
       "agent": "yama"
-    },
-    {
-      "filename": "2026-03-16-post-purchase-sequence.md",
-      "agent": "yama"
-    },
-    {
-      "filename": "2026-03-16-product-walkthrough-threads.md",
-      "agent": "yama"
-    },
-    {
-      "filename": "2026-03-16-milestone-posts.md",
-      "agent": "yama"
-    },
-    {
-      "filename": "2026-03-11-aave-oracle-reactive.md",
-      "agent": "yama"
     }
   ],
   "cronJobs": [
@@ -58,7 +58,7 @@
       "name": "yama-workspace-backup",
       "schedule": "every 2h",
       "lastRunMs": 1773304397598,
-      "lastRunAgo": "36m ago",
+      "lastRunAgo": "1h ago",
       "status": "ok",
       "errors": 0
     },
