@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-03-12T16:09:01.546083+00:00",
+  "updatedAt": "2026-03-12T16:39:07.623985+00:00",
   "agent": "kikai",
-  "status": "active",
+  "status": "idle",
   "activeTask": {
     "name": "Tomorrow's Task: Project Setup & Context",
     "status": "IN_PROGRESS",
@@ -13,11 +13,15 @@
   },
   "recentOutputs": [
     {
-      "filename": "2026-03-16-stacker-news-post.md",
+      "filename": "2026-03-16-reddit-launch-week-posts.md",
       "agent": "kikai"
     },
     {
       "filename": "2026-03-12-fc-launch-distribution-plan.md",
+      "agent": "kikai"
+    },
+    {
+      "filename": "2026-03-16-stacker-news-post.md",
       "agent": "kikai"
     },
     {
@@ -47,10 +51,6 @@
     {
       "filename": "2026-03-11-fc-launch-readiness.md",
       "agent": "kikai"
-    },
-    {
-      "filename": "2026-03-11-fc-verification-report.md",
-      "agent": "kikai"
     }
   ],
   "cronJobs": [
@@ -74,7 +74,7 @@
       "name": "Yama Health Monitor",
       "schedule": "every 1h",
       "lastRunMs": 1773330755597,
-      "lastRunAgo": "16m ago",
+      "lastRunAgo": "46m ago",
       "status": "ok",
       "errors": 0
     },
@@ -89,23 +89,23 @@
     {
       "name": "kikai-workspace-backup",
       "schedule": "every 2h",
-      "lastRunMs": 1773326208562,
-      "lastRunAgo": "1h ago",
+      "lastRunMs": 1773333408572,
+      "lastRunAgo": "2m ago",
       "status": "ok",
       "errors": 0
     },
     {
       "name": "agent-gateway-health",
       "schedule": "every 15m",
-      "lastRunMs": 1773330928787,
+      "lastRunMs": 1773332728805,
       "lastRunAgo": "13m ago",
-      "status": "error",
-      "errors": 1
+      "status": "ok",
+      "errors": 0
     },
     {
       "name": "agent-activity-monitor",
       "schedule": "every 15m",
-      "lastRunMs": 1773330984220,
+      "lastRunMs": 1773332784238,
       "lastRunAgo": "12m ago",
       "status": "ok",
       "errors": 0
@@ -138,7 +138,7 @@
       "name": "brain-dump-digest-8am",
       "schedule": "0 8 * * *",
       "lastRunMs": 1773328210695,
-      "lastRunAgo": "58m ago",
+      "lastRunAgo": "1h ago",
       "status": "ok",
       "errors": 0
     },
@@ -154,11 +154,11 @@
       "name": "Agent Gateway Health Monitor",
       "schedule": "every 15m",
       "lastRunMs": 1773330504752,
-      "lastRunAgo": "20m ago",
+      "lastRunAgo": "50m ago",
       "status": "error",
       "errors": 18
     }
   ],
-  "lastActiveMs": 1773331739000,
-  "lastActiveAgo": "2s ago"
+  "lastActiveMs": null,
+  "lastActiveAgo": "never"
 }
