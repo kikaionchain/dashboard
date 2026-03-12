@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-12T16:11:02.800953+00:00",
+  "updatedAt": "2026-03-12T16:41:04.837373+00:00",
   "agent": "yama",
   "status": "active",
   "activeTask": {
@@ -12,6 +12,26 @@
     "blockedOn": null
   },
   "recentOutputs": [
+    {
+      "filename": "2026-03-16-asset-index.md",
+      "agent": "yama"
+    },
+    {
+      "filename": "2026-03-23-community-post-variants.md",
+      "agent": "yama"
+    },
+    {
+      "filename": "2026-03-16-reddit-rcryptocurrency-post.md",
+      "agent": "yama"
+    },
+    {
+      "filename": "2026-03-16-reddit-launch-week-posts.md",
+      "agent": "yama"
+    },
+    {
+      "filename": "2026-03-12-wfusd-institutional-reactive.md",
+      "agent": "yama"
+    },
     {
       "filename": "2026-03-16-t1t2-platform-submissions.md",
       "agent": "yama"
@@ -29,27 +49,7 @@
       "agent": "yama"
     },
     {
-      "filename": "2026-03-16-asset-index.md",
-      "agent": "yama"
-    },
-    {
       "filename": "2026-03-16-producthunt-launch-copy.md",
-      "agent": "yama"
-    },
-    {
-      "filename": "2026-03-12-circle-nanopayments-reactive.md",
-      "agent": "yama"
-    },
-    {
-      "filename": "2026-03-12-mastercard-reactive.md",
-      "agent": "yama"
-    },
-    {
-      "filename": "2026-03-11-hyperliquid-reactive.md",
-      "agent": "yama"
-    },
-    {
-      "filename": "2026-03-12-fc-launch-distribution-plan.md",
       "agent": "yama"
     }
   ],
@@ -57,8 +57,8 @@
     {
       "name": "yama-workspace-backup",
       "schedule": "every 2h",
-      "lastRunMs": 1773325997620,
-      "lastRunAgo": "1h ago",
+      "lastRunMs": 1773333197629,
+      "lastRunAgo": "7m ago",
       "status": "ok",
       "errors": 0
     },
@@ -71,6 +71,6 @@
       "errors": 3
     }
   ],
-  "lastActiveMs": 1773331849000,
-  "lastActiveAgo": "13s ago"
+  "lastActiveMs": 1773333644000,
+  "lastActiveAgo": "20s ago"
 }
