@@ -1,10 +1,10 @@
 {
-  "lastUpdated": "2026-03-12T21:55:00Z",
+  "lastUpdated": "2026-03-12T21:57:00Z",
   "individual": [
     {
       "id": "vessel",
       "name": "VESSEL",
-      "price": 9,
+      "price": 49,
       "tagline": "Launch Your Token With Culture From Day One — A Founder Playbook",
       "category": "playbook",
       "status": "ready",
@@ -13,7 +13,7 @@
     {
       "id": "draft",
       "name": "DRAFT",
-      "price": 9,
+      "price": 29,
       "tagline": "90 Crypto Post Templates — Stop Starting From Scratch",
       "category": "templates",
       "status": "ready",
@@ -22,7 +22,7 @@
     {
       "id": "stack",
       "name": "STACK",
-      "price": 7,
+      "price": 29,
       "tagline": "100 AI Prompts for Crypto Teams — Copy, Paste, Ship",
       "category": "prompts",
       "status": "ready",
@@ -31,7 +31,7 @@
     {
       "id": "blueprint",
       "name": "BLUEPRINT",
-      "price": 9,
+      "price": 49,
       "tagline": "Build your brand and drop your product.",
       "category": "playbook",
       "status": "ready",
@@ -40,7 +40,7 @@
     {
       "id": "ledger",
       "name": "LEDGER",
-      "price": 9,
+      "price": 29,
       "tagline": "Track performance and run operations.",
       "category": "toolkit",
       "status": "ready",
@@ -49,7 +49,7 @@
     {
       "id": "flow",
       "name": "FLOW",
-      "price": 9,
+      "price": 49,
       "tagline": "Turn your community into one that grows.",
       "category": "playbook",
       "status": "ready",
@@ -58,7 +58,7 @@
     {
       "id": "pulse",
       "name": "PULSE",
-      "price": 9,
+      "price": 29,
       "tagline": "Thread frameworks and growth systems for consistent builders.",
       "category": "templates",
       "status": "ready",
@@ -67,7 +67,7 @@
     {
       "id": "forge",
       "name": "FORGE",
-      "price": 12,
+      "price": 39,
       "tagline": "Cut through noise and run operations.",
       "category": "toolkit",
       "status": "ready",
@@ -76,7 +76,7 @@
     {
       "id": "signal",
       "name": "SIGNAL",
-      "price": 9,
+      "price": 49,
       "tagline": "Track performance and cut through noise.",
       "category": "toolkit",
       "status": "ready",
@@ -85,7 +85,7 @@
     {
       "id": "mint",
       "name": "MINT",
-      "price": 9,
+      "price": 29,
       "tagline": "Drop your product.",
       "category": "playbook",
       "status": "ready",
