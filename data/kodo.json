@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-12T13:13:39.346932+00:00",
+  "updatedAt": "2026-03-12T13:43:40.266338+00:00",
   "agent": "kodo",
   "status": "active",
   "activeTask": {
@@ -146,27 +146,27 @@
     {
       "name": "kodo-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773319414692,
+      "lastRunMs": 1773321214698,
       "lastRunAgo": "30m ago",
-      "nextRunMs": 1773321214692,
+      "nextRunMs": 1773323014698,
       "status": "ok",
       "errors": 0
     },
     {
       "name": "kikai-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773320936288,
+      "lastRunMs": 1773322736294,
       "lastRunAgo": "4m ago",
-      "nextRunMs": 1773322736288,
+      "nextRunMs": 1773324536294,
       "status": "ok",
       "errors": 0
     },
     {
       "name": "yama-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773321058411,
+      "lastRunMs": 1773322858418,
       "lastRunAgo": "2m ago",
-      "nextRunMs": 1773322858411,
+      "nextRunMs": 1773324658418,
       "status": "ok",
       "errors": 0
     }
@@ -208,6 +208,6 @@
       "status": "LIVE"
     }
   ],
-  "lastActiveMs": 1773321214742,
-  "lastActiveAgo": "4s ago"
+  "lastActiveMs": 1773323014745,
+  "lastActiveAgo": "5s ago"
 }
