@@ -2183,8 +2183,11 @@ async function checkDomain() {
 async function fetchTreasury() {
   const BASE_RPC = 'https://mainnet.base.org';
   const SOL_RPCS = ['https://solana-rpc.publicnode.com', 'https://api.mainnet-beta.solana.com'];
-  const BASE_TREASURY = '0x51e0c3cb17e8AAb6391F40468A34E8E94aa1166E';
-  const SOL_TREASURY = 'DPe3WqzeJisHPj4LyjRNcVgtUYUzJmmC4LkvUifadaLm';
+  const BASE_TREASURY = '0x8732654f8d4f4a2EB0c664fc158235d47667924F';   // Kikai Base
+  const SOL_WALLETS = [
+    'GHsLQN16CKEwSCCXXyYEhL8s6mULH4YccUXPFDAUsz4a',  // Solana payout
+    '85yBdu3NdyEm8mcnqLgcDcwmCV9cLGXyG7JL334EibLb',   // Kikai Solana
+  ];
   const USDC_BASE = '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913';
   const USDC_SOL_MINT = 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v';
 
@@ -2205,22 +2208,30 @@ async function fetchTreasury() {
   };
 
   try {
-    // Parallel fetch all balances + prices
-    const [ethRes, usdcBaseRes, solRes, usdcSolRes, priceRes] = await Promise.all([
+    // Parallel fetch all balances + prices (aggregate both Solana wallets)
+    const [ethRes, usdcBaseRes, ...solResults] = await Promise.all([
       rpc(BASE_RPC, 'eth_getBalance', [BASE_TREASURY, 'latest']),
       rpc(BASE_RPC, 'eth_call', [{ to: USDC_BASE, data: '0x70a08231000000000000000000000000' + BASE_TREASURY.slice(2).toLowerCase() }, 'latest']),
-      solRpc('getBalance', [SOL_TREASURY]),
-      solRpc('getTokenAccountsByOwner', [SOL_TREASURY, { mint: USDC_SOL_MINT }, { encoding: 'jsonParsed' }]),
-      fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum,solana&vs_currencies=usd').then(r => r.json()).catch(() => ({ ethereum: { usd: 0 }, solana: { usd: 0 } }))
+      ...SOL_WALLETS.flatMap(w => [
+        solRpc('getBalance', [w]),
+        solRpc('getTokenAccountsByOwner', [w, { mint: USDC_SOL_MINT }, { encoding: 'jsonParsed' }]),
+      ]),
     ]);
+    const priceRes = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum,solana&vs_currencies=usd')
+      .then(r => r.json()).catch(() => ({ ethereum: { usd: 0 }, solana: { usd: 0 } }));
 
     const ethBal = parseInt(ethRes.result, 16) / 1e18;
     const usdcBaseBal = parseInt(usdcBaseRes.result, 16) / 1e6;
-    const solBal = (solRes.result?.value || 0) / 1e9;
-    const usdcSolAccounts = usdcSolRes.result?.value || [];
-    const usdcSolBal = usdcSolAccounts.length > 0
-      ? usdcSolAccounts.reduce((s, a) => s + (a.account?.data?.parsed?.info?.tokenAmount?.uiAmount || 0), 0)
-      : 0;
+
+    // Sum SOL and USDC across all Solana wallets
+    let solBal = 0, usdcSolBal = 0;
+    for (let i = 0; i < SOL_WALLETS.length; i++) {
+      const balRes = solResults[i * 2];
+      const usdcRes = solResults[i * 2 + 1];
+      solBal += (balRes.result?.value || 0) / 1e9;
+      const accounts = usdcRes.result?.value || [];
+      usdcSolBal += accounts.reduce((s, a) => s + (a.account?.data?.parsed?.info?.tokenAmount?.uiAmount || 0), 0);
+    }
 
     const ethPrice = priceRes.ethereum?.usd || 0;
     const solPrice = priceRes.solana?.usd || 0;
