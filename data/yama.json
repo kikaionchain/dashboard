@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-03-12T15:11:06.836349+00:00",
+  "updatedAt": "2026-03-12T15:41:03.287198+00:00",
   "agent": "yama",
-  "status": "idle",
+  "status": "active",
   "activeTask": {
     "name": "Available",
     "status": "IDLE",
@@ -12,6 +12,22 @@
     "blockedOn": null
   },
   "recentOutputs": [
+    {
+      "filename": "2026-03-16-microlaunch-post.md",
+      "agent": "yama"
+    },
+    {
+      "filename": "2026-03-16-stacker-news-post.md",
+      "agent": "yama"
+    },
+    {
+      "filename": "2026-03-16-asset-index.md",
+      "agent": "yama"
+    },
+    {
+      "filename": "2026-03-16-producthunt-launch-copy.md",
+      "agent": "yama"
+    },
     {
       "filename": "2026-03-12-circle-nanopayments-reactive.md",
       "agent": "yama"
@@ -35,22 +51,6 @@
     {
       "filename": "2026-03-12-listing-seo-patch.md",
       "agent": "yama"
-    },
-    {
-      "filename": "2026-03-12-seo-system-forcrypto.md",
-      "agent": "yama"
-    },
-    {
-      "filename": "content-playbook.md",
-      "agent": "yama"
-    },
-    {
-      "filename": "2026-03-12-x-study.md",
-      "agent": "yama"
-    },
-    {
-      "filename": "2026-03-16-asset-index.md",
-      "agent": "yama"
     }
   ],
   "cronJobs": [
@@ -58,7 +58,7 @@
       "name": "yama-workspace-backup",
       "schedule": "every 2h",
       "lastRunMs": 1773325997620,
-      "lastRunAgo": "37m ago",
+      "lastRunAgo": "1h ago",
       "status": "ok",
       "errors": 0
     },
@@ -71,6 +71,6 @@
       "errors": 3
     }
   ],
-  "lastActiveMs": null,
-  "lastActiveAgo": "never"
+  "lastActiveMs": 1773330043000,
+  "lastActiveAgo": "20s ago"
 }
