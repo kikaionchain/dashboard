@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-12T15:41:03.287198+00:00",
+  "updatedAt": "2026-03-12T16:11:02.800953+00:00",
   "agent": "yama",
   "status": "active",
   "activeTask": {
@@ -12,6 +12,14 @@
     "blockedOn": null
   },
   "recentOutputs": [
+    {
+      "filename": "2026-03-16-t1t2-platform-submissions.md",
+      "agent": "yama"
+    },
+    {
+      "filename": "2026-03-16-payonceforever-submission.md",
+      "agent": "yama"
+    },
     {
       "filename": "2026-03-16-microlaunch-post.md",
       "agent": "yama"
@@ -43,14 +51,6 @@
     {
       "filename": "2026-03-12-fc-launch-distribution-plan.md",
       "agent": "yama"
-    },
-    {
-      "filename": "2026-03-11-seo-prompt-system.md",
-      "agent": "yama"
-    },
-    {
-      "filename": "2026-03-12-listing-seo-patch.md",
-      "agent": "yama"
     }
   ],
   "cronJobs": [
@@ -66,11 +66,11 @@
       "name": "nightly-x-study",
       "schedule": "0 0 * * *",
       "lastRunMs": 1773298800007,
-      "lastRunAgo": "8h ago",
+      "lastRunAgo": "9h ago",
       "status": "error",
       "errors": 3
     }
   ],
-  "lastActiveMs": 1773330043000,
-  "lastActiveAgo": "20s ago"
+  "lastActiveMs": 1773331849000,
+  "lastActiveAgo": "13s ago"
 }
