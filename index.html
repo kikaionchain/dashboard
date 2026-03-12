@@ -1561,6 +1561,15 @@ async function fetchCronsJson() {
   } catch { return null; }
 }
 
+async function fetchNeedsWjpJson() {
+  const base = window.location.origin.includes('github.io') ? '/mission-control/' : '';
+  try {
+    const res = await fetch(`${base}data/needs-wjp.json?_v=${Date.now()}`);
+    if (!res.ok) return null;
+    return await res.json();
+  } catch { return null; }
+}
+
 function buildActiveWork(data, kodoData) {
   const result = [];
 
@@ -1829,7 +1838,7 @@ function renderTaskQueue(queue) {
 
 // ── WJP SECTION ─────────────────────────────────────────────────────────────
 
-function renderWjpHero(data) {
+function renderWjpHero(data, needsWjpJson) {
   // Set PFP src now that pfpBase is defined
   const img = document.getElementById('wjp-hero-pfp-img');
   if (img) {
@@ -1839,11 +1848,18 @@ function renderWjpHero(data) {
   }
 
   const list = document.getElementById('wjp-needs-list');
-  // Merge: hardcoded NEEDS_WJP + dynamic data.needsWjp
+  // Merge: hardcoded NEEDS_WJP + dynamic data.needsWjp + external needs-wjp.json
   const hardcoded = (typeof NEEDS_WJP !== 'undefined' ? NEEDS_WJP : [])
     .filter(i => !i.done);
   const dynamic = (data && data.needsWjp || []).filter(i => !i.done);
-  const all = [...hardcoded, ...dynamic];
+  const external = (needsWjpJson && needsWjpJson.items || []).filter(i => !i.done);
+  // Deduplicate by title across all sources
+  const seen = new Set();
+  const all = [...hardcoded, ...dynamic, ...external].filter(i => {
+    if (seen.has(i.title)) return false;
+    seen.add(i.title);
+    return true;
+  });
 
   if (!all.length) {
     list.innerHTML = '<div style="padding:12px 16px;color:var(--text3);font-size:13px;">Nothing needs your input right now. ✅</div>';
@@ -2291,9 +2307,10 @@ function renderUsagePanel(usageData) {
 async function refreshData() {
   document.getElementById('last-updated').innerHTML = '<span class="spinner"></span>';
   try {
-    const [data, kodoData, kikaiJson, yamaJson, cronsJson, usageJson] = await Promise.all([
+    const [data, kodoData, kikaiJson, yamaJson, cronsJson, usageJson, needsWjpJson] = await Promise.all([
       fetchData(), fetchKodoData(),
-      fetchAgentJson('kikai'), fetchAgentJson('yama'), fetchCronsJson(), fetchUsageJson()
+      fetchAgentJson('kikai'), fetchAgentJson('yama'), fetchCronsJson(), fetchUsageJson(),
+      fetchNeedsWjpJson()
     ]);
     const domainLive = data.health && data.health.domain === 'live';
     updateTimestamp(data.updatedAt);
@@ -2311,7 +2328,7 @@ async function refreshData() {
       } : {}
     };
 
-    renderWjpHero(data);
+    renderWjpHero(data, needsWjpJson);
     renderAgents(mergedAgents);
     renderUsagePanel(usageJson);
     fetchTreasury(); // async, non-blocking
