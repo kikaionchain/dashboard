@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-03-13T02:09:01.747968+00:00",
+  "updatedAt": "2026-03-13T02:39:00.841305+00:00",
   "agent": "kikai",
-  "status": "active",
+  "status": "idle",
   "activeTask": {
     "name": "Tomorrow's Task: Project Setup & Context",
     "status": "IN_PROGRESS",
@@ -74,7 +74,7 @@
       "name": "Yama Health Monitor",
       "schedule": "every 1h",
       "lastRunMs": 1773367390730,
-      "lastRunAgo": "5m ago",
+      "lastRunAgo": "35m ago",
       "status": "ok",
       "errors": 0
     },
@@ -90,14 +90,14 @@
       "name": "kikai-workspace-backup",
       "schedule": "every 2h",
       "lastRunMs": 1773366542975,
-      "lastRunAgo": "19m ago",
+      "lastRunAgo": "49m ago",
       "status": "ok",
       "errors": 0
     },
     {
       "name": "agent-gateway-health",
       "schedule": "every 15m",
-      "lastRunMs": 1773366886052,
+      "lastRunMs": 1773368686065,
       "lastRunAgo": "14m ago",
       "status": "ok",
       "errors": 0
@@ -105,7 +105,7 @@
     {
       "name": "agent-activity-monitor",
       "schedule": "every 15m",
-      "lastRunMs": 1773366833530,
+      "lastRunMs": 1773368633569,
       "lastRunAgo": "15m ago",
       "status": "ok",
       "errors": 0
@@ -138,7 +138,7 @@
       "name": "brain-dump-digest-8am",
       "schedule": "0 8 * * *",
       "lastRunMs": 1773328210695,
-      "lastRunAgo": "10h ago",
+      "lastRunAgo": "11h ago",
       "status": "ok",
       "errors": 0
     },
@@ -153,20 +153,20 @@
     {
       "name": "Agent Gateway Health Monitor",
       "schedule": "every 15m",
-      "lastRunMs": 1773365317324,
-      "lastRunAgo": "40m ago",
+      "lastRunMs": 1773368944552,
+      "lastRunAgo": "9m ago",
       "status": "error",
-      "errors": 26
+      "errors": 27
     },
     {
       "name": "kikai-gateway-watchdog",
       "schedule": "every 15m",
-      "lastRunMs": 1773366931331,
+      "lastRunMs": 1773368731421,
       "lastRunAgo": "13m ago",
       "status": "ok",
       "errors": 0
     }
   ],
-  "lastActiveMs": 1773367733000,
-  "lastActiveAgo": "8s ago"
+  "lastActiveMs": null,
+  "lastActiveAgo": "never"
 }
