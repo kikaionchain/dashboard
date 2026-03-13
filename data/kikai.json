@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-13T22:09:01.521048+00:00",
+  "updatedAt": "2026-03-13T22:39:01.641935+00:00",
   "agent": "kikai",
   "status": "idle",
   "activeTask": {
@@ -74,7 +74,7 @@
       "name": "Yama Health Monitor",
       "schedule": "every 1h",
       "lastRunMs": 1773437449299,
-      "lastRunAgo": "38m ago",
+      "lastRunAgo": "1h ago",
       "status": "error",
       "errors": 1
     },
@@ -90,7 +90,7 @@
       "name": "kikai-workspace-backup",
       "schedule": "every 2h",
       "lastRunMs": 1773433909256,
-      "lastRunAgo": "1h ago",
+      "lastRunAgo": "2h ago",
       "status": "ok",
       "errors": 0
     },
