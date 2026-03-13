@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-13T13:11:02.161027+00:00",
+  "updatedAt": "2026-03-13T13:41:04.003498+00:00",
   "agent": "yama",
   "status": "idle",
   "activeTask": {
@@ -58,7 +58,7 @@
       "name": "yama-workspace-backup",
       "schedule": "every 2h",
       "lastRunMs": 1773405197688,
-      "lastRunAgo": "37m ago",
+      "lastRunAgo": "1h ago",
       "status": "ok",
       "errors": 0
     },
