@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-13T05:54:34.039219+00:00",
+  "updatedAt": "2026-03-13T06:24:34.573561+00:00",
   "agent": "kodo",
   "status": "active",
   "activeTask": {
@@ -12,6 +12,12 @@
     "blockedOn": null
   },
   "recentOutputs": [
+    {
+      "filename": "2026-03-13-67-research.md",
+      "createdAt": "2026-03-13T06:13:15.244157+00:00",
+      "size": 8675,
+      "agent": "kodo"
+    },
     {
       "filename": "2026-03-13-67-morning-brief.md",
       "createdAt": "2026-03-13T05:39:33.233237+00:00",
@@ -125,12 +131,6 @@
       "createdAt": "2026-03-09T18:40:47.050778+00:00",
       "size": 6695,
       "agent": "kodo"
-    },
-    {
-      "filename": "2026-03-09-audit-round2-kodo.md",
-      "createdAt": "2026-03-09T16:50:28.169724+00:00",
-      "size": 15515,
-      "agent": "kodo"
     }
   ],
   "cronJobs": [
@@ -138,7 +138,7 @@
       "name": "kodo-workspace-backup",
       "schedule": "every 2h",
       "lastRunMs": 1773380969875,
-      "lastRunAgo": "5m ago",
+      "lastRunAgo": "35m ago",
       "nextRunMs": 1773388169875,
       "status": "ok",
       "errors": 0
@@ -146,27 +146,27 @@
     {
       "name": "kodo-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773379469216,
+      "lastRunMs": 1773381269222,
       "lastRunAgo": "30m ago",
-      "nextRunMs": 1773381269216,
+      "nextRunMs": 1773383069222,
       "status": "ok",
       "errors": 0
     },
     {
       "name": "kikai-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773380336535,
+      "lastRunMs": 1773382136543,
       "lastRunAgo": "15m ago",
-      "nextRunMs": 1773382136535,
+      "nextRunMs": 1773383936543,
       "status": "ok",
       "errors": 0
     },
     {
       "name": "yama-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773380458653,
+      "lastRunMs": 1773382258661,
       "lastRunAgo": "13m ago",
-      "nextRunMs": 1773382258653,
+      "nextRunMs": 1773384058661,
       "status": "ok",
       "errors": 0
     }
@@ -208,6 +208,6 @@
       "status": "LIVE"
     }
   ],
-  "lastActiveMs": 1773381269278,
-  "lastActiveAgo": "4s ago"
+  "lastActiveMs": 1773383069285,
+  "lastActiveAgo": "5s ago"
 }
