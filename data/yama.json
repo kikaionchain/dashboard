@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-12T23:41:02.053395+00:00",
+  "updatedAt": "2026-03-13T00:11:02.331097+00:00",
   "agent": "yama",
   "status": "idle",
   "activeTask": {
@@ -12,6 +12,10 @@
     "blockedOn": null
   },
   "recentOutputs": [
+    {
+      "filename": "2026-03-12-ct-reactives.md",
+      "agent": "yama"
+    },
     {
       "filename": "2026-03-11-alexfinn-reactive.md",
       "agent": "yama"
@@ -47,10 +51,6 @@
     {
       "filename": "2026-03-16-t1t2-platform-submissions.md",
       "agent": "yama"
-    },
-    {
-      "filename": "2026-03-16-payonceforever-submission.md",
-      "agent": "yama"
     }
   ],
   "cronJobs": [
@@ -66,7 +66,7 @@
       "name": "nightly-x-study",
       "schedule": "0 0 * * *",
       "lastRunMs": 1773298800007,
-      "lastRunAgo": "16h ago",
+      "lastRunAgo": "17h ago",
       "status": "error",
       "errors": 3
     }
