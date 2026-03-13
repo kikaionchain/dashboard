@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-03-13T05:11:03.744528+00:00",
+  "updatedAt": "2026-03-13T05:41:03.532277+00:00",
   "agent": "yama",
-  "status": "idle",
+  "status": "active",
   "activeTask": {
     "name": "Available",
     "status": "IDLE",
@@ -12,6 +12,14 @@
     "blockedOn": null
   },
   "recentOutputs": [
+    {
+      "filename": "2026-03-13-morning-brief.md",
+      "agent": "yama"
+    },
+    {
+      "filename": "2026-03-11-product-listing-copy.md",
+      "agent": "yama"
+    },
     {
       "filename": "2026-03-12-ct-reactives.md",
       "agent": "yama"
@@ -43,14 +51,6 @@
     {
       "filename": "2026-03-16-reddit-launch-week-posts.md",
       "agent": "yama"
-    },
-    {
-      "filename": "2026-03-12-wfusd-institutional-reactive.md",
-      "agent": "yama"
-    },
-    {
-      "filename": "2026-03-16-t1t2-platform-submissions.md",
-      "agent": "yama"
     }
   ],
   "cronJobs": [
@@ -58,7 +58,7 @@
       "name": "yama-workspace-backup",
       "schedule": "every 2h",
       "lastRunMs": 1773376397663,
-      "lastRunAgo": "37m ago",
+      "lastRunAgo": "1h ago",
       "status": "ok",
       "errors": 0
     },
@@ -71,6 +71,6 @@
       "errors": 3
     }
   ],
-  "lastActiveMs": null,
-  "lastActiveAgo": "never"
+  "lastActiveMs": 1773380436000,
+  "lastActiveAgo": "27s ago"
 }
