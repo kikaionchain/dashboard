@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-03-13T15:11:01.935533+00:00",
+  "updatedAt": "2026-03-13T15:41:06.745596+00:00",
   "agent": "yama",
-  "status": "active",
+  "status": "idle",
   "activeTask": {
     "name": "Available",
     "status": "IDLE",
@@ -17,39 +17,39 @@
       "agent": "yama"
     },
     {
-      "filename": "content-playbook.md",
-      "agent": "yama"
-    },
-    {
-      "filename": "2026-03-13-x-study.md",
-      "agent": "yama"
-    },
-    {
       "filename": "2026-03-13-morning-brief.md",
       "agent": "yama"
     },
     {
-      "filename": "2026-03-11-product-listing-copy.md",
+      "filename": "2026-03-16-payonceforever-submission.md",
       "agent": "yama"
     },
     {
-      "filename": "2026-03-12-ct-reactives.md",
+      "filename": "2026-03-16-stacker-news-post.md",
       "agent": "yama"
     },
     {
-      "filename": "2026-03-11-alexfinn-reactive.md",
+      "filename": "2026-03-16-microlaunch-post.md",
       "agent": "yama"
     },
     {
-      "filename": "2026-03-12-seo-system-forcrypto.md",
+      "filename": "2026-03-16-reddit-launch-week-posts.md",
       "agent": "yama"
     },
     {
-      "filename": "2026-03-12-agent-economy-stack-reactive.md",
+      "filename": "2026-03-16-producthunt-launch-copy.md",
       "agent": "yama"
     },
     {
-      "filename": "2026-03-16-asset-index.md",
+      "filename": "2026-03-16-t1t2-platform-submissions.md",
+      "agent": "yama"
+    },
+    {
+      "filename": "2026-03-13-homepage-audit.md",
+      "agent": "yama"
+    },
+    {
+      "filename": "content-playbook.md",
       "agent": "yama"
     }
   ],
@@ -58,7 +58,7 @@
       "name": "yama-workspace-backup",
       "schedule": "every 2h",
       "lastRunMs": 1773412397698,
-      "lastRunAgo": "37m ago",
+      "lastRunAgo": "1h ago",
       "status": "ok",
       "errors": 0
     },
@@ -71,6 +71,6 @@
       "errors": 4
     }
   ],
-  "lastActiveMs": 1773414643000,
-  "lastActiveAgo": "18s ago"
+  "lastActiveMs": null,
+  "lastActiveAgo": "never"
 }
