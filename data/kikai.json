@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-03-13T16:09:04.779584+00:00",
+  "updatedAt": "2026-03-13T16:39:04.000400+00:00",
   "agent": "kikai",
-  "status": "active",
+  "status": "idle",
   "activeTask": {
     "name": "Tomorrow's Task: Project Setup & Context",
     "status": "IN_PROGRESS",
@@ -73,10 +73,10 @@
     {
       "name": "Yama Health Monitor",
       "schedule": "every 1h",
-      "lastRunMs": 1773415847273,
-      "lastRunAgo": "38m ago",
-      "status": "ok",
-      "errors": 0
+      "lastRunMs": 1773419449218,
+      "lastRunAgo": "8m ago",
+      "status": "error",
+      "errors": 1
     },
     {
       "name": "AI Feed Digest",
@@ -89,26 +89,26 @@
     {
       "name": "kikai-workspace-backup",
       "schedule": "every 2h",
-      "lastRunMs": 1773412228292,
-      "lastRunAgo": "1h ago",
-      "status": "ok",
-      "errors": 0
+      "lastRunMs": 1773419509236,
+      "lastRunAgo": "7m ago",
+      "status": "error",
+      "errors": 1
     },
     {
       "name": "agent-gateway-health",
       "schedule": "every 15m",
-      "lastRunMs": 1773417960768,
+      "lastRunMs": 1773419760794,
       "lastRunAgo": "3m ago",
-      "status": "ok",
-      "errors": 0
+      "status": "error",
+      "errors": 2
     },
     {
       "name": "agent-activity-monitor",
       "schedule": "every 15m",
-      "lastRunMs": 1773417575789,
+      "lastRunMs": 1773419375808,
       "lastRunAgo": "9m ago",
-      "status": "ok",
-      "errors": 0
+      "status": "error",
+      "errors": 2
     },
     {
       "name": "today-8am",
@@ -130,7 +130,7 @@
       "name": "3-Day Studio Brain Dump",
       "schedule": "0 9 */3 * *",
       "lastRunMs": 1773417600013,
-      "lastRunAgo": "9m ago",
+      "lastRunAgo": "39m ago",
       "status": "ok",
       "errors": 0
     },
@@ -153,12 +153,12 @@
     {
       "name": "kikai-gateway-watchdog",
       "schedule": "every 15m",
-      "lastRunMs": 1773417331285,
+      "lastRunMs": 1773419131310,
       "lastRunAgo": "13m ago",
       "status": "ok",
       "errors": 0
     }
   ],
-  "lastActiveMs": 1773418128000,
-  "lastActiveAgo": "16s ago"
+  "lastActiveMs": null,
+  "lastActiveAgo": "never"
 }
