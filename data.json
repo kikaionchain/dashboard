@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-13T15:54:37.441366+00:00",
+  "updatedAt": "2026-03-13T16:09:04.779584+00:00",
   "projects": [
     {
       "id": "for-crypto",
@@ -185,7 +185,7 @@
   ],
   "agents": {
     "kikai": {
-      "status": "idle",
+      "status": "active",
       "workingOn": "Tomorrow's Task: Project Setup & Context",
       "contextPct": 45,
       "model": "claude-opus-4-6",
