@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-13T05:24:33.748170+00:00",
+  "updatedAt": "2026-03-13T05:54:34.039219+00:00",
   "agent": "kodo",
   "status": "active",
   "activeTask": {
@@ -12,6 +12,12 @@
     "blockedOn": null
   },
   "recentOutputs": [
+    {
+      "filename": "2026-03-13-67-morning-brief.md",
+      "createdAt": "2026-03-13T05:39:33.233237+00:00",
+      "size": 3825,
+      "agent": "kodo"
+    },
     {
       "filename": "2026-03-09-67-mock-campaign.md",
       "createdAt": "2026-03-13T05:17:26.728545+00:00",
@@ -125,48 +131,42 @@
       "createdAt": "2026-03-09T16:50:28.169724+00:00",
       "size": 15515,
       "agent": "kodo"
-    },
-    {
-      "filename": "2026-03-09-forcrypto-docs-audit-round2.md",
-      "createdAt": "2026-03-09T16:40:33.825175+00:00",
-      "size": 11898,
-      "agent": "kodo"
     }
   ],
   "cronJobs": [
     {
       "name": "kodo-workspace-backup",
       "schedule": "every 2h",
-      "lastRunMs": 1773373769867,
-      "lastRunAgo": "1h ago",
-      "nextRunMs": 1773380969867,
+      "lastRunMs": 1773380969875,
+      "lastRunAgo": "5m ago",
+      "nextRunMs": 1773388169875,
       "status": "ok",
       "errors": 0
     },
     {
       "name": "kodo-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773377669208,
+      "lastRunMs": 1773379469216,
       "lastRunAgo": "30m ago",
-      "nextRunMs": 1773379469208,
+      "nextRunMs": 1773381269216,
       "status": "ok",
       "errors": 0
     },
     {
       "name": "kikai-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773378536526,
+      "lastRunMs": 1773380336535,
       "lastRunAgo": "15m ago",
-      "nextRunMs": 1773380336526,
+      "nextRunMs": 1773382136535,
       "status": "ok",
       "errors": 0
     },
     {
       "name": "yama-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773378658647,
+      "lastRunMs": 1773380458653,
       "lastRunAgo": "13m ago",
-      "nextRunMs": 1773380458647,
+      "nextRunMs": 1773382258653,
       "status": "ok",
       "errors": 0
     }
@@ -208,6 +208,6 @@
       "status": "LIVE"
     }
   ],
-  "lastActiveMs": 1773379469269,
+  "lastActiveMs": 1773381269278,
   "lastActiveAgo": "4s ago"
 }
