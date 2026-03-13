@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-13T06:43:30.427903+00:00",
+  "updatedAt": "2026-03-13T07:11:02.801602+00:00",
   "agent": "yama",
   "status": "idle",
   "activeTask": {
@@ -12,6 +12,14 @@
     "blockedOn": null
   },
   "recentOutputs": [
+    {
+      "filename": "content-playbook.md",
+      "agent": "yama"
+    },
+    {
+      "filename": "2026-03-13-x-study.md",
+      "agent": "yama"
+    },
     {
       "filename": "2026-03-13-morning-brief.md",
       "agent": "yama"
@@ -43,14 +51,6 @@
     {
       "filename": "2026-03-16-asset-index.md",
       "agent": "yama"
-    },
-    {
-      "filename": "2026-03-23-community-post-variants.md",
-      "agent": "yama"
-    },
-    {
-      "filename": "2026-03-16-reddit-rcryptocurrency-post.md",
-      "agent": "yama"
     }
   ],
   "cronJobs": [
@@ -58,17 +58,17 @@
       "name": "yama-workspace-backup",
       "schedule": "every 2h",
       "lastRunMs": 1773383597669,
-      "lastRunAgo": "10m ago",
+      "lastRunAgo": "37m ago",
       "status": "ok",
       "errors": 0
     },
     {
       "name": "nightly-x-study",
       "schedule": "0 0 * * *",
-      "lastRunMs": 1773298800007,
-      "lastRunAgo": "23h ago",
+      "lastRunMs": 1773385200004,
+      "lastRunAgo": "11m ago",
       "status": "error",
-      "errors": 3
+      "errors": 4
     }
   ],
   "lastActiveMs": null,
