@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-13T20:31:47.689889+00:00",
+  "updatedAt": "2026-03-13T21:01:47.537894+00:00",
   "agent": "kodo",
   "status": "active",
   "activeTask": {
@@ -138,7 +138,7 @@
       "name": "kodo-workspace-backup",
       "schedule": "every 2h",
       "lastRunMs": 1773431369929,
-      "lastRunAgo": "42m ago",
+      "lastRunAgo": "1h ago",
       "nextRunMs": 1773438569929,
       "status": "ok",
       "errors": 0
@@ -146,27 +146,27 @@
     {
       "name": "kodo-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773432102008,
+      "lastRunMs": 1773433902024,
       "lastRunAgo": "30m ago",
-      "nextRunMs": 1773433902008,
+      "nextRunMs": 1773435702024,
       "status": "ok",
       "errors": 0
     },
     {
       "name": "kikai-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773432536754,
+      "lastRunMs": 1773434336761,
       "lastRunAgo": "22m ago",
-      "nextRunMs": 1773434336754,
+      "nextRunMs": 1773436136761,
       "status": "ok",
       "errors": 0
     },
     {
       "name": "yama-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773432658886,
+      "lastRunMs": 1773434458892,
       "lastRunAgo": "20m ago",
-      "nextRunMs": 1773434458886,
+      "nextRunMs": 1773436258892,
       "status": "ok",
       "errors": 0
     }
@@ -208,6 +208,6 @@
       "status": "LIVE"
     }
   ],
-  "lastActiveMs": 1773433902069,
+  "lastActiveMs": 1773435702082,
   "lastActiveAgo": "5s ago"
 }
