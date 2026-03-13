@@ -1,12 +1,12 @@
 {
-  "updatedAt": "2026-03-13T21:01:52Z",
+  "updatedAt": "2026-03-13T21:31:51Z",
   "weekResets": "2026-03-20T02:00:00Z",
   "agents": {
     "kodo": {
       "allModels": 18,
       "sonnet": 72,
       "opus": 5,
-      "updatedAt": "2026-03-13T21:01:52Z",
+      "updatedAt": "2026-03-13T21:31:51Z",
       "note": "Switched to Opus — Sonnet paused at 97%"
     },
     "kikai": {
