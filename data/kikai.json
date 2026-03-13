@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-03-13T04:09:00.546307+00:00",
+  "updatedAt": "2026-03-13T04:39:02.058645+00:00",
   "agent": "kikai",
-  "status": "idle",
+  "status": "active",
   "activeTask": {
     "name": "Tomorrow's Task: Project Setup & Context",
     "status": "IN_PROGRESS",
@@ -74,7 +74,7 @@
       "name": "Yama Health Monitor",
       "schedule": "every 1h",
       "lastRunMs": 1773374632668,
-      "lastRunAgo": "5m ago",
+      "lastRunAgo": "35m ago",
       "status": "ok",
       "errors": 0
     },
@@ -90,14 +90,14 @@
       "name": "kikai-workspace-backup",
       "schedule": "every 2h",
       "lastRunMs": 1773373742987,
-      "lastRunAgo": "19m ago",
+      "lastRunAgo": "49m ago",
       "status": "ok",
       "errors": 0
     },
     {
       "name": "agent-gateway-health",
       "schedule": "every 15m",
-      "lastRunMs": 1773374368260,
+      "lastRunMs": 1773376168284,
       "lastRunAgo": "9m ago",
       "status": "ok",
       "errors": 0
@@ -105,7 +105,7 @@
     {
       "name": "agent-activity-monitor",
       "schedule": "every 15m",
-      "lastRunMs": 1773374330320,
+      "lastRunMs": 1773376130352,
       "lastRunAgo": "10m ago",
       "status": "ok",
       "errors": 0
@@ -138,7 +138,7 @@
       "name": "brain-dump-digest-8am",
       "schedule": "0 8 * * *",
       "lastRunMs": 1773328210695,
-      "lastRunAgo": "12h ago",
+      "lastRunAgo": "13h ago",
       "status": "ok",
       "errors": 0
     },
@@ -153,12 +153,12 @@
     {
       "name": "kikai-gateway-watchdog",
       "schedule": "every 15m",
-      "lastRunMs": 1773374394336,
+      "lastRunMs": 1773376194360,
       "lastRunAgo": "9m ago",
       "status": "ok",
       "errors": 0
     }
   ],
-  "lastActiveMs": null,
-  "lastActiveAgo": "never"
+  "lastActiveMs": 1773376534000,
+  "lastActiveAgo": "3m ago"
 }
