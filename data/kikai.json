@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-13T20:09:01.324379+00:00",
+  "updatedAt": "2026-03-13T20:39:02.612037+00:00",
   "agent": "kikai",
   "status": "idle",
   "activeTask": {
@@ -73,8 +73,8 @@
     {
       "name": "Yama Health Monitor",
       "schedule": "every 1h",
-      "lastRunMs": 1773430249279,
-      "lastRunAgo": "38m ago",
+      "lastRunMs": 1773433849289,
+      "lastRunAgo": "8m ago",
       "status": "ok",
       "errors": 0
     },
@@ -89,8 +89,8 @@
     {
       "name": "kikai-workspace-backup",
       "schedule": "every 2h",
-      "lastRunMs": 1773426709245,
-      "lastRunAgo": "1h ago",
+      "lastRunMs": 1773433909256,
+      "lastRunAgo": "7m ago",
       "status": "ok",
       "errors": 0
     },
@@ -137,7 +137,7 @@
     {
       "name": "studio-health-monitor",
       "schedule": "every 30m",
-      "lastRunMs": 1773432084239,
+      "lastRunMs": 1773433884249,
       "lastRunAgo": "7m ago",
       "status": "ok",
       "errors": 0
