@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-03-13T05:41:03.532277+00:00",
+  "updatedAt": "2026-03-13T06:13:26.462916+00:00",
   "agent": "yama",
-  "status": "active",
+  "status": "idle",
   "activeTask": {
     "name": "Available",
     "status": "IDLE",
@@ -14,6 +14,10 @@
   "recentOutputs": [
     {
       "filename": "2026-03-13-morning-brief.md",
+      "agent": "yama"
+    },
+    {
+      "filename": "2026-03-13-landscape-research.md",
       "agent": "yama"
     },
     {
@@ -47,10 +51,6 @@
     {
       "filename": "2026-03-16-reddit-rcryptocurrency-post.md",
       "agent": "yama"
-    },
-    {
-      "filename": "2026-03-16-reddit-launch-week-posts.md",
-      "agent": "yama"
     }
   ],
   "cronJobs": [
@@ -66,11 +66,11 @@
       "name": "nightly-x-study",
       "schedule": "0 0 * * *",
       "lastRunMs": 1773298800007,
-      "lastRunAgo": "22h ago",
+      "lastRunAgo": "23h ago",
       "status": "error",
       "errors": 3
     }
   ],
-  "lastActiveMs": 1773380436000,
-  "lastActiveAgo": "27s ago"
+  "lastActiveMs": null,
+  "lastActiveAgo": "never"
 }
