@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-13T18:09:01.140585+00:00",
+  "updatedAt": "2026-03-13T18:39:01.041528+00:00",
   "agent": "kikai",
   "status": "idle",
   "activeTask": {
@@ -73,10 +73,10 @@
     {
       "name": "Yama Health Monitor",
       "schedule": "every 1h",
-      "lastRunMs": 1773423049232,
-      "lastRunAgo": "38m ago",
-      "status": "error",
-      "errors": 2
+      "lastRunMs": 1773426649271,
+      "lastRunAgo": "8m ago",
+      "status": "ok",
+      "errors": 0
     },
     {
       "name": "AI Feed Digest",
@@ -89,10 +89,10 @@
     {
       "name": "kikai-workspace-backup",
       "schedule": "every 2h",
-      "lastRunMs": 1773419509236,
-      "lastRunAgo": "1h ago",
-      "status": "error",
-      "errors": 1
+      "lastRunMs": 1773426709245,
+      "lastRunAgo": "7m ago",
+      "status": "ok",
+      "errors": 0
     },
     {
       "name": "today-8am",
@@ -137,6 +137,14 @@
     {
       "name": "studio-health-monitor",
       "schedule": "every 30m",
+      "lastRunMs": 1773426684210,
+      "lastRunAgo": "7m ago",
+      "status": "ok",
+      "errors": 0
+    },
+    {
+      "name": "switch-back-kikai-auth-key",
+      "schedule": "\u2014",
       "lastRunMs": null,
       "lastRunAgo": "never",
       "status": "ok",
