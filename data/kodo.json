@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-03-13T04:54:35.460877+00:00",
+  "updatedAt": "2026-03-13T05:24:33.748170+00:00",
   "agent": "kodo",
   "status": "active",
   "activeTask": {
@@ -12,6 +12,18 @@
     "blockedOn": null
   },
   "recentOutputs": [
+    {
+      "filename": "2026-03-09-67-mock-campaign.md",
+      "createdAt": "2026-03-13T05:17:26.728545+00:00",
+      "size": 5124,
+      "agent": "kodo"
+    },
+    {
+      "filename": "2026-03-09-67-meme-playbook.md",
+      "createdAt": "2026-03-13T05:17:26.442048+00:00",
+      "size": 11176,
+      "agent": "kodo"
+    },
     {
       "filename": "2026-03-11-product-listing-copy.md",
       "createdAt": "2026-03-12T22:25:55.849662+00:00",
@@ -119,18 +131,6 @@
       "createdAt": "2026-03-09T16:40:33.825175+00:00",
       "size": 11898,
       "agent": "kodo"
-    },
-    {
-      "filename": "2026-03-08-whop-study-notes.md",
-      "createdAt": "2026-03-09T04:07:52.385031+00:00",
-      "size": 9607,
-      "agent": "kodo"
-    },
-    {
-      "filename": "2026-03-08-crypto-product-teardown.md",
-      "createdAt": "2026-03-09T04:03:43.010667+00:00",
-      "size": 14144,
-      "agent": "kodo"
     }
   ],
   "cronJobs": [
@@ -146,27 +146,27 @@
     {
       "name": "kodo-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773375869200,
+      "lastRunMs": 1773377669208,
       "lastRunAgo": "30m ago",
-      "nextRunMs": 1773377669200,
+      "nextRunMs": 1773379469208,
       "status": "ok",
       "errors": 0
     },
     {
       "name": "kikai-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773376736521,
+      "lastRunMs": 1773378536526,
       "lastRunAgo": "15m ago",
-      "nextRunMs": 1773378536521,
+      "nextRunMs": 1773380336526,
       "status": "ok",
       "errors": 0
     },
     {
       "name": "yama-mc-push",
       "schedule": "every 30m",
-      "lastRunMs": 1773376858639,
+      "lastRunMs": 1773378658647,
       "lastRunAgo": "13m ago",
-      "nextRunMs": 1773378658639,
+      "nextRunMs": 1773380458647,
       "status": "ok",
       "errors": 0
     }
@@ -208,6 +208,6 @@
       "status": "LIVE"
     }
   ],
-  "lastActiveMs": 1773377669266,
-  "lastActiveAgo": "6s ago"
+  "lastActiveMs": 1773379469269,
+  "lastActiveAgo": "4s ago"
 }
